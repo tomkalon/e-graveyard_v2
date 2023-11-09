@@ -1,0 +1,58 @@
+version: "3"
+
+services:
+  php-apache:
+    container_name: "apache-${PROJECT_NAME}"
+    restart: unless-stopped
+    build: ./docker/php-apache
+    volumes:
+      - ${PATH_TO_SYMFONY_PROJECT}:/var/www/html
+    ports:
+      - "80:80"
+  
+  db:
+    container_name: "mariadb-${PROJECT_NAME}"
+    restart: unless-stopped
+    image: mariadb:10.11.5
+    environment:
+      - MARIADB_ROOT_USER=${ROOT_USER}
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_NAME}
+    volumes:
+      - ${PATH_TO_DB_DATA}:/var/lib/mysql:rw
+    ports:
+      - "3306:3306"
+  
+  redis:
+    container_name: "redis-${PROJECT_NAME}"
+    image: redis:alpine3.18
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Warsaw
+
+###> symfony/mercure-bundle ###
+  mercure:
+    container_name: "mercure-${PROJECT_NAME}"
+    image: dunglas/mercure
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: ':80'
+      MERCURE_PUBLISHER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      MERCURE_SUBSCRIBER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
+      # Set the URL of your Symfony project (without trailing slash!) as value of the cors_origins directive
+      MERCURE_EXTRA_DIRECTIVES: |
+        cors_origins http://127.0.0.1:8000
+    # Comment the following line to disable the development mode
+    command: /usr/bin/caddy run --config /etc/caddy/Caddyfile.dev
+    volumes:
+      - mercure_data:/data
+      - mercure_config:/config
+###< symfony/mercure-bundle ###
+
+volumes:
+###> symfony/mercure-bundle ###
+  mercure_data:
+  mercure_config:
+###< symfony/mercure-bundle ###

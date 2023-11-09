@@ -1,0 +1,6 @@
+index_route:
+  resource: 'index.yaml'
+  
+page_routes:
+  resource: 'page'
+  type: directory

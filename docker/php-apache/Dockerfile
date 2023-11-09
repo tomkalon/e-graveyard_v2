@@ -1,0 +1,45 @@
+FROM php:apache-bullseye
+
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+#Install Packages
+RUN apt-get -y update && apt-get install -y libicu-dev libzip-dev zip libjpeg-dev libpng-dev libfreetype6-dev
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-configure gd '--with-jpeg' '--with-freetype'
+RUN docker-php-ext-install intl opcache pdo_mysql zip gd
+RUN pecl install xdebug
+
+#INI-Files
+RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
+COPY opcache.ini $PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini
+COPY xdebug.ini $PHP_INI_DIR/conf.d/99-xdebug.ini
+COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
+RUN a2enmod rewrite
+
+#INSTALL APCU
+RUN pecl install apcu-5.1.22 && docker-php-ext-enable apcu
+RUN echo "extension=apcu.so" > /usr/local/etc/php/php.ini
+RUN echo "apc.enable_cli=1" > /usr/local/etc/php/php.ini
+RUN echo "apc.enable=1" > /usr/local/etc/php/php.ini
+#APCU
+
+# Install yarn
+RUN apt-get install -y ca-certificates curl gnupg
+RUN mkdir -p /etc/apt/keyrings
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update
+RUN apt-get install nodejs -y
+RUN npm -g install yarn
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+# Install Utility
+RUN apt-get install nano -y
+RUN apt-get install mc -y
