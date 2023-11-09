@@ -1,0 +1,4 @@
+main_web_grave_index:
+  path: /grave
+  methods: [ GET ]
+  controller: App\Main\Controller\Grave\GraveController::index

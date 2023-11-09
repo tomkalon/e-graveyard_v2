@@ -1,4 +1,0 @@
-main_web_page_index:
-  path: /page
-  methods: [ GET ]
-  controller: App\Main\Controller\Page\PageController::index

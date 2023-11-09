@@ -2,5 +2,5 @@ index_route:
   resource: 'index.yaml'
   
 page_routes:
-  resource: 'page'
+  resource: 'grave'
   type: directory
