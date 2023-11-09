@@ -38,6 +38,12 @@ class Grave
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $positionY = null;
 
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
+    private ?DateTimeInterface $created = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: false)]
+    private ?DateTimeInterface $edited = null;
+
     public function getId(): ?Uuid
     {
         return $this->id;
@@ -116,5 +122,28 @@ class Grave
     public function setPositionY(?string $positionY): void
     {
         $this->positionY = $positionY;
+    }
+
+    public function getCreated(): ?DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function getEdited(): ?DateTimeInterface
+    {
+        return $this->edited;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedValue(): void
+    {
+        $this->created = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setEditedValue(): void
+    {
+        $this->edited = new \DateTimeImmutable();
     }
 }
