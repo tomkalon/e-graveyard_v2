@@ -2,16 +2,20 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\GraveyardRepository;
+use App\Core\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: GraveyardRepository::class)]
-class Graveyard
+#[ORM\Entity(repositoryClass: FileRepository::class)]
+class File
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?Uuid $id = null;
 
+    public function getId(): ?Uuid
+    {
+        return $this->id;
+    }
 }

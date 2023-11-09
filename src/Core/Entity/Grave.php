@@ -17,17 +17,17 @@ class Grave
     #[ORM\Column]
     private ?Uuid $id;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?int $sector = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?int $row = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?int $number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    private ?File $image = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $paid = null;
@@ -84,12 +84,12 @@ class Grave
         $this->number = $number;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?File
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): void
+    public function setImage(?File $image): void
     {
         $this->image = $image;
     }
