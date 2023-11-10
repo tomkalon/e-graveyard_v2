@@ -21,7 +21,11 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-
+    .copyFiles({
+        from: 'assets/images/',
+        to: 'images/[name].[ext]',
+        pattern: /\.(png|jpg|jpeg|webp|svg)$/
+    })
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -56,6 +60,7 @@ Encore
         config.corejs = '3.23';
     })
 
+    // tailwind
     .enablePostCssLoader()
     // enables Sass/SCSS support
     .enableSassLoader()
