@@ -1,0 +1,3 @@
+api_common_routes:
+  resource: 'common'
+  type: directory

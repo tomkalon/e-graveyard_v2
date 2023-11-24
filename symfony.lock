@@ -47,16 +47,16 @@
             "migrations/.gitignore"
         ]
     },
-    "friendsofsymfony/rest-bundle": {
-        "version": "3.6",
+    "friendsofsymfony/jsrouting-bundle": {
+        "version": "3.3",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "3.0",
-            "ref": "3762cc4e4f2d6faabeca5a151b41c8c791bd96e5"
+            "version": "2.3",
+            "ref": "a9f2e49180f75cdc71ae279a929c4b2e0638de84"
         },
         "files": [
-            "config/packages/fos_rest.yaml"
+            "config/routes/fos_js_routing.yaml"
         ]
     },
     "jms/serializer-bundle": {

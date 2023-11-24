@@ -1,4 +1,5 @@
 import './bootstrap.js';
+
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -8,3 +9,5 @@ import './bootstrap.js';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
+import 'boxicons'
+import 'tw-elements'

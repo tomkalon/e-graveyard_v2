@@ -8,6 +8,7 @@
         "autoprefixer": "^10.4.16",
         "core-js": "^3.23.0",
         "file-loader": "^6.0.0",
+        "fos-router": "./vendor/friendsofsymfony/jsrouting-bundle/Resources/",
         "postcss": "^8.4.31",
         "postcss-loader": "^7.3.3",
         "regenerator-runtime": "^0.13.9",
@@ -25,5 +26,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "boxicons": "^2.1.4",
+        "tw-elements": "^1.0.0"
     }
 }

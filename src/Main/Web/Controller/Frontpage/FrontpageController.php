@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Main\Controller\Grave;
+namespace App\Main\Web\Controller\Frontpage;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class GraveController extends AbstractController
+class FrontpageController extends AbstractController
 {
     public function index(): Response
     {
-        return $this->render('main/Grave/index.html.twig', [
+        return $this->render('Main/Frontpage/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }

@@ -1,0 +1,16 @@
+ui:
+  main:
+    nav:
+      menu:
+        start: Start
+        search: Szukaj
+        info: Informacje
+        contact: Kontakt
+        admin: Administrator
+      lightMode: Motyw
+      
+    frontpage:
+      title: Nazwa cmentarza
+      subtitle: Opis
+      buttons:
+        search: Szukaj grobów

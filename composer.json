@@ -10,7 +10,7 @@
     "doctrine/doctrine-bundle": "^2.10",
     "doctrine/doctrine-migrations-bundle": "^3.2",
     "doctrine/orm": "^2.16",
-    "friendsofsymfony/rest-bundle": "*",
+    "friendsofsymfony/jsrouting-bundle": "^3.3",
     "jms/serializer-bundle": "^5.3",
     "symfony/console": "6.3.*",
     "symfony/dotenv": "6.3.*",

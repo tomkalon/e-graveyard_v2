@@ -26,6 +26,11 @@ Encore
         to: 'images/[name].[ext]',
         pattern: /\.(png|jpg|jpeg|webp|svg)$/
     })
+    .copyFiles({
+        from: 'assets/js/',
+        to: 'js/[name].[ext]',
+        pattern: /\.(js|json)$/
+    })
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
