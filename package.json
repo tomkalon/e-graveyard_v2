@@ -25,5 +25,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "boxicons": "^2.1.4",
+        "tw-elements": "^1.0.0"
     }
 }
