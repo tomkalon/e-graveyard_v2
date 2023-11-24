@@ -29,7 +29,7 @@ Encore
     .copyFiles({
         from: 'assets/js/',
         to: 'js/[name].[ext]',
-        pattern: /\.(js)$/
+        pattern: /\.(js|json)$/
     })
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
