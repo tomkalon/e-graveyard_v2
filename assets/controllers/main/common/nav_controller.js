@@ -6,7 +6,7 @@ export default class extends Controller {
 
     connect() {
         this.toggleThemeTarget.addEventListener('click', (event) => {
-            console.log(Api.put('main_api_common_toggle_theme'));
+            Api.put('main_api_common_toggle_theme');
         })
     }
 
