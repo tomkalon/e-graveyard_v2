@@ -13,4 +13,4 @@ ui:
       title: Nazwa cmentarza
       subtitle: Opis
       buttons:
-        search: Szukaj
+        search: Szukaj grobów

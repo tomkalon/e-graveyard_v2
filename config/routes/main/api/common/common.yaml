@@ -1,0 +1,4 @@
+main_api_common_toggle_theme:
+  path: /main/api/common/toggle-theme
+  methods: [ PUT ]
+  controller: App\Main\Api\Controller\Common\CommonController::toggleTheme
