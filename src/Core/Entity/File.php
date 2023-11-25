@@ -23,10 +23,12 @@ class File
 
     private ?Grave $graves;
 
-    public function __construct()
+    public function __construct(?string $name)
     {
         $this->id = Uuid::uuid4();
-
+        if ($name) {
+            $this->name = $name;
+        }
     }
 
     public function getId(): ?UuidInterface
