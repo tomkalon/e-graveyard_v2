@@ -14,7 +14,6 @@ class AppFixtures extends Fixture
         // $product = new Product();
 
         $grave = new Grave();
-        $grave->setId(new Uuid());
         // $manager->persist($product);
 
         $manager->flush();
