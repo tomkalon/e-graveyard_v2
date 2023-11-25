@@ -3,19 +3,20 @@
 namespace App\Core\Entity;
 
 use App\Core\Repository\GraveRepository;
+use DateTime;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 #[ORM\Entity(repositoryClass: GraveRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 class Grave
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?Uuid $id;
+    #[ORM\Column(name: 'id', type: 'string', unique: true)]
+    private UuidInterface $id;
 
     #[ORM\Column(length: 255, nullable: false)]
     private ?int $sector = null;
@@ -27,31 +28,32 @@ class Grave
     private ?int $number = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?File $image = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?DateTimeInterface $paid = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $positionX = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $positionY = null;
 
-    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
-    private ?DateTimeInterface $created = null;
+    private ?File $images;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: false)]
-    private ?DateTimeInterface $edited = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?DateTimeInterface $paid = null;
 
-    public function getId(): ?Uuid
+    #[Gedmo\Timestampable(on: 'create')]
+    #[ORM\Column(name: 'created', type: Types::DATETIME_IMMUTABLE)]
+    private ?DateTimeImmutable $created;
+
+    #[Gedmo\Timestampable(on: 'update')]
+    #[ORM\Column(name: 'updated', type: Types::DATETIME_MUTABLE)]
+    private ?DateTime $updated;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->id = Uuid::uuid4();
     }
 
-    public function setId(?Uuid $id): void
+    public function getId(): ?UuidInterface
     {
-        $this->id = $id;
+        return $this->id;
     }
 
     public function getSector(): ?int
@@ -84,14 +86,14 @@ class Grave
         $this->number = $number;
     }
 
-    public function getImage(): ?File
+    public function getImages(): ?File
     {
-        return $this->image;
+        return $this->images;
     }
 
-    public function setImage(?File $image): void
+    public function setImages(?File $images): void
     {
-        $this->image = $image;
+        $this->images = $images;
     }
 
     public function getPaid(): ?DateTimeInterface
@@ -124,26 +126,13 @@ class Grave
         $this->positionY = $positionY;
     }
 
-    public function getCreated(): ?DateTimeInterface
+    public function getCreated(): DateTimeImmutable
     {
         return $this->created;
     }
 
-    public function getEdited(): ?DateTimeInterface
+    public function getUpdated(): DateTime
     {
-        return $this->edited;
-    }
-
-    #[ORM\PrePersist]
-    public function setCreatedValue(): void
-    {
-        $this->created = new \DateTimeImmutable();
-    }
-
-    #[ORM\PrePersist]
-    #[ORM\PreUpdate]
-    public function setEditedValue(): void
-    {
-        $this->edited = new \DateTimeImmutable();
+        return $this->updated;
     }
 }
