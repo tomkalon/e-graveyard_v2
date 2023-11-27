@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "jquery": "^3.7.1",
+        "jquery.cookie": "^1.4.1",
         "tw-elements": "^1.0.0"
     }
 }

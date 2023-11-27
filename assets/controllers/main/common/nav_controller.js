@@ -1,4 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
+import $ from 'jquery';
+import Cookie from 'jquery.cookie';
 
 export default class extends Controller {
     static targets = [ "toggleTheme" ]
@@ -10,21 +12,20 @@ export default class extends Controller {
         toggleModeButton.addEventListener('click', (event) => {
             body.classList.toggle('dark');
 
-            let className;
+            let className, toggleModeButtonClass;
             if (body.classList.contains('dark')) {
                 className = 'dark';
+                toggleModeButtonClass = 'fa-toggle-off';
                 toggleModeButton.classList.remove('fa-toggle-on');
                 toggleModeButton.classList.add('fa-toggle-off');
             } else {
-                className = undefined;
+                className = '';
+                toggleModeButtonClass = 'fa-toggle-on';
                 toggleModeButton.classList.remove('fa-toggle-off')
                 toggleModeButton.classList.add('fa-toggle-on')
             }
-            localStorage.setItem('themeMode', className);
+            $.cookie('THEME_MODE', className);
+            $.cookie('THEME_MODE_TOGGLE', toggleModeButtonClass);
         })
-    }
-
-    toggleTheme() {
-
     }
 }
