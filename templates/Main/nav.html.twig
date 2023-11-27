@@ -69,7 +69,8 @@ dark:bg-slate-900 dark:text-neutral-200 dark:border-slate-700 md:flex-wrap md:ju
         <ul class="mr-auto flex flex-row items-center">
             <li class="mb-0 pr-4 lg:pr-8 flex gap-1 items-center">
                 <p class="uppercase text-xs font-semibold">{{ 'ui.main.nav.lightMode'|trans }}</p>
-                <i class="fa fa-toggle-on cursor-pointer" aria-hidden="true" data-main--common--nav-target="toggleTheme"></i>
+                <i class="cursor-pointer fa {% if app.request.cookies.get('THEME_MODE_TOGGLE') %}{{ app.request.cookies.get('THEME_MODE_TOGGLE') }}{% else %}fa-toggle-on{% endif %}"
+                   aria-hidden="true" data-main--common--nav-target="toggleTheme"></i>
             </li>
             <li class="mb-0 pr-2 hidden lg:block">
                 <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 border-2 rounded-md
