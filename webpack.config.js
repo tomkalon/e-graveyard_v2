@@ -31,6 +31,11 @@ Encore
         to: 'js/[name].[ext]',
         pattern: /\.(js|json)$/
     })
+    .copyFiles({
+        from: 'assets/fonts/',
+        to: 'fonts/[name].[ext]',
+    })
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
