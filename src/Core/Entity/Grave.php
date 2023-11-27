@@ -4,47 +4,42 @@ namespace App\Core\Entity;
 
 use App\Core\Repository\GraveRepository;
 use DateTime;
-use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: GraveRepository::class)]
 class Grave
 {
+    use Timestampable;
+
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'string', unique: true)]
     private UuidInterface $id;
 
+    #[ORM\Column(nullable: false)]
+    private int $sector;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $row;
+
+    #[ORM\Column(nullable: false)]
+    private int $number;
+
     #[ORM\Column(length: 255, nullable: false)]
-    private ?int $sector = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?int $row = null;
+    private string $positionX;
 
     #[ORM\Column(length: 255, nullable: false)]
-    private ?int $number = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $positionX = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $positionY = null;
+    private string $positionY;
 
     private ?File $images;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $paid = null;
-
-    #[Gedmo\Timestampable(on: 'create')]
-    #[ORM\Column(name: 'created', type: Types::DATETIME_IMMUTABLE)]
-    private ?DateTimeImmutable $created;
-
-    #[Gedmo\Timestampable(on: 'update')]
-    #[ORM\Column(name: 'updated', type: Types::DATETIME_MUTABLE)]
-    private ?DateTime $updated;
 
     public function __construct()
     {
@@ -56,12 +51,12 @@ class Grave
         return $this->id;
     }
 
-    public function getSector(): ?int
+    public function getSector(): int
     {
         return $this->sector;
     }
 
-    public function setSector(?int $sector): void
+    public function setSector(int $sector): void
     {
         $this->sector = $sector;
     }
@@ -76,12 +71,12 @@ class Grave
         $this->row = $row;
     }
 
-    public function getNumber(): ?int
+    public function getNumber(): int
     {
         return $this->number;
     }
 
-    public function setNumber(?int $number): void
+    public function setNumber(int $number): void
     {
         $this->number = $number;
     }
@@ -106,33 +101,23 @@ class Grave
         $this->paid = $paid;
     }
 
-    public function getPositionX(): ?string
+    public function getPositionX(): string
     {
         return $this->positionX;
     }
 
-    public function setPositionX(?string $positionX): void
+    public function setPositionX(string $positionX): void
     {
         $this->positionX = $positionX;
     }
 
-    public function getPositionY(): ?string
+    public function getPositionY(): string
     {
         return $this->positionY;
     }
 
-    public function setPositionY(?string $positionY): void
+    public function setPositionY(string $positionY): void
     {
         $this->positionY = $positionY;
-    }
-
-    public function getCreated(): DateTimeImmutable
-    {
-        return $this->created;
-    }
-
-    public function getUpdated(): DateTime
-    {
-        return $this->updated;
     }
 }

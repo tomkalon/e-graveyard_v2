@@ -11,11 +11,13 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-
         $grave = new Grave();
-        // $manager->persist($product);
+        $grave->setSector(1);
+        $grave->setNumber(1);
+        $grave->setPositionX(1);
+        $grave->setPositionY(1);
 
+        $manager->persist($grave);
         $manager->flush();
     }
 }
