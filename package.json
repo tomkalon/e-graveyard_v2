@@ -28,7 +28,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "boxicons": "^2.1.4",
         "jquery": "^3.7.1",
         "tw-elements": "^1.0.0"
     }
