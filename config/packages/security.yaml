@@ -29,11 +29,12 @@ security:
             form_login:
               login_path: app_login
               check_path: app_login
+              enable_csrf: true
             logout:
               path: app_logout
-              target: app_main
+              target: main_web_index
             remember_me:
-              secret:   '%kernel.secret%'
+              secret: '%kernel.secret%'
               lifetime: 10800
               
         secured_area:

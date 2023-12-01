@@ -1,0 +1,9 @@
+app_register:
+  path: /security/registration
+  methods: [ GET, POST ]
+  controller: App\Main\Web\Controller\Security\RegistrationController::index
+  
+app_login:
+  path: /security/login
+  methods: [ GET, POST ]
+  controller: App\Main\Web\Controller\Security\LoginController::index
