@@ -16,28 +16,25 @@ use Symfony\Component\Uid\Uuid;
 #[UniqueEntity(fields: ['username'], message: 'USERNAME_ALREADY_EXIST')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    use Timestampable;
+
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?Uuid $id = null;
+    #[ORM\Column(name: 'id', type: 'string', unique: true)]
+    private UuidInterface $id;
 
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    private string $email;
 
-    #[ORM\Column]
     private array $roles = [];
+
+    private string $username;
+
+    private ?bool $isVerified = false;
 
     /**
      * @var ?string The hashed password
      */
-    #[ORM\Column]
     private ?string $password = null;
-
-    #[ORM\Column(length: 255, unique: true)]
-    private ?string $username = null;
-
-    #[ORM\Column(type: Types::BOOLEAN)]
-    private ?bool $isVerified = false;
 
     public function getId(): ?Uuid
     {

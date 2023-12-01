@@ -7,6 +7,9 @@ ui:
         info: Informacje
         contact: Kontakt
         admin: Administrator
+        login: Logowanie
+        logout: Wylogowanie
+        
       lightMode: Motyw
       
     frontpage:

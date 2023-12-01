@@ -59,6 +59,18 @@
             "config/routes/fos_js_routing.yaml"
         ]
     },
+    "friendsofsymfony/rest-bundle": {
+        "version": "3.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "3762cc4e4f2d6faabeca5a151b41c8c791bd96e5"
+        },
+        "files": [
+            "config/packages/fos_rest.yaml"
+        ]
+    },
     "jms/serializer-bundle": {
         "version": "5.3",
         "recipe": {
@@ -69,6 +81,18 @@
         },
         "files": [
             "config/packages/jms_serializer.yaml"
+        ]
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.20",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.5",
+            "ref": "e9481b233a11ef7e15fe055a2b21fd3ac1aa2bb7"
+        },
+        "files": [
+            "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
     "phpunit/phpunit": {

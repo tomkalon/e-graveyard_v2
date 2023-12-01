@@ -11,7 +11,9 @@
     "doctrine/doctrine-migrations-bundle": "^3.2",
     "doctrine/orm": "^2.16",
     "friendsofsymfony/jsrouting-bundle": "^3.3",
+    "friendsofsymfony/rest-bundle": "^3.6",
     "jms/serializer-bundle": "^5.3",
+    "lexik/jwt-authentication-bundle": "^2.20",
     "ramsey/uuid-doctrine": "^2.0",
     "stof/doctrine-extensions-bundle": "^1.9",
     "symfony/console": "6.3.*",
@@ -39,7 +41,7 @@
     "squizlabs/php_codesniffer": "^3.7",
     "symfony/browser-kit": "6.3.*",
     "symfony/css-selector": "6.3.*",
-    "symfony/maker-bundle": "^1.51",
+    "symfony/maker-bundle": "^1.52",
     "symfony/phpunit-bridge": "^6.3",
     "symfony/web-profiler-bundle": "6.3.*"
   },
