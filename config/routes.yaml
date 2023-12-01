@@ -1,5 +1,9 @@
+core_api:
+    resource: 'routes/core/api/routes.yaml'
+
 main_web:
   resource: 'routes/main/web/routes.yaml'
 
 main_api:
   resource: 'routes/main/api/routes.yaml'
+

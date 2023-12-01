@@ -8,19 +8,14 @@ use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-#[ORM\Entity(repositoryClass: FileRepository::class)]
 class File
 {
     use Timestampable;
 
-    #[ORM\Id]
-    #[ORM\Column(name: 'id', type: 'string', unique: true)]
     private UuidInterface $id;
 
-    #[ORM\Column(length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\Column(length: 255, nullable: false)]
     private string $extension;
 
     private ?Grave $graves;

@@ -2,25 +2,16 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Timestampable\Traits\Timestampable;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'EMAIL_ALREADY_EXIST')]
-#[UniqueEntity(fields: ['username'], message: 'USERNAME_ALREADY_EXIST')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     use Timestampable;
 
-    #[ORM\Id]
-    #[ORM\Column(name: 'id', type: 'string', unique: true)]
     private UuidInterface $id;
 
     private string $email;
@@ -36,7 +27,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private ?string $password = null;
 
-    public function getId(): ?Uuid
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
