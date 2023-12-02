@@ -3,6 +3,7 @@
 namespace App\Core\Entity;
 
 use Gedmo\Timestampable\Traits\Timestampable;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -12,7 +13,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     use Timestampable;
 
-    private UuidInterface $id;
+    private UuidInterface|string $id;
 
     private string $email;
 
@@ -23,11 +24,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?bool $isVerified = false;
 
     /**
-     * @var ?string The hashed password
+     * @var string The hashed password
      */
-    private ?string $password = null;
+    private string $password;
 
-    public function getId(): ?UuidInterface
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
+
+    public function getId(): string
     {
         return $this->id;
     }
@@ -78,6 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return string the hashed password for this user
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string

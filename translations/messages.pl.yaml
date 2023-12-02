@@ -7,16 +7,16 @@ ui:
         info: Informacje
         contact: Kontakt
         admin: Administrator
-        login: Logowanie
+        logged: Zalogowany
         logout: Wylogowanie
         
       theme_mode: Motyw
     
-    security:
+    user:
       login:
         login: Logowanie
-        email: Adres email
-        password: Hasło
+        email: "Adres email:"
+        password: "Hasło:"
         remember_me: Zapamiętaj mnie
         submit: Zaloguj się
       
@@ -25,3 +25,6 @@ ui:
       subtitle: Opis
       buttons:
         search: Szukaj grobów
+        
+    cli:
+    

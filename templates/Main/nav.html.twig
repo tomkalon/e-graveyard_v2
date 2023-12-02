@@ -37,13 +37,13 @@
             </div>
 
             <!-- Navigation links -->
-            <div class="!visible hidden grow basis-[100%] items-center lg:!flex lg:basis-auto" id="navbarSupportedContentX"
+            <div class="!visible hidden grow basis-[100%] items-center lg:!flex lg:basis-auto nav-ul-container" id="navbarSupportedContentX"
                  data-te-collapse-item>
                 <ul class="mr-auto flex flex-col lg:flex-row" data-te-navbar-nav-ref>
                     <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                         <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
                     dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                           href="#!" data-te-nav-link-ref data-te-ripple-init
+                           href="{{ path('main_web_index') }}" data-te-nav-link-ref data-te-ripple-init
                            data-te-ripple-color="light">{{ 'ui.main.nav.menu.start'|trans }}</a>
                     </li>
                     <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
@@ -65,10 +65,11 @@
                            data-te-ripple-color="light">{{ 'ui.main.nav.menu.contact'|trans }}</a>
                     </li>
                     <li class="mb-0 pr-2 lg:hidden">
-                        <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
-                    dark:hover:text-slate-900 dark:hover:bg-white dark:focus:text-sky-100 lg:p-2 [&.active]:text-black/20"
-                           href="#!" data-te-nav-link-ref data-te-ripple-init
-                           data-te-ripple-color="light">{{ 'ui.main.nav.menu.admin'|trans }}</a>
+                        <div data-action="click->dropdown#toggle click@window->dropdown#hide"
+                             class="lg:ml-4 w-24 h-12 flex items-center justify-center
+                             rounded-lg ease-in duration-200 bg-stone-500 dark:bg-sky-800 cursor-pointer hover:bg-opacity-20 dark:hover:bg-opacity-70">
+                            <i class="fa fa-bars text-xl text-stone-100 dark:text-slate-900 mx-2" aria-hidden="true"></i>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -80,19 +81,21 @@
                     <i class="cursor-pointer fa {% if app.request.cookies.get('THEME_MODE_TOGGLE') %}{{ app.request.cookies.get('THEME_MODE_TOGGLE') }}{% else %}fa-toggle-on{% endif %}"
                        aria-hidden="true" data-main--common--toggle-mode-target="toggleTheme"></i>
                 </li>
-                <li class="mb-0 pr-2 hidden lg:block uppercase">
-                    <p class="text-sm dark:text-white leading-none mt-1">{{ 'logged'|trans }}</p>
-                    <p class="text-base text-cyan-950 dark:text-sky-500">{{ 'logged'|trans }}</p>
-                </li>
-                <li class="mb-0 pr-2 hidden lg:block">
-                    <div data-action="click->dropdown#toggle click@window->dropdown#hide"
-                         class="ml-4 w-24 h-12 flex items-center justify-center
-                             rounded-lg ease-in duration-200 bg-slate-300 dark:bg-sky-800 cursor-pointer hover:bg-opacity-20 dark:hover:bg-opacity-70">
-                        <i class="fa fa-bars text-xl text-slate-500 dark:text-slate-900 mx-2" aria-hidden="true"></i>
-                    </div>
-                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="w-36 truncate mb-0 pr-2 hidden lg:block uppercase">
+                        <p class="text-xs dark:text-white leading-none mt-1">{{ 'ui.main.nav.menu.logged'|trans }}</p>
+                        <span class="text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>
+                    </li>
+                    <li class="mb-0 pr-2 hidden lg:block">
+                        <div data-action="click->dropdown#toggle click@window->dropdown#hide"
+                             class="ml-4 w-24 h-12 flex items-center justify-center
+                             rounded-lg ease-in duration-200 bg-stone-500 dark:bg-sky-800 cursor-pointer hover:bg-opacity-20 dark:hover:bg-opacity-70">
+                            <i class="fa fa-bars text-xl text-stone-100 dark:text-slate-900 mx-2" aria-hidden="true"></i>
+                        </div>
+                    </li>
+                {% endif %}
             </ul>
-            {{ include('Main/_nav_menu.html.twig') }}
+            {{ include('Main/_user_menu.html.twig') }}
         </div>
     </nav>
 </div>

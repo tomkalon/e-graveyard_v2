@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Main\Infrastructure\QueryBus;
+namespace App\Main\Infrastructure\CommandBus\User;
 
-use App\Core\CQRS\QueryBus\QueryInterface;
+use App\Core\CQRS\CommandBus\CommandInterface;
 use App\Main\Domain\Dto\User\UserDto;
 
-class GetUsersByOptionsQuery implements QueryInterface
+class SaveUser implements CommandInterface
 {
     public function __construct(
         private readonly UserDto $dto
