@@ -1,6 +1,10 @@
 index_route:
   resource: 'index.yaml'
   
-page_routes:
+grave_routes:
   resource: 'grave'
+  type: directory
+  
+security_routes:
+  resource: 'user'
   type: directory

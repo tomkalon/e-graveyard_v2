@@ -34,3 +34,8 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/
 # Install Utility
 RUN apt-get install nano -y
 RUN apt-get install mc -y
+
+# Commands
+RUN composer install
+RUN symfony console doctrine
+RUN symfony console make

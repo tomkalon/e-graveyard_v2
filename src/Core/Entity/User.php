@@ -2,44 +2,38 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Gedmo\Timestampable\Traits\Timestampable;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'EMAIL_ALREADY_EXIST')]
-#[UniqueEntity(fields: ['username'], message: 'USERNAME_ALREADY_EXIST')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?Uuid $id = null;
 
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    use Timestampable;
 
-    #[ORM\Column]
+    private UuidInterface|string $id;
+
+    private string $email;
+
     private array $roles = [];
 
-    /**
-     * @var ?string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
+    private string $username;
 
-    #[ORM\Column(length: 255, unique: true)]
-    private ?string $username = null;
-
-    #[ORM\Column(type: Types::BOOLEAN)]
     private ?bool $isVerified = false;
 
-    public function getId(): ?Uuid
+    /**
+     * @var string The hashed password
+     */
+    private string $password;
+
+    public function __construct()
+    {
+        $this->id = Uuid::uuid4();
+    }
+
+    public function getId(): string
     {
         return $this->id;
     }
@@ -90,6 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * @return string the hashed password for this user
      * @see PasswordAuthenticatedUserInterface
      */
     public function getPassword(): string

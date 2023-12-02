@@ -1,0 +1,46 @@
+<div class="container mx-auto">
+    <div data-dropdown-target="menu"
+         data-transition-enter-from="opacity-0 scale-95"
+         data-transition-enter-to="opacity-100 scale-100"
+         data-transition-leave-from="opacity-100 scale-100"
+         data-transition-leave-to="opacity-0 scale-95"
+         class="hidden transition transform origin-top-right absolute right-2 lg:right-4 top-2 lg:top-20 z-50">
+        <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+            <div class="relative grid gap-6 bg-white px-5 py-4 sm:gap-8 sm:p-8 dark:bg-slate-700">
+                <a href="{{ path('main_web_index') }}" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200">
+                    <i class="fa fa-users w-6 text-xl" aria-hidden="true"></i>
+                    <div class="ml-4">
+                        <p class="text-base font-medium text-gray-900">{{ 'families'|trans }}</p>
+                        <p class="mt-1 text-sm text-gray-500">{{ 'families.desc'|trans }}</p>
+                    </div>
+                </a>
+                <a href="{{ path('main_web_index') }}" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200">
+                    <i class="fa fa-user w-6 text-xl" aria-hidden="true"></i>
+                    <div class="ml-4">
+                        <p class="text-base font-medium text-gray-900">{{ 'people'|trans }}</p>
+                        <p class="mt-1 text-sm text-gray-500">{{ 'people.desc'|trans }}</p>
+                    </div>
+                </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('main_web_index') }}" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200">
+                        <i class="fa fa-university w-6 text-xl" aria-hidden="true"></i>
+                        <div class="ml-4">
+                            <p class="text-base font-medium text-gray-900">{{ 'admin'|trans }}</p>
+                            <p class="mt-1 text-sm text-gray-500">{{ 'admin.desc'|trans }}</p>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="bg-gray-50 px-5 py-3 sm:px-8 sm:py-8 dark:bg-slate-700">
+                <hr class="border-gray-300">
+                <ul role="list" class="mt-4 space-y-2">
+                    <li class="text-base">
+                        <a href="{{ path('main_web_index') }}">
+                            <button class="btn btn-smaller btn-gray rounded">{{ 'ui.main.nav.menu.logout'|trans }}</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

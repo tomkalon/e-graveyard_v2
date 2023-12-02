@@ -7,10 +7,24 @@ ui:
         info: Informacje
         contact: Kontakt
         admin: Administrator
-      lightMode: Motyw
+        logged: Zalogowany
+        logout: Wylogowanie
+        
+      theme_mode: Motyw
+    
+    user:
+      login:
+        login: Logowanie
+        email: "Adres email:"
+        password: "Hasło:"
+        remember_me: Zapamiętaj mnie
+        submit: Zaloguj się
       
     frontpage:
       title: Nazwa cmentarza
       subtitle: Opis
       buttons:
         search: Szukaj grobów
+        
+    cli:
+    

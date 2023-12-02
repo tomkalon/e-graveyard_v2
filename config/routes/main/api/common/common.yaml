@@ -1,6 +1,6 @@
-main_api_common_toggle_theme:
-  path: /main/api/common/toggle-theme
+main_api_common:
+  path: /main/api/common
   methods: [ PUT ]
-  controller: App\Main\Api\Controller\Common\CommonController::toggleTheme
+  controller: App\Main\UI\Api\Controller\Common\CommonController::index
   options:
     expose: true

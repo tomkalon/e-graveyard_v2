@@ -3,42 +3,31 @@
 namespace App\Core\Entity;
 
 use App\Core\Repository\GraveRepository;
-use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
-#[ORM\Entity(repositoryClass: GraveRepository::class)]
 class Grave
 {
     use Timestampable;
 
-    #[ORM\Id]
-    #[ORM\Column(name: 'id', type: 'string', unique: true)]
     private UuidInterface $id;
 
-    #[ORM\Column(nullable: false)]
     private int $sector;
 
-    #[ORM\Column(nullable: true)]
     private ?int $row;
 
-    #[ORM\Column(nullable: false)]
     private int $number;
 
-    #[ORM\Column(length: 255, nullable: false)]
     private string $positionX;
 
-    #[ORM\Column(length: 255, nullable: false)]
     private string $positionY;
 
     private ?File $images;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?DateTimeInterface $paid = null;
 
     public function __construct()
