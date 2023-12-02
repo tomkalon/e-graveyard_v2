@@ -10,7 +10,7 @@ ui:
         login: Logowanie
         logout: Wylogowanie
         
-      lightMode: Motyw
+      theme_mode: Motyw
     
     security:
       login:

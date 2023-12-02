@@ -10,6 +10,15 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        
+        
+    _instanceof:
+      App\Core\CQRS\CommandBus\CommandHandlerInterface:
+        tags:
+          - { name: messenger.message_handler, bus: command.bus }
+      App\Core\CQRS\QueryBus\QueryHandlerInterface:
+        tags:
+          - { name: messenger.message_handler, bus: query.bus }
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

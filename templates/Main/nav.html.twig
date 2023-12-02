@@ -76,7 +76,7 @@
         <div class="ml-auto mr-2">
             <ul class="mr-auto flex flex-row items-center" {{ stimulus_controller('main--common--toggle_mode') }}>
                 <li class="mb-0 pr-4 lg:pr-8 flex gap-1 items-center">
-                    <p class="uppercase text-xs font-semibold">{{ 'ui.main.nav.lightMode'|trans }}</p>
+                    <p class="uppercase text-xs font-semibold">{{ 'ui.main.nav.theme_mode'|trans }}</p>
                     <i class="cursor-pointer fa {% if app.request.cookies.get('THEME_MODE_TOGGLE') %}{{ app.request.cookies.get('THEME_MODE_TOGGLE') }}{% else %}fa-toggle-on{% endif %}"
                        aria-hidden="true" data-main--common--toggle-mode-target="toggleTheme"></i>
                 </li>
