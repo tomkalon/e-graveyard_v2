@@ -6,5 +6,5 @@ grave_routes:
   type: directory
   
 security_routes:
-  resource: 'security'
+  resource: 'user'
   type: directory

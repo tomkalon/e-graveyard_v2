@@ -11,6 +11,14 @@ ui:
         logout: Wylogowanie
         
       lightMode: Motyw
+    
+    security:
+      login:
+        login: Logowanie
+        email: Adres email
+        password: Hasło
+        remember_me: Zapamiętaj mnie
+        submit: Zaloguj się
       
     frontpage:
       title: Nazwa cmentarza

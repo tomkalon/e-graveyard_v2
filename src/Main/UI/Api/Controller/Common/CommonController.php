@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Main\Api\Controller\Common;
+namespace App\Main\UI\Api\Controller\Common;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommonController extends AbstractController
 {
-    public function toggleTheme(): JsonResponse
+    public function index(): JsonResponse
     {
 
         return $this->json(true);

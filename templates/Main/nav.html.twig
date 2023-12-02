@@ -5,7 +5,9 @@
         dark:bg-slate-900 dark:text-neutral-200 dark:border-slate-700 md:flex-wrap md:justify-start"
          data-te-navbar-ref>
         <div class="logo h-full flex items-center gap-2 px-4">
-            <img src="{{ asset('build/images/header_logo.svg') }}" alt="Logo" class="h-14">
+            <a href="{{ path('main_web_index') }}">
+                <img src="{{ asset('build/images/header_logo.svg') }}" alt="Logo" class="h-14">
+            </a>
         </div>
         <div class="flex flex-wrap items-center justify-between px-3">
             <div class="flex items-center">
@@ -77,11 +79,6 @@
                     <p class="uppercase text-xs font-semibold">{{ 'ui.main.nav.lightMode'|trans }}</p>
                     <i class="cursor-pointer fa {% if app.request.cookies.get('THEME_MODE_TOGGLE') %}{{ app.request.cookies.get('THEME_MODE_TOGGLE') }}{% else %}fa-toggle-on{% endif %}"
                        aria-hidden="true" data-main--common--toggle-mode-target="toggleTheme"></i>
-                </li>
-                <li class="mb-0 pr-2 hidden lg:block">
-                    <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 border-2 rounded-md
-                        dark:border-white dark:hover:text-slate-900 dark:hover:bg-white dark:focus:text-sky-100 lg:p-2 [&.active]:text-black/20"
-                       href="#!" data-te-nav-link-ref data-te-ripple-init data-te-ripple-color="light">{{ 'ui.main.nav.menu.login'|trans }}</a>
                 </li>
                 <li class="mb-0 pr-2 hidden lg:block uppercase">
                     <p class="text-sm dark:text-white leading-none mt-1">{{ 'logged'|trans }}</p>

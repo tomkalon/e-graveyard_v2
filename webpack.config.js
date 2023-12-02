@@ -23,17 +23,17 @@ Encore
     .addEntry('app', './assets/app.js')
     .copyFiles({
         from: 'assets/images/',
-        to: 'images/[name].[ext]',
+        to: 'images/[name].[hash:8].[ext]',
         pattern: /\.(png|jpg|jpeg|webp|svg)$/
     })
     .copyFiles({
         from: 'assets/js/',
-        to: 'js/[name].[ext]',
+        to: 'js/[name].[hash:8].[ext]',
         pattern: /\.(js|json)$/
     })
     .copyFiles({
         from: 'assets/fonts/',
-        to: 'fonts/[name].[ext]',
+        to: 'fonts/[name].[hash:8].[ext]',
     })
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

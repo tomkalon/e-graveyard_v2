@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Web\Controller\Security;
+namespace App\Main\UI\Web\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +16,7 @@ class LoginController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('Main/Security/login.html.twig', [
+        return $this->render('Main/User/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);
