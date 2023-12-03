@@ -1,8 +1,8 @@
 {% extends 'Main/base.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.main.user.login.login'|trans }}{% endblock %}
 {% block body %}
-    <div class="mx-auto controller-login" style="background: url('{{ asset('build/images/user_bg_dark.webp') }}') ;">
-        <div class="top-40 max-w-lg m-auto rounded-xl relative shadow-inner border-2 bg-white shadow-neutral-800 border-neutral-800
+    <div class="mx-auto controller-login p-8 flex items-center" style="background: url('{{ asset('build/images/user_bg_dark.webp') }}');">
+        <div class="max-w-lg m-auto grow rounded-xl shadow-inner border-2 bg-white shadow-neutral-800 border-neutral-800
                     dark:bg-gray-700 dark:shadow-gray-900 dark:border-gray-500" >
             <div class="flex flex-col justify-center px-6 py-16 lg:px-8 text-neutral-700 dark:text-white">
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">

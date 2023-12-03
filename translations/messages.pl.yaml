@@ -8,7 +8,14 @@ ui:
         contact: Kontakt
         admin: Administrator
         logged: Zalogowany
-        logout: Wylogowanie
+        user:
+          logout: Wylogowanie
+          grave:
+            label: Groby
+            desc: Zarządzanie bazą grobów
+          person:
+            label: Zmarli
+            desc: Zarządzanie bazą zmarłych
         
       theme_mode: Motyw
     
