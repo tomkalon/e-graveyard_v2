@@ -13,16 +13,8 @@
         <field name="name" />
         <field name="description" nullable="true" />
 
-        <many-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="graveyards">
-            <join-table name="file_graveyard">
-                <join-columns>
-                    <join-column name="graveyard_id" referenced-column-name="id" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="image_id" referenced-column-name="id" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
+        <one-to-many field="graves" target-entity="App\Core\Entity\Grave" mapped-by="graveyard" />
+        <one-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="graveyard" />
 
         <field name="createdAt" type="datetime_immutable">
             <gedmo:timestampable on="create"/>

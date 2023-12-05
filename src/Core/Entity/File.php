@@ -13,8 +13,9 @@ class File
     private UuidInterface $id;
     private string $name;
     private string $extension;
-    private ?Grave $graves;
-    private ?Graveyard $graveyards;
+    private ?bool $primary;
+    private ?Grave $grave;
+    private ?Graveyard $graveyard;
 
     public function __construct(?string $name)
     {
@@ -49,13 +50,33 @@ class File
         $this->extension = $extension;
     }
 
-    public function getGraves(): ?Grave
+    public function getPrimary(): ?bool
     {
-        return $this->graves;
+        return $this->primary;
     }
 
-    public function setGraves(?Grave $graves): void
+    public function setPrimary(?bool $primary): void
     {
-        $this->graves = $graves;
+        $this->primary = $primary;
+    }
+
+    public function getGrave(): ?Grave
+    {
+        return $this->grave;
+    }
+
+    public function setGrave(?Grave $grave): void
+    {
+        $this->grave = $grave;
+    }
+
+    public function getGraveyard(): ?Graveyard
+    {
+        return $this->graveyard;
+    }
+
+    public function setGraveyard(?Graveyard $graveyard): void
+    {
+        $this->graveyard = $graveyard;
     }
 }

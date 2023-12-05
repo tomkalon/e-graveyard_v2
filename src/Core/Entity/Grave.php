@@ -2,10 +2,9 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\GraveRepository;
 use DateTimeInterface;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -20,14 +19,17 @@ class Grave
     private int $number;
     private string $positionX;
     private string $positionY;
-    private Person $people;
-    private ?File $images;
+    private ?Graveyard $graveyard;
+    private ?Collection $people;
+    private ?Collection $images;
 
     private ?DateTimeInterface $paid = null;
 
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->people = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?UuidInterface
@@ -65,14 +67,44 @@ class Grave
         $this->number = $number;
     }
 
-    public function getImages(): ?File
+    public function getGraveyard(): ?Graveyard
+    {
+        return $this->graveyard;
+    }
+
+    public function setGraveyard(?Graveyard $graveyard): void
+    {
+        $this->graveyard = $graveyard;
+    }
+
+    public function getPeople(): Collection
+    {
+        return $this->people;
+    }
+
+    public function addPeople(Person $person): self
+    {
+        if (!$this->people->contains($person)) {
+            $this->people->add($person);
+            $person->setGrave($this);
+        }
+
+        return $this;
+    }
+
+    public function getImages(): ?Collection
     {
         return $this->images;
     }
 
-    public function setImages(?File $images): void
+    public function addImages(File $image): self
     {
-        $this->images = $images;
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setGrave($this);
+        }
+
+        return $this;
     }
 
     public function getPaid(): ?DateTimeInterface

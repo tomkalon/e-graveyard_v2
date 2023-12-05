@@ -2,8 +2,8 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\GraveyardRepository;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -15,11 +15,14 @@ class Graveyard
     private UuidInterface $id;
     private string $name;
     private ?string $description;
-    private ?File $images;
+    private ?Collection $graves;
+    private ?Collection $images;
 
     public function __construct()
     {
         $this->id = Uuid::uuid4();
+        $this->graves = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): UuidInterface
@@ -47,13 +50,33 @@ class Graveyard
         $this->description = $description;
     }
 
-    public function getImages(): ?File
+    public function getGraves(): ?Collection
+    {
+        return $this->graves;
+    }
+
+    public function addGraves(Grave $grave): self
+    {
+        if (!$this->graves->contains($grave)) {
+            $this->graves->add($grave);
+            $grave->setGraveyard($this);
+        }
+
+        return $this;
+    }
+
+    public function getImages(): ?Collection
     {
         return $this->images;
     }
 
-    public function setImages(?File $images): void
+    public function addImages(File $image): self
     {
-        $this->images = $images;
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setGraveyard($this);
+        }
+
+        return $this;
     }
 }
