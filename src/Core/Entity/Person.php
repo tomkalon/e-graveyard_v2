@@ -3,21 +3,19 @@
 namespace App\Core\Entity;
 
 use App\Core\Repository\PersonRepository;
-use Symfony\Component\Uid\Uuid;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\Timestampable;
+use Ramsey\Uuid\UuidInterface;
 
-#[ORM\Entity(repositoryClass: PersonRepository::class)]
 class Person
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?Uuid $id = null;
+    use Timestampable;
 
-    #[ORM\Column(length: 255, nullable: false)]
-    private ?string $firstname = null;
-
-    #[ORM\Column(length: 255, nullable: false)]
-    private ?string $lastname = null;
-
+    private UuidInterface $id;
+    private string $firstname;
+    private string $lastname;
+    private DateTimeImmutable $born_date;
+    private DateTimeImmutable $death_date;
+    private Grave $grave;
 }

@@ -2,8 +2,6 @@
 
 namespace App\Core\Entity;
 
-use App\Core\Repository\FileRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -13,11 +11,8 @@ class File
     use Timestampable;
 
     private UuidInterface $id;
-
     private string $name;
-
     private string $extension;
-
     private ?Grave $graves;
     private ?Graveyard $graveyards;
 

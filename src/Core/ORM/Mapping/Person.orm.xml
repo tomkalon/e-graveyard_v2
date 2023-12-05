@@ -4,25 +4,18 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Core\Entity\Graveyard" table="graveyard" repository-class="App\Core\Repository\GraveyardRepository"
+    <entity name="App\Core\Entity\Person" table="person" repository-class="App\Core\Repository\PersonRepository"
     >
         <id name="id" type="string">
             <generator strategy="NONE"/>
         </id>
 
-        <field name="name" />
-        <field name="description" nullable="true" />
+        <field name="firstname" length="60"/>
+        <field name="lastname" length="60"/>
+        <field name="born_date" type="datetime_immutable" />
+        <field name="death_date" type="datetime_immutable" />
 
-        <many-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="graveyards">
-            <join-table name="file_graveyard">
-                <join-columns>
-                    <join-column name="graveyard_id" referenced-column-name="id" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="image_id" referenced-column-name="id" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
+        <many-to-one field="grave" inversed-by="people" target-entity="App\Core\Entity\Grave" />
 
         <field name="createdAt" type="datetime_immutable">
             <gedmo:timestampable on="create"/>

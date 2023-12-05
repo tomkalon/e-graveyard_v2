@@ -2,25 +2,33 @@
 
 namespace App\Main\Infrastructure\Repository;
 
-use App\Core\Entity\User;
-use App\Main\Domain\Dto\User\UserDto;
 use App\Main\Domain\Repository\UserRepositoryInterface as BaseUserRepositoryInterface;
 use App\Core\Repository\UserRepository as BaseUserRepository;
 
 class UserRepository extends BaseUserRepository implements BaseUserRepositoryInterface
 {
-    public function getUsersByOptions(UserDto $dto): array
+    public function getUsersByOptions(?string $email = null, ?string $username = null): array
     {
         $qb = $this->createQueryBuilder('u');
 
-        if ($dto->getEmail()) {
+        if ($email) {
             $qb->andWhere(
                 $qb->expr()->eq(
                     'u.email',
                     ':email'
                 )
             );
-            $qb->setParameter('email', $dto->getEmail());
+            $qb->setParameter('email', $email);
+        }
+
+        if ($username) {
+            $qb->andWhere(
+                $qb->expr()->eq(
+                    'u.username',
+                    ':username'
+                )
+            );
+            $qb->setParameter('username', $username);
         }
         return $qb->getQuery()->getResult();
     }
