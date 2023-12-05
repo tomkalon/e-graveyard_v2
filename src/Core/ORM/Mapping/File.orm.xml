@@ -13,6 +13,9 @@
         <field name="name" />
         <field name="extension" />
 
+        <many-to-many field="graves" target-entity="App\Core\Entity\Grave" inversed-by="images" />
+        <many-to-many field="graveyards" target-entity="App\Core\Entity\Graveyard" inversed-by="images" />
+
         <field name="createdAt" type="datetime_immutable">
             <gedmo:timestampable on="create"/>
         </field>

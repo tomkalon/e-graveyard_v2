@@ -16,7 +16,9 @@
         <field name="positionX" />
         <field name="positionY" />
 
-        <many-to-many field="images" target-entity="App\Core\Entity\File">
+        <one-to-many field="people" mapped-by="grave" target-entity="App\Core\Entity\Person" />
+
+        <many-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="graves">
             <join-table name="file_grave">
                 <join-columns>
                     <join-column name="grave_id" referenced-column-name="id" />

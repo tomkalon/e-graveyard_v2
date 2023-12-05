@@ -14,13 +14,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use Timestampable;
 
     private UuidInterface|string $id;
-
     private string $email;
-
     private array $roles = [];
-
     private string $username;
-
     private ?bool $isVerified = false;
 
     /**

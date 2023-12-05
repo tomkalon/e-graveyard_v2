@@ -15,17 +15,12 @@ class Grave
     use Timestampable;
 
     private UuidInterface $id;
-
     private int $sector;
-
     private ?int $row;
-
     private int $number;
-
     private string $positionX;
-
     private string $positionY;
-
+    private Person $people;
     private ?File $images;
 
     private ?DateTimeInterface $paid = null;

@@ -16,6 +16,9 @@ class GetUsersByOptionsQueryHandler implements QueryHandlerInterface
     public function __invoke(GetUsersByOptionsQuery $query): ?array
     {
         $dto = $query->getDto();
-        return $this->userRepository->getUsersByOptions($dto);
+        return $this->userRepository->getUsersByOptions(
+            $dto->getEmail(),
+            $dto->getUsername()
+        );
     }
 }

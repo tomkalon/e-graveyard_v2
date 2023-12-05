@@ -13,11 +13,8 @@ class Graveyard
     use Timestampable;
 
     private UuidInterface $id;
-
     private string $name;
-
     private ?string $description;
-
     private ?File $images;
 
     public function __construct()
