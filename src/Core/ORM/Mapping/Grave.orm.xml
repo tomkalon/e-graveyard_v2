@@ -16,18 +16,9 @@
         <field name="positionX" />
         <field name="positionY" />
 
+        <many-to-one field="graveyard" target-entity="App\Core\Entity\Graveyard" inversed-by="graves"/>
         <one-to-many field="people" mapped-by="grave" target-entity="App\Core\Entity\Person" />
-
-        <many-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="graves">
-            <join-table name="file_grave">
-                <join-columns>
-                    <join-column name="grave_id" referenced-column-name="id" />
-                </join-columns>
-                <inverse-join-columns>
-                    <join-column name="image_id" referenced-column-name="id" />
-                </inverse-join-columns>
-            </join-table>
-        </many-to-many>
+        <one-to-many field="images" target-entity="App\Core\Entity\File" mapped-by="grave" />
 
         <field name="paid" type="datetime" nullable="true" />
         <field name="createdAt" type="datetime_immutable">

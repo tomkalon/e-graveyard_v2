@@ -23,6 +23,15 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 )]
 class UserAddCommand extends Command
 {
+    const ADD_NEW_USER = 'Dodawanie nowego użytkownika.';
+    const SUCCESS_USER_CREATED = 'Konto zostało utworzone: nazwa użytkownika -> ';
+    const FAILURE_EMAIL_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane! Email jest już zajęty.';
+    const FAILURE_EMAIL_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Wpisany email jest niepoprawny.';
+    const FAILURE_USERNAME_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane! Podana nazwa użytkownika jest już zajęta';
+    const FAILURE_USERNAME_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Błędna nazwa użytkownika.';
+    const FAILURE_PASSWORD_TOO_SHORT = 'Utworzenie nowego użytkownika zostało anulowane! Hasło jest zbyt krótkie.';
+    const FAILURE_PASSWORD_DONT_MATCH = 'Utworzenie nowego użytkownika zostało anulowane! Wprowadzone hasła różnią się.';
+
     public function __construct(
         private readonly QueryBusInterface   $queryBus,
         private readonly CommandBusInterface $commandBus,
@@ -35,30 +44,46 @@ class UserAddCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setHelp('Dodawanie nowego użytkownika.');
+            ->setHelp(self::ADD_NEW_USER);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $helper = $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
+        $dto = new UserDto();
 
         // set email
-        $dto = new UserDto($this->setEmail($input, $output));
+        $email = $this->setEmail($input, $output);
+        if ($email !== null) {
+            $dto->setEmail($email);
+        } else {
+            return Command::FAILURE;
+        }
 
         // set username
-        $dto->setUsername($this->setUsername($input, $output));
+        $username = $this->setUsername($input, $output);
+        if ($username !== null) {
+            $dto->setUsername($username);
+        } else {
+            return Command::FAILURE;
+        }
 
         // set password
-        $dto->setPassword($this->setPassword($input, $output));
+        $password = $this->setPassword($input, $output);
+        if ($password !== null) {
+            $dto->setPassword($password);
+        } else {
+            return Command::FAILURE;
+        }
 
         // persist
         $this->commandBus->dispatch(new SaveUser($dto));
-        $io->success(sprintf('Konto zostało utworzone: nazwa użytkownika -> %s', $dto->getEmail()));
+        $io->success(sprintf(self::SUCCESS_USER_CREATED.'%s', $dto->getEmail()));
         return Command::SUCCESS;
     }
 
-    private function setEmail(InputInterface $input, OutputInterface $output): string
+    private function setEmail(InputInterface $input, OutputInterface $output): ?string
     {
         $helper = $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
@@ -73,22 +98,22 @@ class UserAddCommand extends Command
         ]);
 
         if (count($emailValidation)) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Wpisany email jest niepoprawny.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_EMAIL_ERROR);
+            return null;
         }
 
         $dto = new UserDto($email);
         $isEmailExist = $this->queryBus->handle(new GetUsersByOptionsQuery($dto));
 
         if ($isEmailExist) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Email jest już zajęty.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_EMAIL_ALREADY_EXIST);
+            return null;
         }
 
         return $email;
     }
 
-    private function setUsername(InputInterface $input, OutputInterface $output): string
+    private function setUsername(InputInterface $input, OutputInterface $output): ?string
     {
         $helper = $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
@@ -106,8 +131,8 @@ class UserAddCommand extends Command
         ]);
 
         if (count($usernameValidation)) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Błędna nazwa użytkownika.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_USERNAME_ERROR);
+            return null;
         }
 
         $dto = new UserDto();
@@ -115,14 +140,14 @@ class UserAddCommand extends Command
         $isUsernameExist = $this->queryBus->handle(new GetUsersByOptionsQuery($dto));
 
         if ($isUsernameExist) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Email jest już zajęty.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_USERNAME_ALREADY_EXIST);
+            return null;
         }
 
         return $username;
     }
 
-    private function setPassword(InputInterface $input, OutputInterface $output): string
+    private function setPassword(InputInterface $input, OutputInterface $output): ?string
     {
         $helper = $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
@@ -136,8 +161,8 @@ class UserAddCommand extends Command
         $addPassword->setHiddenFallback(false);
         $password = $helper->ask($input, $output, $addPassword);
         if (strlen($password) < 6) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Hasło jest zbyt krótkie.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_PASSWORD_TOO_SHORT);
+            return null;
         }
 
         // set password repeat
@@ -149,11 +174,11 @@ class UserAddCommand extends Command
         $addPasswordRepeat->setHiddenFallback(false);
         $passwordRepeat = $helper->ask($input, $output, $addPasswordRepeat);
         if (strlen($passwordRepeat) < 6) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Hasło jest zbyt krótkie.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_PASSWORD_TOO_SHORT);
+            return null;
         } else if ($password !== $passwordRepeat) {
-            $io->error('Utworzenie nowego użytkownika zostało anulowane! Wprowadzone hasła różnią się.');
-            return Command::FAILURE;
+            $io->error(self::FAILURE_PASSWORD_DONT_MATCH);
+            return null;
         }
 
         return $password;

@@ -5,6 +5,11 @@ grave_routes:
   resource: 'grave'
   type: directory
   
-security_routes:
+search_routes:
+  resource: 'search_grave'
+  type: directory
+  
+user_routes:
   resource: 'user'
   type: directory
+

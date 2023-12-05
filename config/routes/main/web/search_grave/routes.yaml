@@ -1,0 +1,4 @@
+app_login:
+  path: /search
+  methods: [ GET, POST ]
+  controller: App\Main\UI\Web\Controller\SearchGrave\SearchGraveController::index
