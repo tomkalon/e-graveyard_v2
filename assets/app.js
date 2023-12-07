@@ -5,6 +5,12 @@ import './styles/app.scss';
 
 // tailwind plugin
 import 'tw-elements'
+import {
+    Input,
+    initTE,
+} from "tw-elements";
+
+initTE({ Input });
 
 // icons
 import 'fontawesome-4.7'

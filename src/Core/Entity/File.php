@@ -2,15 +2,17 @@
 
 namespace App\Core\Entity;
 
+use App\Core\Trait\IdTrait;
+use App\Core\Trait\TimestampableTrait;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class File
 {
-    use Timestampable;
+    use IdTrait;
+    use TimestampableTrait;
 
-    private UuidInterface $id;
     private string $name;
     private string $extension;
     private ?bool $primary;
@@ -23,11 +25,6 @@ class File
         if ($name) {
             $this->name = $name;
         }
-    }
-
-    public function getId(): ?UuidInterface
-    {
-        return $this->id;
     }
 
     public function getName(): string

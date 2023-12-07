@@ -8,11 +8,12 @@ ui:
         contact: Kontakt
         admin: Administrator
         logged: Zalogowany
+        logout: Wyloguj się
         user:
-          logout: Wylogowanie
           grave:
             label: Groby
             desc: Zarządzanie bazą grobów
+            add: Dodaj
           person:
             label: Zmarli
             desc: Zarządzanie bazą zmarłych
@@ -32,6 +33,17 @@ ui:
       subtitle: Opis
       buttons:
         search: Szukaj grobów
-        
-    cli:
+  
+    grave:
+      label: Groby
+      title:
+        create: Dodawanie grobu
+      graveyard: Cmentarz
+      sector: Sektor
+      row: Rząd
+      number: Numer
+      coordinates: Współrzędne geograficzne
+      positionX: Długość geograficzna
+      positionY: Szerokość geograficzna
+      create: Dodaj
     

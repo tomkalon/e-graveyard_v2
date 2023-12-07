@@ -1,0 +1,12 @@
+{% form_theme form 'Twig/Theme/Form/gemma_form.html.twig' %}
+
+{% extends 'Main/Common/Dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.main.grave.title.create'|trans }}{% endblock %}
+{% block dashboard_content %}
+    {{ form_start(form) }}
+{#        {{ form_widget(form.graveyard) }}#}
+        {{ form_row(form.sector) }}
+{#        {{ form_widget(form.row) }}#}
+{#        {{ form_widget(form.number) }}#}
+    {{ form_end(form) }}
+{% endblock %}

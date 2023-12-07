@@ -2,3 +2,9 @@ main_web_grave_index:
   path: /grave/{grave}
   methods: [ GET ]
   controller: App\Main\UI\Web\Controller\Grave\GraveController::index
+
+main_web_grave_create:
+  path: /grave/manage/create
+  methods: [ GET, POST ]
+  controller: App\Main\UI\Web\Controller\Grave\GraveController::create
+

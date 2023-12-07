@@ -2,6 +2,8 @@
 
 namespace App\Core\Entity;
 
+use App\Core\Trait\IdTrait;
+use App\Core\Trait\TimestampableTrait;
 use DateTimeImmutable;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
@@ -9,9 +11,9 @@ use Ramsey\Uuid\UuidInterface;
 
 class Person
 {
-    use Timestampable;
+    use IdTrait;
+    use TimestampableTrait;
 
-    private UuidInterface $id;
     private string $firstname;
     private string $lastname;
     private DateTimeImmutable $born_date;
@@ -20,13 +22,6 @@ class Person
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
-    }
-
-
-    public function getId(): UuidInterface
-    {
-        return $this->id;
     }
 
     public function getFirstname(): string

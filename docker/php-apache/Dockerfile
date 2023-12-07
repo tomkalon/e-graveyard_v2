@@ -5,9 +5,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
 #Install Packages
-RUN apt-get -y update && apt-get install -y libicu-dev libzip-dev zip libjpeg-dev libpng-dev libfreetype6-dev
+RUN apt-get -y update && apt-get install -y libicu-dev libzip-dev zip libjpeg-dev libpng-dev libfreetype6-dev libwebp-dev
 RUN docker-php-ext-configure intl
-RUN docker-php-ext-configure gd '--with-jpeg' '--with-freetype'
+RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install intl opcache pdo_mysql zip gd
 RUN pecl install xdebug
 
@@ -35,7 +35,8 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/
 RUN apt-get install nano -y
 RUN apt-get install mc -y
 
-# Commands
-RUN composer install
-RUN symfony console doctrine
-RUN symfony console make
+# History
+RUN echo "composer update" >> ~/.bash_history
+RUN echo "symfony console" >> ~/.bash_history
+RUN echo "symfony console make:migration" >> ~/.bash_history
+RUN echo "symfony console doctrine:migrations:migrate" >> ~/.bash_history

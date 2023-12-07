@@ -4,8 +4,7 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Core\Entity\User" table="user" repository-class="App\Core\Repository\UserRepository"
-    >
+    <entity name="App\Core\Entity\User" table="user" repository-class="App\Core\Repository\UserRepository">
         <id name="id" column="id" type="uuid">
             <generator strategy="CUSTOM"/>
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>

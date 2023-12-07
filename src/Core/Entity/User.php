@@ -2,6 +2,8 @@
 
 namespace App\Core\Entity;
 
+use App\Core\Trait\IdTrait;
+use App\Core\Trait\TimestampableTrait;
 use Gedmo\Timestampable\Traits\Timestampable;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -11,9 +13,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
-    use Timestampable;
+    use IdTrait;
+    use TimestampableTrait;
 
-    private UuidInterface|string $id;
     private string $email;
     private array $roles = [];
     private string $username;
@@ -26,12 +28,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getEmail(): ?string
