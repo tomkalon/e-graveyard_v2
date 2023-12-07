@@ -1,0 +1,7 @@
+{% extends 'Dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.main.grave.title.create'|trans }}{% endblock %}
+{% block dashboard_content %}
+    {{ form_start(form) }}
+        {{ form_widget(form.sector) }}
+    {{ form_end(form) }}
+{% endblock %}

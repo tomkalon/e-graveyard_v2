@@ -2,18 +2,17 @@
 
 namespace App\Core\Entity;
 
+use App\Core\Trait\IdTrait;
+use App\Core\Trait\TimestampableTrait;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Gedmo\Timestampable\Traits\Timestampable;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class Grave
 {
-    use Timestampable;
+    use IdTrait;
+    use TimestampableTrait;
 
-    private UuidInterface $id;
     private int $sector;
     private ?int $row;
     private int $number;
@@ -27,14 +26,8 @@ class Grave
 
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
         $this->people = new ArrayCollection();
         $this->images = new ArrayCollection();
-    }
-
-    public function getId(): ?UuidInterface
-    {
-        return $this->id;
     }
 
     public function getSector(): int

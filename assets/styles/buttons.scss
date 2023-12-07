@@ -1,0 +1,51 @@
+// BUTTONS
+@mixin button($name, $main, $secondary, $font) {
+  &-#{$name} {
+    background: linear-gradient(135deg, $main, $secondary);
+    color: $font;
+
+    &:hover {
+      background: $font;
+      color: $main;
+    }
+  }
+
+  &-outline-#{$name} {
+    border: 2px solid $main;
+    color: $main;
+
+    &:hover {
+      background: $main;
+      color: $font;
+      border: 2px solid $main;
+    }
+  }
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
+  transition: 0.5s all;
+  border: 1px solid transparent;
+  box-shadow: 0 0 1px 0 #00000060;
+  cursor: pointer;
+  border-radius: 0.25rem;
+
+  &.btn-lg{
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+
+  $colors: (
+    ("white", theme('colors.slate.50'), theme('colors.slate.50'), theme('colors.slate.900')),
+    ("slate", theme('colors.slate.900'), theme('colors.slate.800'), theme('colors.slate.50')),
+    ('gray', theme('colors.gray.700'), theme('colors.gray.800'), theme('colors.gray.50')),
+    ('green', theme('colors.green.700'), theme('colors.green.800'), theme('colors.green.50')),
+  );
+
+  @each $name, $main, $secondary, $font in $colors {
+    @include button($name, $main, $secondary, $font);
+  }
+}

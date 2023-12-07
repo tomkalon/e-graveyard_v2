@@ -4,12 +4,11 @@
                   xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="App\Core\Entity\File" table="file" repository-class="App\Core\Repository\FileRepository"
-    >
-        <id name="id" type="string">
-            <generator strategy="NONE"/>
+    <entity name="App\Core\Entity\File" table="file" repository-class="App\Core\Repository\FileRepository">
+        <id name="id" column="id" type="uuid">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
-
         <field name="name" />
         <field name="extension" />
         <field name="primary" type="boolean" nullable="true"/>
