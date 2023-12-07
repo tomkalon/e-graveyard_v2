@@ -17,31 +17,26 @@ class CreateGraveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('graveyard', EntityType::class, [
-                'class' => Graveyard::class,
-                'choice_label' => 'name',
-                'required' => true,
-            ])
+//            ->add('graveyard', EntityType::class, [
+//                'class' => Graveyard::class,
+//                'choice_label' => 'name',
+//                'required' => true,
+//            ])
             ->add('sector', IntegerType::class, [
                 'required' => true,
-                'attr' => array(
-                    'class' => 'w-52 py-3 px-3 rounded-lg bg-gray-800 border border-gray-700 text-gray-50 font-semibold
-                     focus:border-blue-500 focus:outline-none',
-                    'placeholder' => 'fe.family.name'
-                ),
             ])
-            ->add('row', IntegerType::class, [
-                'required' => false,
-            ])
-            ->add('number', IntegerType::class, [
-                'required' => true,
-            ])
-            ->add('positionX', TextType::class, [
-                'required' => true,
-            ])
-            ->add('positionY', TextType::class, [
-                'required' => true,
-            ])
+//            ->add('row', IntegerType::class, [
+//                'required' => false,
+//            ])
+//            ->add('number', IntegerType::class, [
+//                'required' => true,
+//            ])
+//            ->add('positionX', TextType::class, [
+//                'required' => true,
+//            ])
+//            ->add('positionY', TextType::class, [
+//                'required' => true,
+//            ])
             ->add('create', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-green'
