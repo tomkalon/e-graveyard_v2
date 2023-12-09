@@ -1,6 +1,18 @@
 .dashboard {
-  min-height: calc(100vh - 74px);
   .sidebar {
     height: auto;
+  }
+
+  .content {
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    h3 {
+      margin: 1.5rem auto 1rem;
+      padding: 0.25rem 0.5rem;
+      border-bottom: 1px solid theme('colors.neutral.400');
+    }
   }
 }

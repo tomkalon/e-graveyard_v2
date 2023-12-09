@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Domain\Repository;
+namespace App\Main\Infrastructure\Repository;
 
 use App\Core\Repository\GraveyardRepositoryInterface as BaseGraveyardRepositoryInterface;
 

@@ -17,7 +17,6 @@ ui:
           person:
             label: Zmarli
             desc: Zarządzanie bazą zmarłych
-        
       theme_mode: Motyw
     
     user:
@@ -42,8 +41,9 @@ ui:
       sector: Sektor
       row: Rząd
       number: Numer
+      position: Położenie grobu
       coordinates: Współrzędne geograficzne
-      positionX: Długość geograficzna
-      positionY: Szerokość geograficzna
+      positionX: Dł. geograficzna
+      positionY: Szer. geograficzna
       create: Dodaj
     

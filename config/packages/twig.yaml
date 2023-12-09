@@ -1,6 +1,6 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    form_themes: ['Twig/Theme/Form/gemma_form.html.twig']
+    form_themes: ['Twig/Theme/tailwind.html.twig']
     globals:
       app_name: '%app_name%'
 

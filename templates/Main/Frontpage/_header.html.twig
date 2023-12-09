@@ -1,11 +1,14 @@
 <!-- Hero section with background image, heading, subheading and button -->
 <header class="h-[500px] relative overflow-hidden bg-cover bg-no-repeat" style="background: url('{{ asset('build/images/header_logo.webp') }}') no-repeat center center / cover;">
     <div class="h-full" style="background: linear-gradient(45deg, #0f172ae3, #0f2a29f0);">
-        <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
-            <div class="flex h-full items-center justify-center">
-                <div class="px-6 text-center text-white md:px-12">
-                    <h1 class="mb-6 text-5xl font-bold">{{ 'ui.main.frontpage.title'|trans }}</h1>
-                    <h3 class="mb-8 text-3xl font-bold">{{ 'ui.main.frontpage.subtitle'|trans }}</h3>
+        <div class="container mx-auto">
+            <!-- Section: Design Block -->
+            <section class="mb-32 text-center">
+                <div class="px-6 py-12 md:px-12">
+                    <h2 class="my-12 text-5xl font-bold leading-[1.2] tracking-tight text-slate-100">
+                        {{ 'ui.main.frontpage.title'|trans }} <br />
+                        <span class="text-slate-400">{{ 'ui.main.frontpage.subtitle'|trans }}</span>
+                    </h2>
                     <button
                             type="button"
                             class="inline-block rounded border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-md font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
@@ -14,7 +17,8 @@
                         {{ 'ui.main.frontpage.buttons.search'|trans }}
                     </button>
                 </div>
-            </div>
+            </section>
+            <!-- Section: Design Block -->
         </div>
     </div>
 </header>

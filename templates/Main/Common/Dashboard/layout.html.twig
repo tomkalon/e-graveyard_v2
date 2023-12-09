@@ -3,13 +3,13 @@
 {% block title %}{{ app_name }} - {{ ui.main.dashboard.index }}{% endblock %}
 
 {% block body %}
-    <div class="dashboard flex flex-auto flex-shrink-0 antialiased bg-gray-700 text-white">
+    <div class="dashboard flex flex-auto flex-shrink-0 antialiased bg-gray-100 dark:bg-gray-700 text-white">
 
         <!-- Sidebar -->
         {% include('Main/Common/Dashboard/_sidebar.html.twig') %}
         <!-- ./Sidebar -->
 
-        <div class="h-full ml-4 mt-6 mb-10 px-4 relative">
+        <div class="content h-full ml-4 mt-6 mb-10 px-4 relative">
             {% block dashboard_content %}{% endblock %}
         </div>
     </div>

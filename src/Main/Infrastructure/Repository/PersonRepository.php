@@ -2,8 +2,8 @@
 
 namespace App\Main\Infrastructure\Repository;
 
-use App\Main\Domain\Repository\PersonRepositoryInterface as BasePersonRepositoryInterface;
 use App\Core\Repository\PersonRepository as BasePersonRepository;
+use App\Main\Infrastructure\Repository\PersonRepositoryInterface as BasePersonRepositoryInterface;
 
 class PersonRepository extends BasePersonRepository implements BasePersonRepositoryInterface
 {

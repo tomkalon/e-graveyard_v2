@@ -7,7 +7,7 @@ use App\Core\Entity\Graveyard;
 class GraveDto
 {
     public ?int $sector;
-    public ?int $row;
+    public ?int $row = null;
     public ?int $number;
     public ?string $positionX;
     public ?string $positionY;

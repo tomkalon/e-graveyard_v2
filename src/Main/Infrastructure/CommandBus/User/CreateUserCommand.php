@@ -5,7 +5,7 @@ namespace App\Main\Infrastructure\CommandBus\User;
 use App\Core\CQRS\CommandBus\CommandInterface;
 use App\Main\Domain\Dto\User\UserDto;
 
-class SaveUser implements CommandInterface
+class CreateUserCommand implements CommandInterface
 {
     public function __construct(
         private readonly UserDto $dto

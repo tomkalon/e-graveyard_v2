@@ -1,1 +1,37 @@
 // FORM
+.custom-tailwind-form {
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    display: none;
+  }
+
+  [type='text'],
+  input:where(:not([type])),
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'], [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+  }
+
+  input {
+      color: #000000 !important;
+  }
+
+  [data-te-select-input-ref] {
+    height: 2.5rem;
+    background: theme('colors.slate.100');
+
+  }
+
+  svg {
+    color: theme('colors.slate.900')!important;
+  }
+}
