@@ -2,9 +2,9 @@
 
 namespace App\Main\UI\Web\Controller\Grave;
 
-use App\Main\Domain\Form\CreateGraveType;
-use Symfony\Component\HttpFoundation\Request;
+use App\Main\Domain\Form\Grave\CreateGraveType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class GraveController extends AbstractController

@@ -4,10 +4,8 @@ namespace App\Main\Infrastructure\CommandBus\User;
 
 use App\Core\CQRS\CommandBus\CommandHandlerInterface;
 use App\Core\Entity\User;
-use App\Main\Domain\Dto\User\UserDto;
-use App\Main\Domain\Repository\UserRepositoryInterface;
+use App\Main\Infrastructure\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\UnexpectedTypeException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use UnexpectedValueException;
 

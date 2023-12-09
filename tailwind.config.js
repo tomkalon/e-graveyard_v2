@@ -3,8 +3,8 @@ module.exports = {
     mode: process.env.NODE_ENV ? 'jit' : undefined,
     content: [
         "./assets/**/*.js",
-        "./templates/**/**/*.html.twig",
-        "./src/Form/**/*.php",
+        "./templates/**/**/**/*.html.twig",
+        "./src/Main/Domain/Form/**/**/*.php",
         "./node_modules/tw-elements/dist/js/**/*.js"
     ],
     theme: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     plugins: [
         require("tw-elements/dist/plugin.cjs"),
-        require('@tailwindcss/forms')
+        require('@tailwindcss/forms'),
     ],
     darkMode: 'class',
 }

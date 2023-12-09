@@ -3,7 +3,7 @@
 namespace App\Main\Infrastructure\QueryBus\User;
 
 use App\Core\CQRS\QueryBus\QueryHandlerInterface;
-use App\Main\Domain\Repository\UserRepositoryInterface;
+use App\Main\Infrastructure\Repository\UserRepositoryInterface;
 
 class GetUsersByOptionsQueryHandler implements QueryHandlerInterface
 {

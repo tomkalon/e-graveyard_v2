@@ -2,8 +2,8 @@
 
 namespace App\Main\Infrastructure\Repository;
 
-use App\Main\Domain\Repository\GraveRepositoryInterface as BaseGraveRepositoryInterface;
 use App\Core\Repository\GraveRepository as BaseGraveRepository;
+use App\Main\Infrastructure\Repository\GraveRepositoryInterface as BaseGraveRepositoryInterface;
 
 class GraveRepository extends BaseGraveRepository implements BaseGraveRepositoryInterface
 {

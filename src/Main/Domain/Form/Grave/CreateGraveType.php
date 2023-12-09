@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Domain\Form;
+namespace App\Main\Domain\Form\Grave;
 
 use App\Core\Entity\Graveyard;
 use App\Main\Domain\Dto\Grave\GraveDto;
@@ -17,20 +17,20 @@ class CreateGraveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-//            ->add('graveyard', EntityType::class, [
-//                'class' => Graveyard::class,
-//                'choice_label' => 'name',
-//                'required' => true,
-//            ])
+            ->add('graveyard', EntityType::class, [
+                'class' => Graveyard::class,
+                'choice_label' => 'name',
+                'required' => true,
+            ])
             ->add('sector', IntegerType::class, [
                 'required' => true,
             ])
-//            ->add('row', IntegerType::class, [
-//                'required' => false,
-//            ])
-//            ->add('number', IntegerType::class, [
-//                'required' => true,
-//            ])
+            ->add('row', IntegerType::class, [
+                'required' => false,
+            ])
+            ->add('number', IntegerType::class, [
+                'required' => true,
+            ])
 //            ->add('positionX', TextType::class, [
 //                'required' => true,
 //            ])
@@ -38,9 +38,9 @@ class CreateGraveType extends AbstractType
 //                'required' => true,
 //            ])
             ->add('create', SubmitType::class, [
-                'attr' => [
+                'attr' => array(
                     'class' => 'btn btn-green'
-                ]
+                )
             ])
         ;
     }
