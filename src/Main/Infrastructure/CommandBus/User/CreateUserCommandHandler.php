@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use UnexpectedValueException;
 
-class SaveUserHandler implements CommandHandlerInterface
+class CreateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly EntityManagerInterface      $em,
@@ -19,7 +19,7 @@ class SaveUserHandler implements CommandHandlerInterface
     {
     }
 
-    public function __invoke(SaveUser $command): void
+    public function __invoke(CreateUserCommand $command): void
     {
         $dto = $command->getDto();
 

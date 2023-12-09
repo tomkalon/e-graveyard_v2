@@ -13,8 +13,17 @@ $dark-gray-secondary: #555555;
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
 
 body {
-  background-color: white;
+  min-height: 100vh;
   font-family: 'Lato', sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: theme('colors.slate.100');
+  color: theme('colors.slate.950');
+
+  &.dark {
+    background-color: theme('colors.slate.800');
+    color: theme('colors.slate.50');
+  }
 }
 
 @import 'nav';

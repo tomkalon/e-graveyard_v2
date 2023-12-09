@@ -31,12 +31,12 @@ class CreateGraveType extends AbstractType
             ->add('number', IntegerType::class, [
                 'required' => true,
             ])
-//            ->add('positionX', TextType::class, [
-//                'required' => true,
-//            ])
-//            ->add('positionY', TextType::class, [
-//                'required' => true,
-//            ])
+            ->add('positionX', TextType::class, [
+                'required' => true,
+            ])
+            ->add('positionY', TextType::class, [
+                'required' => true,
+            ])
             ->add('create', SubmitType::class, [
                 'attr' => array(
                     'class' => 'btn btn-green'

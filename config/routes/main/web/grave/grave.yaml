@@ -1,5 +1,5 @@
 main_web_grave_index:
-  path: /grave/{grave}
+  path: /grave
   methods: [ GET ]
   controller: App\Main\UI\Web\Controller\Grave\GraveController::index
 

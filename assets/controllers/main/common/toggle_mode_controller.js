@@ -24,8 +24,8 @@ export default class extends Controller {
                 toggleModeButton.classList.remove('fa-toggle-off')
                 toggleModeButton.classList.add('fa-toggle-on')
             }
-            $.cookie('THEME_MODE', className);
-            $.cookie('THEME_MODE_TOGGLE', toggleModeButtonClass);
+            $.cookie('THEME_MODE', className, { path: '/' });
+            $.cookie('THEME_MODE_TOGGLE', toggleModeButtonClass, { path: '/' });
         })
     }
 }

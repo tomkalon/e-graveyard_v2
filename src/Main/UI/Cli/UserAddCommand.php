@@ -5,7 +5,7 @@ namespace App\Main\UI\Cli;
 use App\Core\CQRS\CommandBus\CommandBusInterface;
 use App\Core\CQRS\QueryBus\QueryBusInterface;
 use App\Main\Domain\Dto\User\UserDto;
-use App\Main\Infrastructure\CommandBus\User\SaveUser;
+use App\Main\Infrastructure\CommandBus\User\CreateUserCommand;
 use App\Main\Infrastructure\QueryBus\User\GetUsersByOptionsQuery;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -78,7 +78,7 @@ class UserAddCommand extends Command
         }
 
         // persist
-        $this->commandBus->dispatch(new SaveUser($dto));
+        $this->commandBus->dispatch(new CreateUserCommand($dto));
         $io->success(sprintf(self::SUCCESS_USER_CREATED.'%s', $dto->getEmail()));
         return Command::SUCCESS;
     }
