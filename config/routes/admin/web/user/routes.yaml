@@ -1,0 +1,4 @@
+app_login:
+  path: /admin/login
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\User\LoginController::index

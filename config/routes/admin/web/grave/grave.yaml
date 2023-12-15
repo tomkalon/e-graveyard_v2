@@ -1,0 +1,10 @@
+admin_web_grave_index:
+  path: /admin/grave
+  methods: [ GET ]
+  controller: App\Admin\UI\Web\Controller\Grave\GraveController::index
+
+admin_web_grave_create:
+  path: /admin/grave/create
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Grave\GraveController::create
+
