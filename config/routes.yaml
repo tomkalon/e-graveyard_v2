@@ -6,4 +6,11 @@ main_web:
 
 main_api:
   resource: 'routes/main/api/routes.yaml'
+  
+
+admin_web:
+  resource: 'routes/admin/web/routes.yaml'
+
+admin_api:
+  resource: 'routes/admin/api/routes.yaml'
 

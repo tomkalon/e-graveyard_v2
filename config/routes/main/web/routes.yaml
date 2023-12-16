@@ -1,15 +1,2 @@
 index_route:
   resource: 'index.yaml'
-  
-grave_routes:
-  resource: 'grave'
-  type: directory
-  
-search_routes:
-  resource: 'search_grave'
-  type: directory
-  
-user_routes:
-  resource: 'user'
-  type: directory
-

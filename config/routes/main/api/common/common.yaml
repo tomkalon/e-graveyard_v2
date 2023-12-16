@@ -1,6 +1,0 @@
-main_api_common:
-  path: /main/api/common
-  methods: [ PUT ]
-  controller: App\Main\UI\Api\Controller\Common\CommonController::index
-  options:
-    expose: true

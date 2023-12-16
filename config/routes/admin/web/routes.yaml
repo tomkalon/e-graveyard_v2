@@ -1,0 +1,8 @@
+grave_routes:
+  resource: 'grave'
+  type: directory
+  
+user_routes:
+  resource: 'user'
+  type: directory
+

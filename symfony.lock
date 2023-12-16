@@ -83,6 +83,9 @@
             "config/packages/jms_serializer.yaml"
         ]
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.3.0"
+    },
     "lexik/jwt-authentication-bundle": {
         "version": "2.20",
         "recipe": {

@@ -12,12 +12,29 @@ ui:
         user:
           grave:
             label: Groby
-            desc: Zarządzanie bazą grobów
+            manage: Zarządzanie bazą grobów
             add: Dodaj
           person:
             label: Zmarli
-            desc: Zarządzanie bazą zmarłych
+            manage: Zarządzanie bazą zmarłych
+            add: Dodaj
+      
       theme_mode: Motyw
+      
+    frontpage:
+      title: Nazwa cmentarza
+      subtitle: Opis
+      buttons:
+        search: Szukaj grobów
+    
+  admin:
+    sidebar:
+      grave:
+        label: Groby
+        add: Dodaj
+      person:
+        label: Zmarli
+        add: Dodaj
     
     user:
       login:
@@ -26,16 +43,10 @@ ui:
         password: "Hasło:"
         remember_me: Zapamiętaj mnie
         submit: Zaloguj się
-      
-    frontpage:
-      title: Nazwa cmentarza
-      subtitle: Opis
-      buttons:
-        search: Szukaj grobów
-  
     grave:
       label: Groby
       title:
+        index: Lista grobów
         create: Dodawanie grobu
       graveyard: Cmentarz
       sector: Sektor
