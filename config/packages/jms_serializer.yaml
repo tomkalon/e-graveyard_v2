@@ -2,7 +2,7 @@ jms_serializer:
     visitors:
         xml_serialization:
             format_output: '%kernel.debug%'
-    metadata:
+#    metadata:
 #        auto_detection: false
 #        directories:
 #            any-name:

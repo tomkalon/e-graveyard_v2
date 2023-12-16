@@ -1,26 +1,29 @@
 ui:
+  nav:
+    menu:
+      start: Start
+      search: Szukaj
+      info: Informacje
+      contact: Kontakt
+      admin: Administrator
+      logged: Zalogowany
+      logout: Wyloguj się
+      user:
+        grave:
+          label: Groby
+          manage: Zarządzanie bazą grobów
+          add: Dodaj
+        person:
+          label: Zmarli
+          manage: Zarządzanie bazą zmarłych
+          add: Dodaj
+    
+    theme_mode: Motyw
+    
+  table:
+    search: Szukaj
+    
   main:
-    nav:
-      menu:
-        start: Start
-        search: Szukaj
-        info: Informacje
-        contact: Kontakt
-        admin: Administrator
-        logged: Zalogowany
-        logout: Wyloguj się
-        user:
-          grave:
-            label: Groby
-            manage: Zarządzanie bazą grobów
-            add: Dodaj
-          person:
-            label: Zmarli
-            manage: Zarządzanie bazą zmarłych
-            add: Dodaj
-      
-      theme_mode: Motyw
-      
     frontpage:
       title: Nazwa cmentarza
       subtitle: Opis
@@ -35,7 +38,7 @@ ui:
       person:
         label: Zmarli
         add: Dodaj
-    
+        
     user:
       login:
         login: Logowanie
@@ -58,7 +61,6 @@ ui:
       sector: Sektor
       row: Rząd
       number: Numer
-
       positionX: Dł. geograficzna
       positionY: Szer. geograficzna
       create: Dodaj

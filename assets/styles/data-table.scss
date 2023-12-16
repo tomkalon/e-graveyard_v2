@@ -1,0 +1,33 @@
+#datatable {
+  color: theme('colors.slate.900');
+
+  [data-te-datatable-inner-ref] {
+    border-radius: 0.25rem 0.25rem 0 0;
+    background: white;
+    table {
+      font-weight: 400;
+
+      th {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+#datatable-search-input {
+  background: white;
+}
+
+.dark {
+  #datatable-search-input {
+    background: theme('colors.neutral.800');
+  }
+
+  #datatable {
+    color: white;
+
+    [data-te-datatable-inner-ref] {
+      background: theme('colors.neutral.800');
+    }
+  }
+}

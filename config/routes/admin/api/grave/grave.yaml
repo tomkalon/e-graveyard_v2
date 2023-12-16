@@ -1,0 +1,6 @@
+admin_api_grave_index:
+  path: /grave
+  methods: [ GET ]
+  controller: App\Admin\UI\Api\Controller\Grave\GraveController::index
+  options:
+    expose: true

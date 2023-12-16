@@ -1,4 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
+const FosRouting = require('fos-router/webpack/FosRouting');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -27,8 +29,13 @@ Encore
         pattern: /\.(png|jpg|jpeg|webp|svg)$/
     })
     .copyFiles({
-        from: 'assets/js/',
+        from: 'assets/js/bundles',
         to: 'js/[name].[hash:8].[ext]',
+        pattern: /\.(js|json)$/
+    })
+    .copyFiles({
+        from: 'assets/js/routes',
+        to: '../bundles/routing/js/[name].[ext]',
         pattern: /\.(js|json)$/
     })
     .copyFiles({
@@ -36,10 +43,13 @@ Encore
         to: 'fonts/[name].[hash:8].[ext]',
     })
 
+    .addAliases({
+        '@Api': path.resolve(__dirname, 'assets/modules/Api'),
+        '@Routing': path.resolve(__dirname, 'assets/modules/Routing')
+    })
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
-
-    .enableReactPreset()
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -47,6 +57,9 @@ Encore
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
+
+    // FoS RoutingBundle
+    // .addPlugin(new FosRouting)
 
     /*
      * FEATURE CONFIG
@@ -74,6 +87,7 @@ Encore
 
     // tailwind
     .enablePostCssLoader()
+
     // enables Sass/SCSS support
     .enableSassLoader()
 

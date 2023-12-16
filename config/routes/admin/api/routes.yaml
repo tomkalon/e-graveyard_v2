@@ -1,0 +1,3 @@
+grave_api_routes:
+  resource: 'grave'
+  type: directory
