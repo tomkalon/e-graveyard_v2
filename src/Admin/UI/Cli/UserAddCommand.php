@@ -27,17 +27,18 @@ class UserAddCommand extends Command
     const SUCCESS_USER_CREATED = 'Konto zostało utworzone: nazwa użytkownika -> ';
     const FAILURE_EMAIL_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane! Email jest już zajęty.';
     const FAILURE_EMAIL_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Wpisany email jest niepoprawny.';
-    const FAILURE_USERNAME_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane! Podana nazwa użytkownika jest już zajęta';
+    const FAILURE_USERNAME_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane!
+     Podana nazwa użytkownika jest już zajęta';
     const FAILURE_USERNAME_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Błędna nazwa użytkownika.';
     const FAILURE_PASSWORD_TOO_SHORT = 'Utworzenie nowego użytkownika zostało anulowane! Hasło jest zbyt krótkie.';
-    const FAILURE_PASSWORD_DONT_MATCH = 'Utworzenie nowego użytkownika zostało anulowane! Wprowadzone hasła różnią się.';
+    const FAILURE_PASSWORD_DONT_MATCH = 'Utworzenie nowego użytkownika zostało anulowane!
+     Wprowadzone hasła różnią się.';
 
     public function __construct(
         private readonly QueryBusInterface   $queryBus,
         private readonly CommandBusInterface $commandBus,
         private readonly ValidatorInterface  $validator,
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -49,7 +50,7 @@ class UserAddCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $helper = $this->getHelper('question');
+        $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
         $dto = new UserDto();
 
@@ -176,13 +177,11 @@ class UserAddCommand extends Command
         if (strlen($passwordRepeat) < 6) {
             $io->error(self::FAILURE_PASSWORD_TOO_SHORT);
             return null;
-        } else if ($password !== $passwordRepeat) {
+        } elseif ($password !== $passwordRepeat) {
             $io->error(self::FAILURE_PASSWORD_DONT_MATCH);
             return null;
         }
 
         return $password;
     }
-
-
 }

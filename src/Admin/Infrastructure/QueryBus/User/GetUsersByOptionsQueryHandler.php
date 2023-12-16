@@ -9,8 +9,7 @@ class GetUsersByOptionsQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
-    )
-    {
+    ) {
     }
 
     public function __invoke(GetUsersByOptionsQuery $query): ?array

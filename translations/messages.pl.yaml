@@ -9,23 +9,32 @@ ui:
         admin: Administrator
         logged: Zalogowany
         logout: Wyloguj się
+        user:
+          grave:
+            label: Groby
+            manage: Zarządzanie bazą grobów
+            add: Dodaj
+          person:
+            label: Zmarli
+            manage: Zarządzanie bazą zmarłych
+            add: Dodaj
+      
       theme_mode: Motyw
       
-      frontpage:
-        title: Nazwa cmentarza
-        subtitle: Opis
-        buttons:
-          search: Szukaj grobów
+    frontpage:
+      title: Nazwa cmentarza
+      subtitle: Opis
+      buttons:
+        search: Szukaj grobów
     
   admin:
     sidebar:
       grave:
         label: Groby
-        graves: Groby
         add: Dodaj
       person:
         label: Zmarli
-        desc: Zarządzanie bazą zmarłych
+        add: Dodaj
     
     user:
       login:

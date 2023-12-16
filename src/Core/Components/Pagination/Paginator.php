@@ -53,7 +53,6 @@ class Paginator implements BasePaginatorInterface
             'distinct' => $distinct,
             'pageOutOfRange' => $pageOutOfRange,
             'defaultLimit' => $defaultLimit,
-            'limitForm' => $form->createView()
         ));
 
         return $pagination;

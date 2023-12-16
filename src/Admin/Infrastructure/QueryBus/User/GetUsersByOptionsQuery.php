@@ -9,8 +9,7 @@ class GetUsersByOptionsQuery implements QueryInterface
 {
     public function __construct(
         private readonly UserDto $dto
-    )
-    {
+    ) {
     }
 
     public function getDto(): UserDto

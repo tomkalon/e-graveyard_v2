@@ -16,9 +16,9 @@
     {% endblock %}
 </head>
 <body class="{{ app.request.cookies.get('THEME_MODE') }}">
-{% include 'Main/nav.html.twig' %}
+{% include 'Core/nav.html.twig' %}
 {% block body %}{% endblock %}
-{% include 'Main/footer.html.twig' %}
+{% include 'Core/footer.html.twig' %}
 <script type="text/javascript" src="{{ asset('build/js/tw-elements.min.js') }}"></script>
 </body>
 </html>

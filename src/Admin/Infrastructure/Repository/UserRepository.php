@@ -4,32 +4,23 @@ namespace App\Admin\Infrastructure\Repository;
 
 use App\Core\Repository\UserRepository as BaseUserRepository;
 use App\Admin\Infrastructure\Repository\UserRepositoryInterface as BaseUserRepositoryInterface;
+use App\Core\Trait\QueryTraits;
 
 class UserRepository extends BaseUserRepository implements BaseUserRepositoryInterface
 {
+    use QueryTraits;
+
     public function getUsersByOptions(?string $email = null, ?string $username = null): array
     {
         $qb = $this->createQueryBuilder('u');
 
         if ($email) {
-            $qb->andWhere(
-                $qb->expr()->eq(
-                    'u.email',
-                    ':email'
-                )
-            );
-            $qb->setParameter('email', $email);
+            $this->isEqual('u.email', $email, $qb);
+        }
+        if ($username) {
+            $this->isEqual('u.username', $username, $qb);
         }
 
-        if ($username) {
-            $qb->andWhere(
-                $qb->expr()->eq(
-                    'u.username',
-                    ':username'
-                )
-            );
-            $qb->setParameter('username', $username);
-        }
         return $qb->getQuery()->getResult();
     }
 }
