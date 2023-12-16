@@ -35,6 +35,8 @@ export default class extends Controller {
                             ...user,
                             address: `${user.address.city}, ${user.address.street}`,
                             company: user.company.name,
+                            email: user.email,
+                            name: user.name,
                         })),
                     },
                     {loading: false}
