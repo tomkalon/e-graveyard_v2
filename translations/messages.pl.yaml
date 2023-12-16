@@ -48,12 +48,17 @@ ui:
       title:
         index: Lista grobów
         create: Dodawanie grobu
+      description:
+        index:
+          manage: Zarządzanie listą grobów
+        create:
+          position: Położenie grobu
+          coordinates: Współrzędne geograficzne
       graveyard: Cmentarz
       sector: Sektor
       row: Rząd
       number: Numer
-      position: Położenie grobu
-      coordinates: Współrzędne geograficzne
+
       positionX: Dł. geograficzna
       positionY: Szer. geograficzna
       create: Dodaj

@@ -1,31 +1,45 @@
 {% extends 'Admin/Common/Dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.create'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.create'|trans }}</h1>
-    <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.position'|trans }}</h3>
-    {{ form_start(form) }}
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        <div>
-            {{ form_row(form.graveyard) }}
-        </div>
-        <div>
-            {{ form_row(form.sector) }}
-        </div>
-        <div>
-            {{ form_row(form.row) }}
-        </div>
-        <div>
-            {{ form_row(form.number) }}
-        </div>
-    </div>
-    <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.coordinates'|trans }}</h3>
-    <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        <div>
-            {{ form_row(form.positionX) }}
-        </div>
-        <div>
-            {{ form_row(form.positionY) }}
-        </div>
-    </div>
-    {{ form_end(form) }}
+
+    {% embed 'Twig/Block/DashboardCard.html.twig' %}
+        {% block title %}
+            <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.create'|trans }}</h1>
+        {% endblock %}
+            {% block dashboard_content %}
+                {{ form_start(form) }}
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.create.position'|trans }}</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div>
+                        {{ form_row(form.graveyard) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.sector) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.row) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.number) }}
+                    </div>
+                </div>
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.create.coordinates'|trans }}</h3>
+                <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div>
+                        {{ form_row(form.positionX) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.positionY) }}
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    {{ form_row(form.create) }}
+                </div>
+                {{ form_end(form) }}
+            {% endblock %}
+
+        {% block buttons_after %}
+        {% endblock %}
+
+    {% endembed %}
 {% endblock %}

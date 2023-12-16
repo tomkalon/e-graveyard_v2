@@ -1,3 +1,4 @@
+import { registerReactControllerComponents } from '@symfony/ux-react';
 import './bootstrap.js';
 
 // any CSS you import will output into a single css file (app.css in this case)
@@ -19,3 +20,6 @@ import 'fontawesome-4.7'
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
 }
+
+// react
+registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));

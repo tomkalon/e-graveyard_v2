@@ -1,5 +1,7 @@
 // BUTTONS
-@mixin button($name, $main, $secondary, $font) {
+$btn-radius: 0.25rem;
+
+@mixin colors($name, $main, $secondary, $font) {
   &-#{$name} {
     background: linear-gradient(135deg, $main, $secondary);
     color: $font;
@@ -22,6 +24,21 @@
   }
 }
 
+@mixin sizes($name, $padding, $size) {
+  &-#{$name} {
+    padding: $padding;
+    font-size: $size;
+  }
+}
+
+
+@mixin groups($name, $border-width, $border-radius) {
+  &-#{$name} {
+    border-radius: $border-radius;
+    border-#{$name}-width: $border-width;
+  }
+}
+
 .btn {
   display: flex;
   align-items: center;
@@ -31,12 +48,7 @@
   border: 1px solid transparent;
   box-shadow: 0 0 1px 0 #00000060;
   cursor: pointer;
-  border-radius: 0.25rem;
-
-  &.btn-lg{
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-  }
+  border-radius: $btn-radius;
 
   $colors: (
     ("white", theme('colors.slate.50'), theme('colors.slate.50'), theme('colors.slate.900')),
@@ -45,7 +57,25 @@
     ('green', theme('colors.green.700'), theme('colors.green.800'), theme('colors.green.50')),
   );
 
+  $sizes: (
+    ('lg', 0.5rem 1rem, 1.25rem),
+    ('xl', 0.5rem 1.25rem, 1.5rem),
+  );
+
+  $groups: (
+    ('left', 0, $btn-radius 0 0 $btn-radius),
+    ('right', 0, 0 $btn-radius $btn-radius 0),
+  );
+
   @each $name, $main, $secondary, $font in $colors {
-    @include button($name, $main, $secondary, $font);
+    @include colors($name, $main, $secondary, $font);
+  }
+
+  @each $name, $padding, $size in $sizes {
+    @include sizes($name, $padding, $size);
+  }
+
+  @each $name, $border-width, $border-radius in $groups {
+    @include groups($name, $border-width, $border-radius);
   }
 }
