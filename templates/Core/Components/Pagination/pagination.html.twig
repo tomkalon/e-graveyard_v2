@@ -1,0 +1,60 @@
+{% if pagination.getTotalItemCount %}
+    <div class="w-full overflow-hidden shadow-xs">
+        <div class="w-full overflow-x-auto">
+            <table class="w-full text-gray-900 bg-gray-100">
+                <thead>
+                <tr class="text-xs font-semibold text-left uppercase border-b border-neutral-500 dark:text-gray-200 dark:bg-neutral-800">
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'Sektor',
+                        name: 'pag.sector',
+                        class: '3xl:w-48'
+                    } %}
+                </tr>
+                </thead>
+                <tbody class="divide-gray-700">
+                {% for item in pagination %}
+                    <tr class="{% if loop.index is odd %}bg-gray-100 dark:bg-neutral-800{% else %}bg-gray-200 dark:bg-neutral-700{% endif %}
+                        cursor-pointer hover:bg-gray-300 hover:dark:bg-neutral-900"
+{#                        onclick="window.location='{{ path('app_family_show', {'id': item.0.id}) }}'"#}
+                    >
+                        <td class="px-4 py-3">
+                            <div class="flex items-center">
+                                <div>
+                                    <p>{{ item.sector }}</p>
+                                </div>
+                            </div>
+                        </td>
+{#                        <td class="px-4 py-3 text-sm text-center">{{ family.0.address.city.name }}</td>#}
+{#                        <td class="px-4 py-3 text-sm text-center">{{ family.0.address.street.name }} {{ family.0.address.number }}</td>#}
+{#                        <td class="px-4 py-3 font-semibold text-center border-gray-700 border-l border-r">{{ family.people }}</td>#}
+{#                        <td class="px-4 py-3 text-sm text-center">{{ family.0.created|date('Y.m.d') }}</td>#}
+{#                        <td class="px-4 py-3 text-sm text-center">{% if family.0.edited != null %}{{ family.0.edited|date('Y.m.d') }}{% else %}-{% endif %}</td>#}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+{#        <div class="flex justify-between items-center px-4 py-3 text-xs font-semibold tracking-wide uppercase border-t border-gray-700 sm:grid-cols-9 text-gray-400 bg-gray-800">#}
+{#            <div class="flex items-center col-span-3 normal-case">#}
+{#                <div>{{ 'show.pagination'|trans({'%from%': family.getPaginatorOption('startIndex'), '%to%': family.getPaginatorOption('endIndex'), '%sum%': family.getTotalItemCount }) }}</div>#}
+{#                <div class="ml-8">#}
+{#                    {% if pagination.getPaginatorOption('limitForm') != null %}#}
+{#                        {{ form(pagination.getPaginatorOption('limitForm')) }}#}
+{#                    {% endif %}#}
+{#                </div>#}
+{#                <a href="{{ path('app_family_new') }}" class="ml-2">#}
+{#                    <button class="btn btn-smaller btn-outline-semi-white rounded-lg">{{ 'add.you'|trans }}</button>#}
+{#                </a>#}
+{#                {% if app.request.query|length > 0 %}#}
+{#                    <a href="{{ path('app_family_index') }}" class="ml-2">#}
+{#                        <button class="btn btn-smaller btn-outline-semi-white rounded-lg">{{ 'clear.sorting.you'|trans }}</button>#}
+{#                    </a>#}
+{#                {% endif %}#}
+{#            </div>#}
+{#            {{ knp_pagination_render(family) }}#}
+{#        </div>#}
+        <!--/Pagination -->
+    </div>
+{% endif %}
+

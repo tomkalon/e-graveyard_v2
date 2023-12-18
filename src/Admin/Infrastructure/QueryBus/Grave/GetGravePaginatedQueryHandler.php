@@ -5,8 +5,9 @@ namespace App\Admin\Infrastructure\QueryBus\Grave;
 use App\Admin\Infrastructure\Repository\GraveRepositoryInterface;
 use App\Core\Components\Pagination\PaginatorInterface;
 use App\Core\CQRS\QueryBus\QueryHandlerInterface;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
-class GetGraveListQueryHandler implements QueryHandlerInterface
+class GetGravePaginatedQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly GraveRepositoryInterface $repository,
@@ -14,7 +15,7 @@ class GetGraveListQueryHandler implements QueryHandlerInterface
     ) {
     }
 
-    public function __invoke(GetGraveListQuery $query)
+    public function __invoke(GetGravePaginatedQuery $query): PaginationInterface
     {
         $query = $this->repository->getGraveListQuery();
         return $this->paginator->paginate(

@@ -5,6 +5,7 @@ namespace App\Core\Components\Pagination;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Core\Components\Pagination\PaginatorInterface as BasePaginatorInterface;
+use Symfony\Component\Form\FormInterface;
 
 class Paginator implements BasePaginatorInterface
 {
@@ -17,7 +18,10 @@ class Paginator implements BasePaginatorInterface
         $pagination = $this->paginator->paginate($target, $page, $limit, $options);
 
         // form
-        $form = $options['limit_form'] ?? null;
+        $limitForm = $options['limit_form'] ?? null;
+        if ($limitForm instanceof FormInterface) {
+            $form = $limitForm->createView();
+        }
 
         // get item per page
         $limit = $pagination->getItemNumberPerPage();
@@ -53,6 +57,7 @@ class Paginator implements BasePaginatorInterface
             'distinct' => $distinct,
             'pageOutOfRange' => $pageOutOfRange,
             'defaultLimit' => $defaultLimit,
+            'limitForm' => $limitForm
         ));
 
         return $pagination;

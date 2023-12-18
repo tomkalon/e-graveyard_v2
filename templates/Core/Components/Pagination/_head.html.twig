@@ -1,0 +1,12 @@
+<th class="{{ class|default('') }} px-4 py-3{% if pagination.isSorted(name) %}{% endif %}">
+    {{ knp_pagination_sortable(pagination, label|trans, name) }}
+    {% if pagination.isSorted(name) %}
+        {% if app.request.query.get('direction') is defined %}
+            {% if app.request.query.get('direction') == 'asc' %}
+                <i class="fa fa-chevron-up pl-1" aria-hidden="true"></i>
+            {% elseif app.request.query.get('direction') == 'desc' %}
+                <i class="fa fa-chevron-down pl-1" aria-hidden="true"></i>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+</th>

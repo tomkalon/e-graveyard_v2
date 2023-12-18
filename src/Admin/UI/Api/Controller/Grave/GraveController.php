@@ -11,9 +11,6 @@ class GraveController extends AbstractController
     #[Route('/api', name: 'api_')]
     public function index(
     ): JsonResponse {
-
-
-
         $data = [];
         return $this->json($data);
     }

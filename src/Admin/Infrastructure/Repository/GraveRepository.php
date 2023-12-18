@@ -14,7 +14,7 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
 
     public function getGraveListQuery(): Query
     {
-        $qb = $this->createQueryBuilder('u');
+        $qb = $this->createQueryBuilder('pag');
         return $qb->getQuery();
     }
 }
