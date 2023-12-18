@@ -1,0 +1,87 @@
+{% if pageCount > 1 %}
+    <div class="flex col-span-4 sm:justify-end">
+        <nav aria-label="Table navigation">
+            <ul class="inline-flex items-center">
+                {% if first is defined and current != first %}
+                    <li>
+                        <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
+                            <button class="px-3 py-1 flex rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple
+                            hover:text-slate-400 dark:hover:text-neutral-500"
+                                    aria-label="First">
+                                <svg aria-hidden="true" class="w-4 h-4 fill-current relative" viewBox="0 0 20 20">
+                                    <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg aria-hidden="true" class="w-4 h-4 fill-current relative right-2" viewBox="0 0 20 20">
+                                    <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if previous is defined %}
+                    <li>
+                        <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">
+                            <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple
+                            hover:text-slate-400 dark:hover:text-neutral-500"
+                                    aria-label="Previous">
+                                <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                    <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for page in pagesInRange %}
+                    {% if page != current %}
+                        <li><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">
+                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple
+                                hover:text-neutral-50 hover:bg-slate-400 dark:hover:text-neutral-50 dark:hover:bg-neutral-500">
+                                    {{ page }}
+                                </button>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <button class="px-3 py-1 text-white dark:text-gray-800 transition-colors duration-150 bg-neutral-600 dark:bg-gray-100 border border-r-0 border-blue-600 dark:border-gray-100 rounded-md focus:outline-none focus:shadow-outline-purple">
+                                {{ page }}
+                            </button>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if next is defined %}
+                    <li><a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">
+                            <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple
+                            hover:text-slate-400 dark:hover:text-neutral-500"
+                                    aria-label="Next">
+                                <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
+                                    <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if last is defined and current != last %}
+                    <li><a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
+                            <button class="px-3 py-1 flex rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple
+                            hover:text-slate-400 dark:hover:text-neutral-500"
+                                    aria-label="Next">
+                                <svg class="w-4 h-4 fill-current relative" aria-hidden="true" viewBox="0 0 20 20">
+                                    <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg class="w-4 h-4 fill-current relative right-2" aria-hidden="true" viewBox="0 0 20 20">
+                                    <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                          clip-rule="evenodd" fill-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endif %}

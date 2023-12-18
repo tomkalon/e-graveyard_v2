@@ -32,8 +32,7 @@ class GraveController extends AbstractController
             'pagination' => $paginatedGraveList
         ]);
     }
-
-
+    
     public function create(
         CommandBusInterface $commandBus,
         Request             $request
