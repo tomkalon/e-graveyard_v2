@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Admin\Infrastructure\CommandBus\Grave;
+namespace App\Admin\Infrastructure\Command\Grave;
 
-use App\Core\CQRS\CommandBus\CommandInterface;
+use App\Core\CQRS\Command\CommandInterface;
 use App\Admin\Domain\Dto\Grave\GraveDto;
 
 class CreateGraveCommand implements CommandInterface

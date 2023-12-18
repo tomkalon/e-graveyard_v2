@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Admin\Infrastructure\CommandBus\User;
+namespace App\Admin\Infrastructure\Command\User;
 
 use App\Admin\Infrastructure\Repository\UserRepositoryInterface;
-use App\Core\CQRS\CommandBus\CommandHandlerInterface;
+use App\Core\CQRS\Command\CommandHandlerInterface;
 use App\Core\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;

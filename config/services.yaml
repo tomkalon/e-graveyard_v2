@@ -13,10 +13,10 @@ services:
         
         
     _instanceof:
-      App\Core\CQRS\CommandBus\CommandHandlerInterface:
+      App\Core\CQRS\Command\CommandHandlerInterface:
         tags:
           - { name: messenger.message_handler, bus: command.bus }
-      App\Core\CQRS\QueryBus\QueryHandlerInterface:
+      App\Core\CQRS\Query\QueryHandlerInterface:
         tags:
           - { name: messenger.message_handler, bus: query.bus }
 

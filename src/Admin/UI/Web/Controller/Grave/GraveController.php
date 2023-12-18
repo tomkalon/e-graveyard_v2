@@ -4,10 +4,8 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Domain\Dto\Grave\GraveDto;
 use App\Admin\Domain\Form\Grave\CreateGraveType;
-use App\Admin\Infrastructure\CommandBus\Grave\CreateGraveCommand;
-use App\Admin\Infrastructure\QueryBus\Grave\GetGravePaginatedQuery;
-use App\Core\CQRS\CommandBus\CommandBusInterface;
-use App\Core\CQRS\QueryBus\QueryBusInterface;
+use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
+use App\Core\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,14 +14,16 @@ class GraveController extends AbstractController
 {
     public function index(
         Request $request,
-        QueryBusInterface $queryBus,
+        GravePaginatedListQueryInterface $query,
         int $page
     ): Response {
-
-        $pageGraveList = $queryBus->handle(new GetGravePaginatedQuery());
+        $paginatedGraveList = $query->execute(
+            $page,
+            10
+        );
 
         return $this->render('Admin/Grave/index.html.twig', [
-            'pagination' => $pageGraveList
+            'pagination' => $paginatedGraveList
         ]);
     }
 

@@ -2,11 +2,11 @@
 
 namespace App\Admin\UI\Cli;
 
-use App\Core\CQRS\CommandBus\CommandBusInterface;
-use App\Core\CQRS\QueryBus\QueryBusInterface;
+use App\Admin\Infrastructure\Query\User\UserByFieldsQueryInterface;
+use App\Core\CQRS\Command\CommandBusInterface;
+use App\Core\CQRS\Query\QueryInterface;
 use App\Admin\Domain\Dto\User\UserDto;
-use App\Admin\Infrastructure\CommandBus\User\CreateUserCommand;
-use App\Admin\Infrastructure\QueryBus\User\GetUsersByOptionsQuery;
+use App\Admin\Infrastructure\Command\User\CreateUserCommand;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,19 +25,23 @@ class UserAddCommand extends Command
 {
     const ADD_NEW_USER = 'Dodawanie nowego użytkownika.';
     const SUCCESS_USER_CREATED = 'Konto zostało utworzone: nazwa użytkownika -> ';
-    const FAILURE_EMAIL_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane! Email jest już zajęty.';
-    const FAILURE_EMAIL_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Wpisany email jest niepoprawny.';
+    const FAILURE_EMAIL_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane!
+     Email jest już zajęty.';
+    const FAILURE_EMAIL_ERROR = 'Utworzenie nowego użytkownika zostało anulowane!
+     Wpisany email jest niepoprawny.';
     const FAILURE_USERNAME_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane!
      Podana nazwa użytkownika jest już zajęta';
-    const FAILURE_USERNAME_ERROR = 'Utworzenie nowego użytkownika zostało anulowane! Błędna nazwa użytkownika.';
-    const FAILURE_PASSWORD_TOO_SHORT = 'Utworzenie nowego użytkownika zostało anulowane! Hasło jest zbyt krótkie.';
+    const FAILURE_USERNAME_ERROR = 'Utworzenie nowego użytkownika zostało anulowane!
+     Błędna nazwa użytkownika.';
+    const FAILURE_PASSWORD_TOO_SHORT = 'Utworzenie nowego użytkownika zostało anulowane!
+     Hasło jest zbyt krótkie.';
     const FAILURE_PASSWORD_DONT_MATCH = 'Utworzenie nowego użytkownika zostało anulowane!
      Wprowadzone hasła różnią się.';
 
     public function __construct(
-        private readonly QueryBusInterface   $queryBus,
-        private readonly CommandBusInterface $commandBus,
-        private readonly ValidatorInterface  $validator,
+        private readonly UserByFieldsQueryInterface $query,
+        private readonly CommandBusInterface        $commandBus,
+        private readonly ValidatorInterface         $validator,
     ) {
         parent::__construct();
     }
@@ -80,7 +84,7 @@ class UserAddCommand extends Command
 
         // persist
         $this->commandBus->dispatch(new CreateUserCommand($dto));
-        $io->success(sprintf(self::SUCCESS_USER_CREATED.'%s', $dto->getEmail()));
+        $io->success(sprintf(self::SUCCESS_USER_CREATED . '%s', $dto->getEmail()));
         return Command::SUCCESS;
     }
 
@@ -104,7 +108,7 @@ class UserAddCommand extends Command
         }
 
         $dto = new UserDto($email);
-        $isEmailExist = $this->queryBus->handle(new GetUsersByOptionsQuery($dto));
+        $isEmailExist = $this->query->execute($dto);
 
         if ($isEmailExist) {
             $io->error(self::FAILURE_EMAIL_ALREADY_EXIST);
@@ -138,7 +142,7 @@ class UserAddCommand extends Command
 
         $dto = new UserDto();
         $dto->setUsername($username);
-        $isUsernameExist = $this->queryBus->handle(new GetUsersByOptionsQuery($dto));
+        $isUsernameExist = $this->query->execute($dto);
 
         if ($isUsernameExist) {
             $io->error(self::FAILURE_USERNAME_ALREADY_EXIST);

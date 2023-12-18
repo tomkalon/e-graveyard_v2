@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Admin\Infrastructure\CommandBus\User;
+namespace App\Admin\Infrastructure\Command\User;
 
-use App\Core\CQRS\CommandBus\CommandInterface;
+use App\Core\CQRS\Command\CommandInterface;
 use App\Admin\Domain\Dto\User\UserDto;
 
 class CreateUserCommand implements CommandInterface

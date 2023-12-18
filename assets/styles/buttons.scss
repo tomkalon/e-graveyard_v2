@@ -31,7 +31,6 @@ $btn-radius: 0.25rem;
   }
 }
 
-
 @mixin groups($name, $border-width, $border-radius) {
   &-#{$name} {
     border-radius: $border-radius;
@@ -58,6 +57,7 @@ $btn-radius: 0.25rem;
   );
 
   $sizes: (
+    ('sm', 0.3rem 0.75rem, 0.9em),
     ('lg', 0.5rem 1rem, 1.25rem),
     ('xl', 0.5rem 1.25rem, 1.5rem),
   );

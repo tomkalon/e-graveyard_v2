@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\CQRS\QueryBus;
+namespace App\Core\CQRS\Query;
 
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;

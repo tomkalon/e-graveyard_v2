@@ -7,7 +7,62 @@
             <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
         {% endblock %}
         {% block dashboard_content %}
-            {% include 'Core/Components/Pagination/pagination.html.twig' %}
+            {% embed 'Core/Components/Pagination/pagination.html.twig' %}
+                {% block head %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.admin.grave.graveyard',
+                        name: 'pag.graveyard',
+                    } %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.admin.grave.sector',
+                        name: 'pag.sector',
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.admin.grave.row',
+                        name: 'pag.row',
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.admin.grave.number',
+                        name: 'pag.number',
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.common.updatedAt',
+                        name: 'pag.updatedAt',
+                        class: 'text-center hidden md:block'
+                    } %}
+                    {% include 'Core/Components/Pagination/_head.html.twig' with {
+                        label: 'ui.pagination.edit'|trans,
+                    } %}
+                {% endblock %}
+                {% block body %}
+                    {% include 'Core/Components/Pagination/_body.html.twig' with {
+                        value: item.graveyard.name,
+                    } %}
+                    {% include 'Core/Components/Pagination/_body.html.twig' with {
+                        value: item.sector,
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_body.html.twig' with {
+                        value: item.row,
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_body.html.twig' with {
+                        value: item.number,
+                        class: 'text-center'
+                    } %}
+                    {% include 'Core/Components/Pagination/_body.html.twig' with {
+                        value: item.updatedAt|date('Y-m-d'),
+                        class: 'text-center hidden md:block'
+                    } %}
+                    {% embed 'Core/Components/Pagination/_actions.html.twig' %}
+                        {% block action %}
+                        {% endblock %}
+                    {% endembed %}
+                {% endblock%}
+            {% endembed %}
         {% endblock %}
         {% block buttons_after %}
         {% endblock %}

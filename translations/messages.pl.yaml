@@ -20,8 +20,15 @@ ui:
     
     theme_mode: Motyw
     
-  table:
+  pagination:
     search: Szukaj
+    edit: Edycja
+    range: "Wyświetl: %from%-%to% z %sum%"
+    clear_sorting: Usuń sortowanie
+    
+  common:
+    updatedAt: Data edycji
+    createdAt: Data utworzenia
     
   main:
     frontpage:

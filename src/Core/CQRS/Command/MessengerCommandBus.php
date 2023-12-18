@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\CQRS\CommandBus;
+namespace App\Core\CQRS\Command;
 
 use Symfony\Component\Messenger\MessageBusInterface;
 
