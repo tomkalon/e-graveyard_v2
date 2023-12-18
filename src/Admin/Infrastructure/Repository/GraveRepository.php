@@ -15,6 +15,10 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
     public function getGraveListQuery(): Query
     {
         $qb = $this->createQueryBuilder('pag');
+        $qb->orderBy('pag.sector')
+            ->addOrderBy('pag.row')
+            ->addOrderBy('pag.number')
+        ;
         return $qb->getQuery();
     }
 }

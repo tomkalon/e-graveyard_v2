@@ -50,7 +50,7 @@ $btn-radius: 0.25rem;
   border-radius: $btn-radius;
 
   $colors: (
-    ("white", theme('colors.slate.50'), theme('colors.slate.50'), theme('colors.slate.900')),
+    ("white", theme('colors.slate.50'), theme('colors.slate.50'), theme('colors.neutral.900')),
     ("slate", theme('colors.slate.900'), theme('colors.slate.800'), theme('colors.slate.50')),
     ('gray', theme('colors.gray.700'), theme('colors.gray.800'), theme('colors.gray.50')),
     ('green', theme('colors.green.700'), theme('colors.green.800'), theme('colors.green.50')),
@@ -58,6 +58,7 @@ $btn-radius: 0.25rem;
 
   $sizes: (
     ('sm', 0.3rem 0.75rem, 0.9em),
+    ('md', 0.5rem 0.75rem, 1em),
     ('lg', 0.5rem 1rem, 1.25rem),
     ('xl', 0.5rem 1.25rem, 1.5rem),
   );

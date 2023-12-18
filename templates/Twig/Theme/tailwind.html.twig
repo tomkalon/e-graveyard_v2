@@ -2,7 +2,7 @@
 
 {%- block form_row -%}
     {%- set type = type|default('text') -%}
-    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('custom-tailwind-form mb-6')) }) -%}
+    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('custom-tailwind-form')) }) -%}
     {{- parent() -}}
 {%- endblock form_row -%}
 

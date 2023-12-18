@@ -24,7 +24,9 @@ ui:
     search: Szukaj
     edit: Edycja
     range: "Wyświetl: %from%-%to% z %sum%"
-    clear_sorting: Usuń sortowanie
+    limit:
+    clear_sorting: Wyczyść filtry
+    empty: Brak wyników do wyświetlenia
     
   common:
     updatedAt: Data edycji

@@ -9,7 +9,9 @@ use Symfony\Component\Form\FormInterface;
 
 class Paginator implements BasePaginatorInterface
 {
-    public function __construct(private readonly PaginatorInterface $paginator)
+    public function __construct(
+        private readonly PaginatorInterface $paginator,
+    )
     {
     }
 
@@ -20,7 +22,7 @@ class Paginator implements BasePaginatorInterface
         // form
         $limitForm = $options['limit_form'] ?? null;
         if ($limitForm instanceof FormInterface) {
-            $form = $limitForm->createView();
+            $limitForm = $limitForm->createView();
         }
 
         // get item per page

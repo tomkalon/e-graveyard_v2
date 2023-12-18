@@ -16,8 +16,8 @@ class Grave
     private int $sector;
     private ?int $row;
     private int $number;
-    private string $positionX;
-    private string $positionY;
+    private ?string $positionX;
+    private ?string $positionY;
     private ?Graveyard $graveyard;
     private ?Collection $people;
     private ?Collection $images;
@@ -110,22 +110,19 @@ class Grave
         $this->paid = $paid;
     }
 
-    public function getPositionX(): string
+    public function getPositionX(): ?string
     {
         return $this->positionX;
     }
-
-    public function setPositionX(string $positionX): void
+    public function setPositionX(?string $positionX):void
     {
         $this->positionX = $positionX;
     }
-
-    public function getPositionY(): string
+    public function getPositionY(): ?string
     {
         return $this->positionY;
     }
-
-    public function setPositionY(string $positionY): void
+    public function setPositionY(?string $positionY):void
     {
         $this->positionY = $positionY;
     }

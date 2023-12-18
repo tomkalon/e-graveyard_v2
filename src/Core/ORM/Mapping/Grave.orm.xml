@@ -12,8 +12,8 @@
         <field name="sector" type="integer" />
         <field name="row" type="integer" nullable="true"/>
         <field name="number" type="integer" />
-        <field name="positionX" />
-        <field name="positionY" />
+        <field name="positionX" nullable="true"/>
+        <field name="positionY" nullable="true"/>
 
         <many-to-one field="graveyard" target-entity="App\Core\Entity\Graveyard" inversed-by="graves"/>
         <one-to-many field="people" mapped-by="grave" target-entity="App\Core\Entity\Person">

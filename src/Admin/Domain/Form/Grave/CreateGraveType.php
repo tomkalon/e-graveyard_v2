@@ -32,10 +32,10 @@ class CreateGraveType extends AbstractType
                 'required' => true,
             ])
             ->add('positionX', TextType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('positionY', TextType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('create', SubmitType::class, [
                 'attr' => array(

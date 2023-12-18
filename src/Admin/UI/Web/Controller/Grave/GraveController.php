@@ -4,7 +4,9 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Domain\Dto\Grave\GraveDto;
 use App\Admin\Domain\Form\Grave\CreateGraveType;
+use App\Admin\Infrastructure\Command\Grave\CreateGraveCommand;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
+use App\Core\Components\Pagination\PaginationLimitType;
 use App\Core\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +19,13 @@ class GraveController extends AbstractController
         GravePaginatedListQueryInterface $query,
         int $page
     ): Response {
+
+        $limitForm = $this->createForm(PaginationLimitType::class);
+        $limitForm->handleRequest($request);
+
         $paginatedGraveList = $query->execute(
             $page,
-            10
+            $limitForm
         );
 
         return $this->render('Admin/Grave/index.html.twig', [

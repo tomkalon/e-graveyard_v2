@@ -10,8 +10,8 @@ class GraveDto
     public ?int $sector;
     public ?int $row = null;
     public ?int $number;
-    public ?string $positionX;
-    public ?string $positionY;
+    public ?string $positionX = null;
+    public ?string $positionY = null;
     public ?Graveyard $graveyard;
 
     public function __construct(

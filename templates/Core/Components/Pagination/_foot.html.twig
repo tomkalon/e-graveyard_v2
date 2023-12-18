@@ -1,16 +1,19 @@
-<div class="flex justify-between items-center px-4 py-3 text-xs font-semibold tracking-wide uppercase border-t border-gray-700 sm:grid-cols-9
+<div class="flex justify-between items-center px-4 py-3 font-semibold tracking-wide uppercase border-t border-gray-700 sm:grid-cols-9
             text-neutral-700 dark:text-neutral-200 bg-neutral-50 dark:bg-neutral-800">
     <div class="flex items-center col-span-3 normal-case">
-        <div class="py-2">{{ 'ui.pagination.range'|trans({'%from%': pagination.getPaginatorOption('startIndex'), '%to%': pagination.getPaginatorOption('endIndex'), '%sum%': pagination.getTotalItemCount }) }}</div>
+        <div class="py-2 text-sm">{{ 'ui.pagination.range'|trans({'%from%': pagination.getPaginatorOption('startIndex'), '%to%': pagination.getPaginatorOption('endIndex'), '%sum%': pagination.getTotalItemCount }) }}</div>
         <div class="ml-8">
             {% if pagination.getPaginatorOption('limitForm') != null %}
-                {{ form(pagination.getPaginatorOption('limitForm')) }}
+                {{ form_widget(pagination.getPaginatorOption('limitForm'), {
+                    'attr': {'class': 'w-28'}
+                }) }}
             {% endif %}
         </div>
         {% if app.request.query|length > 0 %}
             <a href="{{ path(app.request.get('_route')) }}">
-                <button class="btn btn-sm btn-white">{{ 'ui.pagination.clear_sorting'|trans }}</button>
+                <button class="btn btn-md btn-white ml-3">{{ 'ui.pagination.clear_sorting'|trans }}</button>
             </a>
         {% endif %}
     </div>
+    {{ knp_pagination_render(pagination) }}
 </div>

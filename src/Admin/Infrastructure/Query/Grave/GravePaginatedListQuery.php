@@ -5,6 +5,7 @@ namespace App\Admin\Infrastructure\Query\Grave;
 use App\Admin\Infrastructure\Repository\GraveRepositoryInterface;
 use App\Core\Components\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Component\Form\FormInterface;
 
 class GravePaginatedListQuery implements GravePaginatedListQueryInterface
 {
@@ -15,11 +16,14 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
     }
     public function execute(
         ?int $page = null,
-        ?int $limit = null,
+        ?FormInterface $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getGraveListQuery();
         return $this->paginator->paginate(
-            $query
+            $query,
+            $page,
+            null,
+            ['limit_form' => $limit]
         );
     }
 }
