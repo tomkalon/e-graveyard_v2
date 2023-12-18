@@ -16,6 +16,7 @@
     "knplabs/knp-paginator-bundle": "^6.3",
     "ramsey/uuid-doctrine": "^2.0",
     "stof/doctrine-extensions-bundle": "^1.9",
+    "symfony-bundles/redis-bundle": "^3.1",
     "symfony/console": "6.4.*",
     "symfony/dependency-injection": "6.4.*",
     "symfony/dotenv": "6.4.*",

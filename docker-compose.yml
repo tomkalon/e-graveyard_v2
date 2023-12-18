@@ -40,6 +40,8 @@ services:
     restart: unless-stopped
     environment:
       - TZ=Europe/Warsaw
+    ports:
+      - 6379:6379
 
 ###> symfony/mercure-bundle ###
   mercure:
