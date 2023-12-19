@@ -20,4 +20,5 @@ return [
     JMS\SerializerBundle\JMSSerializerBundle::class => ['all' => true],
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
+    SymfonyBundles\RedisBundle\SymfonyBundlesRedisBundle::class => ['all' => true],
 ];
