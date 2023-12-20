@@ -2,9 +2,9 @@
 
 namespace App\Admin\Infrastructure\Repository;
 
-use App\Core\Repository\GraveRepository as BaseGraveRepository;
-use App\Admin\Infrastructure\Repository\GraveRepositoryInterface as BaseGraveRepositoryInterface;
-use App\Core\Trait\QueryTraits;
+use App\Admin\Domain\Repository\GraveRepositoryInterface as BaseGraveRepositoryInterface;
+use App\Core\Application\Trait\QueryTraits;
+use App\Core\Infrastructure\Repository\GraveRepository as BaseGraveRepository;
 use Doctrine\ORM\Query;
 
 class GraveRepository extends BaseGraveRepository implements BaseGraveRepositoryInterface

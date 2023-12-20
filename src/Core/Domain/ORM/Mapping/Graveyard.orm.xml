@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Core\Domain\Entity\Graveyard" table="graveyard" repository-class="App\Core\Infrastructure\Repository\GraveyardRepository">
+        <id name="id" column="id" type="uuid">
+            <generator strategy="CUSTOM"/>
+            <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
+        </id>
+
+        <field name="name" />
+        <field name="description" nullable="true" />
+
+        <one-to-many field="graves" target-entity="App\Core\Domain\Entity\Grave" mapped-by="graveyard">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+        <one-to-many field="images" target-entity="App\Core\Domain\Entity\File" mapped-by="graveyard">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+
+        <field name="createdAt" type="datetime_immutable">
+            <gedmo:timestampable on="create"/>
+        </field>
+        <field name="updatedAt" type="datetime">
+            <gedmo:timestampable on="update"/>
+        </field>
+
+    </entity>
+</doctrine-mapping>

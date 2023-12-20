@@ -2,8 +2,8 @@
 
 namespace App\Admin\Infrastructure\Query\Grave;
 
-use App\Admin\Infrastructure\Repository\GraveRepositoryInterface;
-use App\Core\Components\Pagination\PaginatorInterface;
+use App\Admin\Domain\Repository\GraveRepositoryInterface;
+use App\Core\Domain\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\Form\FormInterface;
 

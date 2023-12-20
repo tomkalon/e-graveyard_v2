@@ -2,15 +2,15 @@
 {% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.index'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
-    {% embed 'Twig/Block/DashboardCard.html.twig' %}
-        <!-- Dashboard Title -->
+    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
         {% block title %}
+            <!-- Dashboard Title -->
             <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.index'|trans }}</h1>
             <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
+            <!-- /Dashboard Title -->
         {% endblock %}
-        <!-- /Dashboard Title -->
-        <!-- Dashboard Content -->
         {% block dashboard_content %}
+            <!-- Dashboard Content -->
             <!-- Pagination -->
             {% embed 'Core/Components/Pagination/pagination.html.twig' %}
                 {% block head %}
@@ -69,8 +69,8 @@
                 {% endblock%}
             {% endembed %}
             <!-- /Pagination -->
+            <!-- /Dashboard Content -->
         {% endblock %}
-        <!-- /Dashboard Content -->
         {% block buttons_after %}
         {% endblock %}
     {% endembed %}

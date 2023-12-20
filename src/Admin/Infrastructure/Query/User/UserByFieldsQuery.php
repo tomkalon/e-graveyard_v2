@@ -2,8 +2,8 @@
 
 namespace App\Admin\Infrastructure\Query\User;
 
-use App\Admin\Domain\Dto\User\UserDto;
-use App\Admin\Infrastructure\Repository\UserRepositoryInterface;
+use App\Admin\Application\Dto\User\UserDto;
+use App\Admin\Domain\Repository\UserRepositoryInterface;
 
 class UserByFieldsQuery implements UserByFieldsQueryInterface
 {

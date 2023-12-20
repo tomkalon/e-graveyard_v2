@@ -2,8 +2,8 @@
 
 namespace App\Admin\Infrastructure\Repository;
 
-use App\Core\Repository\FileRepository as BaseFileRepository;
-use App\Admin\Infrastructure\Repository\FileRepositoryInterface as BaseFileRepositoryInterface;
+use App\Admin\Domain\Repository\FileRepositoryInterface as BaseFileRepositoryInterface;
+use App\Core\Infrastructure\Repository\FileRepository as BaseFileRepository;
 
 class FileRepository extends BaseFileRepository implements BaseFileRepositoryInterface
 {

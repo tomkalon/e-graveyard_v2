@@ -2,9 +2,9 @@
 
 namespace App\Admin\Infrastructure\Repository;
 
-use App\Core\Repository\UserRepository as BaseUserRepository;
-use App\Admin\Infrastructure\Repository\UserRepositoryInterface as BaseUserRepositoryInterface;
-use App\Core\Trait\QueryTraits;
+use App\Admin\Domain\Repository\UserRepositoryInterface as BaseUserRepositoryInterface;
+use App\Core\Application\Trait\QueryTraits;
+use App\Core\Infrastructure\Repository\UserRepository as BaseUserRepository;
 
 class UserRepository extends BaseUserRepository implements BaseUserRepositoryInterface
 {

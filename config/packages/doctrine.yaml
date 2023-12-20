@@ -19,8 +19,8 @@ doctrine:
             Core:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/Core/ORM/Mapping'
-                prefix: 'App\Core\Entity'
+                dir: '%kernel.project_dir%/src/Core/Domain/ORM/Mapping'
+                prefix: 'App\Core\Domain\Entity'
                 alias: App
 
 when@test:

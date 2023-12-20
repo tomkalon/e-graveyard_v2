@@ -13,10 +13,10 @@ services:
         
         
     _instanceof:
-      App\Core\CQRS\Command\CommandHandlerInterface:
+      App\Core\Application\CQRS\Command\CommandHandlerInterface:
         tags:
           - { name: messenger.message_handler, bus: command.bus }
-      App\Core\CQRS\Query\QueryHandlerInterface:
+      App\Core\Application\CQRS\Query\QueryHandlerInterface:
         tags:
           - { name: messenger.message_handler, bus: query.bus }
 
@@ -33,12 +33,12 @@ services:
     # please note that last definitions always *replace* previous ones
     
     # EVENT LISTENERS
-    App\Core\Event\LoginSuccessListener:
+    App\Core\Domain\Event\LoginSuccessListener:
       arguments:
         $tokenStorage: '@security.token_storage'
       tags:
         - { name: kernel.event_subscriber }
         
-    App\Core\Event\CreatedResponseListener:
+    App\Core\Domain\Event\CreatedResponseListener:
       tags:
         - { name: kernel.event_listener, event: kernel.response }
