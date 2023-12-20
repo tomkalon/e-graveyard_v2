@@ -9,9 +9,10 @@ import 'tw-elements'
 import {
     Input,
     initTE,
+    Toast
 } from "tw-elements";
 
-initTE({ Input });
+initTE({ Input, Toast });
 
 // icons
 import 'fontawesome-4.7'

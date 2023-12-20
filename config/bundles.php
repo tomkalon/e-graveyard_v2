@@ -21,4 +21,5 @@ return [
     FOS\RestBundle\FOSRestBundle::class => ['all' => true],
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
     SymfonyBundles\RedisBundle\SymfonyBundlesRedisBundle::class => ['all' => true],
+    Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
 ];

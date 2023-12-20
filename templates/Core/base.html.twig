@@ -16,9 +16,19 @@
     {% endblock %}
 </head>
 <body class="{{ app.request.cookies.get('THEME_MODE') }}">
+
+<!-- Notifications -->
+{% include 'Core/_notification.html.twig' %}
+
+<!-- Top Navigation -->
 {% include 'Core/nav.html.twig' %}
+
+<!-- Body -->
 {% block body %}{% endblock %}
+
+<!-- Footer -->
 {% include 'Core/footer.html.twig' %}
+
 <script type="text/javascript" src="{{ asset('build/js/tw-elements.min.js') }}"></script>
 </body>
 </html>

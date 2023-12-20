@@ -1008,6 +1008,11 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
+"@bpnetguy/webpack-inject-plugin@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@bpnetguy/webpack-inject-plugin/-/webpack-inject-plugin-2.0.4.tgz#8d58d507b245c675688a72127018d57d341995fe"
+  integrity sha512-0dNtNKJZLktxpzSJEP9pWYRMkWUh5lb2DjIDn2GXQs4uBLKtVRy+9KqYNLVB4Zr80EwRfANt1+yEwpDPUK2Lxw==
+
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -1150,6 +1155,11 @@
     acorn "^8.0.5"
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+"@symfony/ux-live-component@file:vendor/symfony/ux-live-component/assets":
+  version "1.0.0"
+  dependencies:
+    morphdom "^2.6.1"
 
 "@symfony/webpack-encore@^4.0.0":
   version "4.5.0"
@@ -2714,7 +2724,9 @@ forwarded@0.2.0:
   integrity sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==
 
 fos-router@./vendor/friendsofsymfony/jsrouting-bundle/Resources/:
-  version "2.4.6"
+  version "2.5.0"
+  dependencies:
+    "@bpnetguy/webpack-inject-plugin" "^2.0.4"
 
 fraction.js@^4.3.6:
   version "4.3.7"
@@ -3435,6 +3447,11 @@ minimatch@^3.0.4, minimatch@^3.1.1:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
+
+morphdom@^2.6.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.7.1.tgz#c843fb0c812c943f70dd315fc92c4e169bad512c"
+  integrity sha512-LwrrjplMolniWtOGluKF1EHZ0y78Fa4sq7f/MXCydyNkDof+POf+ruCn+k08l7H7b/JISfRo8Zd0HazuqySY9w==
 
 ms@2.0.0:
   version "2.0.0"

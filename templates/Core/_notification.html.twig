@@ -1,0 +1,18 @@
+<div class="fixed z-50 right-4 top-20">
+    {% for message in app.flashes('message') %}
+        <div class="pointer-events-auto mx-auto mb-4 hidden w-96 max-w-full rounded-lg bg-primary-100 bg-clip-padding text-sm text-primary-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
+             id="static-example"
+             role="alert"
+             aria-live="assertive"
+             aria-atomic="true"
+             data-te-autohide="false"
+             data-te-toast-init
+             data-te-toast-show>>
+            <twig:Notification
+                    title="{{ message.title }}"
+                    content="{{ message.content }}"
+                    time="{{ message.time|default('') }}"
+            />
+        </div>
+    {% endfor %}
+</div>
