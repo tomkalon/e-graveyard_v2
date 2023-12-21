@@ -1,0 +1,7 @@
+notification:
+  user:
+    login:
+      title: Logowanie
+      time: Czas
+      success:
+        content: Logowanie zakończone powodzeniem

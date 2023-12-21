@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\Twig\Components;
+namespace App\Core\Application\Twig\Components;
 
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;

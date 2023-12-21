@@ -4,7 +4,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use App\Core\Application\Utility\Pagination\PaginationLimitType;
+use App\Core\Infrastructure\Utility\Pagination\PaginationLimitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -7,10 +7,11 @@
              aria-atomic="true"
              data-te-autohide="false"
              data-te-toast-init
-             data-te-toast-show>>
+             data-te-toast-show>
             <twig:Notification
                     title="{{ message.title }}"
                     content="{{ message.content }}"
+                    type="{{ message.type }}"
                     time="{{ message.time|default('') }}"
             />
         </div>
