@@ -21,7 +21,7 @@ class OnLoginNotification extends LoginSuccessListener
 
     public function onLoginSuccess(AuthenticationEvent $event): void
     {
-        $this->flashMessage->addNotification('message', new NotificationDto(
+        $this->flashMessage->addNotification('notification', new NotificationDto(
             'notification.user.login.title',
             NotificationTypeEnum::SUCCESS,
             'notification.user.login.content'
