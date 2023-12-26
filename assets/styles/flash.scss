@@ -1,0 +1,16 @@
+.notification {
+  .progress {
+    .loader {
+      width: 0;
+      height: 3px;
+      animation: progressAnimation 10s forwards;
+    }
+  }
+}
+
+
+@keyframes progressAnimation {
+  to {
+    width: 100%;
+  }
+}

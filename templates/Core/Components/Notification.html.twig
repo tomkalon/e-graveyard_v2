@@ -5,7 +5,8 @@
     {#    {% else %} #}
     {#    {% endif %} #}
 
-    <div class="mt-2 flex min-w-[225px] max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="notification mt-2 flex min-w-[225px] max-w-md bg-white shadow-lg rounded-lg overflow-hidden"
+            {{ stimulus_controller('components--notification') }}>
         {% if type == 'success' %}
             <div class="w-2 bg-green-600"></div>
         {% elseif type == 'failed' %}
@@ -16,9 +17,9 @@
             <div class="w-2 bg-sky-600"></div>
         {% endif %}
 
-        <div class="flex w-full items-center px-2 py-3">
-            <div class="mx-3 w-full">
-                <div class="flex justify-between">
+        <div class="flex w-full items-center pt-3">
+            <div class="w-full">
+                <div class="flex justify-between mx-3">
                     <div class="flex">
                         {% if type == 'success' %}
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-2 text-green-600"
@@ -56,6 +57,8 @@
                         <h2 class="text-xl font-semibold text-gray-800">{{ title }}</h2>
                     </div>
                     <button type="button"
+                            data-notification-close
+                            data-components--notification-target="closeBtn"
                             class="ml-2 text-neutral-400 rounded-none border-none opacity-80 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              fill="none"
@@ -69,11 +72,23 @@
                         </svg>
                     </button>
                 </div>
-                <p class="text-gray-600">{{ content }}</p>
+                <p class="mx-3 text-gray-600">{{ content }}</p>
                 {% if time is defined and time is not null %}
                     <hr class="my-1">
-                    <p class="text-xs text-neutral-400">{{ time }}</p>
+                    <p class="mx-3 text-xs text-neutral-400">{{ time }}</p>
                 {% endif %}
+                <div class="progress w-full pt-3">
+                    <div class="loader bg-gradient-to-r
+                        {% if type == 'success' %}
+                            from-green-100 to-green-600
+                        {% elseif type == 'failed' %}
+                            from-red-100 to-red-600
+                        {% elseif type == 'warning' %}
+                            from-amber-100 to-amber-400
+                        {% else %}
+                            from-sky-100 to-sky-600
+                        {% endif %}"></div>
+                </div>
             </div>
         </div>
     </div>

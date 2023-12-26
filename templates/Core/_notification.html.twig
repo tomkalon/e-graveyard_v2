@@ -1,28 +1,4 @@
 <div class="fixed z-50 right-4 top-20">
-
-    <twig:Notification
-            title="{{ 'Tytuł' }}"
-            content="{{ 'Treść jakaś tam' }}"
-            type="{{ 'success' }}"
-            time="{{ 'just now' }}"
-    />
-    <twig:Notification
-            title="{{ 'Tytuł' }}"
-            content="{{ 'Treść jakaś tam' }}"
-            type="{{ 'failed' }}"
-    />
-    <twig:Notification
-            title="{{ 'Tytuł' }}"
-            content="{{ 'Treść jakaś tam' }}"
-            type="{{ 'warning' }}"
-            time="{{ '1 godzina wcześniej' }}"
-    />
-    <twig:Notification
-            title="{{ 'Tytuł' }}"
-            content="{{ 'Treść jakaś tam' }}"
-            type="{{ 'info' }}"
-    />
-
     {% for notification in app.flashes('notification') %}
         <div class="pointer-events-auto mx-auto mb-4 hidden w-96 max-w-full rounded-lg bg-primary-100 bg-clip-padding text-sm text-primary-700 shadow-lg shadow-black/5 data-[te-toast-show]:block data-[te-toast-hide]:hidden"
              id="static-example"
