@@ -23,9 +23,9 @@ class CreateEntity extends CreatedResponseListener
         $response = $event->getResponse();
         if ($response->getStatusCode() === 201) {
             $this->flashMessage->addNotification('notification', new NotificationDto(
-                $this->translator->trans('notification.user.login.title', [], 'flash'),
+                $this->translator->trans('notification.timestampable.create.title', [], 'flash'),
                 NotificationTypeEnum::SUCCESS,
-                $this->translator->trans('notification.user.login.success.content', [], 'flash')
+                $this->translator->trans('notification.timestampable.create.content', [], 'flash')
             ));
         }
     }

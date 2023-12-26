@@ -1,4 +1,8 @@
 notification:
+  timestampable:
+    create:
+      title: Nowy obiekt
+      content: Pomyślnie utworzono
   user:
     login:
       title: Logowanie
