@@ -7,32 +7,40 @@ use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\Person;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\DBAL\Connection;
 use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+
+    public function __construct(
+        private readonly Connection $connection
+    )
+    {
+    }
+
     public function load(ObjectManager $manager): void
     {
         $graveyard = new Graveyard();
-        $graveyard->setName('Stary Cmentarz');
+        $graveyard->setName('Nowy Cmentarz');
         $manager->persist($graveyard);
 
-        $person = new Person();
-        $person->setFirstname('Jan');
-        $person->setLastname('Kowalski');
-        $person->setLastname('Kowalski');
-        $person->setBornDate(new DateTimeImmutable('1950-01-1'));
-        $person->setDeathDate(new DateTimeImmutable('1990-01-1'));
-        $manager->persist($person);
 
-        $grave = new Grave();
-        $grave->setSector(1);
-        $grave->setNumber(1);
-        $grave->setPositionX(1);
-        $grave->setPositionY(1);
-        $grave->addPeople($person);
-        $grave->setGraveyard($graveyard);
-        $manager->persist($grave);
+        $query = 'SELECT * FROM grave_old';
+        $statement = $this->connection->executeQuery($query);
+        $results = $statement->fetchAll();
+
+        $grave = [];
+        foreach ($results as $index => $item) {
+            $grave[$index] = new Grave();
+            $grave[$index]->setGraveyard($graveyard);
+            $grave[$index]->setSector($item['sector']);
+            $grave[$index]->setRow($item['row']);
+            $grave[$index]->setNumber($item['number']);
+            $grave[$index]->setPositionX($item['position_x']);
+            $grave[$index]->setPositionY($item['position_y']);
+            $manager->persist($grave[$index]);
+        }
 
         $manager->flush();
     }

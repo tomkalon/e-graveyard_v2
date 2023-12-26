@@ -3,17 +3,19 @@
 namespace App\Core\Infrastructure\EventHandler\User;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
+use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use App\Core\Domain\Event\LoginSuccessListener;
-use App\Core\Domain\Utility\FlashMessage\FlashMessageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OnLoginNotification extends LoginSuccessListener
 {
     public function __construct(
         TokenStorageInterface $tokenStorage,
-        private readonly FlashMessageInterface $flashMessage
+        private readonly TranslatorInterface $translator,
+        private readonly NotificationInterface $flashMessage
     )
     {
         parent::__construct($tokenStorage);
@@ -22,11 +24,9 @@ class OnLoginNotification extends LoginSuccessListener
     public function onLoginSuccess(AuthenticationEvent $event): void
     {
         $this->flashMessage->addNotification('notification', new NotificationDto(
-            'notification.user.login.title',
+            $this->translator->trans('notification.user.login.title', [], 'flash'),
             NotificationTypeEnum::SUCCESS,
-            'notification.user.login.content'
+            $this->translator->trans('notification.user.login.success.content', [], 'flash')
         ));
     }
 }
-
-
