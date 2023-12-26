@@ -2,6 +2,7 @@
 
 namespace App\Admin\UI\Form\Grave;
 
+use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Core\Domain\Entity\Graveyard;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -11,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CreateGraveType extends AbstractType
+class GraveType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -47,7 +48,7 @@ class CreateGraveType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => \App\Admin\Application\Dto\Grave\GraveDto::class,
+            'data_class' => GraveDto::class,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.admin.grave.%name%',

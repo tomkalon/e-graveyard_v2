@@ -5,7 +5,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 use App\Admin\Application\Command\Grave\CreateGraveCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
-use App\Admin\UI\Form\Grave\CreateGraveType;
+use App\Admin\UI\Form\Grave\GraveType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +32,7 @@ class GraveController extends AbstractController
         Request             $request
     ): Response {
         $form = $this->createForm(
-            CreateGraveType::class,
+            GraveType::class,
             new GraveDto()
         );
         $form->handleRequest($request);
