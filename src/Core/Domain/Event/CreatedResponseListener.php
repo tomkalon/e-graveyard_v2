@@ -16,9 +16,5 @@ class CreatedResponseListener implements EventSubscriberInterface
 
     public function onKernelResponse(ResponseEvent $event)
     {
-        $response = $event->getResponse();
-        if ($response->getStatusCode() === 201) {
-
-        }
     }
 }

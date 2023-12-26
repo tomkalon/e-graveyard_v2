@@ -23,6 +23,5 @@ class LoginSuccessListener implements EventSubscriberInterface
 
     public function onLoginSuccess(AuthenticationEvent $event): void
     {
-
     }
 }
