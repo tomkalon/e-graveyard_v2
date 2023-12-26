@@ -5,7 +5,10 @@
         <div class="ml-8">
             {% if pagination.getPaginatorOption('limitForm') != null %}
                 {{ form_widget(pagination.getPaginatorOption('limitForm'), {
-                    'attr': {'class': 'w-28'}
+                    'attr': {
+                        'class': 'w-28',
+                        'id': 'tester'
+                    }
                 }) }}
             {% endif %}
         </div>
@@ -17,3 +20,6 @@
     </div>
     {{ knp_pagination_render(pagination) }}
 </div>
+<script>
+
+</script>

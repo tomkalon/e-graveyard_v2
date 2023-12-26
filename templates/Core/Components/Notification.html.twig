@@ -70,8 +70,10 @@
                     </button>
                 </div>
                 <p class="text-gray-600">{{ content }}</p>
-                <hr class="my-1">
-                <p class="text-xs text-neutral-400">{{ time }}</p>
+                {% if time is defined and time is not null %}
+                    <hr class="my-1">
+                    <p class="text-xs text-neutral-400">{{ time }}</p>
+                {% endif %}
             </div>
         </div>
     </div>

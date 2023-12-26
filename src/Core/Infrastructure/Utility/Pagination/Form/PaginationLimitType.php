@@ -17,11 +17,10 @@ class PaginationLimitType extends AbstractType
 
         $builder
             ->add('limit', ChoiceType::class, [
-                'choices'  => $choices,
-                'label_attr' => ['class' => 'hidden'],
-                'required' => false,
-            ])
-        ;
+                'choices'       => $choices,
+                'label_attr'    => ['class' => 'hidden'],
+                'required'      => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

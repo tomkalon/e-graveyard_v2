@@ -2,15 +2,17 @@
 
 namespace App\Core\Infrastructure\Utility\Pagination;
 
+use App\Core\Infrastructure\Utility\Pagination\Form\PaginationLimitType;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface as BasePaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 
 class Paginator implements BasePaginatorInterface
 {
     public function __construct(
         private readonly PaginatorInterface $paginator,
+        private readonly FormFactoryInterface $factory
     )
     {
     }
@@ -20,10 +22,7 @@ class Paginator implements BasePaginatorInterface
         $pagination = $this->paginator->paginate($target, $page, $limit, $options);
 
         // form
-        $limitForm = $options['limit_form'] ?? null;
-        if ($limitForm instanceof FormInterface) {
-            $limitForm = $limitForm->createView();
-        }
+        $limitForm = $this->factory->create(PaginationLimitType::class, ['limit' => $limit])->createView();
 
         // get item per page
         $limit = $pagination->getItemNumberPerPage();

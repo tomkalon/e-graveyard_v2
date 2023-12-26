@@ -10,7 +10,6 @@
             title="{{ 'Tytuł' }}"
             content="{{ 'Treść jakaś tam' }}"
             type="{{ 'failed' }}"
-            time="{{ '' }}"
     />
     <twig:Notification
             title="{{ 'Tytuł' }}"
@@ -22,7 +21,6 @@
             title="{{ 'Tytuł' }}"
             content="{{ 'Treść jakaś tam' }}"
             type="{{ 'info' }}"
-            time="{{ '' }}"
     />
 
     {% for notification in app.flashes('notification') %}
@@ -38,7 +36,7 @@
                     title="{{ notification.title }}"
                     content="{{ notification.content }}"
                     type="{{ notification.type }}"
-                    time="{{ notification.time|default('') }}"
+                    time="{{ notification.time|default(null) }}"
             />
         </div>
     {% endfor %}
