@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\Utility\FlashMessage\Notification\User;
+namespace App\Core\Infrastructure\EventHandler\User;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Domain\Enum\NotificationTypeEnum;

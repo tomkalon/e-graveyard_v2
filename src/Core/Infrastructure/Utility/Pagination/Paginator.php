@@ -2,7 +2,7 @@
 
 namespace App\Core\Infrastructure\Utility\Pagination;
 
-use App\Core\Domain\Utility\Pagination\PaginatorInterface as BasePaginatorInterface;
+use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface as BasePaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormInterface;

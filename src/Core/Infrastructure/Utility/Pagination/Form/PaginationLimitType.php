@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\Utility\Pagination;
+namespace App\Core\Infrastructure\Utility\Pagination\Form;
 
 use App\Core\Domain\Enum\PaginationLimitEnum;
 use Symfony\Component\Form\AbstractType;

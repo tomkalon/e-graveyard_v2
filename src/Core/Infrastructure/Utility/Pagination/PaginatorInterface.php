@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Domain\Utility\Pagination;
+namespace App\Core\Infrastructure\Utility\Pagination;
 
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
