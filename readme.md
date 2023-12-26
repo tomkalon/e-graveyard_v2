@@ -50,6 +50,8 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml --env-file .
 ```
 $ composer install
 $ symfony console d:m:m
+$ symfony console fos:js-routing:dump --format=json --target=public/bundles/routing/js/routes.json
+
 ```
 
 ### 6) In the "node" container, execute the following commands in the terminal:
@@ -62,3 +64,10 @@ yarn run dev
 ```
 symfony console user:add
 ```
+
+
+### 8) The PHP server is configured on the default port 80. Launch your browser and enter the address:
+```
+http://localhost/
+```
+

@@ -34,11 +34,6 @@ Encore
         pattern: /\.(js|json)$/
     })
     .copyFiles({
-        from: 'assets/js/routes',
-        to: '../bundles/routing/js/[name].[ext]',
-        pattern: /\.(js|json)$/
-    })
-    .copyFiles({
         from: 'assets/fonts/',
         to: 'fonts/[name].[hash:8].[ext]',
     })
