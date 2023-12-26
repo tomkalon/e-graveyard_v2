@@ -18,7 +18,7 @@ export default class extends Controller {
 }
 
 function closeNotification (closeBtn, notification) {
-    $(closeBtn).click((event) => {
+    $(closeBtn).click(() => {
         $(notification).fadeOut(500);
     })
 }
