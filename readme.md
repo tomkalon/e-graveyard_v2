@@ -71,3 +71,8 @@ symfony console user:add
 http://localhost/
 ```
 
+or login at:
+```
+http://localhost/admin/login
+```
+
