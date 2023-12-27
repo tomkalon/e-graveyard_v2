@@ -23,17 +23,14 @@ class PrePersistEventHandler extends PrePersistListener
         $entity = $args->getObject();
         $entityManager = $args->getObjectManager();
 
-        dd('test');
-
+        $this->flashMessage->addNotification('notification', new NotificationDto(
+            $this->translator->trans('notification.timestampable.create.title', [], 'flash'),
+            NotificationTypeEnum::SUCCESS,
+            $this->translator->trans('notification.timestampable.create.content', [], 'flash')
+        ));
 
         if ($entityManager->contains($entity)) {
-
         } else {
-            $this->flashMessage->addNotification('notification', new NotificationDto(
-                $this->translator->trans('notification.timestampable.create.title', [], 'flash'),
-                NotificationTypeEnum::SUCCESS,
-                $this->translator->trans('notification.timestampable.create.content', [], 'flash')
-            ));
         }
     }
 }

@@ -45,4 +45,4 @@ services:
         
     App\Core\Domain\Event\PrePersistListener:
       tags:
-        - { name: kernel.event_listener }
+        - { name: kernel.event_subscriber, event: prePersist }
