@@ -84,6 +84,8 @@ ui:
       description:
         index:
           manage: Zarządzanie listą cmentarzy
+        create:
+          info: Informacje
       name: Nazwa cmentarza
       desc: Opis cmentarza
       create: Dodaj

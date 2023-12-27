@@ -53,8 +53,8 @@ class GraveyardController extends AbstractController
             );
         }
 
-
-
-        return $this->render('graveyard');
+        return $this->render('Admin/Graveyard/create.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
