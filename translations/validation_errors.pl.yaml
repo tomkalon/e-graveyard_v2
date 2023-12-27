@@ -1,0 +1,2 @@
+validation:
+  not_null: Wartość nie powinna być pusta

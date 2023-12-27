@@ -11,14 +11,22 @@ enum PaginationLimitEnum: int
 
     public static function toArray(): array
     {
-        return array_column(
-            [
-                PaginationLimitEnum::LIMIT_10,
-                PaginationLimitEnum::LIMIT_25,
-                PaginationLimitEnum::LIMIT_50,
-                PaginationLimitEnum::LIMIT_100,
-            ],
-            'value'
-        );
+        return [
+            10 => PaginationLimitEnum::LIMIT_10,
+            25 => PaginationLimitEnum::LIMIT_25,
+            50 => PaginationLimitEnum::LIMIT_50,
+            100 => PaginationLimitEnum::LIMIT_100,
+        ];
+
+    }
+    public static function toArrayValues(): array
+    {
+        return [
+            10 => PaginationLimitEnum::LIMIT_10->value,
+            25 => PaginationLimitEnum::LIMIT_25->value,
+            50 => PaginationLimitEnum::LIMIT_50->value,
+            100 => PaginationLimitEnum::LIMIT_100->value,
+        ];
+
     }
 }

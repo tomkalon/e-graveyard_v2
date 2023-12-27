@@ -2,17 +2,18 @@
 
 namespace App\Admin\Application\Command\Grave;
 
+use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Core\Application\CQRS\Command\CommandInterface;
 
-class CreateGraveCommand implements CommandInterface
+class GraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly \App\Admin\Application\Dto\Grave\GraveDto $dto
+        private readonly GraveDto $dto
     )
     {
     }
 
-    public function getDto(): \App\Admin\Application\Dto\Grave\GraveDto
+    public function getDto(): GraveDto
     {
         return $this->dto;
     }

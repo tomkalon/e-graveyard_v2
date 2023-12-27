@@ -2,12 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-// custom colors
-$white: #ffffff;
-$black: #000000;
+//sm	639px	@media (max-width: 639px) { ... }
+//md	767px	@media (max-width: 767px) { ... }
+//lg	1023px	@media (max-width: 1023px) { ... }
+//xl	1279px	@media (max-width: 1279px) { ... }
+//2xl	1535px	@media (max-width: 1535px) { ... }
 
-$dark-gray-primary: #444444;
-$dark-gray-secondary: #555555;
+$breakpointsMax: (
+        sm: 639px,
+        md: 767px,
+        lg: 1023px,
+        xl: 1279px,
+        2xl: 1535px
+);
+
+//sm	640px	@media (min-width: 640px) { ... }
+//md	768px	@media (min-width: 768px) { ... }
+//lg	1024px	@media (min-width: 1024px) { ... }
+//xl	1280px	@media (min-width: 1280px) { ... }
+//2xl	1536px	@media (min-width: 1536px) { ... }
+
+$breakpointsMin: (
+        sm: 640px,
+        md: 768px,
+        lg: 1024px,
+        xl: 1280px,
+        2xl: 1536px
+);
 
 // google fonts
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;700&display=swap');
@@ -28,6 +49,7 @@ body {
 
 @import 'nav';
 @import 'dashboard';
+@import 'pagination';
 @import 'buttons';
 @import 'forms';
 @import 'controller';

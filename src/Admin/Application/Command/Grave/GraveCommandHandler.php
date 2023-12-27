@@ -6,7 +6,7 @@ use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use App\Core\Domain\Entity\Grave;
 use Doctrine\ORM\EntityManagerInterface;
 
-class CreateGraveCommandHandler implements CommandHandlerInterface
+class GraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em
@@ -14,7 +14,7 @@ class CreateGraveCommandHandler implements CommandHandlerInterface
     {
     }
 
-    public function __invoke(CreateGraveCommand $command)
+    public function __invoke(GraveCommand $command)
     {
         $dto = $command->getDto();
 

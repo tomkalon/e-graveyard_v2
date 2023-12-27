@@ -2,26 +2,53 @@
  text-white bg-gray-600 dark:bg-neutral-900">
     <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
         <ul class="flex flex-col py-4 space-y-1">
-            <!-- FAMILIES -->
+            <!-- GRAVES -->
             <li class="px-5 hidden md:block">
                 <div class="flex-center-h mt-5 h-8">
                     <div class="text-sm font-bold tracking-wide text-gray-200 dark:text-gray-300 uppercase">{{ 'ui.admin.sidebar.grave.label'|trans }}</div>
                 </div>
             </li>
             <li>
-                <a href="{{ path('admin_web_grave_index') }}" class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 pr-6">
-                <span class="ml-4">
-                    <i class="fa fa-th-large w-5" aria-hidden="true"></i>
-                </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.grave.label'|trans }}</span>
+                <a href="{{ path('admin_web_grave_index') }}"
+                   class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="ml-4">
+                        <i class="fa fa-square w-5" aria-hidden="true"></i>
+                    </span>
+                    <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.grave.label'|trans }}</span>
                 </a>
             </li>
             <li>
-                <a href="{{ path('admin_web_grave_create') }}" class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 pr-6">
-                <span class="inline-flex justify-center items-center ml-4">
-                <i class="fa fa-plus-square-o w-5" aria-hidden="true"></i>
-                </span>
-                    <span class="ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.grave.add'|trans }}</span>
+                <a href="{{ path('admin_web_grave_create') }}"
+                   class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="inline-flex justify-center items-center ml-4">
+                        <i class="fa fa-plus-square-o w-5" aria-hidden="true"></i>
+                    </span>
+                    <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.grave.add'|trans }}</span>
+                </a>
+            </li>
+            <hr class="md:hidden border-transparent pt-2">
+            <!-- GRAVEYARDS -->
+            <li class="px-5 hidden md:block">
+                <div class="flex-center-h mt-5 h-8">
+                    <div class="header text-sm font-bold tracking-wide text-gray-200 dark:text-gray-300 uppercase">{{ 'ui.admin.sidebar.graveyard.label'|trans }}</div>
+                </div>
+            </li>
+            <li>
+                <a href="{{ path('admin_web_graveyard_index') }}"
+                   class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="ml-4">
+                        <i class="fa fa-th-large w-5" aria-hidden="true"></i>
+                    </span>
+                    <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.graveyard.label'|trans }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('admin_web_grave_create') }}"
+                   class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="inline-flex justify-center items-center ml-4">
+                        <i class="fa fa-plus-square-o w-5" aria-hidden="true"></i>
+                    </span>
+                    <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.admin.sidebar.graveyard.add'|trans }}</span>
                 </a>
             </li>
         </ul>

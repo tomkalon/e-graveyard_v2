@@ -7,12 +7,14 @@ use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface as BasePaginat
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class Paginator implements BasePaginatorInterface
 {
     public function __construct(
         private readonly PaginatorInterface $paginator,
-        private readonly FormFactoryInterface $factory
+        private readonly FormFactoryInterface $factory,
+
     )
     {
     }
@@ -22,6 +24,11 @@ class Paginator implements BasePaginatorInterface
         $pagination = $this->paginator->paginate($target, $page, $limit, $options);
 
         // form
+        if ($limit) {
+            $session = new Session();
+            $session->set('pagination_limit', $limit);
+        }
+
         $limitForm = $this->factory->create(PaginationLimitType::class, ['limit' => $limit])->createView();
 
         // get item per page

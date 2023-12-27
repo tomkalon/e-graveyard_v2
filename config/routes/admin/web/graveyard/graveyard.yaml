@@ -1,0 +1,13 @@
+admin_web_graveyard_index:
+  path: /admin/graveyard/page/{page}
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::index
+  defaults:
+    page: 1
+
+admin_web_graveyard_create:
+  path: /admin/graveyard/create
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::create
+  options:
+    priority: 10

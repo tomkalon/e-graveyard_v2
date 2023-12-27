@@ -5,6 +5,7 @@ namespace App\Core\Infrastructure\Utility\Pagination\Form;
 use App\Core\Domain\Enum\PaginationLimitEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,20 +14,24 @@ class PaginationLimitType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $choices = array_flip(PaginationLimitEnum::toArray());
+        $choices = PaginationLimitEnum::toArrayValues();
 
         $builder
             ->add('limit', ChoiceType::class, [
                 'choices'       => $choices,
                 'label_attr'    => ['class' => 'hidden'],
                 'required'      => true,
-            ]);
+                'attr' => [
+                    'onchange' => "console.log(this.form.submit());",
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'method' => 'GET',
+            'method' => 'POST',
             'csrf_protection' => true,
         ]);
     }

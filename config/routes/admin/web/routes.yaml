@@ -2,6 +2,10 @@ grave_routes:
   resource: 'grave'
   type: directory
   
+graveyard_routes:
+  resource: 'graveyard'
+  type: directory
+  
 user_routes:
   resource: 'user'
   type: directory
