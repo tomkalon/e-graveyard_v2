@@ -47,9 +47,7 @@ class GraveyardController extends AbstractController
             $commandBus->dispatch(new GraveyardCommand($dto));
 
             return $this->redirectToRoute(
-                'admin_web_graveyard_index',
-                [],
-                Response::HTTP_CREATED
+                'admin_web_graveyard_index'
             );
         }
 

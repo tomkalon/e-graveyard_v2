@@ -45,9 +45,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new GraveCommand($dto));
 
             return $this->redirectToRoute(
-                'admin_web_grave_index',
-                [],
-                Response::HTTP_CREATED
+                'admin_web_grave_index'
             );
         }
 

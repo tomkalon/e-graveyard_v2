@@ -39,6 +39,10 @@ services:
       tags:
         - { name: kernel.event_subscriber }
         
-    App\Core\Domain\Event\CreatedResponseListener:
+    App\Core\Domain\Event\ResponseListener:
       tags:
         - { name: kernel.event_listener, event: kernel.response }
+        
+    App\Core\Domain\Event\PrePersistListener:
+      tags:
+        - { name: kernel.event_listener }
