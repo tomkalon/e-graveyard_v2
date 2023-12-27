@@ -2,7 +2,9 @@
 
 namespace App\Admin\Infrastructure\Validators\Grave;
 
-class GraveValidator
-{
+use Symfony\Component\Validator\Constraint;
 
+class GraveValidator extends Constraint
+{
+    public $message = '';
 }

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class GraveType extends AbstractType
 {
@@ -21,6 +22,11 @@ class GraveType extends AbstractType
                 'class' => Graveyard::class,
                 'choice_label' => 'name',
                 'required' => true,
+                'constraints' => [
+                    new NotNull([
+                        'message' => 'validation.not_null'
+                    ])
+                ]
             ])
             ->add('sector', IntegerType::class, [
                 'required' => true,

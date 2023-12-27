@@ -15,7 +15,13 @@
         <field name="born_date" type="datetime_immutable" />
         <field name="death_date" type="datetime_immutable" />
 
-        <many-to-one field="grave" inversed-by="people" target-entity="App\Core\Domain\Entity\Grave" />
+        <many-to-one field="grave" inversed-by="people" target-entity="Grave">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+            <join-column name="grave_id" referenced-column-name="id" on-delete="CASCADE" />
+        </many-to-one>
 
         <field name="createdAt" type="datetime_immutable">
             <gedmo:timestampable on="create"/>
