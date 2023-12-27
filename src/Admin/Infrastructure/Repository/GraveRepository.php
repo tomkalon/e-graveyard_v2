@@ -18,7 +18,7 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
         $qb
             ->addSelect('graveyard')
             ->leftJoin('g.graveyard', 'graveyard')
-            ->orderBy('g.sector')
+            ->addOrderBy('g.sector')
             ->addOrderBy('g.row')
             ->addOrderBy('g.number')
         ;

@@ -2,7 +2,7 @@
 
 namespace App\Admin\UI\Web\Controller\Grave;
 
-use App\Admin\Application\Command\Grave\CreateGraveCommand;
+use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
@@ -19,11 +19,14 @@ class GraveController extends AbstractController
         int $page
     ): Response {
         $paginatedGraveList = $query->execute(
-            $page
+            $page,
+            $request->request->all('pagination_limit')['limit'] ??
+                $request->getSession()->get('pagination_limit')
         );
 
         return $this->render('Admin/Grave/index.html.twig', [
-            'pagination' => $paginatedGraveList
+            'pagination' => $paginatedGraveList,
+
         ]);
     }
 
@@ -39,7 +42,7 @@ class GraveController extends AbstractController
 
         if ($form->isSubmitted() and $form->isValid()) {
             $dto = $form->getData();
-            $commandBus->dispatch(new CreateGraveCommand($dto));
+            $commandBus->dispatch(new GraveCommand($dto));
 
             return $this->redirectToRoute(
                 'admin_web_grave_index',

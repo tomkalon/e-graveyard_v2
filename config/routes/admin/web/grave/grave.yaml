@@ -1,6 +1,6 @@
 admin_web_grave_index:
   path: /admin/grave/page/{page}
-  methods: [ GET ]
+  methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::index
   defaults:
     page: 1

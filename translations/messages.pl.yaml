@@ -47,6 +47,9 @@ ui:
       person:
         label: Zmarli
         add: Dodaj
+      graveyard:
+        label: Cmentarze
+        add: Dodaj
         
     user:
       login:
@@ -72,4 +75,15 @@ ui:
       number: Numer
       positionX: Dł. geograficzna
       positionY: Szer. geograficzna
+      create: Dodaj
+      
+    graveyard:
+      title:
+        index: Lista cmentarzy
+        create: Dodawanie cmentarza
+      description:
+        index:
+          manage: Zarządzanie listą cmentarzy
+      name: Nazwa cmentarza
+      desc: Opis cmentarza
       create: Dodaj

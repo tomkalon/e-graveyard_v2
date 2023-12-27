@@ -1,10 +1,10 @@
-<div class="flex justify-between items-center px-4 py-3 font-semibold tracking-wide uppercase border-t border-gray-700 sm:grid-cols-9
+<div class="flex justify-between items-center px-4 py-3 font-semibold tracking-wide uppercase border-t border-neutral-500 sm:grid-cols-9
             text-neutral-700 dark:text-neutral-200 bg-neutral-50 dark:bg-neutral-800">
     <div class="flex items-center col-span-3 normal-case">
         <div class="py-2 text-sm">{{ 'ui.pagination.range'|trans({'%from%': pagination.getPaginatorOption('startIndex'), '%to%': pagination.getPaginatorOption('endIndex'), '%sum%': pagination.getTotalItemCount }) }}</div>
         <div class="ml-8">
             {% if pagination.getPaginatorOption('limitForm') != null %}
-                {{ form_widget(pagination.getPaginatorOption('limitForm'), {
+                {{ form(pagination.getPaginatorOption('limitForm'), {
                     'attr': {
                         'class': 'w-28',
                         'id': 'tester'
