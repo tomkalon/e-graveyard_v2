@@ -3,19 +3,20 @@
 namespace App\Core\Domain\Entity;
 
 use App\Core\Application\Trait\IdTrait;
-use App\Core\Application\Trait\TimestampableTrait;
+use DateTimeImmutable;
 use Ramsey\Uuid\Uuid;
 
 class File
 {
     use IdTrait;
-    use TimestampableTrait;
 
     private string $name;
     private string $extension;
     private ?bool $primary;
     private ?Grave $grave;
     private ?Graveyard $graveyard;
+    private DateTimeImmutable $createdAt;
+    private DateTimeImmutable $updatedAt;
 
     public function __construct(?string $name)
     {
@@ -73,5 +74,36 @@ class File
     public function setGraveyard(?Graveyard $graveyard): void
     {
         $this->graveyard = $graveyard;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+    }
+
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 }

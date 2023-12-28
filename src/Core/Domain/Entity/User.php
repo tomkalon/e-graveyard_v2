@@ -3,7 +3,7 @@
 namespace App\Core\Domain\Entity;
 
 use App\Core\Application\Trait\IdTrait;
-use App\Core\Application\Trait\TimestampableTrait;
+use DateTimeImmutable;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -11,12 +11,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
     use IdTrait;
-    use TimestampableTrait;
 
     private string $email;
     private array $roles = [];
     private string $username;
     private ?bool $isVerified = false;
+    private DateTimeImmutable $createdAt;
+    private DateTimeImmutable $updatedAt;
 
     /**
      * @var string The hashed password
@@ -119,5 +120,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+    }
+
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Core\Domain\Entity;
 
 use App\Core\Application\Trait\IdTrait;
-use App\Core\Application\Trait\TimestampableTrait;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\Collection;
 class Grave
 {
     use IdTrait;
-    use TimestampableTrait;
 
     private int $sector;
     private ?int $row;
@@ -21,8 +20,9 @@ class Grave
     private ?Graveyard $graveyard;
     private ?Collection $people;
     private ?Collection $images;
-
-    private ?DateTimeInterface $paid = null;
+    private ?DateTimeImmutable $paid = null;
+    private DateTimeImmutable $createdAt;
+    private DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -100,12 +100,12 @@ class Grave
         return $this;
     }
 
-    public function getPaid(): ?DateTimeInterface
+    public function getPaid(): ?DateTimeImmutable
     {
         return $this->paid;
     }
 
-    public function setPaid(?DateTimeInterface $paid): void
+    public function setPaid(?DateTimeImmutable $paid): void
     {
         $this->paid = $paid;
     }
@@ -125,5 +125,36 @@ class Grave
     public function setPositionY(?string $positionY):void
     {
         $this->positionY = $positionY;
+    }
+
+    public function getCreatedAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function onPrePersist(): void
+    {
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
+    }
+
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new DateTimeImmutable();
     }
 }
