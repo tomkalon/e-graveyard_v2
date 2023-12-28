@@ -29,8 +29,8 @@ ui:
     empty: Brak wyników do wyświetlenia
     
   buttons:
-    new: Nowy
-    edit: Edycja
+    new: Dodaj
+    edit: Edytuj
     delete: Usuń
     
   common:

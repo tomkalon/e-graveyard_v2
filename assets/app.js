@@ -10,10 +10,11 @@ import {
     Input,
     Modal,
     Ripple,
+    Tooltip,
     initTE
 } from "tw-elements";
 
-initTE({ Input });
+initTE({ Input, Modal, Ripple, Tooltip });
 
 // icons
 import 'fontawesome-4.7'

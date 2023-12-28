@@ -10,10 +10,12 @@
             <!-- /Dashboard Title -->
         {% endblock %}
         {% block buttons_before %}
-            <button class="btn btn-success gap-2">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                {{ 'ui.buttons.new'|trans }}
-            </button>
+            <a href="{{ path('admin_web_grave_create') }}">
+                <button class="btn btn-success gap-2">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    {{ 'ui.buttons.new'|trans }}
+                </button>
+            </a>
         {% endblock %}
         {% block dashboard_content %}
             <!-- Dashboard Content -->
@@ -71,15 +73,21 @@
                     } %}
                     {% embed 'Core/Pagination/_body_action.html.twig' %}
                         {% block actions %}
-                            <button class="btn btn-warning">
+                            <button class="btn btn-warning"
+                                    data-te-toggle="tooltip"
+                                    data-te-placement="right"
+                                    title="{{ 'ui.buttons.edit'|trans }}">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </button>
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger"
+                                    data-te-toggle="tooltip"
+                                    data-te-placement="right"
+                                    title="{{ 'ui.buttons.delete'|trans }}">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         {% endblock %}
                     {% endembed %}
-                {% endblock%}
+                {% endblock %}
             {% endembed %}
             <!-- /Pagination -->
             <!-- /Dashboard Content -->
