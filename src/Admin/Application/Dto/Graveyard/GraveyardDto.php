@@ -16,7 +16,7 @@ class GraveyardDto
     ) {
     }
 
-    public static function getFromEntity(Graveyard $grave): self
+    public static function fromEntity(Graveyard $grave): self
     {
         return new self(
             $grave->getName(),

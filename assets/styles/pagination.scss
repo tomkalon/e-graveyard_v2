@@ -1,31 +1,37 @@
-@media (max-width: map-get($breakpointsMax, md)) {
-  .dashboard {
-    .sidebar {
-      li {
-        span {
-          &.label {
-            display: none;
+.pagination-container {
+
+  table {
+    thead {
+      .head {
+
+      }
+    }
+
+    tbody {
+      .body-value {
+
+      }
+
+      .body-action {
+        button {
+          height: 2rem;
+          width: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          i {
+            font-size: 1rem;
           }
         }
       }
     }
   }
-}
 
-@media (max-width: map-get($breakpointsMax, xl)) {
-  .dashboard {
-    .sidebar {
-      li {
-        .header {
-          min-width: 7rem;
-        }
-        span {
-          &.label {
-            font-size: 0.8rem;
-          }
-        }
-      }
+  .foot {
+    .pagination {
+
     }
   }
-}
 
+}

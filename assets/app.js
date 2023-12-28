@@ -8,11 +8,12 @@ import './styles/app.scss';
 import 'tw-elements'
 import {
     Input,
-    initTE,
-    Toast
+    Modal,
+    Ripple,
+    initTE
 } from "tw-elements";
 
-initTE({ Input, Toast });
+initTE({ Input });
 
 // icons
 import 'fontawesome-4.7'

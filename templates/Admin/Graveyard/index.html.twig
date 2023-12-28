@@ -28,15 +28,15 @@
                     } %}
                 {% endblock %}
                 {% block body %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.name,
                     } %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.updatedAt|date('Y-m-d'),
                         class: 'text-center hidden md:block'
                     } %}
-                    {% embed 'Core/Pagination/_actions.html.twig' %}
-                        {% block action %}
+                    {% embed 'Core/Pagination/_body_action.html.twig' %}
+                        {% block actions %}
                         {% endblock %}
                     {% endembed %}
                 {% endblock%}

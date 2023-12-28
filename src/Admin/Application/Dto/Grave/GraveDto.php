@@ -24,7 +24,7 @@ class GraveDto
     ) {
     }
 
-    public static function getFromEntity(Grave $grave): self
+    public static function fromEntity(Grave $grave): self
     {
         return new self(
             $grave->getSector(),

@@ -21,3 +21,36 @@
     }
   }
 }
+
+
+@media (max-width: map-get($breakpointsMax, md)) {
+  .dashboard {
+    .sidebar {
+      li {
+        span {
+          &.label {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: map-get($breakpointsMax, xl)) {
+  .dashboard {
+    .sidebar {
+      li {
+        .header {
+          min-width: 7rem;
+        }
+        span {
+          &.label {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+

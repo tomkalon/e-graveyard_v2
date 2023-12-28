@@ -13,8 +13,8 @@ notification:
       success:
         content: Logowanie zakończone powodzeniem
   entity:
-    grave: Groby
-    graveyard: Cmentarze
-    person: Zmarli
-    file: Pliki
-    user: Użytkownicy
+    grave: Grób
+    graveyard: Cmentarz
+    person: Zmarły
+    file: Plik
+    user: Użytkownik

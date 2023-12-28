@@ -43,27 +43,35 @@
                     } %}
                 {% endblock %}
                 {% block body %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.graveyard.name,
                     } %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.sector,
                         class: 'text-center'
                     } %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.row,
                         class: 'text-center'
                     } %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.number,
                         class: 'text-center'
                     } %}
-                    {% include 'Core/Pagination/_body.html.twig' with {
+                    {% include 'Core/Pagination/_body_value.html.twig' with {
                         value: item.updatedAt|date('Y-m-d'),
                         class: 'text-center hidden md:block'
                     } %}
-                    {% embed 'Core/Pagination/_actions.html.twig' %}
-                        {% block action %}
+                    {% embed 'Core/Pagination/_body_action.html.twig' %}
+                        {% block actions %}
+                            <button class="btn btn-warning">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+
+
                         {% endblock %}
                     {% endembed %}
                 {% endblock%}
