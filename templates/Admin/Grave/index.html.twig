@@ -9,6 +9,12 @@
             <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
             <!-- /Dashboard Title -->
         {% endblock %}
+        {% block buttons_before %}
+            <button class="btn btn-success gap-2">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                {{ 'ui.buttons.new'|trans }}
+            </button>
+        {% endblock %}
         {% block dashboard_content %}
             <!-- Dashboard Content -->
             <!-- Pagination -->
@@ -40,6 +46,7 @@
                     } %}
                     {% include 'Core/Pagination/_head.html.twig' with {
                         label: 'ui.pagination.edit'|trans,
+                        class: 'text-right'
                     } %}
                 {% endblock %}
                 {% block body %}
@@ -70,8 +77,6 @@
                             <button class="btn btn-danger">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
-
-
                         {% endblock %}
                     {% endembed %}
                 {% endblock%}

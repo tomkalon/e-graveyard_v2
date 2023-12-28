@@ -28,6 +28,11 @@ ui:
     clear_sorting: Wyczyść filtry
     empty: Brak wyników do wyświetlenia
     
+  buttons:
+    new: Nowy
+    edit: Edycja
+    delete: Usuń
+    
   common:
     updatedAt: Data edycji
     createdAt: Data utworzenia

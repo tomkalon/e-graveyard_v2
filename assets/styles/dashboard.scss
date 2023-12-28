@@ -4,6 +4,7 @@
   }
 
   .content {
+    max-width: 1600px;
     h1 {
       margin-bottom: 0.5rem;
       font-size: 2rem;
@@ -23,6 +24,17 @@
 }
 
 
+@media (max-width: map-get($breakpointsMax, sm)) {
+  .dashboard {
+    .sidebar {
+
+    }
+    .content {
+
+    }
+  }
+}
+
 @media (max-width: map-get($breakpointsMax, md)) {
   .dashboard {
     .sidebar {
@@ -33,6 +45,19 @@
           }
         }
       }
+    }
+    .content {
+
+    }
+  }
+}
+
+@media (max-width: map-get($breakpointsMax, lg)) {
+  .dashboard {
+    .sidebar {
+    }
+    .content {
+
     }
   }
 }
@@ -50,6 +75,21 @@
           }
         }
       }
+    }
+    .content {
+
+    }
+  }
+}
+
+
+@media (max-width: map-get($breakpointsMax, 2xl)) {
+  .dashboard {
+    .sidebar {
+
+    }
+    .content {
+
     }
   }
 }
