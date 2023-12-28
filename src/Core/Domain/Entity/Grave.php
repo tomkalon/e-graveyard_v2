@@ -2,15 +2,16 @@
 
 namespace App\Core\Domain\Entity;
 
-use App\Core\Application\Trait\IdTrait;
+use App\Core\Domain\Trait\IdTrait;
+use App\Core\Domain\Trait\LifecycleTrait;
 use DateTimeImmutable;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class Grave
 {
     use IdTrait;
+    use LifecycleTrait;
 
     private int $sector;
     private ?int $row;
@@ -21,8 +22,6 @@ class Grave
     private ?Collection $people;
     private ?Collection $images;
     private ?DateTimeImmutable $paid = null;
-    private DateTimeImmutable $createdAt;
-    private DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
@@ -125,36 +124,5 @@ class Grave
     public function setPositionY(?string $positionY):void
     {
         $this->positionY = $positionY;
-    }
-
-    public function getCreatedAt(): DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTimeImmutable $createdAt): void
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    public function getUpdatedAt(): DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new DateTimeImmutable();
-        $this->updatedAt = new DateTimeImmutable();
-    }
-
-    public function onPreUpdate(): void
-    {
-        $this->updatedAt = new DateTimeImmutable();
     }
 }
