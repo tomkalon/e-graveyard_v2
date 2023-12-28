@@ -3,7 +3,7 @@
 namespace App\Admin\Infrastructure\Repository;
 
 use App\Admin\Domain\Repository\GraveyardRepositoryInterface as BaseGraveyardRepositoryInterface;
-use App\Core\Application\Trait\QueryTraits;
+use App\Core\Domain\Trait\QueryTraits;
 use App\Core\Infrastructure\Repository\GraveyardRepository as BaseGraveyardRepository;
 use Doctrine\ORM\Query;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Application\Trait;
+namespace App\Core\Domain\Trait;
 
 use Doctrine\ORM\QueryBuilder;
 

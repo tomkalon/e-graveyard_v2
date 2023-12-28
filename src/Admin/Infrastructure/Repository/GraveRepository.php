@@ -3,7 +3,7 @@
 namespace App\Admin\Infrastructure\Repository;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface as BaseGraveRepositoryInterface;
-use App\Core\Application\Trait\QueryTraits;
+use App\Core\Domain\Trait\QueryTraits;
 use App\Core\Infrastructure\Repository\GraveRepository as BaseGraveRepository;
 use Doctrine\ORM\Query;
 
