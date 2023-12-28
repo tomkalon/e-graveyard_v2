@@ -43,6 +43,6 @@ services:
       tags:
         - { name: kernel.event_listener, event: kernel.response }
         
-    App\Core\Domain\Event\PrePersistListener:
+    App\Core\Infrastructure\EventHandler\PrePersistEventHandler:
       tags:
-        - { name: kernel.event_subscriber, event: prePersist }
+        - { name: doctrine.event_listener, event: prePersist }

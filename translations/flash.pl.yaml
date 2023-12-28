@@ -1,11 +1,20 @@
 notification:
-  timestampable:
+  lifecycle:
     create:
       title: Nowy obiekt
       content: Pomyślnie utworzono
+    update:
+      title: Nowy obiekt
+      content: Pomyślnie zaktualizowano
   user:
     login:
       title: Logowanie
       time: Czas
       success:
         content: Logowanie zakończone powodzeniem
+  entity:
+    grave: Groby
+    graveyard: Cmentarze
+    person: Zmarli
+    file: Pliki
+    user: Użytkownicy
