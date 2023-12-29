@@ -29,6 +29,16 @@ class GraveController extends AbstractController
         ]);
     }
 
+    public function show(
+        Request $request,
+        string $id
+    ): Response {
+        $grave = null;
+        return $this->render('Admin/Grave/show.html.twig', [
+            'grave' => $grave,
+        ]);
+    }
+
     public function create(
         CommandBusInterface $commandBus,
         Request             $request

@@ -57,7 +57,7 @@
                         {% block body %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.graveyard.name,
-                                class: 'cursor-pointer'
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.sector,

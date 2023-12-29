@@ -4,6 +4,7 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
+use Doctrine\Common\Collections\Collection;
 
 class GraveDto
 {
@@ -13,6 +14,7 @@ class GraveDto
     public ?string $positionX;
     public ?string $positionY;
     public ?Graveyard $graveyard;
+    public ?array $people;
 
     public function __construct(
         ?int $sector = null,
@@ -20,7 +22,8 @@ class GraveDto
         ?int $number = null,
         ?string $positionX = null,
         ?string $positionY = null,
-        ?Graveyard $graveyard = null
+        ?Graveyard $graveyard = null,
+        ?array $people = null
     ) {
         $this->sector = $sector;
         $this->row = $row;
@@ -28,6 +31,7 @@ class GraveDto
         $this->positionX = $positionX;
         $this->positionY = $positionY;
         $this->graveyard = $graveyard;
+        $this->people = $people;
     }
 
     public static function fromEntity(Grave $grave): self
@@ -38,7 +42,8 @@ class GraveDto
             $grave->getNumber(),
             $grave->getPositionX(),
             $grave->getPositionY(),
-            $grave->getGraveyard()
+            $grave->getGraveyard(),
+            $grave->getPeople()->toArray()
         );
     }
 
@@ -51,6 +56,7 @@ class GraveDto
             'number' => $this->number,
             'positionX' => $this->positionX,
             'positionY' => $this->positionY,
+            'people' => $this->people
         ];
     }
 }

@@ -69,6 +69,7 @@ ui:
       label: Groby
       title:
         index: Lista grobów
+        show: Szczegóły grobu
         create: Dodawanie grobu
       description:
         index:
@@ -82,7 +83,10 @@ ui:
       number: Numer
       positionX: Dł. geograficzna
       positionY: Szer. geograficzna
+      people: Pochowani
+      without_people: Brak pochowanych
       create: Dodaj
+      
       
     graveyard:
       title:

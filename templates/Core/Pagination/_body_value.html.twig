@@ -1,3 +1,7 @@
-<td class="body-value px-2 py-3 {{ class|default('') }}">
-    <p>{{ value|default('-') }}</p>
+<td class="body-value px-2 py-3 {{ class|default('') }}" >
+    {% if path is defined and value is defined %}
+        <a href="{{ path }}"><p>{{ value|default('-') }}</p></a>
+    {% else %}
+        <p>{{ value|default('-') }}</p>
+    {% endif %}
 </td>

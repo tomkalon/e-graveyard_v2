@@ -1,10 +1,20 @@
-const getModal = (title, body, buttons) => {
+import $ from 'jquery';
+import {
+    trans, UI_BUTTONS_CLOSE
+} from '@Translator';
+
+
+const getModal = (title, content, buttons) => {
+    document.querySelectorAll('#js-modal-box').forEach((element) => {
+        element.remove()
+    })
+
     const modal = document.createElement('div');
     modal.setAttribute('role', 'dialog')
     modal.setAttribute('id', 'js-modal-box')
     modal.setAttribute('tabindex', '-1')
     modal.setAttribute('aria-modal', 'true')
-    modal.setAttribute('class', 'fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70')
+    modal.setAttribute('class', 'fixed hidden left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70')
 
     modal.innerHTML =
         `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
@@ -18,7 +28,7 @@ const getModal = (title, body, buttons) => {
                     <!--Close button-->
                     <button type="button"
                         class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                        data-te-modal-dismiss
+                        data-item-modal-close
                         aria-label="Close">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -35,17 +45,32 @@ const getModal = (title, body, buttons) => {
     
                 <!--Modal body-->
                 <div class="relative p-4">
-                    ${body}
+                    ${content}
                 </div>
     
                 <!--Modal footer-->
-                <div class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+                <div class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                     ${buttons}
+                    <button data-item-modal-close class="btn btn-danger">${trans(UI_BUTTONS_CLOSE)}</button>
                 </div>
             </div>
             </div>
         </div>`
+
+    closeBtnHandler(modal, 200)
     return modal
+}
+
+function closeBtnHandler (modal, time) {
+    let close = modal.querySelectorAll('[data-item-modal-close]');
+    close.forEach((element) => {
+        $(element).click(() => {
+            $(modal).fadeOut(time)
+            setTimeout(() => {
+                modal.remove()
+            }, time)
+        })
+    })
 }
 
 const modal = {

@@ -1,0 +1,19 @@
+{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.show'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <!-- Dashboard Card -->
+    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+        {% block title %}
+            <!-- Dashboard Title -->
+            <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.show'|trans }}</h1>
+            <!-- /Dashboard Title -->
+        {% endblock %}
+        {% block dashboard_content %}
+            <!-- Dashboard Content -->
+            <!-- /Dashboard Content -->
+        {% endblock %}
+        {% block buttons_after %}
+        {% endblock %}
+    {% endembed %}
+    <!-- /Dashboard Card -->
+{% endblock %}

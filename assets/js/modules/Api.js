@@ -1,16 +1,16 @@
 import Routing from '@Routing'
 import $ from "jquery";
 
-function post(path, sendData, callback)
+function post(path, params, callback = null, callbackParams = null)
 {
     $.ajax({
         method: "POST",
         url: Routing.generate(path),
-        data: {sendData}
+        data: {params}
     })
         .done(function (data) {
             if (callback) {
-                callback(data);
+                callback(data, callbackParams);
             }
         })
         .fail(function () {
@@ -19,7 +19,7 @@ function post(path, sendData, callback)
     ;
 }
 
-function get(path, params, callback)
+function get(path, params, callback = null, callbackParams = null)
 {
     $.ajax({
         method: "GET",
@@ -27,7 +27,7 @@ function get(path, params, callback)
     })
         .done(function (data) {
             if (callback) {
-                callback(data);
+                callback(data, callbackParams);
             }
         })
         .fail(function () {
@@ -36,16 +36,16 @@ function get(path, params, callback)
     ;
 }
 
-function put(path, sendData, callback)
+function put(path, params, callback = null, callbackParams = null)
 {
     $.ajax({
         method: "PUT",
         url: Routing.generate(path),
-        data: {sendData}
+        data: {params}
     })
         .done(function (data) {
             if (callback) {
-                callback(data);
+                callback(data, callbackParams);
             }
         })
         .fail(function () {
@@ -54,16 +54,16 @@ function put(path, sendData, callback)
     ;
 }
 
-function remove(path, sendData, callback)
+function remove(path, params, callback = null, callbackParams = null)
 {
     $.ajax({
         method: "DELETE",
         url: Routing.generate(path),
-        data: {sendData}
+        data: {params}
     })
         .done(function (data) {
             if (callback) {
-                callback(data);
+                callback(data, callbackParams);
             }
         })
         .fail(function () {
