@@ -8,12 +8,6 @@
                     "@symfony/ux-live-component/dist/live.min.css": true
                 }
             }
-        },
-        "@symfony/ux-react": {
-            "react": {
-                "enabled": true,
-                "fetch": "eager"
-            }
         }
     },
     "entrypoints": []

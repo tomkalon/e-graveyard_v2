@@ -32,7 +32,6 @@
     "symfony/twig-bridge": "6.4.*",
     "symfony/twig-bundle": "6.4.*",
     "symfony/ux-live-component": "^2.13",
-    "symfony/ux-react": "^2.13",
     "symfony/ux-translator": "^2.13",
     "symfony/ux-twig-component": "^2.13",
     "symfony/validator": "6.4.*",

@@ -1,4 +1,6 @@
 <td class="body-action px-2 {{ class|default('') }}">
-    {% block actions %}
-    {% endblock %}
+    <div class="flex justify-end gap-2" data-item-id="{{ item.id|default('') }}">
+        {% block actions %}
+        {% endblock %}
+    </div>
 </td>

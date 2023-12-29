@@ -6,6 +6,7 @@ import Modal from '@Modal';
 import {
     trans, UI_BUTTONS_DETAILS
 } from '@Translator';
+import modal from "@Modal";
 
 
 export default class extends Controller {
@@ -28,6 +29,7 @@ export default class extends Controller {
             const id = element.getAttribute('data-item-id')
             const buttons = element.querySelectorAll('[data-modal-target]')
 
+
             // list row action buttons
             buttons.forEach((button) => {
 
@@ -45,6 +47,7 @@ export default class extends Controller {
                 }
 
                 button.addEventListener('click', () => {
+                    this.clearModals()
                     Api.get('admin_api_get_grave', {id:id}, callback)
                 })
             })
@@ -52,21 +55,18 @@ export default class extends Controller {
     }
 
     details(item) {
-        const modal = Modal.create(
-            'modal', trans(UI_BUTTONS_DETAILS), 'test', 'buttons'
+        const title = trans(UI_BUTTONS_DETAILS)
+        const modal = Modal.getModal(
+            title, 'test', 'buttons'
         )
 
-        console.log(modal)
+        const body = document.querySelector('body')
+        body.appendChild(modal);
+    }
 
-        // const modal = document.querySelector('#modal-details')
-        // const modalTitle = modal.querySelector('#modal-details-title')
-        // const modalBody = modal.querySelector('#modal-details-body')
-        // const modalButtons = modal.querySelector('#modal-details-buttons')
-        // const modalClose = modal.querySelector('[data-te-modal-dismiss]')
-        //
-        //
-        //
-        // modalTitle.innerHTML = trans(UI_BUTTONS_DETAILS)
-        // modalBody.innerHTML = `${item['graveyard']} - ${item['sector']} / ${item['row']} / ${item['number']}`
+    clearModals() {
+        document.querySelectorAll('#js-modal-box').forEach((element) => {
+            element.remove()
+        })
     }
 }

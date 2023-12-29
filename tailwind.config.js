@@ -3,6 +3,7 @@ module.exports = {
     mode: process.env.NODE_ENV ? 'jit' : undefined,
     content: [
         "./assets/**/*.js",
+        "./assets/js/modules/*.js",
         "./templates/**/**/**/*.html.twig",
         "./src/Admin/UI/Form/**/*.php",
         "./src/Main/UI/Form/**/*.php",
