@@ -51,7 +51,7 @@ const getModal = (title, content, buttons) => {
                 <!--Modal footer-->
                 <div class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                     ${buttons}
-                    <button data-item-modal-close class="btn btn-danger">${trans(UI_BUTTONS_CLOSE)}</button>
+                    <button data-item-modal-close class="btn btn-dark">${trans(UI_BUTTONS_CLOSE)}</button>
                 </div>
             </div>
             </div>

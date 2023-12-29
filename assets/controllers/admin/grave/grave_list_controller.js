@@ -67,7 +67,7 @@ export default class extends Controller {
 
         // BUTTONS
         const buttons = `
-            <button class="btn btn-info">
+            <button class="btn btn-success">
                 <a href="${Routing.generate('admin_web_grave_show', {id: params.id})}">
                     ${trans(UI_BUTTONS_DETAILS)}
                 </a>
