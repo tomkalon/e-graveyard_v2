@@ -5,7 +5,7 @@ import Modal from '@Modal';
 import $ from 'jquery';
 
 import {
-    trans, UI_BUTTONS_DETAILS,
+    trans, UI_BUTTONS_DETAILS, UI_BUTTONS_SHOW_MORE,
     UI_ADMIN_GRAVE_GRAVEYARD, UI_ADMIN_GRAVE_SECTOR, UI_ADMIN_GRAVE_ROW, UI_ADMIN_GRAVE_NUMBER,
     UI_ADMIN_GRAVE_PEOPLE, UI_ADMIN_GRAVE_WITHOUT_PEOPLE
 } from '@Translator';
@@ -69,7 +69,7 @@ export default class extends Controller {
         const buttons = `
             <button class="btn btn-success">
                 <a href="${Routing.generate('admin_web_grave_show', {id: params.id})}">
-                    ${trans(UI_BUTTONS_DETAILS)}
+                    ${trans(UI_BUTTONS_SHOW_MORE)}
                 </a>
             </button>
         `

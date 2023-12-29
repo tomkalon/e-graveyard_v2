@@ -33,6 +33,7 @@ ui:
     edit: Edytuj
     remove: Usuń
     details: Szczegóły
+    show_more: Pokaż więcej
     close: Zamknij
     
   common:

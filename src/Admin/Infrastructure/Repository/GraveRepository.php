@@ -17,7 +17,9 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
         $qb = $this->createQueryBuilder('g');
         $qb
             ->addSelect('graveyard')
+            ->addSelect('people')
             ->leftJoin('g.graveyard', 'graveyard')
+            ->leftJoin('g.people', 'people')
             ->addOrderBy('g.sector')
             ->addOrderBy('g.row')
             ->addOrderBy('g.number')

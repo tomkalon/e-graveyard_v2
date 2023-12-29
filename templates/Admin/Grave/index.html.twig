@@ -45,6 +45,11 @@
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.admin.grave.people',
+                                name: 'g.number',
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
                                 label: 'ui.common.updatedAt',
                                 name: 'g.updatedAt',
                                 class: 'text-center hidden md:block'
@@ -72,18 +77,24 @@
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.people|length,
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.updatedAt|date('Y-m-d'),
                                 class: 'text-center hidden md:block'
                             } %}
-                            {% embed 'Core/Pagination/_body_action.html.twig' %}
+                            {% embed 'Core/Pagination/_body_action.html.twig' with {
+                                class: 'w-36'
+                            } %}
                                 {% block actions %}
                                     <button class="btn btn-info"
                                             data-modal-target="modal-details">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn btn-warning"
+                                    <button class="btn btn-success"
                                             data-modal-target="modal-edit">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     </button>
                                     <button class="btn btn-danger"
                                             data-modal-target="modal-remove">
