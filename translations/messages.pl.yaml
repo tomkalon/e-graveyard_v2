@@ -31,7 +31,9 @@ ui:
   buttons:
     new: Dodaj
     edit: Edytuj
-    delete: Usuń
+    remove: Usuń
+    details: Szczegóły
+    close: Zamknij
     
   common:
     updatedAt: Data edycji

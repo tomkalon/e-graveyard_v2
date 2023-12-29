@@ -1,101 +1,94 @@
 {% extends 'Admin/Common/Dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.index'|trans }}{% endblock %}
+
 {% block dashboard_content %}
-    <!-- Dashboard Card -->
-    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
-        {% block title %}
-            <!-- Dashboard Title -->
-            <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.index'|trans }}</h1>
-            <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
-            <!-- /Dashboard Title -->
-        {% endblock %}
-        {% block buttons_before %}
-            <a href="{{ path('admin_web_grave_create') }}">
-                <button class="btn btn-success gap-2">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                    {{ 'ui.buttons.new'|trans }}
-                </button>
-            </a>
-        {% endblock %}
-        {% block dashboard_content %}
-            <!-- Dashboard Content -->
-            <!-- Pagination -->
-            {% embed 'Core/Pagination/pagination.html.twig' %}
-                {% block head %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.admin.grave.graveyard',
-                        name: 'graveyard.name',
-                    } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.admin.grave.sector',
-                        name: 'g.sector',
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.admin.grave.row',
-                        name: 'g.row',
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.admin.grave.number',
-                        name: 'g.number',
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.common.updatedAt',
-                        name: 'g.updatedAt',
-                        class: 'text-center hidden md:block'
-                    } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
-                        label: 'ui.pagination.edit'|trans,
-                        class: 'text-right'
-                    } %}
-                {% endblock %}
-                {% block body %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
-                        value: item.graveyard.name,
-                    } %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
-                        value: item.sector,
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
-                        value: item.row,
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
-                        value: item.number,
-                        class: 'text-center'
-                    } %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
-                        value: item.updatedAt|date('Y-m-d'),
-                        class: 'text-center hidden md:block'
-                    } %}
-                    {% embed 'Core/Pagination/_body_action.html.twig' %}
-                        {% block actions %}
-                            <button class="btn btn-warning"
-                                    data-te-toggle="tooltip"
-                                    data-te-placement="right"
-                                    title="{{ 'ui.buttons.edit'|trans }}">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-danger"
-                                    data-te-toggle="tooltip"
-                                    data-te-placement="right"
-                                    title="{{ 'ui.buttons.delete'|trans }}">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
+    <div {{ stimulus_controller('admin--grave--grave-list') }}>
+        <!-- Dashboard Card -->
+        {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.index'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block buttons_before %}
+                <a href="{{ path('admin_web_grave_create') }}">
+                    <button class="btn btn-success gap-2">
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        {{ 'ui.buttons.new'|trans }}
+                    </button>
+                </a>
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                <!-- Pagination -->
+                <div {{ stimulus_target('admin--grave--grave-list', 'pagination') }}>
+                    {% embed 'Core/Pagination/pagination.html.twig' %}
+                        {% block head %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.admin.grave.graveyard',
+                                name: 'graveyard.name',
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.admin.grave.sector',
+                                name: 'g.sector',
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.admin.grave.row',
+                                name: 'g.row',
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.admin.grave.number',
+                                name: 'g.number',
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.common.updatedAt',
+                                name: 'g.updatedAt',
+                                class: 'text-center hidden md:block'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.pagination.edit'|trans,
+                                class: 'text-right'
+                            } %}
+                        {% endblock %}
+                        {% block body %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.graveyard.name,
+                                class: 'cursor-pointer'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.sector,
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.row,
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.number,
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.updatedAt|date('Y-m-d'),
+                                class: 'text-center hidden md:block'
+                            } %}
+                            {% embed 'Core/Pagination/_body_action.html.twig' %}
+                                {% block actions %}
+                                    <div {{ react_component('admin/grave/Actions', {'id': item.id}) }}></div>
+                                {% endblock %}
+                            {% endembed %}
                         {% endblock %}
                     {% endembed %}
-                {% endblock %}
-            {% endembed %}
-            <!-- /Pagination -->
-            <!-- /Dashboard Content -->
-        {% endblock %}
-        {% block buttons_after %}
-        {% endblock %}
-    {% endembed %}
-    <!-- /Dashboard Card -->
+                </div>
+                <!-- /Pagination -->
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
 {% endblock %}
-
-

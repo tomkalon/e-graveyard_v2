@@ -1,3 +1,4 @@
 grave_api_routes:
+  prefix: '/api'
   resource: 'grave'
   type: directory

@@ -1,3 +1,4 @@
+import { registerReactControllerComponents } from '@symfony/ux-react';
 // stimulus
 import './bootstrap.js';
 
@@ -23,3 +24,5 @@ import 'fontawesome-4.7'
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
 }
+
+registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));

@@ -5,7 +5,6 @@ namespace App\Admin\Infrastructure\Query\Grave;
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Symfony\Component\Form\FormInterface;
 
 class GravePaginatedListQuery implements GravePaginatedListQueryInterface
 {

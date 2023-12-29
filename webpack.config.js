@@ -1,5 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
-const FosRouting = require('fos-router/webpack/FosRouting');
+// const FosRouting = require('fos-router/webpack/FosRouting');
 const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -39,8 +39,17 @@ Encore
     })
 
     .addAliases({
+        // ReactJS
+        '@React': path.resolve(__dirname, 'assets/react/'),
+        '@Modules': path.resolve(__dirname, 'assets/react/modules/'),
+        // '@mui': path.resolve(__dirname, 'assets/react/modules/'),
+        // JS
+        '@Modal': path.resolve(__dirname, 'assets/modules/modal/ModalBox'),
+        '@Translator': path.resolve(__dirname, 'assets/translator'),
         '@Api': path.resolve(__dirname, 'assets/modules/Api'),
-        '@Routing': path.resolve(__dirname, 'assets/modules/Routing')
+        '@Routing': path.resolve(__dirname, 'assets/modules/Routing'),
+        '@Routes': path.resolve(__dirname, 'public/js/routes.json'),
+        '@FosRoutes': path.resolve(__dirname, 'vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js')
     })
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -53,7 +62,7 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
-    // FoS RoutingBundle
+    // FoS RoutingBundle (doesn't work when containers: node and php are disconnected)
     // .addPlugin(new FosRouting)
 
     /*
@@ -90,7 +99,7 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you use React
-    //.enableReactPreset()
+    .enableReactPreset()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher

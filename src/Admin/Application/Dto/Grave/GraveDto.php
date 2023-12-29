@@ -8,10 +8,10 @@ use App\Core\Domain\Entity\Graveyard;
 class GraveDto
 {
     public ?int $sector;
-    public ?int $row = null;
+    public ?int $row;
     public ?int $number;
-    public ?string $positionX = null;
-    public ?string $positionY = null;
+    public ?string $positionX;
+    public ?string $positionY;
     public ?Graveyard $graveyard;
 
     public function __construct(
@@ -22,6 +22,12 @@ class GraveDto
         ?string $positionY = null,
         ?Graveyard $graveyard = null
     ) {
+        $this->sector = $sector;
+        $this->row = $row;
+        $this->number = $number;
+        $this->positionX = $positionX;
+        $this->positionY = $positionY;
+        $this->graveyard = $graveyard;
     }
 
     public static function fromEntity(Grave $grave): self
@@ -32,7 +38,19 @@ class GraveDto
             $grave->getNumber(),
             $grave->getPositionX(),
             $grave->getPositionY(),
-            $grave->getGraveyard(),
+            $grave->getGraveyard()
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'graveyard' => $this->graveyard->getName(),
+            'sector' => $this->sector,
+            'row' => $this->row,
+            'number' => $this->number,
+            'positionX' => $this->positionX,
+            'positionY' => $this->positionY,
+        ];
     }
 }

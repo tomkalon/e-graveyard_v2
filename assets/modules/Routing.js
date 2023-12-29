@@ -1,10 +1,10 @@
-const routes = require('../../public/bundles/routing/js/routes.json');
-import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+const routes = require('@Routes');
+import Routing from '@FosRoutes';
 
-function generate(path)
+function generate(path, params)
 {
     Routing.setRoutingData(routes);
-    return Routing.generate(path);
+    return Routing.generate(path, params);
 }
 
 const api = {

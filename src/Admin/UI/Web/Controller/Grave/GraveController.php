@@ -23,7 +23,6 @@ class GraveController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ??
                 $request->getSession()->get('pagination_limit')
         );
-
         return $this->render('Admin/Grave/index.html.twig', [
             'pagination' => $paginatedGraveList,
 

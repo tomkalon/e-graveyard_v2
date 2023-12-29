@@ -36,7 +36,7 @@ RUN apt-get install nano -y
 RUN apt-get install mc -y
 
 # History
-RUN echo "symfony console fos:js-routing:dump --format=json --target=public/bundles/routing/js/routes.json" >> ~/.bash_history
+RUN echo "symfony console fos:js-routing:dump --format=json --target=public/js/routes.json" >> ~/.bash_history
 RUN echo "composer update" >> ~/.bash_history
 RUN echo "symfony console" >> ~/.bash_history
 RUN echo "symfony console make:migration" >> ~/.bash_history

@@ -1,12 +1,12 @@
 import Routing from '@Routing'
 import $ from "jquery";
 
-function post(path, options, callback)
+function post(path, sendData, callback)
 {
     $.ajax({
         method: "POST",
         url: Routing.generate(path),
-        data: {options}
+        data: {sendData}
     })
         .done(function (data) {
             if (callback) {
@@ -19,12 +19,11 @@ function post(path, options, callback)
     ;
 }
 
-function get(path, options, callback)
+function get(path, params, callback)
 {
     $.ajax({
         method: "GET",
-        url: Routing.generate(path),
-        data: {options}
+        url: Routing.generate(path, params),
     })
         .done(function (data) {
             if (callback) {
@@ -37,12 +36,12 @@ function get(path, options, callback)
     ;
 }
 
-function put(path, options, callback)
+function put(path, sendData, callback)
 {
     $.ajax({
         method: "PUT",
         url: Routing.generate(path),
-        data: {options}
+        data: {sendData}
     })
         .done(function (data) {
             if (callback) {
@@ -55,12 +54,12 @@ function put(path, options, callback)
     ;
 }
 
-function remove(path, options, callback)
+function remove(path, sendData, callback)
 {
     $.ajax({
         method: "DELETE",
         url: Routing.generate(path),
-        data: {options}
+        data: {sendData}
     })
         .done(function (data) {
             if (callback) {

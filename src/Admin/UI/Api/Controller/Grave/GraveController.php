@@ -2,16 +2,17 @@
 
 namespace App\Admin\UI\Api\Controller\Grave;
 
+use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class GraveController extends AbstractController
 {
-    #[Route('/api', name: 'api_')]
-    public function index(
+    public function getGrave(
+        string $id,
+        GetGraveInterface $query
     ): JsonResponse {
-        $data = [];
-        return $this->json($data);
+        $data = $query->execute($id);
+        return $this->json($data->toArray());
     }
 }
