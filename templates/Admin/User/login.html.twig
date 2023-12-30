@@ -1,5 +1,5 @@
 {% extends 'Core/base.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.admin.user.login.login'|trans }}{% endblock %}
+{% block title %}{{ app_name }} - {{ 'ui.user.login.login'|trans }}{% endblock %}
 {% block body %}
     <div class="controller-login w-full grow flex items-center"
          style="background: url('{{ asset('build/images/user_bg_dark.webp') }}');">
@@ -7,7 +7,7 @@
                     dark:bg-gray-700 dark:shadow-gray-900 dark:border-gray-500">
             <div class="flex flex-col justify-center px-6 py-16 lg:px-8 text-neutral-700 dark:text-white">
                 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">{{ 'ui.admin.user.login.login'|trans }}</h2>
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">{{ 'ui.user.login.login'|trans }}</h2>
                 </div>
                 <div class="mt-10 pb-20 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form action="{{ path('app_login') }}" class="space-y-6" method="post">
@@ -22,7 +22,7 @@
                         {% endif %}
                         <div>
                             <label for="username"
-                                   class="block text-sm font-medium leading-6">{{ 'ui.admin.user.login.email'|trans }}</label>
+                                   class="block text-sm font-medium leading-6">{{ 'ui.user.login.email'|trans }}</label>
                             <div class="mt-2">
                                 <input id="username"
                                        name="_username"
@@ -37,7 +37,7 @@
                         <div>
                             <div class="flex items-center justify-between">
                                 <label for="password"
-                                       class="block text-sm font-medium leading-6">{{ 'ui.admin.user.login.password'|trans }}</label>
+                                       class="block text-sm font-medium leading-6">{{ 'ui.user.login.password'|trans }}</label>
                             </div>
                             <div class="mt-2">
                                 <input id="password"
@@ -53,14 +53,14 @@
                                        name="_remember_me"
                                        class="cursor-pointer focus:ring-stone-300"
                                        checked/>
-                                <span class="ml-2 dark:text-white text-sm">{{ 'ui.admin.user.login.remember_me'|trans }}</span>
+                                <span class="ml-2 dark:text-white text-sm">{{ 'ui.user.login.remember_me'|trans }}</span>
                             </label>
                         </div>
                         <div>
                             <button
                                     type="submit"
                                     class="btn btn-stone">
-                                {{ 'ui.admin.user.login.submit'|trans }}
+                                {{ 'ui.user.login.submit'|trans }}
                             </button>
                         </div>
                         <input type="hidden"

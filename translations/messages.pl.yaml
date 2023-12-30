@@ -40,64 +40,64 @@ ui:
     updatedAt: Data edycji
     createdAt: Data utworzenia
     
-  main:
-    frontpage:
-      title: Nazwa cmentarza
-      subtitle: Opis
-      buttons:
-        search: Szukaj grobów
-    
-  admin:
-    sidebar:
-      grave:
-        label: Groby
-        add: Dodaj
-      person:
-        label: Zmarli
-        add: Dodaj
-      graveyard:
-        label: Cmentarze
-        add: Dodaj
-        
-    user:
-      login:
-        login: Logowanie
-        email: "Adres email:"
-        password: "Hasło:"
-        remember_me: Zapamiętaj mnie
-        submit: Zaloguj się
+  frontpage:
+    title: Nazwa cmentarza
+    subtitle: Opis
+    buttons:
+      search: Szukaj grobów
+  
+  sidebar:
     grave:
       label: Groby
-      title:
-        index: Lista grobów
-        show: Szczegóły grobu
-        create: Dodawanie grobu
-      description:
-        index:
-          manage: Zarządzanie listą grobów
-        create:
-          position: Położenie grobu
-          coordinates: Współrzędne geograficzne
-      graveyard: Cmentarz
-      sector: Sektor
-      row: Rząd
-      number: Numer
-      positionX: Dł. geograficzna
-      positionY: Szer. geograficzna
-      people: Pochowani
-      without_people: Brak pochowanych
-      create: Dodaj
-      
-      
+      add: Dodaj
+    person:
+      label: Zmarli
+      add: Dodaj
     graveyard:
-      title:
-        index: Lista cmentarzy
-        create: Dodawanie cmentarza
-      description:
-        index:
-          manage: Zarządzanie listą cmentarzy
-        create:
-          info: Informacje
-      name: Nazwa cmentarza
-      desc: Opis cmentarza
-      create: Dodaj
+      label: Cmentarze
+      add: Dodaj
+      
+  user:
+    login:
+      login: Logowanie
+      email: "Adres email:"
+      password: "Hasło:"
+      remember_me: Zapamiętaj mnie
+      submit: Zaloguj się
+  grave:
+    label: Groby
+    title:
+      index: Lista grobów
+      show: Szczegóły grobu
+      create: Dodawanie grobu
+    description:
+      index:
+        manage: Zarządzanie listą grobów
+      create:
+        position: Położenie grobu
+        coordinates: Współrzędne geograficzne
+    graveyard: Cmentarz
+    sector: Sektor
+    row: Rząd
+    number: Numer
+    positionX: Dł. geograficzna
+    positionY: Szer. geograficzna
+    people: Pochowani
+    without_people: Brak pochowanych
+    create: Dodaj
+    details: Szczegóły
+    add_person: Dodaj zmarłego
+    
+    
+  graveyard:
+    title:
+      index: Lista cmentarzy
+      create: Dodawanie cmentarza
+    description:
+      index:
+        manage: Zarządzanie listą cmentarzy
+      create:
+        info: Informacje
+    name: Nazwa cmentarza
+    desc: Opis cmentarza
+    create: Dodaj

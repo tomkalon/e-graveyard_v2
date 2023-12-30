@@ -5,9 +5,7 @@ import {
 
 
 const getModal = (title, content, buttons) => {
-    document.querySelectorAll('#js-modal-box').forEach((element) => {
-        element.remove()
-    })
+    document.querySelectorAll('#js-modal-box').forEach((element) => element.remove());
 
     const modal = document.createElement('div');
     modal.setAttribute('role', 'dialog')
@@ -15,6 +13,18 @@ const getModal = (title, content, buttons) => {
     modal.setAttribute('tabindex', '-1')
     modal.setAttribute('aria-modal', 'true')
     modal.setAttribute('class', 'fixed hidden left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70')
+
+    let modalContent, modalButtons;
+    if (typeof content === 'string') {
+        modalContent = content
+    } else if (typeof content === 'object') {
+        modalContent = content.innerHTML
+    }
+    if (typeof buttons === 'string') {
+        modalButtons = buttons
+    } else if (typeof buttons === 'object') {
+        modalButtons = buttons.innerHTML
+    }
 
     modal.innerHTML =
         `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
@@ -45,12 +55,12 @@ const getModal = (title, content, buttons) => {
     
                 <!--Modal body-->
                 <div class="relative p-4">
-                    ${content}
+                    ${modalContent}
                 </div>
     
                 <!--Modal footer-->
                 <div class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-                    ${buttons}
+                    ${modalButtons}
                     <button data-item-modal-close class="btn btn-neutral">${trans(UI_BUTTONS_CLOSE)}</button>
                 </div>
             </div>

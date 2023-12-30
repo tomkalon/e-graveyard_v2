@@ -4,10 +4,10 @@ import Routing from '@Routing';
 import Modal from '@Modal';
 import $ from 'jquery';
 
+const { getGraveInfo, getGravePeople } = require('./components')
+
 import {
-    trans, UI_BUTTONS_DETAILS, UI_BUTTONS_SHOW_MORE,
-    UI_ADMIN_GRAVE_GRAVEYARD, UI_ADMIN_GRAVE_SECTOR, UI_ADMIN_GRAVE_ROW, UI_ADMIN_GRAVE_NUMBER,
-    UI_ADMIN_GRAVE_PEOPLE, UI_ADMIN_GRAVE_WITHOUT_PEOPLE
+    trans, UI_BUTTONS_SHOW_MORE, UI_GRAVE_DETAILS, UI_GRAVE_ADD_PERSON
 } from '@Translator';
 
 
@@ -40,7 +40,8 @@ export default class extends Controller {
                     case 'modal-details':
                         callback = this.details
                         break;
-                    case 'modal-edit':
+                    case 'modal-add-person':
+                        callback = this.addPerson()
                         break;
                     case 'modal-remove':
                         break;
@@ -50,20 +51,16 @@ export default class extends Controller {
                     Api.get(
                         'admin_api_get_grave',
                         {id: id},
-                        callback,
-                        {
-                            id: id,
-                        }
+                        callback
                     )
                 })
             })
         })
     }
 
-    details(item, params = null) {
-
+    details(item, params) {
         // TITLE
-        const title = trans(UI_BUTTONS_DETAILS)
+        const title = trans(UI_GRAVE_DETAILS)
 
         // BUTTONS
         const buttons = `
@@ -73,44 +70,10 @@ export default class extends Controller {
                 </a>
             </button>
         `
-
         // CONTENT
-        let people = `
-            <div>
-                <hr class="my-3">
-                <p class="font-bold text-center">${trans(UI_ADMIN_GRAVE_WITHOUT_PEOPLE)}</p>
-            </div>
-        `
-        if (item.people.length) {
-            people = `
-                <div>
-                    <hr class="my-3">
-                    <p class="font-bold">${trans(UI_ADMIN_GRAVE_PEOPLE)}</p>
-                </div>
-            `
-        }
-        const content = `
-
-             <div class="grid gap-2 grid-cols-2 lg:grid-cols-4 text-center">
-                <div>
-                    <p class="mb-1 text-xs uppercase">${trans(UI_ADMIN_GRAVE_GRAVEYARD)}</p>
-                    <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${item.graveyard}</p>
-                </div>
-                <div>
-                    <p class="mb-1 text-xs uppercase">${trans(UI_ADMIN_GRAVE_SECTOR)}</p>
-                    <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${item.sector}</p>
-                </div>
-                <div>
-                    <p class="mb-1 text-xs uppercase">${trans(UI_ADMIN_GRAVE_ROW)}</p>
-                    <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${item.row}</p>
-                </div>
-                <div>
-                    <p class="mb-1 text-xs uppercase">${trans(UI_ADMIN_GRAVE_NUMBER)}</p>
-                    <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${item.number}</p>
-                </div>
-            </div>
-            ${people}
-        `
+        const content = document.createElement('div')
+        content.appendChild(getGraveInfo(item.graveyard, item.sector, item.row, item.number))
+        content.appendChild(getGravePeople(item.people))
 
         // SHOW MODAL
         const modal = Modal.getModal(
@@ -118,5 +81,17 @@ export default class extends Controller {
         )
         document.querySelector('body').appendChild(modal);
         $(modal).fadeIn(250);
+    }
+
+    addPerson(item, params) {
+        // TITLE
+        const title = trans(UI_GRAVE_ADD_PERSON)
+
+        // BUTTONS
+
+        // CONTENT
+
+        // SHOW MODAL
+
     }
 }

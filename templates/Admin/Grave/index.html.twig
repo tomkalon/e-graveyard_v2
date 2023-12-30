@@ -1,5 +1,5 @@
 {% extends 'Admin/Common/Dashboard/layout.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.index'|trans }}{% endblock %}
+{% block title %}{{ app_name }} - {{ 'ui.grave.title.index'|trans }}{% endblock %}
 
 {% block dashboard_content %}
     <div {{ stimulus_controller('admin--grave--grave-list') }}>
@@ -7,8 +7,8 @@
         {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
-                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.admin.grave.title.index'|trans }}</h1>
-                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.admin.grave.description.index.manage'|trans }}</h2>
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.index'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.index.manage'|trans }}</h2>
                 <!-- /Dashboard Title -->
             {% endblock %}
             {% block buttons_before %}
@@ -26,26 +26,26 @@
                     {% embed 'Core/Pagination/pagination.html.twig' %}
                         {% block head %}
                             {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.admin.grave.graveyard',
+                                label: 'ui.grave.graveyard',
                                 name: 'graveyard.name',
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.admin.grave.sector',
+                                label: 'ui.grave.sector',
                                 name: 'g.sector',
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.admin.grave.row',
+                                label: 'ui.grave.row',
                                 name: 'g.row',
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.admin.grave.number',
+                                label: 'ui.grave.number',
                                 name: 'g.number',
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.admin.grave.people',
+                                label: 'ui.grave.people',
                                 name: 'g.number',
                                 class: 'text-center'
                             } %}
@@ -54,15 +54,11 @@
                                 name: 'g.updatedAt',
                                 class: 'text-center hidden md:block'
                             } %}
-                            {% include 'Core/Pagination/_head.html.twig' with {
-                                label: 'ui.pagination.edit'|trans,
-                                class: 'text-right'
-                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' %}
                         {% endblock %}
                         {% block body %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
-                                value: item.graveyard.name,
-                                path: path('admin_web_grave_show', {id: item.id})
+                                value: item.graveyard.name
                             } %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.sector,
@@ -93,7 +89,7 @@
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                     </button>
                                     <button class="btn btn-success"
-                                            data-modal-target="modal-edit">
+                                            data-modal-target="modal-add=person">
                                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     </button>
                                     <button class="btn btn-danger"

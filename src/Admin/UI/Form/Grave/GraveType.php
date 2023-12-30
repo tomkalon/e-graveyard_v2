@@ -57,7 +57,7 @@ class GraveType extends AbstractType
             'data_class' => GraveDto::class,
             'method' => 'POST',
             'csrf_protection' => true,
-            'label_format' => 'ui.admin.grave.%name%',
+            'label_format' => 'ui.grave.%name%',
         ]);
     }
 }

@@ -1,33 +1,39 @@
 import Routing from '@Routing'
 import $ from "jquery";
 
-function post(path, params, callback = null, callbackParams = null)
+function post(path, params, callback = null)
 {
-    $.ajax({
-        method: "POST",
-        url: Routing.generate(path),
-        data: {params}
-    })
-        .done(function (data) {
-            if (callback) {
-                callback(data, callbackParams);
-            }
-        })
-        .fail(function () {
-            alert("error");
-        })
-    ;
+    apiHandler("POST", path, params, callback)
+
 }
 
-function get(path, params, callback = null, callbackParams = null)
+function get(path, params, callback = null)
+{
+    apiHandler("GET", path, params, callback)
+
+}
+
+function put(path, params, callback = null)
+{
+    apiHandler("PUT", path, params, callback)
+
+}
+
+function remove(path, params, callback = null)
+{
+    apiHandler("DELETE", path, params, callback)
+}
+
+function apiHandler(method, path, params, callback = null)
 {
     $.ajax({
-        method: "GET",
+        method: method,
         url: Routing.generate(path, params),
+        data: {params}
     })
         .done(function (data) {
             if (callback) {
-                callback(data, callbackParams);
+                callback(data, params);
             }
         })
         .fail(function () {
@@ -36,41 +42,6 @@ function get(path, params, callback = null, callbackParams = null)
     ;
 }
 
-function put(path, params, callback = null, callbackParams = null)
-{
-    $.ajax({
-        method: "PUT",
-        url: Routing.generate(path),
-        data: {params}
-    })
-        .done(function (data) {
-            if (callback) {
-                callback(data, callbackParams);
-            }
-        })
-        .fail(function () {
-            alert("error");
-        })
-    ;
-}
-
-function remove(path, params, callback = null, callbackParams = null)
-{
-    $.ajax({
-        method: "DELETE",
-        url: Routing.generate(path),
-        data: {params}
-    })
-        .done(function (data) {
-            if (callback) {
-                callback(data, callbackParams);
-            }
-        })
-        .fail(function () {
-            alert("error");
-        })
-    ;
-}
 
 const api = {
     post, get, put, remove
