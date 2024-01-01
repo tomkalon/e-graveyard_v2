@@ -12,7 +12,7 @@
         <field name="name" />
         <field name="description" nullable="true" />
 
-        <one-to-many field="graves" target-entity="Grave" mapped-by="graveyard">
+        <one-to-many field="graves" target-entity="Grave" mapped-by="graveyard" orphan-removal="true">
         </one-to-many>
         <one-to-many field="images" target-entity="File" mapped-by="graveyard">
         </one-to-many>

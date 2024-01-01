@@ -41,6 +41,26 @@ body {
   background-color: theme('colors.slate.100');
   color: theme('colors.slate.950');
 
+
+  ::-webkit-scrollbar-track
+  {
+    border-radius: 10px;
+    background-color: theme('colors.gray.700');
+  }
+
+  ::-webkit-scrollbar
+  {
+    border-radius: 10px;
+    width: 12px;
+    background-color: #F5F5F5;
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-color: theme('colors.gray.300');
+  }
+
   &.dark {
     background-color: theme('colors.slate.800');
     color: theme('colors.slate.50');

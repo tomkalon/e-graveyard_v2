@@ -17,13 +17,12 @@
         <many-to-one field="graveyard" target-entity="Graveyard" inversed-by="graves">
             <cascade>
                 <cascade-persist/>
-                <cascade-remove/>
             </cascade>
-            <join-column name="graveyard_id" referenced-column-name="id" on-delete="CASCADE" />
+            <join-column name="graveyard_id" referenced-column-name="id" on-delete="SET NULL" />
         </many-to-one>
-        <one-to-many field="people" mapped-by="grave" target-entity="Person">
+        <one-to-many field="people" mapped-by="grave" target-entity="Person" orphan-removal="true">
         </one-to-many>
-        <one-to-many field="images" target-entity="File" mapped-by="grave">
+        <one-to-many field="images" target-entity="File" mapped-by="grave" orphan-removal="true">
         </one-to-many>
 
         <lifecycle-callbacks>

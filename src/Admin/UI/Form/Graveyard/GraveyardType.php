@@ -19,7 +19,7 @@ class GraveyardType extends AbstractType
                 'required' => true,
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'ui.admin.graveyard.desc',
+                'label' => 'ui.graveyard.desc',
                 'required' => false,
                 'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]']
             ])
@@ -36,7 +36,7 @@ class GraveyardType extends AbstractType
             'data_class' => GraveyardDto::class,
             'method' => 'POST',
             'csrf_protection' => true,
-            'label_format' => 'ui.admin.graveyard.%name%',
+            'label_format' => 'ui.graveyard.%name%',
         ]);
     }
 }

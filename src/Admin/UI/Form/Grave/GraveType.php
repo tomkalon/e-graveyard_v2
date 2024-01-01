@@ -44,6 +44,7 @@ class GraveType extends AbstractType
                 'required' => false,
             ])
             ->add('create', SubmitType::class, [
+                'label' => 'ui.buttons.create',
                 'attr' => array(
                     'class' => 'btn btn-green'
                 )
@@ -57,7 +58,7 @@ class GraveType extends AbstractType
             'data_class' => GraveDto::class,
             'method' => 'POST',
             'csrf_protection' => true,
-            'label_format' => 'ui.admin.grave.%name%',
+            'label_format' => 'ui.grave.%name%',
         ]);
     }
 }

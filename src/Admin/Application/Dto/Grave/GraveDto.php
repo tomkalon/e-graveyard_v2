@@ -4,15 +4,17 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
+use Doctrine\Common\Collections\Collection;
 
 class GraveDto
 {
     public ?int $sector;
-    public ?int $row = null;
+    public ?int $row;
     public ?int $number;
-    public ?string $positionX = null;
-    public ?string $positionY = null;
+    public ?string $positionX;
+    public ?string $positionY;
     public ?Graveyard $graveyard;
+    public ?array $people;
 
     public function __construct(
         ?int $sector = null,
@@ -20,11 +22,19 @@ class GraveDto
         ?int $number = null,
         ?string $positionX = null,
         ?string $positionY = null,
-        ?Graveyard $graveyard = null
+        ?Graveyard $graveyard = null,
+        ?array $people = null
     ) {
+        $this->sector = $sector;
+        $this->row = $row;
+        $this->number = $number;
+        $this->positionX = $positionX;
+        $this->positionY = $positionY;
+        $this->graveyard = $graveyard;
+        $this->people = $people;
     }
 
-    public static function getFromEntity(Grave $grave): self
+    public static function fromEntity(Grave $grave): self
     {
         return new self(
             $grave->getSector(),
@@ -33,6 +43,20 @@ class GraveDto
             $grave->getPositionX(),
             $grave->getPositionY(),
             $grave->getGraveyard(),
+            $grave->getPeople()->toArray()
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'graveyard' => $this->graveyard->getName(),
+            'sector' => $this->sector,
+            'row' => $this->row,
+            'number' => $this->number,
+            'positionX' => $this->positionX,
+            'positionY' => $this->positionY,
+            'people' => $this->people
+        ];
     }
 }

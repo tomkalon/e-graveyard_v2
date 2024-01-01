@@ -50,7 +50,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml --env-file .
 ```
 $ composer install
 $ symfony console d:m:m
-$ symfony console fos:js-routing:dump --format=json --target=public/bundles/routing/js/routes.json
+$ symfony console fos:js-routing:dump --format=json --target=public/js/routes.json
 
 ```
 

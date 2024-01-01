@@ -1,5 +1,5 @@
 {% if pageCount > 1 %}
-    <div class="flex col-span-4 sm:justify-end">
+    <div class="pagination flex col-span-4 sm:justify-end">
         <nav aria-label="Table navigation">
             <ul class="inline-flex items-center">
                 {% if first is defined and current != first %}
@@ -45,7 +45,7 @@
                         </li>
                     {% else %}
                         <li>
-                            <button class="px-3 py-1 text-white dark:text-gray-800 transition-colors duration-150 bg-neutral-600 dark:bg-gray-100 border border-r-0 border-blue-600 dark:border-gray-100 rounded-md focus:outline-none focus:shadow-outline-purple">
+                            <button class="px-3 py-1 text-white dark:text-gray-800 transition-colors duration-150 bg-neutral-600 dark:bg-gray-100 rounded-md focus:outline-none focus:shadow-outline-purple">
                                 {{ page }}
                             </button>
                         </li>

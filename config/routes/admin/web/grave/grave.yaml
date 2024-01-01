@@ -5,6 +5,14 @@ admin_web_grave_index:
   defaults:
     page: 1
     
+admin_web_grave_show:
+  path: /admin/grave/show/{id}
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Grave\GraveController::show
+  options:
+    priority: 10
+    expose: true
+    
 admin_web_grave_create:
   path: /admin/grave/create
   methods: [ GET, POST ]

@@ -4,6 +4,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
@@ -23,10 +24,20 @@ class GraveController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ??
                 $request->getSession()->get('pagination_limit')
         );
-
         return $this->render('Admin/Grave/index.html.twig', [
             'pagination' => $paginatedGraveList,
 
+        ]);
+    }
+
+    public function show(
+        Request $request,
+        GetGraveInterface $query,
+        string $id
+    ): Response {
+        $grave = $query->execute($id);
+        return $this->render('Admin/Grave/show.html.twig', [
+            'grave' => $grave,
         ]);
     }
 

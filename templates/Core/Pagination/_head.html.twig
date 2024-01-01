@@ -1,5 +1,5 @@
 {% if name is defined %}
-    <th class="px-4 py-3 {{ class|default('') }}">
+    <th class="head px-2 py-3 {{ class|default('') }}">
         {{ knp_pagination_sortable(pagination, label|default('')|trans, name) }}
         {% if pagination.isSorted(name) %}
             {% if app.request.query.get('direction') is defined %}

@@ -9,21 +9,21 @@ class GraveyardDto
     public ?string $name;
     public ?string $description = null;
 
-
     public function __construct(
-        ?int $sector = null,
-        ?int $row = null,
+        ?string $name = null,
+        ?string $description = null
     ) {
+        $this->name = $name;
+        $this->description = $description;
     }
 
-    public static function getFromEntity(Graveyard $grave): self
+    public static function fromEntity(Graveyard $graveyard): self
     {
         return new self(
-            $grave->getName(),
-            $grave->getDescription(),
+            $graveyard->getName(),
+            $graveyard->getDescription()
         );
     }
-
     public function getName(): ?string
     {
         return $this->name;

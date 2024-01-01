@@ -4,6 +4,7 @@
   }
 
   .content {
+    max-width: 1600px;
     h1 {
       margin-bottom: 0.5rem;
       font-size: 2rem;
@@ -21,3 +22,75 @@
     }
   }
 }
+
+
+@media (max-width: map-get($breakpointsMax, sm)) {
+  .dashboard {
+    .sidebar {
+
+    }
+    .content {
+
+    }
+  }
+}
+
+@media (max-width: map-get($breakpointsMax, md)) {
+  .dashboard {
+    .sidebar {
+      li {
+        span {
+          &.label {
+            display: none;
+          }
+        }
+      }
+    }
+    .content {
+
+    }
+  }
+}
+
+@media (max-width: map-get($breakpointsMax, lg)) {
+  .dashboard {
+    .sidebar {
+    }
+    .content {
+
+    }
+  }
+}
+
+@media (max-width: map-get($breakpointsMax, xl)) {
+  .dashboard {
+    .sidebar {
+      li {
+        .header {
+          min-width: 7rem;
+        }
+        span {
+          &.label {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+    .content {
+
+    }
+  }
+}
+
+
+@media (max-width: map-get($breakpointsMax, 2xl)) {
+  .dashboard {
+    .sidebar {
+
+    }
+    .content {
+
+    }
+  }
+}
+
