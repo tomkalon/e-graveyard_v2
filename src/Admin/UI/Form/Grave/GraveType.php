@@ -44,6 +44,7 @@ class GraveType extends AbstractType
                 'required' => false,
             ])
             ->add('create', SubmitType::class, [
+                'label' => 'ui.buttons.create',
                 'attr' => array(
                     'class' => 'btn btn-green'
                 )

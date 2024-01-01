@@ -4,6 +4,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
@@ -31,9 +32,10 @@ class GraveController extends AbstractController
 
     public function show(
         Request $request,
+        GetGraveInterface $query,
         string $id
     ): Response {
-        $grave = null;
+        $grave = $query->execute($id);
         return $this->render('Admin/Grave/show.html.twig', [
             'grave' => $grave,
         ]);

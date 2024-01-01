@@ -29,12 +29,16 @@ ui:
     empty: Brak wyników do wyświetlenia
     
   buttons:
-    new: Dodaj
+    new: Nowy
+    add: Dodaj
+    create: Utwórz
     edit: Edytuj
     remove: Usuń
+    list: Lista
     details: Szczegóły
     show_more: Pokaż więcej
     close: Zamknij
+    add deceased: Dodaj zmarłego
     
   common:
     updatedAt: Data edycji
@@ -71,11 +75,11 @@ ui:
       show: Szczegóły grobu
       create: Dodawanie grobu
     description:
-      index:
         manage: Zarządzanie listą grobów
-      create:
         position: Położenie grobu
         coordinates: Współrzędne geograficzne
+        people: Pochowani
+        map: Położenie na mapie
     graveyard: Cmentarz
     sector: Sektor
     row: Rząd
@@ -84,19 +88,14 @@ ui:
     positionY: Szer. geograficzna
     people: Pochowani
     without_people: Brak pochowanych
-    create: Dodaj
     details: Szczegóły
-    add_person: Dodaj zmarłego
-    
     
   graveyard:
     title:
       index: Lista cmentarzy
       create: Dodawanie cmentarza
     description:
-      index:
         manage: Zarządzanie listą cmentarzy
-      create:
         info: Informacje
     name: Nazwa cmentarza
     desc: Opis cmentarza

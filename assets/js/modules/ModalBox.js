@@ -4,17 +4,18 @@ import {
 } from '@Translator';
 
 
-const getModal = (title, content, buttons) => {
-    document.querySelectorAll('#js-modal-box').forEach((element) => element.remove());
+const getModal = (title, content, buttons, size = null) => {
+    document.querySelectorAll('#js-modal-box').forEach((element) => element.remove())
 
-    const modal = document.createElement('div');
+    const modal = document.createElement('div')
     modal.setAttribute('role', 'dialog')
     modal.setAttribute('id', 'js-modal-box')
     modal.setAttribute('tabindex', '-1')
     modal.setAttribute('aria-modal', 'true')
     modal.setAttribute('class', 'fixed hidden left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70')
 
-    let modalContent, modalButtons;
+    // CONTENT AND BUTTONS
+    let modalContent, modalButtons
     if (typeof content === 'string') {
         modalContent = content
     } else if (typeof content === 'object') {
@@ -26,8 +27,22 @@ const getModal = (title, content, buttons) => {
         modalButtons = buttons.innerHTML
     }
 
+
+    console.log(size)
+    // SIZE
+    const Sizes = {
+        sm: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]',
+        md: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[800px] px-2',
+        lg: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[1200px] px-2',
+    }
+
+    console.log(Sizes[size] )
+
+    let selectedSize = Sizes[size] || Sizes['sm'];
+    console.log(selectedSize)
+
     modal.innerHTML =
-        `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
+        `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out ${selectedSize}">
             <div class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
                 <div class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                     <!--Modal title-->
@@ -68,6 +83,8 @@ const getModal = (title, content, buttons) => {
         </div>`
 
     closeBtnHandler(modal, 200)
+    document.querySelector('body').appendChild(modal)
+    $(modal).fadeIn(250)
     return modal
 }
 

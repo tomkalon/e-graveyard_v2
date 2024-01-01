@@ -41,7 +41,7 @@ export default class extends Controller {
                         callback = this.details
                         break;
                     case 'modal-add-person':
-                        callback = this.addPerson()
+                        callback = this.addPerson
                         break;
                     case 'modal-remove':
                         break;
@@ -76,11 +76,9 @@ export default class extends Controller {
         content.appendChild(getGravePeople(item.people))
 
         // SHOW MODAL
-        const modal = Modal.getModal(
+        Modal.getModal(
             title, content, buttons
         )
-        document.querySelector('body').appendChild(modal);
-        $(modal).fadeIn(250);
     }
 
     addPerson(item, params) {

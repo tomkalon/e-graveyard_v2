@@ -1,5 +1,5 @@
 {% extends 'Admin/Common/Dashboard/layout.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.admin.grave.title.create'|trans }}{% endblock %}
+{% block title %}{{ app_name }} - {{ 'ui.grave.title.create'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
     {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
@@ -11,7 +11,7 @@
         {% block dashboard_content %}
             <!-- Dashboard Content -->
             {{ form_start(form) }}
-                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.create.position'|trans }}</h3>
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
                 <div class="mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                     <div>
                         {{ form_row(form.graveyard) }}
@@ -26,7 +26,7 @@
                         {{ form_row(form.number) }}
                     </div>
                 </div>
-                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.create.coordinates'|trans }}</h3>
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.coordinates'|trans }}</h3>
                 <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                     <div>
                         {{ form_row(form.positionX) }}
