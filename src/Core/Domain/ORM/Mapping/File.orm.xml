@@ -13,8 +13,18 @@
         <field name="primary" type="boolean" nullable="true"/>
 
         <many-to-one field="grave" target-entity="Grave" inversed-by="images">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+            <join-column name="grave_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
         <many-to-one field="graveyard" target-entity="Graveyard" inversed-by="images">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+            <join-column name="graveyard_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
         <lifecycle-callbacks>
