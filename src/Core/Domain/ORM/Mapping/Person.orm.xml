@@ -15,11 +15,6 @@
         <field name="death_date" type="datetime_immutable" />
 
         <many-to-one field="grave" inversed-by="people" target-entity="Grave">
-            <cascade>
-                <cascade-persist/>
-                <cascade-remove/>
-            </cascade>
-            <join-column name="grave_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
 
         <lifecycle-callbacks>

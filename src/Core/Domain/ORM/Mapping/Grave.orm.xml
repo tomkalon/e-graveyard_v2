@@ -15,11 +15,6 @@
         <field name="positionY" nullable="true"/>
 
         <many-to-one field="graveyard" target-entity="Graveyard" inversed-by="graves">
-            <cascade>
-                <cascade-persist/>
-                <cascade-remove/>
-            </cascade>
-            <join-column name="graveyard_id" referenced-column-name="id" on-delete="CASCADE" />
         </many-to-one>
         <one-to-many field="people" mapped-by="grave" target-entity="Person">
         </one-to-many>

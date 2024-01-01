@@ -14,35 +14,31 @@ const getModal = (title, content, buttons, size = null) => {
     modal.setAttribute('aria-modal', 'true')
     modal.setAttribute('class', 'fixed hidden left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70')
 
+
     // CONTENT AND BUTTONS
     let modalContent, modalButtons
     if (typeof content === 'string') {
         modalContent = content
     } else if (typeof content === 'object') {
-        modalContent = content.innerHTML
+        modalContent = ''
     }
     if (typeof buttons === 'string') {
         modalButtons = buttons
     } else if (typeof buttons === 'object') {
-        modalButtons = buttons.innerHTML
+        modalButtons = ''
     }
 
-
-    console.log(size)
     // SIZE
     const Sizes = {
-        sm: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]',
-        md: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[800px] px-2',
-        lg: 'min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[1200px] px-2',
+        sm: 'min-[576px]:max-w-[300px]',
+        md: 'min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]',
+        lg: 'min-[576px]:max-w-[500px] min-[992px]:max-w-[800px]',
+        xl: 'min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]',
     }
 
-    console.log(Sizes[size] )
-
-    let selectedSize = Sizes[size] || Sizes['sm'];
-    console.log(selectedSize)
-
+    let selectedSize = Sizes[size] || Sizes['md'];
     modal.innerHTML =
-        `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out ${selectedSize}">
+        `<div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 ${selectedSize} px-2">
             <div class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
                 <div class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                     <!--Modal title-->
@@ -69,12 +65,12 @@ const getModal = (title, content, buttons, size = null) => {
                 </div>
     
                 <!--Modal body-->
-                <div class="relative p-4">
+                <div data-modal-content class="relative p-4">
                     ${modalContent}
                 </div>
     
                 <!--Modal footer-->
-                <div class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+                <div data-modal-buttons class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                     ${modalButtons}
                     <button data-item-modal-close class="btn btn-neutral">${trans(UI_BUTTONS_CLOSE)}</button>
                 </div>
@@ -83,8 +79,17 @@ const getModal = (title, content, buttons, size = null) => {
         </div>`
 
     closeBtnHandler(modal, 200)
-    document.querySelector('body').appendChild(modal)
-    $(modal).fadeIn(250)
+    const buttonsContainer = modal.querySelector('[data-modal-buttons]')
+    const contentContainer = modal.querySelector('[data-modal-content]')
+
+    if (typeof buttons === 'object') {
+        buttonsContainer.insertBefore(buttons, buttonsContainer.firstChild)
+    }
+    if (typeof content === 'object') {
+        contentContainer.appendChild(content)
+    }
+
+    $(modal).appendTo('body').fadeIn(250)
     return modal
 }
 

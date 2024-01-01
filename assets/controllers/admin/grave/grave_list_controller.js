@@ -4,11 +4,16 @@ import Routing from '@Routing';
 import Modal from '@Modal';
 import $ from 'jquery';
 
-const { getGraveInfo, getGravePeople } = require('./components')
-
 import {
-    trans, UI_BUTTONS_SHOW_MORE, UI_GRAVE_DETAILS, UI_GRAVE_ADD_PERSON
+    trans,
+    UI_BUTTONS_SHOW_MORE,
+    UI_BUTTONS_REMOVE,
+    UI_GRAVE_DETAILS,
+    UI_GRAVE_ADD_DECEASED,
+    UI_GRAVE_REMOVE
 } from '@Translator';
+
+import {getGraveDetails, getGraveQuestionRemove} from "./components";
 
 
 export default class extends Controller {
@@ -31,25 +36,22 @@ export default class extends Controller {
             const id = element.getAttribute('data-item-id')
             const buttons = element.querySelectorAll('[data-modal-target]')
 
-
             // list row action buttons
             buttons.forEach((button) => {
                 const action = button.getAttribute('data-modal-target')
-                let callback;
+                let callback, options;
                 switch (action) {
                     case 'modal-details':
-                        callback = this.details
-                        break;
-                    case 'modal-add-person':
-                        callback = this.addPerson
+                        callback = this.show
                         break;
                     case 'modal-remove':
+                        callback = this.remove
                         break;
                 }
 
                 button.addEventListener('click', () => {
                     Api.get(
-                        'admin_api_get_grave',
+                        'admin_api_grave_get',
                         {id: id},
                         callback
                     )
@@ -58,38 +60,72 @@ export default class extends Controller {
         })
     }
 
-    details(item, params) {
-        // TITLE
+    show(item, params) {
         const title = trans(UI_GRAVE_DETAILS)
-
-        // BUTTONS
         const buttons = `
             <button class="btn btn-success">
-                <a href="${Routing.generate('admin_web_grave_show', {id: params.id})}">
-                    ${trans(UI_BUTTONS_SHOW_MORE)}
-                </a>
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                ${trans(UI_GRAVE_ADD_DECEASED)}
             </button>
+            <a href="${Routing.generate('admin_web_grave_show', {id: params.id})}">
+                <button class="btn btn-info">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    ${trans(UI_GRAVE_DETAILS)}
+                </button>
+            </a>
         `
-        // CONTENT
-        const content = document.createElement('div')
-        content.appendChild(getGraveInfo(item.graveyard, item.sector, item.row, item.number))
-        content.appendChild(getGravePeople(item.people))
+        const content = getGraveDetails(
+            item.graveyard,
+            item.sector,
+            item.row,
+            item.number,
+            item.people
+        )
 
-        // SHOW MODAL
         Modal.getModal(
             title, content, buttons
         )
     }
 
-    addPerson(item, params) {
-        // TITLE
-        const title = trans(UI_GRAVE_ADD_PERSON)
+    remove(item, params) {
+        const title = trans(UI_GRAVE_REMOVE)
 
-        // BUTTONS
+        const buttons = document.createElement('div')
+        buttons.innerHTML = `
+            <button class="btn btn-danger" data-grave-remove>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                ${trans(UI_BUTTONS_REMOVE)}
+            </button>
+        `
+        buttons.querySelector('[data-grave-remove]').addEventListener('click', (event) => {
+            console.log(event.target)
+            Api.remove(
+                'admin_api_grave_remove',
+                {id:params.id},
+                (data, params) => {
+                    location.reload()
+                }
+            )
+        })
 
-        // CONTENT
+        const content = getGraveDetails(
+            item.graveyard,
+            item.sector,
+            item.row,
+            item.number,
+            item.people
+        )
 
-        // SHOW MODAL
+        content.insertBefore(getGraveQuestionRemove(), content.firstChild)
 
+        Modal.getModal(
+            title, content, buttons
+        )
+    }
+
+    domParser (data) {
+        const div = document.createElement('div')
+        div.innerHTML = data
+        return div
     }
 }

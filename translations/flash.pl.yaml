@@ -4,8 +4,12 @@ notification:
       title: Nowy obiekt
       content: Pomyślnie utworzono
     update:
-      title: Nowy obiekt
+      title: Aktualizacja obiektu
       content: Pomyślnie zaktualizowano
+    remove:
+      title: Usuwanie obiektu
+      content: Pomyślnie usunięto
+      
   user:
     login:
       title: Logowanie
@@ -18,3 +22,6 @@ notification:
     person: Zmarły
     file: Plik
     user: Użytkownik
+    
+  grave:
+    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie jest już usunięty.

@@ -1,10 +1,18 @@
 import {
     trans,
     UI_GRAVE_GRAVEYARD, UI_GRAVE_SECTOR, UI_GRAVE_ROW, UI_GRAVE_NUMBER,
-    UI_GRAVE_PEOPLE, UI_GRAVE_WITHOUT_PEOPLE
+    UI_GRAVE_PEOPLE, UI_GRAVE_WITHOUT_PEOPLE,
+    UI_GRAVE_QUESTION_REMOVE
 } from '@Translator';
 
-const getGraveInfo = (graveyard, sector, row, number) => {
+const getGraveDetails = (graveyard, sector, row, number, people) => {
+    const content = document.createElement('div')
+    content.appendChild(getGravePosition(graveyard, sector, row, number))
+    content.appendChild(getGravePeople(people))
+    return content
+}
+
+const getGravePosition = (graveyard, sector, row, number) => {
     const div = document.createElement('div');
     div.setAttribute('class', 'grid gap-2 grid-cols-2 lg:grid-cols-4 text-center')
     div.innerHTML = `
@@ -45,4 +53,13 @@ const getGravePeople = (people) => {
     }
 }
 
-export { getGraveInfo, getGravePeople };
+const getGraveQuestionRemove = () => {
+    const div = document.createElement('div')
+    div.innerHTML = `
+        <h3>${trans(UI_GRAVE_QUESTION_REMOVE)}</h3>
+        <hr class="my-3">
+    `
+    return div
+}
+
+export { getGraveDetails, getGravePosition, getGravePeople, getGraveQuestionRemove };

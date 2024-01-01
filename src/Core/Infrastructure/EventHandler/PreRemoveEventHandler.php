@@ -10,11 +10,11 @@ use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Event\PrePersistListener;
+use App\Core\Domain\Event\PreRemoveListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class PrePersistEventHandler extends PrePersistListener
+class PreRemoveEventHandler extends PreRemoveListener
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -23,7 +23,7 @@ class PrePersistEventHandler extends PrePersistListener
     {
     }
 
-    public function prePersist(LifecycleEventArgs $args): void
+    public function preRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
         $entityManager = $args->getObjectManager();
@@ -34,13 +34,13 @@ class PrePersistEventHandler extends PrePersistListener
             $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),
             $entity instanceof File => $this->translator->trans('notification.entity.file', [], 'flash'),
             $entity instanceof Person => $this->translator->trans('notification.entity.person', [], 'flash'),
-            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.remove.title', [], 'flash'),
         };
 
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,
             NotificationTypeEnum::SUCCESS,
-            $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
+            $this->translator->trans('notification.lifecycle.remove.content', [], 'flash')
         ));
     }
 }

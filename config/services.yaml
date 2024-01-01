@@ -46,3 +46,7 @@ services:
     App\Core\Infrastructure\EventHandler\PrePersistEventHandler:
       tags:
         - { name: doctrine.event_listener, event: prePersist }
+        
+    App\Core\Infrastructure\EventHandler\PreRemoveEventHandler:
+      tags:
+        - { name: doctrine.event_listener, event: preRemove }

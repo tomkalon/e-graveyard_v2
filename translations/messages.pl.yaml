@@ -38,7 +38,6 @@ ui:
     details: Szczegóły
     show_more: Pokaż więcej
     close: Zamknij
-    add deceased: Dodaj zmarłego
     
   common:
     updatedAt: Data edycji
@@ -68,6 +67,7 @@ ui:
       password: "Hasło:"
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
+      
   grave:
     label: Groby
     title:
@@ -89,7 +89,11 @@ ui:
     people: Pochowani
     without_people: Brak pochowanych
     details: Szczegóły
-    
+    remove: Usuwanie grobu
+    add_deceased: Dodaj zmarłego
+    question:
+      remove: Czy chcesz usunąć wskazany grób wraz ze wszystkimi przypisanymi do niego zmarłymi?
+  
   graveyard:
     title:
       index: Lista cmentarzy

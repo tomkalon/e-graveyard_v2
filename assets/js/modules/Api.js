@@ -7,7 +7,7 @@ function post(path, params, callback = null)
 
 }
 
-function get(path, params, callback = null)
+function get(path, params, callback)
 {
     apiHandler("GET", path, params, callback)
 
