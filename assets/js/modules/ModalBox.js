@@ -16,16 +16,12 @@ const getModal = (title, content, buttons, size = null) => {
 
 
     // CONTENT AND BUTTONS
-    let modalContent, modalButtons
+    let modalContent = '', modalButtons = ''
     if (typeof content === 'string') {
         modalContent = content
-    } else if (typeof content === 'object') {
-        modalContent = ''
     }
     if (typeof buttons === 'string') {
         modalButtons = buttons
-    } else if (typeof buttons === 'object') {
-        modalButtons = ''
     }
 
     // SIZE
