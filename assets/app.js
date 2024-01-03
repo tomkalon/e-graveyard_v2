@@ -14,9 +14,6 @@ import {
 
 initTE({ Input, Ripple });
 
-// Tooltip
-
-
 // icons
 import 'fontawesome-4.7'
 
