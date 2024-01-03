@@ -5,7 +5,7 @@ import Modal from '@Modal';
 import $ from 'jquery';
 
 import {
-    trans, UI_GRAVE_DETAILS, UI_GRAVE_ADD_DECEASED
+    trans, UI_GRAVE_DETAILS, UI_GRAVE_ADD_DECEASED, UI_BUTTONS_REMOVE
 } from '@Translator';
 
 import {getGraveDetails} from "./components";
@@ -46,7 +46,11 @@ export default class extends Controller {
                 }
 
                 button.addEventListener('click', () => {
-                    Api.get('admin_api_grave_get', {id: id}, callback)
+                    Api.get(
+                        'admin_api_grave_get',
+                        {id: id},
+                        callback
+                    )
                 })
             })
         })
@@ -54,28 +58,25 @@ export default class extends Controller {
 
     show(item, params)
     {
-
-        const buttons = $('<div/>', {
-            'class': 'flex gap-2',
-            'html': `
-            <button class="btn btn-success">
-                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                ${trans(UI_GRAVE_ADD_DECEASED)}
-            </button>
-            <a href="${Routing.generate('admin_web_grave_show', {id: params.id})}">
-                <button class="btn btn-info">
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    ${trans(UI_GRAVE_DETAILS)}
-                </button>
-            </a>`
-        })
+        const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
-        Modal.getModal('grave-modal-details', content, buttons[0])
+        const modal = Modal.getModal(name, content)
+        modal.querySelector('[data-grave-btn-details]').setAttribute('href', Routing.generate('admin_web_grave_show', {id: params.id}))
     }
 
     remove(item, params)
     {
+        const name = 'grave-modal-remove'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
-        Modal.getModal('grave-modal-remove', content)
+        const modal = Modal.getModal(name, content)
+        modal.querySelector('[data-grave-btn-remove]').addEventListener('click', () => {
+            Api.remove(
+                'admin_api_grave_remove',
+                {id: params.id},
+                () => location.reload()
+            )
+        })
+
+
     }
 }

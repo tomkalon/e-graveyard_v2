@@ -25,5 +25,4 @@ class GraveController extends AbstractController
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->json(true);
     }
-
 }

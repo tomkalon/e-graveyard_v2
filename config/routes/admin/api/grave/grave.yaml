@@ -1,5 +1,5 @@
 admin_api_grave_get:
-  path: /grave/{id}
+  path: /grave/show/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Api\Controller\Grave\GraveController::get
   options:

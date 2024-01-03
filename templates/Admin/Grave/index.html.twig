@@ -106,6 +106,18 @@
                 <!-- Modal -->
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'grave-modal-details', title: 'ui.grave.details'|trans } %}
+                    {% block buttons %}
+                        <button class="btn btn-success">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            {{ 'ui.grave.add_deceased'|trans }}
+                        </button>
+                        <a href="" data-grave-btn-details>
+                            <button class="btn btn-info">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                {{ 'ui.grave.details'|trans }}
+                            </button>
+                        </a>
+                    {% endblock %}
                 {% endembed %}
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
@@ -114,12 +126,10 @@
                         <hr class="my-3">
                     {% endblock %}
                     {% block buttons %}
-                        <a href="{{ path('admin_web_grave_remove') }}">
-                            <button class="btn btn-danger" data-grave-remove>
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                {{ 'ui.buttons.remove'|trans }}
-                            </button>
-                        </a>
+                        <button class="btn btn-danger" data-grave-remove>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            {{ 'ui.buttons.remove'|trans }}
+                        </button>
                     {% endblock %}
                 {% endembed %}
                 <!-- /Modal -->
