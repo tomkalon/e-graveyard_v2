@@ -76,7 +76,5 @@ export default class extends Controller {
                 () => location.reload()
             )
         })
-
-
     }
 }
