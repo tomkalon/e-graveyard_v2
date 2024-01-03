@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
+use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
@@ -31,7 +32,6 @@ class GraveController extends AbstractController
     }
 
     public function show(
-        Request $request,
         GetGraveInterface $query,
         string $id
     ): Response {
@@ -63,5 +63,13 @@ class GraveController extends AbstractController
         return $this->render('Admin/Grave/create.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    public function remove(
+        string $id,
+        CommandBusInterface $commandBus
+    ): Response {
+        $commandBus->dispatch(new RemoveGraveCommand($id));
+        return $this->redirectToRoute('admin_web_grave_index');
     }
 }

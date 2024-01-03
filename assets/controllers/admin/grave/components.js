@@ -53,13 +53,4 @@ const getGravePeople = (people) => {
     }
 }
 
-const getGraveQuestionRemove = () => {
-    const div = document.createElement('div')
-    div.innerHTML = `
-        <h3>${trans(UI_GRAVE_QUESTION_REMOVE)}</h3>
-        <hr class="my-3">
-    `
-    return div
-}
-
-export { getGraveDetails, getGravePosition, getGravePeople, getGraveQuestionRemove };
+export { getGraveDetails, getGravePosition, getGravePeople };

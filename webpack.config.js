@@ -40,7 +40,7 @@ Encore
 
     .addAliases({
         // MODULES
-        '@Modal': path.resolve(__dirname, 'assets/js/modules/ModalBox'),
+        '@Modal': path.resolve(__dirname, 'assets/js/modules/Modal'),
         '@Api': path.resolve(__dirname, 'assets/js/modules/Api'),
         '@Routing': path.resolve(__dirname, 'assets/js/modules/Routing'),
         // ASSETS

@@ -85,7 +85,7 @@
                             } %}
                                 {% block actions %}
                                     <button class="btn btn-sky"
-                                            data-modal-target="modal-details">
+                                            data-modal-target="grave-modal-details">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
                                     <a href="{{ path('admin_web_grave_show', {id: item.id}) }}">
@@ -94,7 +94,7 @@
                                         </button>
                                     </a>
                                     <button class="btn btn-danger"
-                                            data-modal-target="modal-remove">
+                                            data-modal-target="grave-modal-remove">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 {% endblock %}
@@ -103,6 +103,26 @@
                     {% endembed %}
                 </div>
                 <!-- /Pagination -->
+                <!-- Modal -->
+                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                    name: 'grave-modal-details', title: 'ui.grave.details'|trans } %}
+                {% endembed %}
+                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                    name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
+                    {% block content %}
+                        <h3>{{ 'ui.grave.question.remove'|trans }}</h3>
+                        <hr class="my-3">
+                    {% endblock %}
+                    {% block buttons %}
+                        <a href="{{ path('admin_web_grave_remove') }}">
+                            <button class="btn btn-danger" data-grave-remove>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                {{ 'ui.buttons.remove'|trans }}
+                            </button>
+                        </a>
+                    {% endblock %}
+                {% endembed %}
+                <!-- /Modal -->
                 <!-- /Dashboard Content -->
             {% endblock %}
             {% block buttons_after %}

@@ -5,23 +5,18 @@ import Modal from '@Modal';
 import $ from 'jquery';
 
 import {
-    trans,
-    UI_BUTTONS_SHOW_MORE,
-    UI_BUTTONS_REMOVE,
-    UI_GRAVE_DETAILS,
-    UI_GRAVE_ADD_DECEASED,
-    UI_GRAVE_REMOVE
+    trans, UI_GRAVE_DETAILS, UI_GRAVE_ADD_DECEASED
 } from '@Translator';
 
-import {getGraveDetails, getGraveQuestionRemove} from "./components";
-
+import {getGraveDetails} from "./components";
 
 export default class extends Controller {
 
     // TARGETS
     static targets = ['pagination']
 
-    connect() {
+    connect()
+    {
         const container = this.element;
         const pagination = this.paginationTarget;
         const items = pagination.querySelectorAll('[data-item-id]')
@@ -29,7 +24,8 @@ export default class extends Controller {
         this.handleItems(items)
     }
 
-    handleItems(items) {
+    handleItems(items)
+    {
 
         // list table rows
         items.forEach((element) => {
@@ -41,28 +37,27 @@ export default class extends Controller {
                 const action = button.getAttribute('data-modal-target')
                 let callback, options;
                 switch (action) {
-                    case 'modal-details':
+                    case 'grave-modal-details':
                         callback = this.show
                         break;
-                    case 'modal-remove':
+                    case 'grave-modal-remove':
                         callback = this.remove
                         break;
                 }
 
                 button.addEventListener('click', () => {
-                    Api.get(
-                        'admin_api_grave_get',
-                        {id: id},
-                        callback
-                    )
+                    Api.get('admin_api_grave_get', {id: id}, callback)
                 })
             })
         })
     }
 
-    show(item, params) {
-        const title = trans(UI_GRAVE_DETAILS)
-        const buttons = `
+    show(item, params)
+    {
+
+        const buttons = $('<div/>', {
+            'class': 'flex gap-2',
+            'html': `
             <button class="btn btn-success">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 ${trans(UI_GRAVE_ADD_DECEASED)}
@@ -72,60 +67,15 @@ export default class extends Controller {
                     <i class="fa fa-info-circle" aria-hidden="true"></i>
                     ${trans(UI_GRAVE_DETAILS)}
                 </button>
-            </a>
-        `
-        const content = getGraveDetails(
-            item.graveyard,
-            item.sector,
-            item.row,
-            item.number,
-            item.people
-        )
-
-        Modal.getModal(
-            title, content, buttons
-        )
-    }
-
-    remove(item, params) {
-        const title = trans(UI_GRAVE_REMOVE)
-
-        const buttons = document.createElement('div')
-        buttons.innerHTML = `
-            <button class="btn btn-danger" data-grave-remove>
-                <i class="fa fa-trash" aria-hidden="true"></i>
-                ${trans(UI_BUTTONS_REMOVE)}
-            </button>
-        `
-        buttons.querySelector('[data-grave-remove]').addEventListener('click', (event) => {
-            console.log(event.target)
-            Api.remove(
-                'admin_api_grave_remove',
-                {id:params.id},
-                (data, params) => {
-                    location.reload()
-                }
-            )
+            </a>`
         })
-
-        const content = getGraveDetails(
-            item.graveyard,
-            item.sector,
-            item.row,
-            item.number,
-            item.people
-        )
-
-        content.insertBefore(getGraveQuestionRemove(), content.firstChild)
-
-        Modal.getModal(
-            title, content, buttons
-        )
+        const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
+        Modal.getModal('grave-modal-details', content, buttons[0])
     }
 
-    domParser (data) {
-        const div = document.createElement('div')
-        div.innerHTML = data
-        return div
+    remove(item, params)
+    {
+        const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
+        Modal.getModal('grave-modal-remove', content)
     }
 }
