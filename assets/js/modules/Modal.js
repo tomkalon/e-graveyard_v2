@@ -42,14 +42,6 @@ function closeBtnHandler(modal, time)
         }
     });
 
-    function closeDialog (modal, time) {
-        $(modal).fadeOut(time)
-        setTimeout(() => {
-            modal.remove()
-        }, time)
-    }
-
-
     let close = modal.querySelectorAll('[data-item-modal-close]');
     close.forEach((element) => {
         $(element).click(() => {
@@ -58,8 +50,15 @@ function closeBtnHandler(modal, time)
     })
 }
 
+function closeDialog (modal, time) {
+    $(modal).fadeOut(time)
+    setTimeout(() => {
+        modal.remove()
+    }, time)
+}
+
 const modal = {
-    getModal
+    getModal, closeDialog
 }
 
 export default modal

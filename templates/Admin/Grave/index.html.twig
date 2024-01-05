@@ -93,10 +93,6 @@
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-success"
-                                            data-modal-target="grave-modal-add-deceased">
-                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                    </button>
                                     <button class="btn btn-danger"
                                             data-modal-target="grave-modal-remove">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -112,7 +108,7 @@
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'grave-modal-details', title: 'ui.grave.details'|trans } %}
                     {% block buttons %}
-                        <button class="btn btn-success" data-te-ripple-init>
+                        <button class="btn btn-success" data-grave-btn-add-deceased data-te-ripple-init>
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                             {{ 'ui.grave.add_deceased'|trans }}
                         </button>
@@ -154,7 +150,7 @@
                         {{ form_end(addDeceasedForm) }}
                     {% endblock %}
                     {% block buttons %}
-                        <button class="btn btn-success" data-grave-add-deceased data-te-ripple-init>
+                        <button class="btn btn-success" data-modal-target="grave-modal-add-deceased" data-grave-add-deceased data-te-ripple-init>
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                             {{ 'ui.grave.add_deceased'|trans }}
                         </button>

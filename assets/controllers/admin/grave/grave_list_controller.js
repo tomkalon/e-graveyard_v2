@@ -4,10 +4,6 @@ import Routing from '@Routing';
 import Modal from '@Modal';
 import $ from 'jquery';
 
-import {
-    trans, UI_GRAVE_DETAILS, UI_GRAVE_ADD_DECEASED, UI_BUTTONS_REMOVE
-} from '@Translator';
-
 import {getGraveDetails} from "./components";
 
 export default class extends Controller {
@@ -40,9 +36,6 @@ export default class extends Controller {
                     case 'grave-modal-details':
                         callback = this.show
                         break;
-                    case 'grave-modal-add-deceased':
-                        callback = this.addDeceased
-                        break;
                     case 'grave-modal-remove':
                         callback = this.remove
                         break;
@@ -61,16 +54,26 @@ export default class extends Controller {
 
     show(item, params)
     {
+        function addDeceased(item, params)
+        {
+            const name = 'grave-modal-add-deceased'
+            const modal = Modal.getModal(name)
+        }
+
         const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
         const modal = Modal.getModal(name, content)
         modal.querySelector('[data-grave-btn-details]').setAttribute('href', Routing.generate('admin_web_grave_show', {id: params.id}))
-    }
-
-    addDeceased(item, params)
-    {
-        const name = 'grave-modal-add-deceased'
-        const modal = Modal.getModal(name)
+        modal.querySelector('[data-grave-btn-add-deceased]').addEventListener('click', () => {
+            Modal.closeDialog(modal, 100)
+            setTimeout(() => {
+                Api.get(
+                    'admin_api_grave_get',
+                    {id: params.id},
+                    addDeceased
+                )
+            }, 100)
+        })
     }
 
     remove(item, params)
