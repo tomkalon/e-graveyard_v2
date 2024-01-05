@@ -35,6 +35,7 @@ export default class extends Controller {
                 switch (action) {
                     case 'grave-modal-details':
                         callback = this.show
+                        options = {addDeceased: this.addDeceased}
                         break;
                     case 'grave-modal-remove':
                         callback = this.remove
@@ -45,21 +46,16 @@ export default class extends Controller {
                     Api.get(
                         'admin_api_grave_get',
                         {id: id},
-                        callback
+                        callback,
+                        options
                     )
                 })
             })
         })
     }
 
-    show(item, params)
+    show(item, params, options)
     {
-        function addDeceased(item, params)
-        {
-            const name = 'grave-modal-add-deceased'
-            const modal = Modal.getModal(name)
-        }
-
         const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
         const modal = Modal.getModal(name, content)
@@ -70,10 +66,19 @@ export default class extends Controller {
                 Api.get(
                     'admin_api_grave_get',
                     {id: params.id},
-                    addDeceased
+                    options.addDeceased
                 )
             }, 100)
         })
+    }
+
+    addDeceased(item, params, options)
+    {
+        const name = 'grave-modal-add-deceased'
+        const modal = Modal.getModal(name)
+        const form = modal.querySelector('[data-form="add-deceased"]')
+        const personGrave = form.querySelector('[data-select-person-grave]')
+        personGrave.value = params.id
     }
 
     remove(item, params)

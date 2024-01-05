@@ -9,11 +9,10 @@ import 'tw-elements'
 import {
     Input,
     Ripple,
-    Modal,
     initTE
 } from "tw-elements";
 
-initTE({ Input, Ripple, Modal });
+initTE({ Input, Ripple });
 
 // icons
 import 'fontawesome-4.7'

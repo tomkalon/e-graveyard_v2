@@ -4,8 +4,8 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
+use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
-use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
@@ -20,12 +20,18 @@ class GraveController extends AbstractController
     public function index(
         Request $request,
         GravePaginatedListQueryInterface $query,
+        CommandBusInterface $commandBus,
         int $page
     ): Response {
         $addDeceasedForm = $this->createForm(
-            PersonType::class,
-            new PersonDto()
+            PersonType::class
         );
+        $addDeceasedForm->handleRequest($request);
+
+        if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
+            $commandBus->dispatch(new PersonCommand($addDeceasedForm->getData()));
+        }
+
         $paginatedGraveList = $query->execute(
             $page,
             $request->request->all('pagination_limit')['limit'] ??

@@ -3,6 +3,8 @@ notification:
     create:
       title: Nowy obiekt
       content: Pomyślnie utworzono
+      person:
+        content: Przypisano do grobu
     update:
       title: Aktualizacja obiektu
       content: Pomyślnie zaktualizowano
@@ -16,6 +18,7 @@ notification:
       time: Czas
       success:
         content: Logowanie zakończone powodzeniem
+        
   entity:
     grave: Grób
     graveyard: Cmentarz

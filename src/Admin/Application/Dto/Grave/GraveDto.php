@@ -50,7 +50,7 @@ class GraveDto
     public function toArray(): array
     {
         return [
-            'graveyard' => $this->graveyard->getName(),
+            'graveyard' => $this->graveyard,
             'sector' => $this->sector,
             'row' => $this->row,
             'number' => $this->number,

@@ -51,7 +51,10 @@
                  class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                 {% block buttons %}
                 {% endblock %}
-                <button data-item-modal-close data-te-ripple-init class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}</button>
+                <button type="button" data-item-modal-close
+                        data-te-ripple-init
+                        data-te-ripple-color="light"
+                        class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}</button>
             </div>
         </div>
     </div>
