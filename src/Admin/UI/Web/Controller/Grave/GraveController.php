@@ -6,6 +6,7 @@ use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
@@ -24,12 +25,14 @@ class GraveController extends AbstractController
         int $page
     ): Response {
         $addDeceasedForm = $this->createForm(
-            PersonType::class
+            PersonType::class,
+            new PersonDto()
         );
         $addDeceasedForm->handleRequest($request);
 
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
             $commandBus->dispatch(new PersonCommand($addDeceasedForm->getData()));
+            return $this->redirectToRoute('admin_web_grave_index', ['page' => $page]);
         }
 
         $paginatedGraveList = $query->execute(
