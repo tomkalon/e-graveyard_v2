@@ -3,6 +3,10 @@ fos_rest:
 #    param_fetcher_listener:  true
 #    allowed_methods_listener:  true
     routing_loader: false
+    disable_csrf_role: ROLE_API
+    view:
+      empty_content: 204
+      
 #    view:
 #        view_response_listener:  true
 #    exception:

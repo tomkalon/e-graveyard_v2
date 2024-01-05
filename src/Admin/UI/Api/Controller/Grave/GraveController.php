@@ -5,24 +5,25 @@ namespace App\Admin\UI\Api\Controller\Grave;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\HttpFoundation\Response;
 
-class GraveController extends AbstractController
+class GraveController extends AbstractFOSRestController
 {
     public function get(
         string $id,
         GetGraveInterface $query
-    ): JsonResponse {
+    ): Response
+    {
         $data = $query->execute($id);
-        return $this->json($data->toArray());
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
     }
 
     public function remove(
         string $id,
         CommandBusInterface $commandBus
-    ): JsonResponse {
+    ): void {
         $commandBus->dispatch(new RemoveGraveCommand($id));
-        return $this->json(true);
     }
 }
