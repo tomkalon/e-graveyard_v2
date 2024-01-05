@@ -22,7 +22,10 @@ class GraveController extends AbstractController
         GravePaginatedListQueryInterface $query,
         int $page
     ): Response {
-        $addDeceasedForm = $this->createForm(PersonType::class, new PersonDto::class);
+        $addDeceasedForm = $this->createForm(
+            PersonType::class,
+            new PersonDto()
+        );
         $paginatedGraveList = $query->execute(
             $page,
             $request->request->all('pagination_limit')['limit'] ??

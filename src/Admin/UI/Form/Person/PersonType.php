@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Form\Person;
 
 use App\Admin\Application\Dto\Person\PersonDto;
+use App\Core\Domain\Entity\Person;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -23,12 +24,16 @@ class PersonType extends AbstractType
                 'required' => true,
             ])
             ->add('bornDate', DateType::class, [
+                'widget' => 'single_text',
                 'required' => true,
             ])
-            ->add('lastDate', DateType::class, [
+            ->add('deathDate', DateType::class, [
+                'widget' => 'single_text',
                 'required' => true,
             ])
             ->add('grave', EntityType::class, [
+                'class' => Person::class,
+                'choice_label' => 'id',
                 'required' => true,
             ])
             ->add('add', SubmitType::class, [

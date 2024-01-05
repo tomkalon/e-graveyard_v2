@@ -9,14 +9,12 @@
             <!-- /Dashboard Title -->
         {% endblock %}
         {% block buttons_before %}
-            <button class="btn btn-success">
-                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                {{ 'ui.grave.add_deceased'|trans }}
-            </button>
-            <button class="btn btn-info">
-                <i class="fa fa-list" aria-hidden="true"></i>
-                {{ 'ui.buttons.list'|trans }}
-            </button>
+            <a href="{{ path('admin_web_grave_index') }}">
+                <button class="btn btn-info">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    {{ 'ui.buttons.list'|trans }}
+                </button>
+            </a>
             <button class="btn btn-danger"
                     data-modal-target="modal-remove">
                 <i class="fa fa-trash" aria-hidden="true"></i>

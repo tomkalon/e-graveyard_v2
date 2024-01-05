@@ -40,6 +40,9 @@ export default class extends Controller {
                     case 'grave-modal-details':
                         callback = this.show
                         break;
+                    case 'grave-modal-add-deceased':
+                        callback = this.addDeceased
+                        break;
                     case 'grave-modal-remove':
                         callback = this.remove
                         break;
@@ -62,6 +65,12 @@ export default class extends Controller {
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
         const modal = Modal.getModal(name, content)
         modal.querySelector('[data-grave-btn-details]').setAttribute('href', Routing.generate('admin_web_grave_show', {id: params.id}))
+    }
+
+    addDeceased(item, params)
+    {
+        const name = 'grave-modal-add-deceased'
+        const modal = Modal.getModal(name)
     }
 
     remove(item, params)

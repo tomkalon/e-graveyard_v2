@@ -12,8 +12,8 @@
 
 <div data-modal-box="{{ name }}" role="dialog" tabindex="-1" aria-modal="true"
      class="fixed hidden left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none bg-black bg-opacity-70">
-    <div class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 px-2 {{ sizeClass }}">
-        <div class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
+    <div class="pointer-events-none relative flex mt-12  min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center transition-all duration-300 ease-in-out min-[576px]:mx-auto px-2 {{ sizeClass }}">
+        <div data-modal-dialog class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
             <div class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
 
                 <!--Modal title-->
@@ -49,10 +49,9 @@
             <!--Modal footer-->
             <div data-modal-buttons
                  class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
-
                 {% block buttons %}
                 {% endblock %}
-                <button data-item-modal-close class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}</button>
+                <button data-item-modal-close data-te-ripple-init class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}</button>
             </div>
         </div>
     </div>

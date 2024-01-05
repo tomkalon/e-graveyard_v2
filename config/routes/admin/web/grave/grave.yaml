@@ -19,7 +19,7 @@ admin_web_grave_create:
   
 admin_web_grave_remove:
   path: /admin/grave/remove/{id}
-  methods: [ DELETE ]
+  methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::remove
   options:
     expose: true
