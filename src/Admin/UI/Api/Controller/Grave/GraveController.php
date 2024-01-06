@@ -5,10 +5,11 @@ namespace App\Admin\UI\Api\Controller\Grave;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class GraveController extends AbstractController
+class GraveController extends AbstractFOSRestController
 {
     public function get(
         string $id,

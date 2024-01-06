@@ -1,12 +1,12 @@
 admin_api_grave_get:
-  path: /grave/show/{id}
+  path: /grave/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Api\Controller\Grave\GraveController::get
   options:
     expose: true
     
 admin_api_grave_remove:
-  path: /grave/remove/{id}
+  path: /grave/{id}
   methods: [ DELETE ]
   controller: App\Admin\UI\Api\Controller\Grave\GraveController::remove
   options:

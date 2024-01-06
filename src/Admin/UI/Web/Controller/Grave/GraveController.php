@@ -31,8 +31,15 @@ class GraveController extends AbstractController
         $addDeceasedForm->handleRequest($request);
 
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
-            $commandBus->dispatch(new PersonCommand($addDeceasedForm->getData()));
-            return $this->redirectToRoute('admin_web_grave_index', ['page' => $page]);
+            /** @var PersonDto $data */
+            $data = $addDeceasedForm->getData();
+            $commandBus->dispatch(new PersonCommand($data));
+            $id = $data->grave->getId();
+
+            return $this->redirectToRoute(
+                'admin_web_grave_show',
+                ['id' => $id]
+            );
         }
 
         $paginatedGraveList = $query->execute(
@@ -40,6 +47,7 @@ class GraveController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ??
                 $request->getSession()->get('pagination_limit')
         );
+
         return $this->render('Admin/Grave/index.html.twig', [
             'pagination' => $paginatedGraveList,
             'addDeceasedForm' => $addDeceasedForm->createView()
