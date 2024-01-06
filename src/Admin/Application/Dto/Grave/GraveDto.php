@@ -4,9 +4,9 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
-use Doctrine\Common\Collections\Collection;
+use JsonSerializable;
 
-class GraveDto
+class GraveDto implements JsonSerializable
 {
     public ?int $sector;
     public ?int $row;
@@ -47,16 +47,8 @@ class GraveDto
         );
     }
 
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
-        return [
-            'graveyard' => $this->graveyard->getName(),
-            'sector' => $this->sector,
-            'row' => $this->row,
-            'number' => $this->number,
-            'positionX' => $this->positionX,
-            'positionY' => $this->positionY,
-            'people' => $this->people
-        ];
+        return get_object_vars($this);
     }
 }

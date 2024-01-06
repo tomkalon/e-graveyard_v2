@@ -3,6 +3,10 @@ fos_rest:
 #    param_fetcher_listener:  true
 #    allowed_methods_listener:  true
     routing_loader: false
+    disable_csrf_role: ROLE_API
+    view:
+      empty_content: 204
+      
 #    view:
 #        view_response_listener:  true
 #    exception:
@@ -14,4 +18,3 @@ fos_rest:
         rules:
             - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
             - { path: '^/', priorities: [ 'text/html', '*/*' ], fallback_format: html, prefer_extension: true }
-

@@ -4,10 +4,13 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
+use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
+use App\Admin\UI\Form\Person\PersonType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,16 +21,36 @@ class GraveController extends AbstractController
     public function index(
         Request $request,
         GravePaginatedListQueryInterface $query,
+        CommandBusInterface $commandBus,
         int $page
     ): Response {
+        $addDeceasedForm = $this->createForm(
+            PersonType::class,
+            new PersonDto()
+        );
+        $addDeceasedForm->handleRequest($request);
+
+        if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
+            /** @var PersonDto $data */
+            $data = $addDeceasedForm->getData();
+            $commandBus->dispatch(new PersonCommand($data));
+            $id = $data->grave->getId();
+
+            return $this->redirectToRoute(
+                'admin_web_grave_show',
+                ['id' => $id]
+            );
+        }
+
         $paginatedGraveList = $query->execute(
             $page,
             $request->request->all('pagination_limit')['limit'] ??
                 $request->getSession()->get('pagination_limit')
         );
+
         return $this->render('Admin/Grave/index.html.twig', [
             'pagination' => $paginatedGraveList,
-
+            'addDeceasedForm' => $addDeceasedForm->createView()
         ]);
     }
 

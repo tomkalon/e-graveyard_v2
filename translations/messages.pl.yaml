@@ -42,6 +42,7 @@ ui:
   common:
     updatedAt: Data edycji
     createdAt: Data utworzenia
+    date_format: Format daty (yyyy-mm-dd)
     
   frontpage:
     title: Nazwa cmentarza
@@ -91,7 +92,8 @@ ui:
     details: Szczegóły
     remove: Usuwanie grobu
     add_deceased: Dodaj zmarłego
-    question:
+    modal:
+      add_deceased: Dodawanie zmarłego do wybranego grobu.
       remove: Czy chcesz usunąć wskazany grób wraz ze wszystkimi przypisanymi do niego zmarłymi?
   
   graveyard:
@@ -104,3 +106,9 @@ ui:
     name: Nazwa cmentarza
     desc: Opis cmentarza
     create: Dodaj
+    
+  person:
+    firstName: Imię
+    lastName: Nazwisko
+    bornDate: Data urodzenia
+    deathDate: Data śmierci

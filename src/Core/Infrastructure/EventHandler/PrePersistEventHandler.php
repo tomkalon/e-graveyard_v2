@@ -37,10 +37,15 @@ class PrePersistEventHandler extends PrePersistListener
             default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
         };
 
+        $content = match(true) {
+            $entity instanceof Person => $this->translator->trans('notification.lifecycle.create.person.content', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
+        };
+
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,
             NotificationTypeEnum::SUCCESS,
-            $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
+            $content
         ));
     }
 }

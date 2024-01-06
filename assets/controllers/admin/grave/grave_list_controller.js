@@ -4,10 +4,6 @@ import Routing from '@Routing';
 import Modal from '@Modal';
 import $ from 'jquery';
 
-import {
-    trans, UI_GRAVE_DETAILS, UI_GRAVE_ADD_DECEASED, UI_BUTTONS_REMOVE
-} from '@Translator';
-
 import {getGraveDetails} from "./components";
 
 export default class extends Controller {
@@ -39,6 +35,7 @@ export default class extends Controller {
                 switch (action) {
                     case 'grave-modal-details':
                         callback = this.show
+                        options = {addDeceased: this.addDeceased}
                         break;
                     case 'grave-modal-remove':
                         callback = this.remove
@@ -49,19 +46,39 @@ export default class extends Controller {
                     Api.get(
                         'admin_api_grave_get',
                         {id: id},
-                        callback
+                        callback,
+                        options
                     )
                 })
             })
         })
     }
 
-    show(item, params)
+    show(item, params, options)
     {
         const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
         const modal = Modal.getModal(name, content)
         modal.querySelector('[data-grave-btn-details]').setAttribute('href', Routing.generate('admin_web_grave_show', {id: params.id}))
+        modal.querySelector('[data-grave-btn-add-deceased]').addEventListener('click', () => {
+            Modal.closeDialog(modal, 100)
+            setTimeout(() => {
+                Api.get(
+                    'admin_api_grave_get',
+                    {id: params.id},
+                    options.addDeceased
+                )
+            }, 100)
+        })
+    }
+
+    addDeceased(item, params, options)
+    {
+        const name = 'grave-modal-add-deceased'
+        const modal = Modal.getModal(name)
+        const form = modal.querySelector('[data-form="add-deceased"]')
+        const personGrave = form.querySelector('[data-select-person-grave]')
+        personGrave.value = params.id
     }
 
     remove(item, params)
