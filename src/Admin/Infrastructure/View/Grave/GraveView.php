@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Admin\Infrastructure\Service\ApiView\Grave;
+namespace App\Admin\Infrastructure\View\Grave;
 
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Core\Domain\Entity\Person;
-use App\Core\Infrastructure\Service\ApiView\ViewInterface;
+use App\Core\Infrastructure\View\ViewInterface;
 
 class GraveView implements ViewInterface
 {

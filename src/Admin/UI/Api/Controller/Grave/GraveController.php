@@ -4,7 +4,7 @@ namespace App\Admin\UI\Api\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
-use App\Admin\Infrastructure\Service\ApiView\Grave\GraveView;
+use App\Admin\Infrastructure\View\Grave\GraveView;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

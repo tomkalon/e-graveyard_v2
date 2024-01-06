@@ -38,10 +38,18 @@ const getGravePosition = (graveyard, sector, row, number) => {
 
 const getGravePeople = (people) => {
     const div = document.createElement('div');
+    console.log(people)
     if (people.length) {
         div.innerHTML = `
             <hr class="my-3">
             <p class="font-bold">${trans(UI_GRAVE_PEOPLE)}</p>
+            <table>
+                <tr>
+                <td>
+                
+                </td>
+                </tr>
+            </table>
         `
         return div
     } else {

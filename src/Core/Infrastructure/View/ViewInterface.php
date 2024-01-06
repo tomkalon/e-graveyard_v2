@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\Service\ApiView;
+namespace App\Core\Infrastructure\View;
 
 interface ViewInterface
 {
