@@ -56,7 +56,6 @@ export default class extends Controller {
 
     show(item, params, options)
     {
-        console.log(item)
         const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
         const modal = Modal.getModal(name, content)
