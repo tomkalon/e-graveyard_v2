@@ -22,7 +22,8 @@
                     {{ 'ui.grave.add_deceased'|trans }}
                 </button>
                 <button class="btn btn-danger"
-                        data-modal-target="modal-remove">
+                        data-action="click->admin--grave--grave-show#removeGrave"
+                        data-admin--grave--grave-show-id-param="{{ id }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                     {{ 'ui.buttons.remove'|trans }}
                 </button>
@@ -151,7 +152,7 @@
                                             {% endblock %}
                                         {% endembed %}
 
-                                        <!-- ------------ REMOVE ------------ -->
+                                        <!-- ------------ REMOVE PERSON ------------ -->
                                         {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                                             name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
                                             {% block content %}
@@ -164,6 +165,23 @@
                                                         data-te-ripple-init
                                                         data-te-ripple-color="light">
                                                     <i class="fa fa-minus-square" aria-hidden="true"></i>
+                                                    {{ 'ui.buttons.remove'|trans }}
+                                                </button>
+                                            {% endblock %}
+                                        {% endembed %}
+
+                                        <!-- ------------ REMOVE GRAVE ------------ -->
+                                        {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                                            name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
+                                            {% block content %}
+                                                <h3>{{ 'ui.grave.modal.remove'|trans }}</h3>
+                                            {% endblock %}
+                                            {% block buttons %}
+                                                <button class="btn btn-danger"
+                                                        data-grave-btn-remove
+                                                        data-te-ripple-init
+                                                        data-te-ripple-color="light">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
                                                     {{ 'ui.buttons.remove'|trans }}
                                                 </button>
                                             {% endblock %}

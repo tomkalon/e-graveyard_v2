@@ -81,7 +81,8 @@ class GraveController extends AbstractController
 
         return $this->render('Admin/Grave/show.html.twig', [
             'grave' => GraveDto::fromEntity($grave),
-            'addDeceasedForm' => $addDeceasedForm->createView()
+            'addDeceasedForm' => $addDeceasedForm->createView(),
+            'id' => $id
         ]);
     }
 

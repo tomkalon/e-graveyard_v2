@@ -1,6 +1,7 @@
 import {Controller} from '@hotwired/stimulus';
 import Api from '@Api';
 import Modal from '@Modal';
+import Routing from '@Routing';
 
 import {getPerson} from "./components";
 
@@ -24,6 +25,19 @@ export default class extends Controller {
         const modal = Modal.getModal(name)
     }
 
+    removeGrave({params})
+    {
+        const name = 'grave-modal-remove'
+        const modal = Modal.getModal(name)
+        modal.querySelector('[data-grave-btn-remove]').addEventListener('click', () => {
+            Api.remove(
+                'admin_api_grave_remove',
+                {id: params.id},
+                () => location.replace(Routing.generate('admin_web_grave_index'))
+            )
+        })
+    }
+
     handleItems(items)
     {
         // list table actions cells
@@ -37,7 +51,7 @@ export default class extends Controller {
                 let callback, options;
                 switch (action) {
                     case 'person-modal-remove':
-                        callback = this.remove
+                        callback = this.removePerson
                         break;
                 }
 
@@ -53,7 +67,7 @@ export default class extends Controller {
         })
     }
 
-    remove(item, params)
+    removePerson(item, params)
     {
         const name = 'person-modal-remove'
         const content = getPerson(item)

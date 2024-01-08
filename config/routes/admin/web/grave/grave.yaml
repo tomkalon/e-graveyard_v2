@@ -4,6 +4,8 @@ admin_web_grave_index:
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::index
   defaults:
     page: 1
+  options:
+    expose: true
     
 admin_web_grave_show:
   path: /admin/grave/show/{id}
