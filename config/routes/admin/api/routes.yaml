@@ -1,4 +1,9 @@
 grave_api_routes:
-  prefix: '/api'
+  prefix: '/api/admin'
   resource: 'grave'
+  type: directory
+  
+person_api_routes:
+  prefix: '/api/admin'
+  resource: 'person'
   type: directory

@@ -28,3 +28,6 @@ notification:
     
   grave:
     empty: Nie znaleziono wskazanego grobu. Prawdopodobnie jest już usunięty.
+
+  person:
+    empty: Nie znaleziono wskazanej osoby. Prawdopodobnie jest już usunięta.

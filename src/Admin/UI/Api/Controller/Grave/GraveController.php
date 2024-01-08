@@ -15,8 +15,7 @@ class GraveController extends AbstractController
         string $id,
         GetGraveInterface $query,
         GraveView $graveView
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $data = $query->execute($id);
         return new JsonResponse($graveView->getView($data));
     }

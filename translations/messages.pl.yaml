@@ -80,6 +80,7 @@ ui:
         position: Położenie grobu
         coordinates: Współrzędne geograficzne
         people: Pochowani
+        paid: Informacje na temat opłat
         map: Położenie na mapie
     graveyard: Cmentarz
     sector: Sektor
@@ -112,3 +113,6 @@ ui:
     lastName: Nazwisko
     bornDate: Data urodzenia
     deathDate: Data śmierci
+    remove: Usuwanie zmarłego
+    modal:
+      remove: Czy chcesz usunąć zmarłego z grobu oraz z bazy danych?

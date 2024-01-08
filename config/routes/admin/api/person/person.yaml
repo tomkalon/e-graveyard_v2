@@ -1,0 +1,13 @@
+admin_api_person_get:
+  path: /person/{id}
+  methods: [ GET ]
+  controller: App\Admin\UI\Api\Controller\Person\PersonController::get
+  options:
+    expose: true
+
+admin_api_person_remove:
+  path: /person/{id}
+  methods: [ DELETE ]
+  controller: App\Admin\UI\Api\Controller\Person\PersonController::remove
+  options:
+    expose: true

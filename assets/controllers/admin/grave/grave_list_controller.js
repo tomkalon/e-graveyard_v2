@@ -23,12 +23,12 @@ export default class extends Controller {
     handleItems(items)
     {
 
-        // list table rows
+        // list table actions cells
         items.forEach((element) => {
             const id = element.getAttribute('data-item-id')
             const buttons = element.querySelectorAll('[data-modal-target]')
 
-            // list row action buttons
+            // list table action buttons
             buttons.forEach((button) => {
                 const action = button.getAttribute('data-modal-target')
                 let callback, options;

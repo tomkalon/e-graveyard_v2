@@ -16,14 +16,14 @@ class GraveView implements ViewInterface
             'row' => $data->row,
             'number' => $data->number,
             'graveyard' => $data->graveyard->getName(),
-            'people' => array_map(function($person) {
+            'people' => array_map(function ($person) {
 
                 /** @var Person $person */
                 return [
-                    'firstName' => $person->getFirstname(),
-                    'lastName' => $person->getLastName(),
-                    'bornDate' => $person->getBornDate()->format('Y-m-d'),
-                    'deathDate' => $person->getDeathDate()->format('Y-m-d')
+                    'firstname' => $person->getFirstname(),
+                    'lastname' => $person->getLastName(),
+                    'born_date' => $person->getBornDate()->format('Y-m-d'),
+                    'death_date' => $person->getDeathDate()->format('Y-m-d')
                 ];
             }, $data->people)
         ];
