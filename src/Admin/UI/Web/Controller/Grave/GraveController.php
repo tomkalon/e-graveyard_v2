@@ -71,6 +71,8 @@ class GraveController extends AbstractController
             /** @var PersonDto $dto */
             $dto = $addDeceasedForm->getData();
             $dto->setGrave($grave);
+            $commandBus->dispatch(new PersonCommand($dto));
+
             return $this->redirectToRoute(
                 'admin_web_grave_show',
                 ['id' => $id]
