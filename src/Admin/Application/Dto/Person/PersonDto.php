@@ -39,14 +39,9 @@ class PersonDto
         );
     }
 
-    public function toArray(): array
+    public function setGrave(?Grave $grave): void
     {
-        return [
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
-            'bornDate' => $this->bornDate,
-            'deathDate' => $this->deathDate,
-            'grave' => $this->grave,
-        ];
+        $this->grave = $grave;
     }
+
 }

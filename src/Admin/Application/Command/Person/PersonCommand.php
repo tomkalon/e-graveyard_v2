@@ -8,7 +8,8 @@ use App\Core\Application\CQRS\Command\CommandInterface;
 class PersonCommand implements CommandInterface
 {
     public function __construct(
-        private readonly PersonDto $dto
+        private readonly PersonDto $dto,
+        private readonly ?string $id = null
     )
     {
     }
@@ -17,4 +18,10 @@ class PersonCommand implements CommandInterface
     {
         return $this->dto;
     }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
 }

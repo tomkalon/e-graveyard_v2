@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Api\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
+use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\View\Grave\GraveView;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
@@ -16,8 +17,8 @@ class GraveController extends AbstractController
         GetGraveInterface $query,
         GraveView $graveView
     ): JsonResponse {
-        $data = $query->execute($id);
-        return new JsonResponse($graveView->getView($data));
+        $dto = GraveDto::fromEntity($query->execute($id));
+        return new JsonResponse($graveView->getView($dto));
     }
 
     public function remove(

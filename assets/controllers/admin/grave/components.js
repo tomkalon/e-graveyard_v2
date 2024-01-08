@@ -38,7 +38,6 @@ const getGravePosition = (graveyard, sector, row, number) => {
 
 const getGravePeople = (people) => {
     const div = document.createElement('div');
-    console.log(people)
     if (people.length) {
         div.innerHTML = `
             <hr class="my-3">

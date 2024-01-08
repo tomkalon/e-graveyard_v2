@@ -18,6 +18,12 @@ export default class extends Controller {
         this.handleItems(items)
     }
 
+    addDeceased(event)
+    {
+        const name = 'grave-modal-add-deceased'
+        const modal = Modal.getModal(name)
+    }
+
     handleItems(items)
     {
         // list table actions cells

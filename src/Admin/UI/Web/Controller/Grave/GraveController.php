@@ -56,11 +56,30 @@ class GraveController extends AbstractController
 
     public function show(
         GetGraveInterface $query,
+        CommandBusInterface $commandBus,
+        Request $request,
         string $id
     ): Response {
+        $addDeceasedForm = $this->createForm(
+            PersonType::class,
+            new PersonDto()
+        );
+        $addDeceasedForm->handleRequest($request);
         $grave = $query->execute($id);
+
+        if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
+            /** @var PersonDto $dto */
+            $dto = $addDeceasedForm->getData();
+            $dto->setGrave($grave);
+            return $this->redirectToRoute(
+                'admin_web_grave_show',
+                ['id' => $id]
+            );
+        }
+
         return $this->render('Admin/Grave/show.html.twig', [
-            'grave' => $grave,
+            'grave' => GraveDto::fromEntity($grave),
+            'addDeceasedForm' => $addDeceasedForm->createView()
         ]);
     }
 

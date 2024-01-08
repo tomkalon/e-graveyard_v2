@@ -4,9 +4,8 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
-use JsonSerializable;
 
-class GraveDto implements JsonSerializable
+class GraveDto
 {
     public ?int $sector;
     public ?int $row;
@@ -45,10 +44,5 @@ class GraveDto implements JsonSerializable
             $grave->getGraveyard(),
             $grave->getPeople()->toArray()
         );
-    }
-
-    public function jsonSerialize(): array
-    {
-        return get_object_vars($this);
     }
 }

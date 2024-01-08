@@ -2,8 +2,8 @@
 
 namespace App\Admin\Infrastructure\Query\Person;
 
-use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
+use App\Core\Domain\Entity\Person;
 
 class GetPerson implements GetPersonInterface
 {
@@ -12,8 +12,8 @@ class GetPerson implements GetPersonInterface
     ) {
     }
 
-    public function execute(?string $id): PersonDto
+    public function execute(?string $id): Person
     {
-        return PersonDto::fromEntity($this->personRepository->find($id));
+        return $this->personRepository->find($id);
     }
 }

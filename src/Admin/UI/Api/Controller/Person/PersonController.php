@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Api\Controller\Person;
 
 use App\Admin\Application\Command\Person\RemovePersonCommand;
+use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Query\Person\GetPersonInterface;
 use App\Admin\Infrastructure\View\Person\PersonView;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
@@ -17,8 +18,8 @@ class PersonController extends AbstractController
         GetPersonInterface $query,
         PersonView $personView
     ): JsonResponse {
-        $data = $query->execute($id);
-        return new JsonResponse($personView->getView($data));
+        $dto = PersonDto::fromEntity($query->execute($id));
+        return new JsonResponse($personView->getView($dto));
     }
 
     public function remove(

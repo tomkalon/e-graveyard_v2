@@ -2,8 +2,8 @@
 
 namespace App\Admin\Infrastructure\Query\Grave;
 
-use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
+use App\Core\Domain\Entity\Grave;
 
 class GetGrave implements GetGraveInterface
 {
@@ -11,9 +11,8 @@ class GetGrave implements GetGraveInterface
         private readonly GraveRepositoryInterface $repository,
     ) {
     }
-    public function execute(
-        ?string $id
-    ): GraveDto {
-        return GraveDto::fromEntity($this->repository->find($id));
+    public function execute(?string $id): Grave
+    {
+        return $this->repository->find($id);
     }
 }
