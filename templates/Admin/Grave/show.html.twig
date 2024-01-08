@@ -69,10 +69,10 @@
                                         <table class="min-w-full text-left text-sm text-neutral-600 dark:text-neutral-100">
                                             <thead class="border-b font-medium dark:border-neutral-500">
                                             <tr>
-                                                <th scope="col" class="px-6 py-3">{{ 'ui.person.firstName'|trans }}</th>
-                                                <th scope="col" class="px-6 py-3">{{ 'ui.person.lastName'|trans }}</th>
-                                                <th scope="col" class="px-6 py-3">{{ 'ui.person.bornDate'|trans }}</th>
-                                                <th scope="col" class="px-6 py-3">{{ 'ui.person.deathDate'|trans }}</th>
+                                                <th scope="col" class="px-4 py-3">{{ 'ui.person.firstName'|trans }}</th>
+                                                <th scope="col" class="px-4 py-3">{{ 'ui.person.lastName'|trans }}</th>
+                                                <th scope="col" class="px-4 py-3">{{ 'ui.person.bornDate'|trans }}</th>
+                                                <th scope="col" class="px-4 py-3">{{ 'ui.person.deathDate'|trans }}</th>
                                                 <th scope="col">
                                                     <button class="btn btn-success" data-action="click->admin--grave--grave-show#addDeceased">
                                                         <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -83,9 +83,9 @@
                                             <tbody>
                                             {% for person in grave.people %}
                                                 <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                                    <td class="whitespace-nowrap px-6 py-3">{{ person.firstName }}</td>
-                                                    <td class="whitespace-nowrap px-6 py-3">{{ person.lastName }}</td>
-                                                    <td class="whitespace-nowrap px-6 py-3">
+                                                    <td class="whitespace-nowrap px-4 py-3">{{ person.firstName }}</td>
+                                                    <td class="whitespace-nowrap px-4 py-3">{{ person.lastName }}</td>
+                                                    <td class="whitespace-nowrap px-4 py-3">
                                                         <div class="flex items-center">
                                                             <svg class="w-[15px] h-[15px] mr-2 fill-[#bababa]"
                                                                  viewBox="0 0 512 512"
@@ -95,7 +95,7 @@
                                                             {{ person.bornDate|date('Y-m-d') }}
                                                         </div>
                                                     </td>
-                                                    <td class="whitespace-nowrap px-6 py-3">
+                                                    <td class="whitespace-nowrap px-4 py-3">
                                                         <div class="flex items-center">
                                                             <svg class="w-[15px] h-[15px] mr-1 fill-[#bababa]"
                                                                  viewBox="0 0 384 512"
