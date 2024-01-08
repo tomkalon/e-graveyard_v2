@@ -6,6 +6,10 @@ graveyard_routes:
   resource: 'graveyard'
   type: directory
   
+person_routes:
+  resource: 'person'
+  type: directory
+  
 user_routes:
   resource: 'user'
   type: directory

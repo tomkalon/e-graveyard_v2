@@ -109,6 +109,10 @@ ui:
     create: Dodaj
     
   person:
+    title:
+      index: Lista zmarłych
+    description:
+      manage: Zarządzanie listą zmarłych
     firstName: Imię
     lastName: Nazwisko
     bornDate: Data urodzenia

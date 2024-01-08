@@ -19,14 +19,13 @@ class GraveyardController extends AbstractController
         GraveyardPaginatedListQueryInterface $query,
         int $page
     ): Response {
-        $paginatedGraveyardList = $query->execute(
+        $paginatedGraveyardsList = $query->execute(
             $page,
-            $request->request->all('pagination_limit')['limit'] ??
-            $request->getSession()->get('pagination_limit')
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
         );
 
         return $this->render('Admin/Graveyard/index.html.twig', [
-            'pagination' => $paginatedGraveyardList,
+            'pagination' => $paginatedGraveyardsList,
 
         ]);
     }

@@ -4,6 +4,7 @@ module.exports = {
     content: [
         "./assets/controllers/**/**/*.js",
         "./assets/js/modules/*.js",
+        "./assets/js/views/**/*.js",
         "./templates/**/**/**/*.html.twig",
         "./src/Admin/UI/Form/**/*.php",
         "./src/Main/UI/Form/**/*.php",

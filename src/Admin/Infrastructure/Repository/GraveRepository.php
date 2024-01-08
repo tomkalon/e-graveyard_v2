@@ -11,8 +11,7 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
 {
     use QueryTraits;
 
-
-    public function getGraveListQuery(): Query
+    public function getGravesListQuery(): Query
     {
         $qb = $this->createQueryBuilder('g');
         $qb

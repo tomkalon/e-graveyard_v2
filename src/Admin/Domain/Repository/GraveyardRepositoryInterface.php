@@ -7,5 +7,5 @@ use Doctrine\ORM\Query;
 
 interface GraveyardRepositoryInterface extends BaseGraveyardRepositoryInterface
 {
-    public function getGraveyardListQuery(): Query;
+    public function getGraveyardsListQuery(): Query;
 }

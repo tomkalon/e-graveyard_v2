@@ -2,9 +2,8 @@ import {Controller} from '@hotwired/stimulus';
 import Api from '@Api';
 import Routing from '@Routing';
 import Modal from '@Modal';
-import $ from 'jquery';
 
-import {getGraveDetails} from "./components";
+import {getGraveDetails} from "@View/grave/grave_view";
 
 export default class extends Controller {
 

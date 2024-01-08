@@ -7,5 +7,5 @@ use Doctrine\ORM\Query;
 
 interface GraveRepositoryInterface extends BaseGraveRepositoryInterface
 {
-    public function getGraveListQuery(): Query;
+    public function getGravesListQuery(): Query;
 }

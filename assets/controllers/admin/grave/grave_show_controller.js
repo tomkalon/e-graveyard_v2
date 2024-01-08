@@ -3,7 +3,7 @@ import Api from '@Api';
 import Modal from '@Modal';
 import Routing from '@Routing';
 
-import {getPerson} from "./components";
+import {getPerson} from "@View/person/person_view";
 
 export default class extends Controller {
 
