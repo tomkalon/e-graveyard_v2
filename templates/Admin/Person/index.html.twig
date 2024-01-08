@@ -71,6 +71,27 @@
                     {% endembed %}
                 </div>
                 <!-- /Pagination -->
+                <!-- Modal -->
+
+                <!-- ------------ REMOVE PERSON ------------ -->
+                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                    name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
+                    {% block content %}
+                        <h3>{{ 'ui.person.modal.remove'|trans }}</h3>
+                        <hr class="my-4">
+                    {% endblock %}
+                    {% block buttons %}
+                        <button class="btn btn-danger"
+                                data-person-btn-remove
+                                data-te-ripple-init
+                                data-te-ripple-color="light">
+                            <i class="fa fa-minus-square" aria-hidden="true"></i>
+                            {{ 'ui.buttons.remove'|trans }}
+                        </button>
+                    {% endblock %}
+                {% endembed %}
+
+                <!-- /Modal -->
                 <!-- /Dashboard Content -->
             {% endblock %}
             {% block buttons_after %}

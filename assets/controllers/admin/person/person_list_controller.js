@@ -3,6 +3,8 @@ import Api from '@Api';
 import Routing from '@Routing';
 import Modal from '@Modal';
 
+import { getPerson} from "@View/person/person_view";
+
 export default class extends Controller {
 
     // TARGETS
@@ -50,8 +52,14 @@ export default class extends Controller {
     remove(item, params)
     {
         const name = 'person-modal-remove'
-        const modal = Modal.getModal(name)
-        console.log(item)
-
+        const content = getPerson(item)
+        const modal = Modal.getModal(name, content)
+        modal.querySelector('[data-person-btn-remove]').addEventListener('click', () => {
+            Api.remove(
+                'admin_api_person_remove',
+                {id: params.id},
+                () => location.reload()
+            )
+        })
     }
 }
