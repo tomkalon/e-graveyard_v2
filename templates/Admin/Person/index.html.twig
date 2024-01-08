@@ -1,0 +1,104 @@
+{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.person.title.index'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <!-- Dashboard Card -->
+    <div {{ stimulus_controller('admin--person--person-list') }}>
+        {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.person.title.index'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.person.description.manage'|trans }}</h2>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                <!-- Pagination -->
+                <div {{ stimulus_target('admin--person--person-list', 'pagination') }}>
+                    {% embed 'Core/Pagination/pagination.html.twig' with {
+                        width: "max-w-[800px]"
+                    } %}
+                        {% block head %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.person.lastName',
+                                name: 'p.lastname',
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.person.firstName',
+                                name: 'p.firstname',
+                                class: 'w-48'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.person.bornDate',
+                                name: 'p.born_date',
+                                class: 'w-36 text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.person.deathDate',
+                                name: 'p.death_date',
+                                class: 'w-36 text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' %}
+                        {% endblock %}
+                        {% block body %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.lastName,
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.firstName,
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.bornDate|date('Y-m-d'),
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.deathDate|date('Y-m-d'),
+                                class: 'text-center'
+                            } %}
+                            {% embed 'Core/Pagination/_body_action.html.twig' %}
+                                {% block actions %}
+                                    <a href="{{ path('admin_web_grave_show', {id: item.grave.id}) }}">
+                                        <button class="btn btn-info">
+                                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
+                                    <button class="btn btn-danger"
+                                            data-modal-target="person-modal-remove">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                {% endblock %}
+                            {% endembed %}
+                        {% endblock %}
+                    {% endembed %}
+                </div>
+                <!-- /Pagination -->
+                <!-- Modal -->
+
+                <!-- ------------ REMOVE PERSON ------------ -->
+                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                    name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
+                    {% block content %}
+                        <h3>{{ 'ui.person.modal.remove'|trans }}</h3>
+                        <hr class="my-4">
+                    {% endblock %}
+                    {% block buttons %}
+                        <button class="btn btn-danger"
+                                data-person-btn-remove
+                                data-te-ripple-init
+                                data-te-ripple-color="light">
+                            <i class="fa fa-minus-square" aria-hidden="true"></i>
+                            {{ 'ui.buttons.remove'|trans }}
+                        </button>
+                    {% endblock %}
+                {% endembed %}
+
+                <!-- /Modal -->
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+    <!-- /Dashboard Card -->
+{% endblock %}
+
+

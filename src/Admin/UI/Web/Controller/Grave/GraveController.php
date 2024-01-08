@@ -42,14 +42,13 @@ class GraveController extends AbstractController
             );
         }
 
-        $paginatedGraveList = $query->execute(
+        $paginatedGravesList = $query->execute(
             $page,
-            $request->request->all('pagination_limit')['limit'] ??
-                $request->getSession()->get('pagination_limit')
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
         );
 
         return $this->render('Admin/Grave/index.html.twig', [
-            'pagination' => $paginatedGraveList,
+            'pagination' => $paginatedGravesList,
             'addDeceasedForm' => $addDeceasedForm->createView()
         ]);
     }

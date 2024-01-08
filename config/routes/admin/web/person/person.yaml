@@ -1,0 +1,9 @@
+admin_web_person_index:
+  path: /admin/person/page/{page}
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Person\PersonController::index
+  defaults:
+    page: 1
+  options:
+    expose: true
+    

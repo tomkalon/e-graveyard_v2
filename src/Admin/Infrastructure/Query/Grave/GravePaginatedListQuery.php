@@ -17,7 +17,7 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
         ?int $page = null,
         ?string $limit = null,
     ): PaginationInterface {
-        $query = $this->repository->getGraveListQuery();
+        $query = $this->repository->getGravesListQuery();
         return $this->paginator->paginate(
             $query,
             $page,

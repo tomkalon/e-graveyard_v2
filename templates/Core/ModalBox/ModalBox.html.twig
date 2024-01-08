@@ -3,9 +3,9 @@
 {% if size is defined %}
     {% if size == 'sm' %}
         {% set sizeClass = 'min-[576px]:max-w-[300px]' %}
-    {% elseif type == 'lg' %}
+    {% elseif size == 'lg' %}
         {% set sizeClass = 'min-[576px]:max-w-[500px] min-[992px]:max-w-[800px]' %}
-    {% elseif type == 'xl' %}
+    {% elseif size == 'xl' %}
         {% set sizeClass = 'min-[576px]:max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1140px]' %}
     {% endif %}
 {% endif %}

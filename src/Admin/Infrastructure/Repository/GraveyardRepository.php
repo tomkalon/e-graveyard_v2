@@ -11,7 +11,7 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
 {
     use QueryTraits;
 
-    public function getGraveyardListQuery(): Query
+    public function getGraveyardsListQuery(): Query
     {
         $qb = $this->createQueryBuilder('g');
         $qb

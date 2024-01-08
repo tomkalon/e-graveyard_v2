@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Admin\Infrastructure\Query\Graveyard;
+namespace App\Admin\Infrastructure\Query\Person;
 
-use App\Admin\Domain\Repository\GraveyardRepositoryInterface;
+use App\Admin\Domain\Repository\PersonRepositoryInterface;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
-class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterface
+class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
 {
     public function __construct(
-        private readonly GraveyardRepositoryInterface $repository,
+        private readonly PersonRepositoryInterface $repository,
         private readonly PaginatorInterface $paginator
     )
     {
@@ -20,7 +20,7 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
         ?string $limit = null
     ): PaginationInterface
     {
-        $query = $this->repository->getGraveyardsListQuery();
+        $query = $this->repository->getPeopleListQuery();
         return $this->paginator->paginate(
             $query,
             $page,
