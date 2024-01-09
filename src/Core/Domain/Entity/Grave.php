@@ -21,7 +21,7 @@ class Grave
     private ?Graveyard $graveyard;
     private ?Collection $people;
     private ?Collection $images;
-    private ?DateTimeImmutable $paid = null;
+    private ?Collection $payments;
 
     public function __construct()
     {
@@ -99,14 +99,19 @@ class Grave
         return $this;
     }
 
-    public function getPaid(): ?DateTimeImmutable
+    public function getPayments(): ?Collection
     {
-        return $this->paid;
+        return $this->payments;
     }
 
-    public function setPaid(?DateTimeImmutable $paid): void
+    public function addPayments(PaymentGrave $payment): self
     {
-        $this->paid = $paid;
+        if (!$this->payments->contains($payment)) {
+            $this->payments->add($payment);
+            $payment->setGrave($this);
+        }
+
+        return $this;
     }
 
     public function getPositionX(): ?string
