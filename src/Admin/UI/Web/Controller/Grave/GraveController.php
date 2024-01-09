@@ -4,6 +4,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
+use App\Admin\Application\Command\Payment\PaymentGrave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Application\Dto\Payment\PaymentGraveDto;
@@ -93,8 +94,7 @@ class GraveController extends AbstractController
             // command bus
             $commandBus->dispatch(new PersonCommand($dto));
             return $this->redirectToRoute(
-                'admin_web_grave_show',
-                ['id' => $id]
+                'admin_web_grave_show', ['id' => $id]
             );
         }
 
@@ -104,7 +104,10 @@ class GraveController extends AbstractController
             $dto->setGrave($grave);
 
             // command bus
-            // ----TO-DO----
+            $commandBus->dispatch(new PaymentGraveCommand($dto));
+            return $this->redirectToRoute(
+                'admin_web_grave_show', ['id' => $id]
+            );
         }
 
         return $this->render('Admin/Grave/show.html.twig', [

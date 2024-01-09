@@ -40,6 +40,12 @@ ui:
     show_more: Pokaż więcej
     close: Zamknij
     
+  enums:
+    currencyType:
+      pln: zł
+      usd: $
+      eur: €
+
   common:
     updatedAt: Data edycji
     createdAt: Data utworzenia
@@ -82,6 +88,7 @@ ui:
         coordinates: Współrzędne geograficzne
         people: Pochowani
         paid: Informacje na temat opłat
+        noPaid: Brak opłat
         map: Położenie na mapie
     graveyard: Cmentarz
     sector: Sektor
@@ -129,3 +136,4 @@ ui:
     validity_time: Termin opłacenia
     currency: Waluta
     desc: Komentarz
+    isActive: Aktywne

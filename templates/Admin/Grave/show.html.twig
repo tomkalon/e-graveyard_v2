@@ -58,11 +58,6 @@
                     </div>
                 </div>
 
-                <!-- ------------ PAID INFORMATION ------------ -->
-                {% if grave.paid is defined %}
-                    <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.paid'|trans }}</h3>
-                {% endif %}
-
                 <!-- ------------ PEOPLE ------------ -->
                 <div {{ stimulus_target('admin--grave--grave-show', 'people') }}>
                     {% if grave.people|length %}
@@ -79,7 +74,8 @@
                                                 <th scope="col" class="px-4 py-3">{{ 'ui.person.bornDate'|trans }}</th>
                                                 <th scope="col" class="px-4 py-3">{{ 'ui.person.deathDate'|trans }}</th>
                                                 <th scope="col">
-                                                    <button class="btn btn-success" data-action="click->admin--grave--grave-show#addDeceased">
+                                                    <button class="btn btn-success"
+                                                            data-action="click->admin--grave--grave-show#addDeceased">
                                                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                                                     </button>
                                                 </th>
@@ -227,6 +223,43 @@
                         </div>
                     {% endif %}
                 </div>
+
+                <!-- ------------ PAID INFORMATION ------------ -->
+                {% if grave.payments %}
+                    <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.paid'|trans }}</h3>
+                    <div class="table-list flex flex-col">
+                        <div class="p-4 overflow-x-auto max-w-[800px] rounded bg-neutral-700">
+                            <div class="inline-block min-w-full">
+                                <div class="overflow-hidden">
+                                    <table class="min-w-full text-left text-sm text-neutral-600 dark:text-neutral-100">
+                                        <thead class="border-b font-medium dark:border-neutral-500">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-3">{{ 'ui.payment.value'|trans }}</th>
+                                            <th scope="col" class="px-4 py-3">{{ 'ui.payment.validity_time'|trans }}</th>
+                                            <th scope="col" class="px-4 py-3">{{ 'ui.payment.isActive'|trans }}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for fee in grave.payments %}
+                                            <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                                                <td class="whitespace-nowrap px-4 py-3">{{ fee.value }}</td>
+                                                <td class="whitespace-nowrap px-4 py-3">{{ fee.validityTime|date('Y-m-d') }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.paid'|trans }}</h3>
+                    <div class="mt-4 max-w-[800px]">
+                        <div class="p-4 border rounded-md shadow-md bg-neutral-200 text-neutral-700 border-neutral-400 dark:bg-neutral-700 dark:text-gray-50 dark:border-neutral-800">
+                            <h4 class="text-lg font-semibold">{{ 'ui.grave.description.noPaid'|trans }}</h4>
+                        </div>
+                    </div>
+                {% endif %}
 
                 <!-- ------------ COORDINATES / GOOGLE MAPS ------------ -->
                 {% if grave.positionX != null and grave.positionY != null %}
