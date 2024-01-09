@@ -7,7 +7,7 @@ use App\Core\Domain\Enum\CurrencyTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +18,9 @@ class PaymentGraveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('value', NumberType::class, [
+            ->add('value', MoneyType::class, [
+                'currency' => false,
+                'divisor' => 100,
                 'required' => true,
             ])
             ->add('validity_time', DateType::class, [

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Application\Dto\Payment;
 
+use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use DateTimeImmutable;
@@ -12,17 +13,20 @@ class PaymentGraveDto
     public ?CurrencyTypeEnum $currency;
     public ?string $description;
     public ?DateTimeImmutable $validity_time;
+    public ?Grave $grave;
 
     public function __construct(
         ?string $value = null,
         ?CurrencyTypeEnum $currency = null,
         ?string $description = null,
-        ?DateTimeImmutable $validity_time = null
+        ?DateTimeImmutable $validity_time = null,
+        ?Grave $grave = null
     ) {
         $this->value = $value;
         $this->currency = $currency;
         $this->description = $description;
         $this->validity_time = $validity_time;
+        $this->grave = $grave;
     }
 
     public static function fromEntity(PaymentGrave $paymentGrave): self
@@ -32,6 +36,12 @@ class PaymentGraveDto
             $paymentGrave->getCurrency(),
             $paymentGrave->getDescription(),
             $paymentGrave->getValidityTime(),
+            $paymentGrave->getGrave(),
         );
+    }
+
+    public function setGrave(?Grave $grave): void
+    {
+        $this->grave = $grave;
     }
 }

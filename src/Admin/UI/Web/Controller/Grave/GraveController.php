@@ -98,6 +98,15 @@ class GraveController extends AbstractController
             );
         }
 
+        if ($addPaymentForm->isSubmitted() and $addPaymentForm->isValid()) {
+            /** @var PaymentGraveDto $dto */
+            $dto = $addPaymentForm->getData();
+            $dto->setGrave($grave);
+
+            // command bus
+            // ----TO-DO----
+        }
+
         return $this->render('Admin/Grave/show.html.twig', [
             'grave' => GraveDto::fromEntity($grave),
             'addDeceasedForm' => $addDeceasedForm->createView(),
