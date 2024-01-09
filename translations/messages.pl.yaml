@@ -101,7 +101,7 @@ ui:
     details: Szczegóły
     remove: Usuwanie grobu
     add_deceased: Dodaj zmarłego
-    add_payment: Opłacenie grobu
+    add_payment: Opłać grób
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.
