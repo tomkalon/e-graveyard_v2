@@ -42,19 +42,25 @@
 
             <!--Modal body-->
             <div data-modal-content class="relative p-4">
+                <div data-modal-content-before></div>
                 {% block content %}
                 {% endblock %}
+                <div data-modal-content-after></div>
             </div>
 
             <!--Modal footer-->
             <div data-modal-buttons
                  class="flex flex-shrink-0 gap-2 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
+                <div data-modal-buttons-inner></div>
                 {% block buttons %}
                 {% endblock %}
+                {% if hideClose is not defined %}
                 <button type="button" data-item-modal-close
                         data-te-ripple-init
                         data-te-ripple-color="light"
-                        class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}</button>
+                        class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}
+                </button>
+                {% endif %}
             </div>
         </div>
     </div>
