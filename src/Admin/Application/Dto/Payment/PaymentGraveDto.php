@@ -9,7 +9,7 @@ use DateTimeImmutable;
 class PaymentGraveDto
 {
     public ?int $value;
-    public CurrencyTypeEnum $currency;
+    public ?CurrencyTypeEnum $currency;
     public ?string $description;
     public ?DateTimeImmutable $validity_time;
 

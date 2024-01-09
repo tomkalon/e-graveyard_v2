@@ -21,6 +21,11 @@
                     <i class="fa fa-plus-square" aria-hidden="true"></i>
                     {{ 'ui.grave.add_deceased'|trans }}
                 </button>
+                <button class="btn btn-success"
+                        data-action="click->admin--grave--grave-show#addPayment">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                    {{ 'ui.grave.add_payment'|trans }}
+                </button>
                 <button class="btn btn-danger"
                         data-action="click->admin--grave--grave-show#removeGrave"
                         data-admin--grave--grave-show-id-param="{{ id }}">
@@ -149,6 +154,38 @@
                                                     {{ form_row(addDeceasedForm.add) }}
                                                 </div>
                                                 {{ form_end(addDeceasedForm) }}
+                                            {% endblock %}
+                                        {% endembed %}
+
+                                        <!-- ------------ ADD PAYMENT ------------ -->
+                                        {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                                            name: 'grave-modal-add-payment', title: 'ui.grave.add_payment'|trans} %}
+                                            {% block content %}
+                                                <h3>{{ 'ui.grave.modal.add_payment'|trans }}</h3>
+                                                <hr class="my-4">
+                                                {{ form_start(addPaymentForm, {
+                                                    'attr': {'data-form': 'add-payment'}
+                                                }) }}
+                                                <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
+                                                    <div>
+                                                        {{ form_row(addPaymentForm.value) }}
+                                                    </div>
+                                                    <div>
+                                                        {{ form_row(addPaymentForm.validity_time) }}
+                                                    </div>
+                                                    <div>
+                                                        {{ form_row(addPaymentForm.currency) }}
+                                                    </div>
+                                                </div>
+                                                <div class="mb-6">
+                                                    <div>
+                                                        {{ form_row(addPaymentForm.description) }}
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-end">
+                                                    {{ form_row(addPaymentForm.confirm) }}
+                                                </div>
+                                                {{ form_end(addPaymentForm) }}
                                             {% endblock %}
                                         {% endembed %}
 

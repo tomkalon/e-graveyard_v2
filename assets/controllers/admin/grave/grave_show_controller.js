@@ -25,6 +25,12 @@ export default class extends Controller {
         const modal = Modal.getModal(name)
     }
 
+    addPayment(event)
+    {
+        const name = 'grave-modal-add-payment'
+        const modal = Modal.getModal(name)
+    }
+
     removeGrave({params})
     {
         const name = 'grave-modal-remove'
