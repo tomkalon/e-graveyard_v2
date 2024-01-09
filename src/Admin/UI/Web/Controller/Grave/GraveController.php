@@ -24,15 +24,26 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         int $page
     ): Response {
+
+        // add decease form
         $addDeceasedForm = $this->createForm(
             PersonType::class,
             new PersonDto()
         );
         $addDeceasedForm->handleRequest($request);
 
+        // query
+        $paginatedGravesList = $query->execute(
+            $page,
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
+        );
+
+        // form handler
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
             /** @var PersonDto $data */
             $data = $addDeceasedForm->getData();
+
+            // command bus
             $commandBus->dispatch(new PersonCommand($data));
             $id = $data->grave->getId();
 
@@ -41,11 +52,6 @@ class GraveController extends AbstractController
                 ['id' => $id]
             );
         }
-
-        $paginatedGravesList = $query->execute(
-            $page,
-            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
-        );
 
         return $this->render('Admin/Grave/index.html.twig', [
             'pagination' => $paginatedGravesList,
