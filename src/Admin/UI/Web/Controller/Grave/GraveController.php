@@ -94,7 +94,8 @@ class GraveController extends AbstractController
             // command bus
             $commandBus->dispatch(new PersonCommand($dto));
             return $this->redirectToRoute(
-                'admin_web_grave_show', ['id' => $id]
+                'admin_web_grave_show',
+                ['id' => $id]
             );
         }
 
@@ -106,7 +107,8 @@ class GraveController extends AbstractController
             // command bus
             $commandBus->dispatch(new PaymentGraveCommand($dto));
             return $this->redirectToRoute(
-                'admin_web_grave_show', ['id' => $id]
+                'admin_web_grave_show',
+                ['id' => $id]
             );
         }
 

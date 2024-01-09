@@ -56,4 +56,9 @@ class Payment
     {
         $this->validity_time = $validity_time;
     }
+
+    public function getMoney(): string
+    {
+        return $this->value / 100;
+    }
 }

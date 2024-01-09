@@ -2,9 +2,10 @@
 
 namespace App\Core\Domain\Enum;
 
+use Symfony\Contracts\Translation\TranslatableInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-enum CurrencyTypeEnum: string
+enum CurrencyTypeEnum: string implements TranslatableInterface
 {
     case PLN = 'pln';
     case USD = 'usd';
