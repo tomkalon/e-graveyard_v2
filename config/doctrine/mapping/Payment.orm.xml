@@ -14,7 +14,7 @@
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
 
-        <field name="value" />
+        <field type="integer" name="value" />
         <field name="currency" />
         <field name="description" nullable="true" />
         <field name="validity_time" type="datetime_immutable" nullable="true" />

@@ -32,6 +32,13 @@ class GraveController extends AbstractController
         );
         $addDeceasedForm->handleRequest($request);
 
+        // add decease form
+        $addPaymentForm = $this->createForm(
+            PersonType::class,
+            new PersonDto()
+        );
+        $addDeceasedForm->handleRequest($request);
+
         // query
         $paginatedGravesList = $query->execute(
             $page,

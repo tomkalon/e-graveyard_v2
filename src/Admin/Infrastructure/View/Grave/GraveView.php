@@ -16,6 +16,7 @@ class GraveView implements ViewInterface
             'row' => $data->row,
             'number' => $data->number,
             'graveyard' => $data->graveyard->getName(),
+            'payment' => $data->payments,
             'people' => array_map(function ($person) {
 
                 /** @var Person $person */
