@@ -14,7 +14,7 @@ const getGraveDetails = (graveyard, sector, row, number, people) => {
 
 const getGravePosition = (graveyard, sector, row, number) => {
     const div = document.createElement('div');
-    div.setAttribute('class', 'grid gap-2 grid-cols-2 lg:grid-cols-4 text-center')
+    div.setAttribute('class', 'grid gap-2 grid-cols-2 lg:grid-cols-4 text-neutral-700 dark:text-neutral-100 text-center')
     div.innerHTML = `
         <div>
             <p class="mb-1 text-xs uppercase">${trans(UI_GRAVE_GRAVEYARD)}</p>
@@ -68,7 +68,7 @@ const getGravePeople = (people) => {
 
     if (people.length) {
         div.innerHTML = `
-            <p class="mt-8 font-bold">${trans(UI_GRAVE_PEOPLE)}</p>
+            <p class="mt-8 font-bold text-neutral-700 dark:text-neutral-100">${trans(UI_GRAVE_PEOPLE)}</p>
             <hr class="mt-1 mb-3">
             <table class="min-w-full text-left text-sm text-neutral-600 dark:text-neutral-100">
                 <thead class="border-b font-medium dark:border-neutral-500">

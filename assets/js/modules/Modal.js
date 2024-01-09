@@ -15,16 +15,22 @@ const getModal = (name, contentBefore = null, contentAfter = null,  buttons = nu
     const newContentBefore = modal.querySelector('[data-modal-content-before]')
     if (contentBefore) {
         $(newContentBefore).html(contentBefore)
+    } else {
+        newContentBefore.innerHTML = ''
     }
     const newContentAfter = modal.querySelector('[data-modal-content-after]')
     if (contentAfter) {
-        $(newContentBefore).html(contentAfter)
+        $(newContentAfter).html(contentAfter)
+    } else {
+        newContentAfter.innerHTML = ''
     }
 
     // BUTTONS
     const newButtons = modal.querySelector('[data-modal-buttons-inner]')
     if (buttons) {
         $(newButtons).html(buttons)
+    } else {
+        newButtons.innerHTML = ''
     }
 
     // // display modal

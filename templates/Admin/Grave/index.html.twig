@@ -129,8 +129,7 @@
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans } %}
                     {% block content %}
-                        <h3>{{ 'ui.grave.modal.add_deceased'|trans }}</h3>
-                        <hr class="my-4">
+                        <h4 class="p-4 mb-4 bg-neutral-900 bg-opacity-30 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
                         {{ form_start(addDeceasedForm, {
                             'attr': {'data-form': 'add-deceased'}
                         }) }}
@@ -165,8 +164,7 @@
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
                     {% block content %}
-                        <h3>{{ 'ui.grave.modal.remove'|trans }}</h3>
-                        <hr class="my-4">
+                        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.grave.modal.remove'|trans }}</h4>
                     {% endblock %}
                     {% block buttons %}
                         <button class="btn btn-danger"

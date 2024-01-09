@@ -84,7 +84,7 @@ export default class extends Controller {
     {
         const name = 'grave-modal-remove'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
-        const modal = Modal.getModal(name, content)
+        const modal = Modal.getModal(name, null, content)
         modal.querySelector('[data-grave-btn-remove]').addEventListener('click', () => {
             Api.remove(
                 'admin_api_grave_remove',

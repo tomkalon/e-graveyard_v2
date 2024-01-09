@@ -77,7 +77,7 @@ export default class extends Controller {
     {
         const name = 'person-modal-remove'
         const content = getPerson(item)
-        const modal = Modal.getModal(name, content)
+        const modal = Modal.getModal(name, null, content)
         modal.querySelector('[data-person-btn-remove]').addEventListener('click', () => {
             Api.remove(
                 'admin_api_person_remove',
