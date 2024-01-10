@@ -31,6 +31,7 @@ ui:
   buttons:
     new: Nowy
     add: Dodaj
+    confirm: Zatwierdź
     create: Utwórz
     edit: Edytuj
     remove: Usuń
@@ -39,6 +40,12 @@ ui:
     show_more: Pokaż więcej
     close: Zamknij
     
+  enums:
+    currencyType:
+      pln: zł
+      usd: $
+      eur: €
+
   common:
     updatedAt: Data edycji
     createdAt: Data utworzenia
@@ -81,6 +88,7 @@ ui:
         coordinates: Współrzędne geograficzne
         people: Pochowani
         paid: Informacje na temat opłat
+        noPaid: Brak opłat
         map: Położenie na mapie
     graveyard: Cmentarz
     sector: Sektor
@@ -93,8 +101,10 @@ ui:
     details: Szczegóły
     remove: Usuwanie grobu
     add_deceased: Dodaj zmarłego
+    add_payment: Opłać grób
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
+      add_payment: Opłacenie grobu.
       remove: Czy chcesz usunąć wskazany grób wraz ze wszystkimi przypisanymi do niego zmarłymi?
   
   graveyard:
@@ -120,3 +130,15 @@ ui:
     remove: Usuwanie zmarłego
     modal:
       remove: Czy chcesz usunąć zmarłego z grobu oraz z bazy danych?
+
+  payment:
+    value: Kwota
+    validity_time: Termin opłacenia
+    currency: Waluta
+    desc: Komentarz
+    paid: Opłacony
+    notPaid: Nie opłacony
+    remove: Usuwanie płatności
+    modal:
+      remove: Czy chcesz usunąć wybraną płatność?
+    

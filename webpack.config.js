@@ -43,6 +43,7 @@ Encore
         '@Modal': path.resolve(__dirname, 'assets/js/modules/Modal'),
         '@Api': path.resolve(__dirname, 'assets/js/modules/Api'),
         '@Routing': path.resolve(__dirname, 'assets/js/modules/Routing'),
+        '@HandleItems': path.resolve(__dirname, 'assets/js/modules/HandleItems'),
         // VIEWS
         '@View': path.resolve(__dirname, 'assets/js/views'),
         // ASSETS

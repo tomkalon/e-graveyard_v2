@@ -16,9 +16,15 @@
       padding: 0;
     }
     h3 {
-      margin: 1.5rem auto 1rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      display: inline-block;
       padding: 0.25rem 0.5rem;
-      border-bottom: 1px solid theme('colors.neutral.400');
+    }
+
+    hr {
+      margin: 0.5rem 0 0.5rem;
+      border: 1px solid theme('colors.neutral.300');
     }
   }
 }

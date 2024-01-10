@@ -24,6 +24,7 @@ class GraveyardDto
             $graveyard->getDescription()
         );
     }
+
     public function getName(): ?string
     {
         return $this->name;

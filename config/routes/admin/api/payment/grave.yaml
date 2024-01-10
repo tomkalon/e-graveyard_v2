@@ -1,0 +1,13 @@
+admin_api_payment_grave_get:
+  path: /payment/grave/{id}
+  methods: [ GET ]
+  controller: App\Admin\UI\Api\Controller\Payment\PaymentGraveController::get
+  options:
+    expose: true
+    
+admin_api_payment_grave_remove:
+  path: /payment/grave/{id}
+  methods: [ DELETE ]
+  controller: App\Admin\UI\Api\Controller\Payment\PaymentGraveController::remove
+  options:
+    expose: true

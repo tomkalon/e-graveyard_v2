@@ -103,83 +103,12 @@
                     {% endembed %}
                 </div>
                 <!-- /Pagination -->
-                <!-- Modal -->
-                <!-- ------------ DETAILS ------------ -->
-                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
-                    name: 'grave-modal-details', title: 'ui.grave.details'|trans, size: 'lg' } %}
-                    {% block buttons %}
-                        <button class="btn btn-success"
-                                data-grave-btn-add-deceased
-                                data-te-ripple-init
-                                data-te-ripple-color="light">
-                            <i class="fa fa-user-plus" aria-hidden="true"></i>
-                            {{ 'ui.grave.add_deceased'|trans }}
-                        </button>
-                        <a data-grave-btn-details>
-                            <button class="btn btn-info"
-                                    data-te-ripple-init
-                                    data-te-ripple-color="light">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                {{ 'ui.grave.details'|trans }}
-                            </button>
-                        </a>
-                    {% endblock %}
-                {% endembed %}
-                <!-- ------------ ADD DECEASED ------------ -->
-                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
-                    name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans } %}
-                    {% block content %}
-                        <h3>{{ 'ui.grave.modal.add_deceased'|trans }}</h3>
-                        <hr class="my-4">
-                        {{ form_start(addDeceasedForm, {
-                            'attr': {'data-form': 'add-deceased'}
-                        }) }}
-                        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <div>
-                                {{ form_row(addDeceasedForm.firstName) }}
-                            </div>
-                            <div>
-                                {{ form_row(addDeceasedForm.lastName) }}
-                            </div>
-                        </div>
-                        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <div>
-                                {{ form_row(addDeceasedForm.bornDate) }}
-                            </div>
-                            <div>
-                                {{ form_row(addDeceasedForm.deathDate) }}
-                            </div>
-                        </div>
-                        <div class="hidden">
-                            {{ form_row(addDeceasedForm.grave, {
-                                'attr': {'data-select-person-grave': ''}
-                            }) }}
-                        </div>
-                        <div class="flex justify-end">
-                            {{ form_row(addDeceasedForm.add) }}
-                        </div>
-                        {{ form_end(addDeceasedForm) }}
-                    {% endblock %}
-                {% endembed %}
-                <!-- ------------ REMOVE ------------ -->
-                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
-                    name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
-                    {% block content %}
-                        <h3>{{ 'ui.grave.modal.remove'|trans }}</h3>
-                        <hr class="my-4">
-                    {% endblock %}
-                    {% block buttons %}
-                        <button class="btn btn-danger"
-                                data-grave-btn-remove
-                                data-te-ripple-init
-                                data-te-ripple-color="light">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            {{ 'ui.buttons.remove'|trans }}
-                        </button>
-                    {% endblock %}
-                {% endembed %}
-                <!-- /Modal -->
                 <!-- /Dashboard Content -->
+                <!-- Modal -->
+                <div>
+                    {% include 'Admin/Grave/index/_modals.html.twig' %}
+                </div>
+                <!-- /Modal -->
             {% endblock %}
             {% block buttons_after %}
             {% endblock %}

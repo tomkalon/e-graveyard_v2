@@ -7,6 +7,7 @@ use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
+use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
@@ -26,7 +27,7 @@ class PrePersistEventHandler extends PrePersistListener
     public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
-        $entityManager = $args->getObjectManager();
+        // $entityManager = $args->getObjectManager();
 
         $title = match(true) {
             $entity instanceof Grave => $this->translator->trans('notification.entity.grave', [], 'flash'),
@@ -34,11 +35,13 @@ class PrePersistEventHandler extends PrePersistListener
             $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),
             $entity instanceof File => $this->translator->trans('notification.entity.file', [], 'flash'),
             $entity instanceof Person => $this->translator->trans('notification.entity.person', [], 'flash'),
+            $entity instanceof PaymentGrave => $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
             default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
         };
 
         $content = match(true) {
             $entity instanceof Person => $this->translator->trans('notification.lifecycle.create.person.content', [], 'flash'),
+            $entity instanceof PaymentGrave => $this->translator->trans('notification.lifecycle.create.paymentGrave.content', [], 'flash'),
             default => $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
         };
 
