@@ -19,7 +19,8 @@ export default class extends Controller {
         HandleItems.handleItems(items, this.personActions.bind(this))
     }
 
-    personActions(button, id, action) {
+    personActions(button, id, action)
+    {
         let callback, options;
         switch (action) {
             case 'person-modal-remove':

@@ -5,6 +5,7 @@ import Routing from '@Routing';
 import HandleItems from "@HandleItems";
 
 import {getPerson} from "@View/person/person_view";
+import {getPayment} from "@View/payment/payment_view";
 
 export default class extends Controller {
 
@@ -95,6 +96,14 @@ export default class extends Controller {
     removePayment(item, params) {
         console.log(item)
         const name = 'payment-modal-remove'
-        const modal = Modal.getModal(name, null, null)
+        const content = getPayment(item)
+        const modal = Modal.getModal(name, null, content)
+        modal.querySelector('[data-payment-btn-remove]').addEventListener('click', () => {
+            Api.remove(
+                'admin_api_payment_grave_remove',
+                {id: params.id},
+                () => location.reload()
+            )
+        })
     }
 }

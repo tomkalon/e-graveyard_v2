@@ -4,7 +4,7 @@ namespace App\Admin\UI\Web\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
-use App\Admin\Application\Command\Payment\PaymentGrave\PaymentGraveCommand;
+use App\Admin\Application\Command\Payment\Grave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Application\Dto\Payment\PaymentGraveDto;

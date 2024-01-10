@@ -40,6 +40,11 @@ class PaymentGraveDto
         );
     }
 
+    public function getMoney(): string
+    {
+        return $this->value / 100;
+    }
+
     public function setGrave(?Grave $grave): void
     {
         $this->grave = $grave;

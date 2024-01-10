@@ -17,7 +17,7 @@ class PaymentGraveView implements ViewInterface
     public function getView(mixed $data, $format = null, $context = null): array
     {
         return [
-            'value' => $data->value,
+            'value' => $data->getMoney(),
             'currency' => $data->currency->trans($this->translator),
             'description' => $data->description,
             'isItPaid' => $data->isItPaid(),

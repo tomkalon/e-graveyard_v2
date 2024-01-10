@@ -30,7 +30,10 @@ notification:
     paymentGrave: Opłata za grób
     
   grave:
-    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie jest już usunięty.
+    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie została już usunięty.
 
   person:
-    empty: Nie znaleziono wskazanej osoby. Prawdopodobnie jest już usunięta.
+    empty: Nie znaleziono wskazanej osoby. Prawdopodobnie została już usunięta.
+
+  paymentGrave:
+    empty: Nie znaleziono wskazanej płatności. Prawdopodobnie została już usunięta.

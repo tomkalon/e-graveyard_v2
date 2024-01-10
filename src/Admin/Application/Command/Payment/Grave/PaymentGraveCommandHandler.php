@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Command\Payment\PaymentGrave;
+namespace App\Admin\Application\Command\Payment\Grave;
 
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use App\Core\Domain\Entity\PaymentGrave;
