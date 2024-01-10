@@ -43,6 +43,8 @@ services:
       tags:
         - { name: kernel.event_listener, event: kernel.response }
         
+    # DOCTRINE ENTITY PERSIST
+    # # # CREATE
     App\Core\Infrastructure\EventHandler\PrePersistEventHandler:
       tags:
         - { name: doctrine.event_listener, event: prePersist }
@@ -50,7 +52,17 @@ services:
     App\Core\Infrastructure\EventHandler\PostPersistEventHandler:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
+
+    # # # UPDATE
+    App\Core\Infrastructure\EventHandler\PreUpdateEventHandler:
+      tags:
+        - { name: doctrine.event_listener, event: preUpdate }
         
+    App\Core\Infrastructure\EventHandler\PostUpdateEventHandler:
+      tags:
+        - { name: doctrine.event_listener, event: postUpdate }
+        
+  # # # REMOVE
     App\Core\Infrastructure\EventHandler\PreRemoveEventHandler:
       tags:
         - { name: doctrine.event_listener, event: preRemove }

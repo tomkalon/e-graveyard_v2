@@ -27,7 +27,6 @@ class PrePersistEventHandler extends PrePersistListener
     public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
-        // $entityManager = $args->getObjectManager();
 
         $title = match(true) {
             $entity instanceof Grave => $this->translator->trans('notification.entity.grave', [], 'flash'),

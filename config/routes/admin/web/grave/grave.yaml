@@ -19,6 +19,11 @@ admin_web_grave_create:
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::create
   
+admin_web_grave_edit:
+  path: /admin/grave/edit/{id}
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\Grave\GraveController::edit
+  
 admin_web_grave_remove:
   path: /admin/grave/remove/{id}
   methods: [ GET ]

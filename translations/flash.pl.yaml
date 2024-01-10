@@ -31,6 +31,7 @@ notification:
     
   grave:
     empty: Nie znaleziono wskazanego grobu. Prawdopodobnie została już usunięty.
+    no_changes: Nie wprowadzono zmian.
 
   person:
     empty: Nie znaleziono wskazanej osoby. Prawdopodobnie została już usunięta.
