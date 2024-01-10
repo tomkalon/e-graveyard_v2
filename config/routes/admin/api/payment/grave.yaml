@@ -1,4 +1,4 @@
-admin_api_grave_get:
+admin_api_payment_grave_get:
   path: /payment/grave/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Api\Controller\Payment\PaymentGraveController::get
