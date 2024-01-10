@@ -138,4 +138,7 @@ ui:
     desc: Komentarz
     paid: Opłacony
     notPaid: Nie opłacony
+    remove: Usuwanie płatności
+    modal:
+      remove: Czy chcesz usunąć wybraną płatność?
     

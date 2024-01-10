@@ -98,3 +98,20 @@
         </button>
     {% endblock %}
 {% endembed %}
+
+<!-- ------------ REMOVE PAYMENT ------------ -->
+{% embed 'Core/ModalBox/ModalBox.html.twig' with {
+    name: 'payment-modal-remove', title: 'ui.payment.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.payment.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-payment-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

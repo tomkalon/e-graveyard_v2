@@ -58,17 +58,27 @@ export default class extends Controller {
                 switch (action) {
                     case 'person-modal-remove':
                         callback = this.removePerson
+                        button.addEventListener('click', () => {
+                            Api.get(
+                                'admin_api_person_get',
+                                {id: id},
+                                callback,
+                                options
+                            )
+                        })
+                        break;
+                    case 'payment-modal-remove':
+                        callback = this.removePayment
+                        button.addEventListener('click', () => {
+                            Api.get(
+                                'admin_api_person_get',
+                                {id: id},
+                                callback,
+                                options
+                            )
+                        })
                         break;
                 }
-
-                button.addEventListener('click', () => {
-                    Api.get(
-                        'admin_api_person_get',
-                        {id: id},
-                        callback,
-                        options
-                    )
-                })
             })
         })
     }
@@ -85,5 +95,11 @@ export default class extends Controller {
                 () => location.reload()
             )
         })
+    }
+
+    removePayment(item, params)
+    {
+        const name = 'payment-modal-remove'
+        const modal = Modal.getModal(name, null, null)
     }
 }

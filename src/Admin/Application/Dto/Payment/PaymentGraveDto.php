@@ -45,4 +45,13 @@ class PaymentGraveDto
         $this->grave = $grave;
     }
 
+    public function isItPaid(): bool
+    {
+        $now = new DateTimeImmutable();
+        if ($now < $this->validity_time) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

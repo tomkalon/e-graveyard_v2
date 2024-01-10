@@ -1,0 +1,6 @@
+admin_api_grave_get:
+  path: /payment/grave/{id}
+  methods: [ GET ]
+  controller: App\Admin\UI\Api\Controller\Payment\PaymentGraveController::get
+  options:
+    expose: true

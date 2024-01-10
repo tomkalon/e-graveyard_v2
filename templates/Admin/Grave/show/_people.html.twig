@@ -1,9 +1,9 @@
-<div {{ stimulus_target('admin--grave--grave-show', 'people') }}>
+<div class="max-w-[800px]" {{ stimulus_target('admin--grave--grave-show', 'people') }}>
     {% if grave.people|length %}
         <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.people'|trans }}</h3>
-        <hr class="max-w-[800px]">
+        <hr>
         <div class="table-list flex flex-col">
-            <div class="overflow-x-auto max-w-[800px]">
+            <div class="overflow-x-auto">
                 <div class="inline-block min-w-full">
                     <div class="overflow-hidden">
                         <table class="min-w-full text-left text-sm text-neutral-600 dark:text-neutral-100">
