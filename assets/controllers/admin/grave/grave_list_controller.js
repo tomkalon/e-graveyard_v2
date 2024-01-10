@@ -14,36 +14,28 @@ export default class extends Controller {
     connect()
     {
         const container = this.element;
-        const pagination = this.paginationTarget;
-        const items = pagination.querySelectorAll('[data-item-id]')
 
-        HandleItems.handleItems(items, this.paginationActions.bind(this))
-
+        if (this.hasPaginationTarget) {
+            const pagination = this.paginationTarget;
+            const items = pagination.querySelectorAll('[data-item-id]')
+            HandleItems.handleItems(items, this.paginationActions.bind(this))
+        }
     }
 
     paginationActions(button, id, action) {
         let callback, options;
         switch (action) {
             case 'grave-modal-details':
-                callback = this.show
-                options = {addDeceased: this.addDeceased}
+                callback = this.show.bind(this)
                 break;
             case 'grave-modal-remove':
                 callback = this.remove
                 break;
         }
-
-        button.addEventListener('click', () => {
-            Api.get(
-                'admin_api_grave_get',
-                {id: id},
-                callback,
-                options
-            )
-        })
+        HandleItems.clickAction(button, id, 'admin_api_grave_get', callback)
     }
 
-    show(item, params, options)
+    show(item, params)
     {
         const name = 'grave-modal-details'
         const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
@@ -55,13 +47,13 @@ export default class extends Controller {
                 Api.get(
                     'admin_api_grave_get',
                     {id: params.id},
-                    options.addDeceased
+                    this.addDeceased
                 )
             }, 100)
         })
     }
 
-    addDeceased(item, params, options)
+    addDeceased(item, params)
     {
         const name = 'grave-modal-add-deceased'
         const modal = Modal.getModal(name)

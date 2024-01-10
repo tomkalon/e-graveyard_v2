@@ -77,8 +77,7 @@
                 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
                     name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
                     {% block content %}
-                        <h3>{{ 'ui.person.modal.remove'|trans }}</h3>
-                        <hr class="my-4">
+                        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.person.modal.remove'|trans }}</h4>
                     {% endblock %}
                     {% block buttons %}
                         <button class="btn btn-danger"

@@ -3,6 +3,7 @@ import Api from '@Api';
 import Modal from '@Modal';
 import Routing from '@Routing';
 import HandleItems from "@HandleItems";
+import $ from 'jquery'
 
 import {getPerson} from "@View/person/person_view";
 import {getPayment} from "@View/payment/payment_view";
@@ -12,29 +13,37 @@ export default class extends Controller {
     // TARGETS
     static targets = ['people', 'payments']
 
-    connect() {
+    connect()
+    {
         const container = this.element;
-        const people = this.peopleTarget;
-        const payments = this.paymentsTarget;
 
-        const peopleData = people.querySelectorAll('[data-item-id]')
-        const paymentsData = payments.querySelectorAll('[data-item-id]')
+        if (this.hasPaymentsTarget) {
+            const payments = this.paymentsTarget
+            const paymentsData = payments.querySelectorAll('[data-item-id]')
+            HandleItems.handleItems(paymentsData, this.paymentsActions.bind(this))
+        }
 
-        HandleItems.handleItems(peopleData, this.peopleActions.bind(this))
-        HandleItems.handleItems(paymentsData, this.paymentsActions.bind(this))
+        if (this.hasPeopleTarget) {
+            const people = this.peopleTarget
+            const peopleData = people.querySelectorAll('[data-item-id]')
+            HandleItems.handleItems(peopleData, this.peopleActions.bind(this))
+        }
     }
 
-    addDeceased(event) {
+    addDeceased(event)
+    {
         const name = 'grave-modal-add-deceased'
         const modal = Modal.getModal(name)
     }
 
-    addPayment(event) {
+    addPayment(event)
+    {
         const name = 'grave-modal-add-payment'
         const modal = Modal.getModal(name)
     }
 
-    removeGrave({params}) {
+    removeGrave({params})
+    {
         const name = 'grave-modal-remove'
         const modal = Modal.getModal(name)
         modal.querySelector('[data-grave-btn-remove]').addEventListener('click', () => {
@@ -46,41 +55,30 @@ export default class extends Controller {
         })
     }
 
-    paymentsActions(button, id, action) {
-        let callback, options;
+    paymentsActions(button, id, action)
+    {
+        let callback;
         switch (action) {
             case 'payment-modal-remove':
                 callback = this.removePayment
-                button.addEventListener('click', () => {
-                    Api.get(
-                        'admin_api_payment_grave_get',
-                        {id: id},
-                        callback,
-                        options
-                    )
-                })
                 break
         }
+        HandleItems.clickAction(button, id, 'admin_api_payment_grave_get', callback)
     }
 
-    peopleActions(button, id, action) {
-        let callback, options;
+    peopleActions(button, id, action)
+    {
+        let callback;
         switch (action) {
             case 'person-modal-remove':
                 callback = this.removePerson
-                button.addEventListener('click', () => {
-                    Api.get(
-                        'admin_api_person_get',
-                        {id: id},
-                        callback,
-                        options
-                    )
-                })
                 break
         }
+        HandleItems.clickAction(button, id, 'admin_api_person_get', callback)
     }
 
-    removePerson(item, params) {
+    removePerson(item, params)
+    {
         const name = 'person-modal-remove'
         const content = getPerson(item)
         const modal = Modal.getModal(name, null, content)
@@ -93,7 +91,8 @@ export default class extends Controller {
         })
     }
 
-    removePayment(item, params) {
+    removePayment(item, params)
+    {
         console.log(item)
         const name = 'payment-modal-remove'
         const content = getPayment(item)

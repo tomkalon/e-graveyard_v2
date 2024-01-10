@@ -1,4 +1,7 @@
-function handleItems(items, actions) {
+import Api from "@Api";
+
+function handleItems(items, actions)
+{
     // list table actions cells
     items.forEach((element) => {
         const id = element.getAttribute('data-item-id')
@@ -12,9 +15,21 @@ function handleItems(items, actions) {
     })
 }
 
+function clickAction(button, id, path, callback = null, options = null)
+{
+    button.addEventListener('click', () => {
+        Api.get(
+            path,
+            {id: id},
+            callback,
+            options
+        )
+    })
+}
+
 
 const handle = {
-    handleItems
+    handleItems, clickAction
 }
 
 export default handle;

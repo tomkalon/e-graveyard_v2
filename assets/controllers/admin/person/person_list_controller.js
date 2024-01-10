@@ -4,6 +4,7 @@ import Modal from '@Modal';
 import HandleItems from "@HandleItems";
 
 import { getPerson} from "@View/person/person_view";
+import $ from "jquery";
 
 export default class extends Controller {
 
@@ -13,10 +14,12 @@ export default class extends Controller {
     connect()
     {
         const container = this.element;
-        const pagination = this.paginationTarget;
-        const items = pagination.querySelectorAll('[data-item-id]')
 
-        HandleItems.handleItems(items, this.personActions.bind(this))
+        if (this.hasPaginationTarget) {
+            const pagination = this.paginationTarget;
+            const items = pagination.querySelectorAll('[data-item-id]')
+            HandleItems.handleItems(items, this.personActions.bind(this))
+        }
     }
 
     personActions(button, id, action)
@@ -27,22 +30,14 @@ export default class extends Controller {
                 callback = this.remove
                 break;
         }
-
-        button.addEventListener('click', () => {
-            Api.get(
-                'admin_api_person_get',
-                {id: id},
-                callback,
-                options
-            )
-        })
+        HandleItems.clickAction(button, id, 'admin_api_person_get', callback)
     }
 
     remove(item, params)
     {
         const name = 'person-modal-remove'
         const content = getPerson(item)
-        const modal = Modal.getModal(name, content)
+        const modal = Modal.getModal(name, null, content)
         modal.querySelector('[data-person-btn-remove]').addEventListener('click', () => {
             Api.remove(
                 'admin_api_person_remove',
