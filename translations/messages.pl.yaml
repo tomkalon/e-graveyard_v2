@@ -136,4 +136,6 @@ ui:
     validity_time: Termin opłacenia
     currency: Waluta
     desc: Komentarz
-    isActive: Aktywne
+    paid: Opłacony
+    notPaid: Nie opłacony
+    

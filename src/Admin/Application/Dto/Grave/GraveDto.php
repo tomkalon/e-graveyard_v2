@@ -4,8 +4,10 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
-use App\Core\Domain\Entity\Payment;
 use App\Core\Domain\Entity\PaymentGrave;
+use DateTimeImmutable;
+use Doctrine\Common\Collections\Criteria;
+use Exception;
 
 class GraveDto
 {
@@ -40,6 +42,10 @@ class GraveDto
 
     public static function fromEntity(Grave $grave): self
     {
+        $payments = $grave->getPayments();
+        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
+        $payments = array_values($payments->matching($criteria)->toArray());
+
         return new self(
             $grave->getSector(),
             $grave->getRow(),
@@ -48,7 +54,23 @@ class GraveDto
             $grave->getPositionY(),
             $grave->getGraveyard(),
             $grave->getPeople()->toArray(),
-            $grave->getPayments()->toArray()
+            $payments
         );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function isItPaid(): bool
+    {
+        /** @var PaymentGrave $lastFee */
+        $lastFee = reset($this->payments);
+        $now = new DateTimeImmutable();
+
+        if ($now < $lastFee->getValidityTime()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

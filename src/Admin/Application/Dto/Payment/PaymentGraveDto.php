@@ -6,7 +6,6 @@ use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use DateTimeImmutable;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PaymentGraveDto
 {
@@ -45,4 +44,5 @@ class PaymentGraveDto
     {
         $this->grave = $grave;
     }
+
 }
