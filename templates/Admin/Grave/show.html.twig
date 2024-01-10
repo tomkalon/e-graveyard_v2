@@ -26,6 +26,12 @@
                     <i class="fa fa-plus-square" aria-hidden="true"></i>
                     {{ 'ui.grave.add_deceased'|trans }}
                 </button>
+                <a href="{{ path('admin_web_grave_edit', {id: id}) }}">
+                    <button class="btn btn-warning">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        {{ 'ui.buttons.edit'|trans }}
+                    </button>
+                </a>
                 <button class="btn btn-danger"
                         data-action="click->admin--grave--grave-show#removeGrave"
                         data-admin--grave--grave-show-id-param="{{ id }}">

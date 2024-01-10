@@ -22,11 +22,12 @@ use Symfony\Component\HttpFoundation\Response;
 class GraveController extends AbstractController
 {
     public function index(
-        Request $request,
+        Request                          $request,
         GravePaginatedListQueryInterface $query,
-        CommandBusInterface $commandBus,
-        int $page
-    ): Response {
+        CommandBusInterface              $commandBus,
+        int                              $page
+    ): Response
+    {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -62,11 +63,12 @@ class GraveController extends AbstractController
     }
 
     public function show(
-        GetGraveInterface $query,
+        GetGraveInterface   $query,
         CommandBusInterface $commandBus,
-        Request $request,
-        string $id
-    ): Response {
+        Request             $request,
+        string              $id
+    ): Response
+    {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -123,7 +125,8 @@ class GraveController extends AbstractController
     public function create(
         CommandBusInterface $commandBus,
         Request             $request
-    ): Response {
+    ): Response
+    {
         $form = $this->createForm(
             GraveType::class,
             new GraveDto()
@@ -136,21 +139,49 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($dto));
-            return $this->redirectToRoute(
-                'admin_web_grave_index'
-            );
         }
 
-        return $this->render('Admin/Grave/create.html.twig', [
+        return $this->render('Admin/Grave/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
-    public function remove(
-        string $id,
-        CommandBusInterface $commandBus
-    ): Response {
+    public function edit(
+        GetGraveInterface   $query,
+        CommandBusInterface $commandBus,
+        Request             $request,
+        string              $id
+    ): Response
+    {
+        // query
+        $dto = GraveDto::fromEntity($query->execute($id));
 
+        $form = $this->createForm(
+            GraveType::class,
+            $dto
+        );
+        $form->handleRequest($request);
+
+        // form handler
+        if ($form->isSubmitted() and $form->isValid()) {
+            $dto = $form->getData();
+
+            // command bus
+            $commandBus->dispatch(new GraveCommand($dto, $id));
+            return $this->redirectToRoute('admin_web_grave_show', ['id' => $id]);
+        }
+
+        return $this->render('Admin/Grave/edit.html.twig', [
+            'form' => $form->createView(),
+            'id' => $id
+        ]);
+    }
+
+    public function remove(
+        string              $id,
+        CommandBusInterface $commandBus
+    ): Response
+    {
         // command bus
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->redirectToRoute('admin_web_grave_index');

@@ -19,7 +19,6 @@ class PostPersistEventHandler extends PostPersistListener
     public function postPersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
-        // $entityManager = $args->getObjectManager();
 
         if ($entity instanceof Grave) {
             $id = $entity->getId();

@@ -10,8 +10,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ResponseEventHandler extends ResponseListener
 {
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly NotificationInterface $flashMessage
     )
     {
     }
@@ -20,6 +18,5 @@ class ResponseEventHandler extends ResponseListener
     {
         $response = $event->getResponse();
         $code = $response->getStatusCode();
-
     }
 }
