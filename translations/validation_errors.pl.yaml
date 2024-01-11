@@ -1,2 +1,3 @@
 validation:
-  not_null: Wartość nie powinna być pusta
+  not_null: Wartość nie powinna być pusta!
+  no_unique: Ten grób już istnieje!

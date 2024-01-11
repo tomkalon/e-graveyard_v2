@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Core\Application\Service\EntityUniqueness;
-
-use Doctrine\ORM\EntityManagerInterface;
+namespace App\Core\Application\Utility\EntityUniqueness;
 
 interface IsEntityUniquenessInterface
 {

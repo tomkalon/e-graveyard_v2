@@ -5,7 +5,7 @@ namespace App\Admin\Application\Command\Grave;
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
-use App\Core\Application\Service\EntityUniqueness\IsEntityUniquenessInterface;
+use App\Core\Application\Utility\EntityUniqueness\IsEntityUniquenessInterface;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Enum\NotificationTypeEnum;
@@ -29,11 +29,7 @@ class GraveCommandHandler implements CommandHandlerInterface
         $dto = $command->getDto();
         $id = $command->getId();
 
-        if ($id) {
-            $grave = $this->graveRepository->find($id);
-        } else {
-            $grave = new Grave();
-        }
+        $grave = $id ? $this->graveRepository->find($id) : new Grave();
 
         $grave->setGraveyard($dto->graveyard);
         $grave->setSector($dto->sector);

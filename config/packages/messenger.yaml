@@ -14,7 +14,9 @@ framework:
       
     routing:
         # Route your messages to the transports
-        # 'App\Message\YourMessage': async
+        # 'App\Admin\Application\Command\Grave\GraveCommand': async
+        # 'App\Admin\Application\Command\Person\PersonCommand': async
+        # 'App\Admin\Application\Command\Graveyard\GraveyardCommand': async
 
 # when@test:
 #    framework:

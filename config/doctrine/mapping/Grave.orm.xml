@@ -28,7 +28,7 @@
         </one-to-many>
 
         <unique-constraints>
-            <unique-constraint name="unique_entity" columns="sector,row,number"/>
+            <unique-constraint name="unique_entity" columns="sector,row,number,graveyard_id"/>
         </unique-constraints>
 
         <lifecycle-callbacks>

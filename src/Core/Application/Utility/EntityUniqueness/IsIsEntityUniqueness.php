@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Application\Service\EntityUniqueness;
+namespace App\Core\Application\Utility\EntityUniqueness;
 
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
