@@ -12,8 +12,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 class IsGraveUniqueValidator extends ConstraintValidator
 {
     public function __construct(
-        private readonly GraveRepositoryInterface $graveRepository,
-        private readonly RequestStack $requestStack
+        private readonly GraveRepositoryInterface $graveRepository
     )
     {
     }
@@ -22,9 +21,7 @@ class IsGraveUniqueValidator extends ConstraintValidator
     {
         /** @var GraveDto $dto */
         $dto = $this->context->getRoot()->getData();
-
-        $request = $this->requestStack->getCurrentRequest();
-        $id = $request->attributes->get('id');
+        $id = $dto->id;
 
         /** @var Grave[] $grave */
         $grave = $this->graveRepository->findBy([

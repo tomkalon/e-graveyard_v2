@@ -22,6 +22,7 @@ class GraveDto
     public ?array $people;
     public ?array $payments;
     public ?DateTimeImmutable $updatedAt;
+    public ?DateTimeImmutable $createdAt;
 
     public function __construct(
         ?string $id = null,
@@ -33,7 +34,8 @@ class GraveDto
         ?Graveyard $graveyard = null,
         ?array $people = null,
         ?array $payments = null,
-        ?DateTimeImmutable $updatedAt = null
+        ?DateTimeImmutable $updatedAt = null,
+        ?DateTimeImmutable $createdAt = null
     ) {
         $this->id = $id;
         $this->sector = $sector;
@@ -45,6 +47,7 @@ class GraveDto
         $this->people = $people;
         $this->payments = $payments;
         $this->updatedAt = $updatedAt;
+        $this->createdAt = $createdAt;
     }
 
     public static function fromEntity(Grave $grave): self
@@ -63,7 +66,8 @@ class GraveDto
             $grave->getGraveyard(),
             $grave->getPeople()->toArray(),
             $payments,
-            $grave->getUpdatedAt()
+            $grave->getUpdatedAt(),
+            $grave->getCreatedAt()
         );
     }
 

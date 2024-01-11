@@ -107,7 +107,9 @@ ui:
     add_deceased: Dodaj zmarłego
     add_payment: Opłać grób
     paid: Opłacony
-    notPaid: Nieopłacony
+    unpaid: Nieopłacony
+    expired: Wygasła
+    soon: Niebawem wygaśnie
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.

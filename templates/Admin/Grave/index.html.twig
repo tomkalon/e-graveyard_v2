@@ -53,11 +53,19 @@
                                 label: 'ui.grave.paid',
                                 class: 'text-center'
                             } %}
+
                             {% include 'Core/Pagination/_head.html.twig' with {
                                 label: 'ui.common.updatedAt',
                                 name: 'g.updatedAt',
-                                class: 'text-center md:block'
+                                class: 'text-center hidden md:table-cell'
                             } %}
+
+                            {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.common.createdAt',
+                                name: 'g.createdAt',
+                                class: 'text-center hidden md:table-cell'
+                            } %}
+
                             {% include 'Core/Pagination/_head.html.twig' %}
                         {% endblock %}
                         {% block body %}
@@ -106,6 +114,10 @@
                             {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.updatedAt|date('Y-m-d'),
                                 class: 'text-center hidden md:block'
+                            } %}
+                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                                value: item.createdAt|date('Y-m-d'),
+                                class: 'text-center hidden md:table-cell'
                             } %}
                             {% embed 'Core/Pagination/_body_action.html.twig' with {
                                 class: 'w-36'
