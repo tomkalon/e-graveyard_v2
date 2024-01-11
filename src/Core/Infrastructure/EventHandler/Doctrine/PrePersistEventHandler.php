@@ -17,37 +17,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PrePersistEventHandler extends PrePersistListener
 {
-    public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly NotificationInterface $flashMessage
-    )
+    public function __construct()
     {
     }
 
     public function prePersist(LifecycleEventArgs $args): void
     {
-        $entity = $args->getObject();
-
-        $title = match(true) {
-            $entity instanceof Grave => $this->translator->trans('notification.entity.grave', [], 'flash'),
-            $entity instanceof Graveyard => $this->translator->trans('notification.entity.graveyard', [], 'flash'),
-            $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),
-            $entity instanceof File => $this->translator->trans('notification.entity.file', [], 'flash'),
-            $entity instanceof Person => $this->translator->trans('notification.entity.person', [], 'flash'),
-            $entity instanceof PaymentGrave => $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
-            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
-        };
-
-        $content = match(true) {
-            $entity instanceof Person => $this->translator->trans('notification.lifecycle.create.person.content', [], 'flash'),
-            $entity instanceof PaymentGrave => $this->translator->trans('notification.lifecycle.create.paymentGrave.content', [], 'flash'),
-            default => $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
-        };
-
-        $this->flashMessage->addNotification('notification', new NotificationDto(
-            $title,
-            NotificationTypeEnum::SUCCESS,
-            $content
-        ));
     }
 }

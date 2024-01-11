@@ -45,7 +45,9 @@
                 <!-- Dashboard Content -->
 
                 <!-- ------------ POSITION ------------ -->
-                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
+                <div class="mt-6 flex items-center">
+                    <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
+                </div>
                 <hr class="max-w-[800px]">
                 <div class="grid gap-2 grid-cols-1 lg:grid-cols-2 text-neutral-900 dark:text-neutral-50">
                     <div>
@@ -57,10 +59,12 @@
                         <p class="mb-1 text-xs uppercase">{{ 'ui.grave.sector'|trans }}</p>
                         <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.sector }}</p>
                     </div>
+                    {% if grave.row %}
                     <div>
                         <p class="mb-1 text-xs uppercase">{{ 'ui.grave.row'|trans }}</p>
                         <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.row }}</p>
                     </div>
+                    {% endif %}
                     <div>
                         <p class="mb-1 text-xs uppercase">{{ 'ui.grave.number'|trans }}</p>
                         <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.number }}</p>

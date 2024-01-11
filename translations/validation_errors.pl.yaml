@@ -1,2 +1,6 @@
 validation:
-  not_null: Wartość nie powinna być pusta
+  not_null: Wartość nie powinna być pusta.
+  no_unique: Ten grób już istnieje.
+  
+  person:
+    born_date_is_greater_than_death_date: Data urodzin nie może być mniejsza od daty śmierci.
