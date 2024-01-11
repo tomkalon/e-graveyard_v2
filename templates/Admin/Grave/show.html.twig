@@ -6,7 +6,14 @@
         {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
-                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.show'|trans }}</h1>
+                <div class="flex items-center gap-2">
+                    <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.show'|trans }}</h1>
+                    {% if grave.isItPaid %}
+                        <button class="btn btn-xs btn-success">{{ 'ui.grave.paid'|trans }}</button>
+                    {% else %}
+                        <button class="btn btn-xs btn-danger">{{ 'ui.grave.notPaid'|trans }}</button>
+                    {% endif %}
+                </div>
                 <!-- /Dashboard Title -->
             {% endblock %}
             {% block buttons_before %}
@@ -45,9 +52,7 @@
                 <!-- Dashboard Content -->
 
                 <!-- ------------ POSITION ------------ -->
-                <div class="mt-6 flex items-center">
-                    <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
-                </div>
+                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
                 <hr class="max-w-[800px]">
                 <div class="grid gap-2 grid-cols-1 lg:grid-cols-2 text-neutral-900 dark:text-neutral-50">
                     <div>
@@ -60,10 +65,10 @@
                         <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.sector }}</p>
                     </div>
                     {% if grave.row %}
-                    <div>
-                        <p class="mb-1 text-xs uppercase">{{ 'ui.grave.row'|trans }}</p>
-                        <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.row }}</p>
-                    </div>
+                        <div>
+                            <p class="mb-1 text-xs uppercase">{{ 'ui.grave.row'|trans }}</p>
+                            <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.row }}</p>
+                        </div>
                     {% endif %}
                     <div>
                         <p class="mb-1 text-xs uppercase">{{ 'ui.grave.number'|trans }}</p>

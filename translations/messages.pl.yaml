@@ -106,6 +106,8 @@ ui:
     remove: Usuwanie grobu
     add_deceased: Dodaj zmarłego
     add_payment: Opłać grób
+    paid: Opłacony
+    notPaid: Nieopłacony
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.
@@ -140,8 +142,6 @@ ui:
     validity_time: Termin opłacenia
     currency: Waluta
     desc: Komentarz
-    paid: Opłacony
-    notPaid: Nie opłacony
     remove: Usuwanie płatności
     modal:
       remove: Czy chcesz usunąć wybraną płatność?

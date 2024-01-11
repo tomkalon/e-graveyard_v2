@@ -63,12 +63,16 @@ class GraveDto
      */
     public function isItPaid(): bool
     {
-        /** @var PaymentGrave $lastFee */
-        $lastFee = reset($this->payments);
-        $now = new DateTimeImmutable();
+        if ($this->payments) {
+            /** @var PaymentGrave $lastFee */
+            $lastFee = reset($this->payments);
+            $now = new DateTimeImmutable();
 
-        if ($now < $lastFee->getValidityTime()) {
-            return true;
+            if ($now < $lastFee->getValidityTime()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
