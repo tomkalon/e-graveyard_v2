@@ -7,8 +7,7 @@ use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class PostUpdateEventHandler extends PostUpdateListener
 {
-    public function __construct(
-    )
+    public function __construct()
     {
     }
 

@@ -27,6 +27,10 @@
         <one-to-many field="payments" target-entity="PaymentGrave" mapped-by="grave" orphan-removal="true">
         </one-to-many>
 
+        <unique-constraints>
+            <unique-constraint name="unique_entity" columns="sector,row,number"/>
+        </unique-constraints>
+
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onPrePersist" />
             <lifecycle-callback type="preUpdate" method="onPreUpdate" />

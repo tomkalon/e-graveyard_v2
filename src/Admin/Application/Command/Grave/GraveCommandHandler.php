@@ -41,9 +41,13 @@ class GraveCommandHandler implements CommandHandlerInterface
         $grave->setPositionY($dto->positionY);
 
         // check if there have been any changes to the entity
-        $uow = $this->em->getUnitOfWork();
-        $uow->computeChangeSets();
-        $changeSet = $uow->getEntityChangeSet($grave);
+        if ($id) {
+            $uow = $this->em->getUnitOfWork();
+            $uow->computeChangeSets();
+            $changeSet = $uow->getEntityChangeSet($grave);
+        } else {
+            $changeSet = true;
+        }
 
         if (empty($changeSet)) {
             $this->notification->addNotification('notification', new NotificationDto(
