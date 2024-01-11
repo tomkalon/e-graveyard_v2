@@ -136,6 +136,9 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($dto));
+            return $this->redirectToRoute(
+                'admin_web_grave_index',
+            );
         }
 
         return $this->render('Admin/Grave/create.html.twig', [

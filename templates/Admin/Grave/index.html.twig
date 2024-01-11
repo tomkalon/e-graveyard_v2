@@ -50,9 +50,13 @@
                                 class: 'text-center'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' with {
+                                label: 'ui.grave.paid',
+                                class: 'text-center'
+                            } %}
+                            {% include 'Core/Pagination/_head.html.twig' with {
                                 label: 'ui.common.updatedAt',
                                 name: 'g.updatedAt',
-                                class: 'text-center hidden md:block'
+                                class: 'text-center md:block'
                             } %}
                             {% include 'Core/Pagination/_head.html.twig' %}
                         {% endblock %}
@@ -76,6 +80,29 @@
                                 value: item.people|length,
                                 class: 'text-center'
                             } %}
+                            {% embed 'Core/Pagination/_body_action.html.twig' with {
+                                class: 'w-36'
+                            } %}
+                                {% block actions %}
+                                    {% if item.isItPaid.value == 'paid' %}
+                                        <button class="btn btn-xs btn-success">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </button>
+                                    {% elseif item.isItPaid.value == 'unpaid' %}
+                                        <button class="btn btn-xs btn-danger">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    {% elseif item.isItPaid.value == 'expired' %}
+                                        <button class="btn btn-xs btn-danger">
+                                            <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                                        </button>
+                                    {% elseif item.isItPaid.value == 'soon' %}
+                                        <button class="btn btn-xs btn-warning">
+                                            <i class="fa fa-hourglass-half" aria-hidden="true"></i>
+                                        </button>
+                                    {% endif %}
+                                {% endblock %}
+                            {% endembed %}
                             {% include 'Core/Pagination/_body_value.html.twig' with {
                                 value: item.updatedAt|date('Y-m-d'),
                                 class: 'text-center hidden md:block'

@@ -21,7 +21,6 @@ class CreateEntityEvent extends PostPersistListener
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly NotificationInterface $flashMessage,
-        private readonly UrlGeneratorInterface $urlGenerator
     )
     {
     }
@@ -51,10 +50,5 @@ class CreateEntityEvent extends PostPersistListener
             NotificationTypeEnum::SUCCESS,
             $content
         ));
-
-        if ($entity instanceof Grave) {
-            $id = $entity->getId();
-            $url = $this->urlGenerator->generate('admin_web_grave_show', ['id' => $id]);
-        }
     }
 }

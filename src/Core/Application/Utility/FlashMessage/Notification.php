@@ -9,8 +9,7 @@ class Notification implements NotificationInterface
 {
     public function __construct(
         private readonly FlashMessageInterface $flashMessage
-    )
-    {
+    ) {
     }
 
     public function addNotification(string $name, NotificationDto $dto): void

@@ -2,6 +2,7 @@
 
 namespace App\Admin\Infrastructure\Query\Grave;
 
+use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -18,11 +19,20 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
         ?string $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getGravesListQuery();
-        return $this->paginator->paginate(
+
+        $paginationList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
             ['limit_form' => $limit]
         );
+
+        $data = [];
+        foreach ($paginationList->getItems() as $grave) {
+            $data[] = GraveDto::fromEntity($grave);
+        }
+
+        $paginationList->setItems($data);
+        return $paginationList;
     }
 }
