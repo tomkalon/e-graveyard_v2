@@ -29,7 +29,7 @@
                 <!--Close button-->
                 <button type="button"
                         class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                        data-item-modal-close
+                        data-item-modal-close="{{ name }}"
                         aria-label="Close">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          fill="none"
@@ -59,7 +59,7 @@
                 {% block buttons %}
                 {% endblock %}
                 {% if hideClose is not defined %}
-                <button type="button" data-item-modal-close
+                <button type="button" data-item-modal-close="{{ name }}"
                         data-te-ripple-init
                         data-te-ripple-color="light"
                         class="btn btn-neutral">{{ 'ui.buttons.close'|trans }}

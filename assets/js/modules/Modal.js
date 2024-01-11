@@ -1,5 +1,22 @@
 import $ from 'jquery';
 
+
+const preLoadModal = (name) => {
+    const modal = document.querySelector('[data-modal-box="' + name + '"]')
+    const submit = modal.querySelector('[type="submit"]')
+    const buttonsContainer = modal.querySelector('[data-modal-buttons]')
+    const newButtons = modal.querySelector('[data-modal-buttons-inner]')
+
+    if (submit) {
+        const form = modal.querySelector('form')
+        form.setAttribute('id', name)
+        submit.setAttribute('form', name)
+        buttonsContainer.insertBefore(submit, newButtons)
+    }
+
+    closeBtnHandler(modal, 200)
+}
+
 const getModal = (name, contentBefore = null, contentAfter = null,  buttons = null) => {
 
     // modal pattern
@@ -72,7 +89,7 @@ function closeDialog(modal, time)
 }
 
 const modal = {
-    getModal, closeDialog
+    getModal, closeDialog, preLoadModal
 }
 
 export default modal

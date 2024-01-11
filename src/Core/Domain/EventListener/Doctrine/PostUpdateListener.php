@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Domain\Event\Doctrine;
+namespace App\Core\Domain\EventListener\Doctrine;
 
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\Event;
 
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
-use App\Core\Domain\Event\ResponseListener;
+use App\Core\Domain\EventListener\ResponseListener;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Contracts\Translation\TranslatorInterface;
 

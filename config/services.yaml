@@ -33,7 +33,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     # EVENT LISTENERS
-    App\Core\Domain\Event\LoginSuccessListener:
+    App\Core\Domain\EventListener\LoginSuccessListener:
       arguments:
         $tokenStorage: '@security.token_storage'
       tags:
@@ -42,16 +42,16 @@ services:
     # DOCTRINE ENTITY PERSIST
     # # # CREATE
     
-    App\Core\Infrastructure\EventHandler\Doctrine\PostPersistEventHandler:
+    App\Core\Infrastructure\Event\Doctrine\CreateEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
 
     # # # UPDATE
-    App\Core\Infrastructure\EventHandler\Doctrine\PostUpdateEventHandler:
+    App\Core\Infrastructure\Event\Doctrine\UpdateEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
         
   # # # REMOVE
-    App\Core\Infrastructure\EventHandler\Doctrine\PreRemoveEventHandler:
+    App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
       tags:
-        - { name: doctrine.event_listener, event: preRemove }
+        - { name: doctrine.event_listener, event: postRemove }

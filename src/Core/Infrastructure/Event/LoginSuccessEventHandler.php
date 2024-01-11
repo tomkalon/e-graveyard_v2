@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\Event;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Event\LoginSuccessListener;
+use App\Core\Domain\EventListener\LoginSuccessListener;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Symfony\Contracts\Translation\TranslatorInterface;

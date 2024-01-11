@@ -17,6 +17,8 @@ export default class extends Controller {
     {
         const container = this.element;
 
+        Modal.preLoadModal('grave-modal-add-deceased')
+
         if (this.hasPaymentsTarget) {
             const payments = this.paymentsTarget
             const paymentsData = payments.querySelectorAll('[data-item-id]')
@@ -32,14 +34,12 @@ export default class extends Controller {
 
     addDeceased(event)
     {
-        const name = 'grave-modal-add-deceased'
-        const modal = Modal.getModal(name)
+        Modal.getModal('grave-modal-add-deceased')
     }
 
     addPayment(event)
     {
-        const name = 'grave-modal-add-payment'
-        const modal = Modal.getModal(name)
+        Modal.getModal('grave-modal-add-payment')
     }
 
     removeGrave({params})
@@ -79,9 +79,8 @@ export default class extends Controller {
 
     removePerson(item, params)
     {
-        const name = 'person-modal-remove'
         const content = getPerson(item)
-        const modal = Modal.getModal(name, null, content)
+        const modal = Modal.getModal('person-modal-remove', null, content)
         modal.querySelector('[data-person-btn-remove]').addEventListener('click', () => {
             Api.remove(
                 'admin_api_person_remove',
@@ -93,9 +92,8 @@ export default class extends Controller {
 
     removePayment(item, params)
     {
-        const name = 'payment-modal-remove'
         const content = getPayment(item)
-        const modal = Modal.getModal(name, null, content)
+        const modal = Modal.getModal('payment-modal-remove', null, content)
         modal.querySelector('[data-payment-btn-remove]').addEventListener('click', () => {
             Api.remove(
                 'admin_api_payment_grave_remove',

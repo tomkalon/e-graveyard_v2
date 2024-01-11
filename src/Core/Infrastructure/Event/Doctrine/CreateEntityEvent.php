@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler\Doctrine;
+namespace App\Core\Infrastructure\Event\Doctrine;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
@@ -11,13 +11,12 @@ use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Event\Doctrine\PostPersistListener;
+use App\Core\Domain\EventListener\Doctrine\PostPersistListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class PostPersistEventHandler extends PostPersistListener
+class CreateEntityEvent extends PostPersistListener
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
