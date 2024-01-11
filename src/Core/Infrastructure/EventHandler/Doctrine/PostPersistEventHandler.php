@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\EventHandler\Doctrine;
 
 use App\Core\Domain\Entity\Grave;
-use App\Core\Domain\Event\PostPersistListener;
+use App\Core\Domain\Event\Doctrine\PostPersistListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

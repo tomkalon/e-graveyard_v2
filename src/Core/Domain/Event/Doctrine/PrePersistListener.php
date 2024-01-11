@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Core\Domain\Event;
+namespace App\Core\Domain\Event\Doctrine;
 
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class PostUpdateListener implements EventSubscriberInterface
+class PrePersistListener implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postUpdate => 'postUpdate'
+            Events::prePersist => 'prePersist'
         ];
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
+    public function prePersist(LifecycleEventArgs $args)
     {
     }
 }

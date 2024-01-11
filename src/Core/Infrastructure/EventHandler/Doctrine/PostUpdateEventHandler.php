@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\EventHandler\Doctrine;
 
-use App\Core\Domain\Event\PostUpdateListener;
+use App\Core\Domain\Event\Doctrine\PostUpdateListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class PostUpdateEventHandler extends PostUpdateListener

@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\EventHandler\Doctrine;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
+use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Event\PreRemoveListener;
+use App\Core\Domain\Event\Doctrine\PreUpdateListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class PreRemoveEventHandler extends PreRemoveListener
+class PreUpdateEventHandler extends PreUpdateListener
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -23,7 +24,7 @@ class PreRemoveEventHandler extends PreRemoveListener
     {
     }
 
-    public function preRemove(LifecycleEventArgs $args): void
+    public function preUpdate(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
 
@@ -33,13 +34,16 @@ class PreRemoveEventHandler extends PreRemoveListener
             $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),
             $entity instanceof File => $this->translator->trans('notification.entity.file', [], 'flash'),
             $entity instanceof Person => $this->translator->trans('notification.entity.person', [], 'flash'),
-            default => $this->translator->trans('notification.lifecycle.remove.title', [], 'flash'),
+            $entity instanceof PaymentGrave => $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
         };
+
+        $content = $this->translator->trans('notification.lifecycle.update.content', [], 'flash');
 
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,
             NotificationTypeEnum::SUCCESS,
-            $this->translator->trans('notification.lifecycle.remove.content', [], 'flash')
+            $content
         ));
     }
 }

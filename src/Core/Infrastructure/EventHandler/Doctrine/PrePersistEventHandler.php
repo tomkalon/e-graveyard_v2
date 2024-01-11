@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Infrastructure\EventHandler;
+namespace App\Core\Infrastructure\EventHandler\Doctrine;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
@@ -11,12 +11,11 @@ use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Event\PreUpdateListener;
+use App\Core\Domain\Event\Doctrine\PrePersistListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class PreUpdateEventHandler extends PreUpdateListener
+class PrePersistEventHandler extends PrePersistListener
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -25,7 +24,7 @@ class PreUpdateEventHandler extends PreUpdateListener
     {
     }
 
-    public function preUpdate(LifecycleEventArgs $args): void
+    public function prePersist(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
 
@@ -39,7 +38,11 @@ class PreUpdateEventHandler extends PreUpdateListener
             default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
         };
 
-        $content = $this->translator->trans('notification.lifecycle.update.content', [], 'flash');
+        $content = match(true) {
+            $entity instanceof Person => $this->translator->trans('notification.lifecycle.create.person.content', [], 'flash'),
+            $entity instanceof PaymentGrave => $this->translator->trans('notification.lifecycle.create.paymentGrave.content', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
+        };
 
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,

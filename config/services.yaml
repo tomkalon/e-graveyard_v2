@@ -45,24 +45,24 @@ services:
         
     # DOCTRINE ENTITY PERSIST
     # # # CREATE
-    App\Core\Infrastructure\EventHandler\PrePersistEventHandler:
+    App\Core\Infrastructure\EventHandler\Doctrine\PrePersistEventHandler:
       tags:
         - { name: doctrine.event_listener, event: prePersist }
         
-    App\Core\Infrastructure\EventHandler\PostPersistEventHandler:
+    App\Core\Infrastructure\EventHandler\Doctrine\PostPersistEventHandler:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
 
     # # # UPDATE
-    App\Core\Infrastructure\EventHandler\PreUpdateEventHandler:
+    App\Core\Infrastructure\EventHandler\Doctrine\PreUpdateEventHandler:
       tags:
         - { name: doctrine.event_listener, event: preUpdate }
         
-    App\Core\Infrastructure\EventHandler\PostUpdateEventHandler:
+    App\Core\Infrastructure\EventHandler\Doctrine\PostUpdateEventHandler:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
         
   # # # REMOVE
-    App\Core\Infrastructure\EventHandler\PreRemoveEventHandler:
+    App\Core\Infrastructure\EventHandler\Doctrine\PreRemoveEventHandler:
       tags:
         - { name: doctrine.event_listener, event: preRemove }
