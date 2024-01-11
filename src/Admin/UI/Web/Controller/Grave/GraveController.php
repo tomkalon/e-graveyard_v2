@@ -26,8 +26,7 @@ class GraveController extends AbstractController
         GravePaginatedListQueryInterface $query,
         CommandBusInterface              $commandBus,
         int                              $page
-    ): Response
-    {
+    ): Response {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -67,8 +66,7 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request,
         string              $id
-    ): Response
-    {
+    ): Response {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -125,8 +123,7 @@ class GraveController extends AbstractController
     public function create(
         CommandBusInterface $commandBus,
         Request             $request
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(
             GraveType::class,
             new GraveDto()
@@ -141,7 +138,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new GraveCommand($dto));
         }
 
-        return $this->render('Admin/Grave/edit.html.twig', [
+        return $this->render('Admin/Grave/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -151,8 +148,7 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request,
         string              $id
-    ): Response
-    {
+    ): Response {
         // query
         $dto = GraveDto::fromEntity($query->execute($id));
 
@@ -180,8 +176,7 @@ class GraveController extends AbstractController
     public function remove(
         string              $id,
         CommandBusInterface $commandBus
-    ): Response
-    {
+    ): Response {
         // command bus
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->redirectToRoute('admin_web_grave_index');

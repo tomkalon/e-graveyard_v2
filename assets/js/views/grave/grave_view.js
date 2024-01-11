@@ -88,7 +88,7 @@ const getGravePeople = (people) => {
     } else {
         div.innerHTML = `
             <hr class="my-3">
-            <p class="font-bold text-center">${trans(UI_GRAVE_WITHOUT_PEOPLE)}</p>
+            <p class="font-bold text-center text-neutral-700 dark:text-neutral-100">${trans(UI_GRAVE_WITHOUT_PEOPLE)}</p>
         `
         return div
     }

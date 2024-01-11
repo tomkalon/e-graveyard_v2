@@ -2,7 +2,7 @@
 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
     name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans} %}
     {% block content %}
-        <h4 class="p-4 mb-4 bg-success-700 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
+        <h4 class="p-4 mb-4 bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
         {{ form_start(addDeceasedForm, {
             'attr': {'data-form': 'add-deceased'}
         }) }}
@@ -38,7 +38,7 @@
 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
     name: 'grave-modal-add-payment', title: 'ui.grave.add_payment'|trans} %}
     {% block content %}
-        <h4 class="p-4 mb-4 bg-sky-700 rounded">{{ 'ui.grave.modal.add_payment'|trans }}</h4>
+        <h4 class="p-4 mb-4 bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_payment'|trans }}</h4>
         {{ form_start(addPaymentForm, {
             'attr': {'data-form': 'add-payment'}
         }) }}

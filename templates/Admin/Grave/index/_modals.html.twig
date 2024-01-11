@@ -2,7 +2,7 @@
 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
     name: 'grave-modal-details', title: 'ui.grave.details'|trans, size: 'lg' } %}
     {% block buttons %}
-        <button class="btn btn-success"
+        <button class="btn btn-gray"
                 data-grave-btn-add-deceased
                 data-te-ripple-init
                 data-te-ripple-color="light">
@@ -10,7 +10,7 @@
             {{ 'ui.grave.add_deceased'|trans }}
         </button>
         <a data-grave-btn-details>
-            <button class="btn btn-info"
+            <button class="btn btn-dark"
                     data-te-ripple-init
                     data-te-ripple-color="light">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -23,7 +23,7 @@
 {% embed 'Core/ModalBox/ModalBox.html.twig' with {
     name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans } %}
     {% block content %}
-        <h4 class="p-4 mb-4 bg-neutral-900 bg-opacity-30 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
+        <h4 class="p-4 mb-4  bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
         {{ form_start(addDeceasedForm, {
             'attr': {'data-form': 'add-deceased'}
         }) }}
