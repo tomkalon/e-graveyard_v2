@@ -93,7 +93,6 @@ export default class extends Controller {
 
     removePayment(item, params)
     {
-        console.log(item)
         const name = 'payment-modal-remove'
         const content = getPayment(item)
         const modal = Modal.getModal(name, null, content)
