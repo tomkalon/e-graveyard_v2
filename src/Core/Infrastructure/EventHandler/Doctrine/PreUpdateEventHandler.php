@@ -17,32 +17,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PreUpdateEventHandler extends PreUpdateListener
 {
-    public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly NotificationInterface $flashMessage
-    ) {
+    public function __construct()
+    {
     }
 
     public function preUpdate(LifecycleEventArgs $args): void
     {
-        $entity = $args->getObject();
-
-        $title = match (true) {
-            $entity instanceof Grave => $this->translator->trans('notification.entity.grave', [], 'flash'),
-            $entity instanceof Graveyard => $this->translator->trans('notification.entity.graveyard', [], 'flash'),
-            $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),
-            $entity instanceof File => $this->translator->trans('notification.entity.file', [], 'flash'),
-            $entity instanceof Person => $this->translator->trans('notification.entity.person', [], 'flash'),
-            $entity instanceof PaymentGrave => $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
-            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
-        };
-
-        $content = $this->translator->trans('notification.lifecycle.update.content', [], 'flash');
-
-        $this->flashMessage->addNotification('notification', new NotificationDto(
-            $title,
-            NotificationTypeEnum::SUCCESS,
-            $content
-        ));
     }
 }
