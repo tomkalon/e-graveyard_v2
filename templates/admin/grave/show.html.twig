@@ -8,15 +8,7 @@
                 <!-- Dashboard Title -->
                 <div class="flex items-center gap-2">
                     <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.show'|trans }}</h1>
-                    {% if grave.isItPaid.value == 'paid' %}
-                        <button class="btn btn-xs btn-success">{{ 'ui.grave.paid'|trans }}</button>
-                    {% elseif grave.isItPaid.value == 'unpaid' %}
-                        <button class="btn btn-xs btn-danger">{{ 'ui.grave.unpaid'|trans }}</button>
-                    {% elseif grave.isItPaid.value == 'expired' %}
-                        <button class="btn btn-xs btn-danger">{{ 'ui.grave.expired'|trans }}</button>
-                    {% elseif grave.isItPaid.value == 'soon' %}
-                        <button class="btn btn-xs btn-warning">{{ 'ui.grave.soon'|trans }}</button>
-                    {% endif %}
+                    {% include 'admin/grave/show/__payment_status.html.twig' %}
                 </div>
                 <!-- /Dashboard Title -->
             {% endblock %}

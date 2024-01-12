@@ -10,8 +10,7 @@ class PersonCommand implements CommandInterface
     public function __construct(
         private readonly PersonDto $dto,
         private readonly ?string $id = null
-    )
-    {
+    ) {
     }
 
     public function getDto(): PersonDto
@@ -23,5 +22,4 @@ class PersonCommand implements CommandInterface
     {
         return $this->id;
     }
-
 }

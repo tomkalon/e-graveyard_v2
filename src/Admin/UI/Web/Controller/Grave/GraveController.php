@@ -9,6 +9,8 @@ use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Application\Dto\Payment\PaymentGraveDto;
 use App\Admin\Application\Dto\Person\PersonDto;
+use App\Admin\Infrastructure\Query\Grave\GetGraveDto;
+use App\Admin\Infrastructure\Query\Grave\GetGraveDtoInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
@@ -26,7 +28,8 @@ class GraveController extends AbstractController
         GravePaginatedListQueryInterface $query,
         CommandBusInterface              $commandBus,
         int                              $page
-    ): Response {
+    ): Response
+    {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -66,7 +69,8 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request,
         string              $id
-    ): Response {
+    ): Response
+    {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
@@ -90,7 +94,7 @@ class GraveController extends AbstractController
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
             /** @var PersonDto $dto */
             $dto = $addDeceasedForm->getData();
-
+            $dto->setGrave($id);
             // command bus
             $commandBus->dispatch(new PersonCommand($dto));
             return $this->redirectToRoute(
@@ -103,7 +107,7 @@ class GraveController extends AbstractController
         if ($addPaymentForm->isSubmitted() and $addPaymentForm->isValid()) {
             /** @var PaymentGraveDto $dto */
             $dto = $addPaymentForm->getData();
-            $dto->setGrave($grave);
+            $dto->setGrave($id);
 
             // command bus
             $commandBus->dispatch(new PaymentGraveCommand($dto));
@@ -124,7 +128,8 @@ class GraveController extends AbstractController
     public function create(
         CommandBusInterface $commandBus,
         Request             $request
-    ): Response {
+    ): Response
+    {
         $form = $this->createForm(
             GraveType::class,
             new GraveDto()
@@ -145,11 +150,12 @@ class GraveController extends AbstractController
     }
 
     public function edit(
-        GetGraveInterface   $query,
-        CommandBusInterface $commandBus,
-        Request             $request,
-        string              $id
-    ): Response {
+        GetGraveDtoInterface $query,
+        CommandBusInterface  $commandBus,
+        Request              $request,
+        string               $id
+    ): Response
+    {
         // query
         $dto = $query->execute($id);
 
@@ -177,7 +183,8 @@ class GraveController extends AbstractController
     public function remove(
         string              $id,
         CommandBusInterface $commandBus
-    ): Response {
+    ): Response
+    {
         // command bus
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->redirectToRoute('admin_web_grave_index');

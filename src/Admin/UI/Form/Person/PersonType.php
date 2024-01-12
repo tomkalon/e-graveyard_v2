@@ -3,10 +3,8 @@
 namespace App\Admin\UI\Form\Person;
 
 use App\Admin\Application\Dto\Person\PersonDto;
-use App\Admin\Infrastructure\Validator\Grave\IsGraveUnique;
 use App\Admin\Infrastructure\Validator\Person\PersonDateComparison;
 use App\Core\Domain\Entity\Grave;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,9 +34,7 @@ class PersonType extends AbstractType
                 'widget' => 'single_text',
                 'required' => true,
             ])
-            ->add('grave', EntityType::class, [
-                'class' => Grave::class,
-                'choice_label' => 'id',
+            ->add('grave', TextType::class, [
                 'required' => true,
             ])
             ->add('add', SubmitType::class, [

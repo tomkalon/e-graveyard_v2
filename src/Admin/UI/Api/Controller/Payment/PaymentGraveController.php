@@ -18,7 +18,7 @@ class PaymentGraveController extends AbstractController
         PaymentGraveView $graveView
     ): JsonResponse {
         $dto = PaymentGraveDto::fromEntity($query->execute($id));
-        return new JsonResponse($graveView->getView($dto));
+        return new JsonResponse($dto);
     }
 
     public function remove(

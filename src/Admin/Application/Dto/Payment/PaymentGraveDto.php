@@ -2,10 +2,10 @@
 
 namespace App\Admin\Application\Dto\Payment;
 
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use DateTimeImmutable;
+use Symfony\Component\Translation\Translator;
 
 class PaymentGraveDto
 {
@@ -22,7 +22,7 @@ class PaymentGraveDto
         ?DateTimeImmutable $validity_time = null,
         ?string $grave = null,
     ) {
-        $this->value = $value;
+        $this->value = $value / 100;
         $this->currency = $currency;
         $this->description = $description;
         $this->validity_time = $validity_time;
@@ -40,23 +40,8 @@ class PaymentGraveDto
         );
     }
 
-    public function getMoney(): string
-    {
-        return $this->value / 100;
-    }
-
-    public function setGrave(?Grave $grave): void
+    public function setGrave(?string $grave): void
     {
         $this->grave = $grave;
-    }
-
-    public function isItPaid(): bool
-    {
-        $now = new DateTimeImmutable();
-        if ($now < $this->validity_time) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

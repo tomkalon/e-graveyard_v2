@@ -1,12 +1,8 @@
-{% if grave.payments %}
+{% if grave.payments|length %}
     <div class="max-w-[800px]" {{ stimulus_target('admin--grave--grave-show', 'payments') }}>
         <div class="mt-6 flex items-center">
             <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.paid'|trans }}</h3>
-            {% if grave.isItPaid %}
-                <button class="btn btn-xs btn-success">{{ 'ui.grave.paid'|trans }}</button>
-            {% else %}
-                <button class="btn btn-warning">{{ 'ui.grave.notPaid'|trans }}</button>
-            {% endif %}
+            {% include 'admin/grave/show/__payment_status.html.twig' %}
         </div>
         <hr>
         <div class="table-list flex flex-col">
