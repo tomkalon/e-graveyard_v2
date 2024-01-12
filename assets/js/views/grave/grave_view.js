@@ -18,7 +18,7 @@ const getGravePosition = (graveyard, sector, row, number) => {
     div.innerHTML = `
         <div>
             <p class="mb-1 text-xs uppercase">${trans(UI_GRAVE_GRAVEYARD)}</p>
-            <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${graveyard}</p>
+            <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">${graveyard.name}</p>
         </div>
         <div>
             <p class="mb-1 text-xs uppercase">${trans(UI_GRAVE_SECTOR)}</p>

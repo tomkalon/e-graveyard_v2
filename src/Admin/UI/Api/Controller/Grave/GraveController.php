@@ -14,10 +14,9 @@ class GraveController extends AbstractController
     public function get(
         string $id,
         GetGraveDtoInterface $query,
-        GraveView $graveView
     ): JsonResponse {
         $dto = $query->execute($id);
-        return new JsonResponse($graveView->getView($dto));
+        return new JsonResponse($dto);
     }
 
     public function remove(

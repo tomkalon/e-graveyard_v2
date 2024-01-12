@@ -13,14 +13,14 @@ class PaymentGraveDto
     public ?CurrencyTypeEnum $currency;
     public ?string $description;
     public ?DateTimeImmutable $validity_time;
-    public ?Grave $grave;
+    public ?string $grave;
 
     public function __construct(
         ?string $value = null,
         ?CurrencyTypeEnum $currency = null,
         ?string $description = null,
         ?DateTimeImmutable $validity_time = null,
-        ?Grave $grave = null,
+        ?string $grave = null,
     ) {
         $this->value = $value;
         $this->currency = $currency;
@@ -36,7 +36,7 @@ class PaymentGraveDto
             $paymentGrave->getCurrency(),
             $paymentGrave->getDescription(),
             $paymentGrave->getValidityTime(),
-            $paymentGrave->getGrave(),
+            $paymentGrave->getGrave()->getId(),
         );
     }
 

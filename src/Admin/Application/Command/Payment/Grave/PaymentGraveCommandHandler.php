@@ -12,14 +12,13 @@ class PaymentGraveCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly GraveRepositoryInterface $graveRepository
-    )
-    {
+    ) {
     }
 
     public function __invoke(PaymentGraveCommand $command)
     {
         $dto = $command->getDto();
-        $grave = $this->graveRepository->find($dto->grave->id);
+        $grave = $this->graveRepository->find($dto->grave);
 
         $payment = new PaymentGrave();
         $payment->setGrave($grave);
