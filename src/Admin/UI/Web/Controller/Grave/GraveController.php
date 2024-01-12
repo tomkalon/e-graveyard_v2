@@ -86,10 +86,10 @@ class GraveController extends AbstractController
         $grave = $query->execute($id);
 
         // form handler
+        // ADD DECEASED
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
             /** @var PersonDto $dto */
             $dto = $addDeceasedForm->getData();
-            $dto->setGrave($grave);
 
             // command bus
             $commandBus->dispatch(new PersonCommand($dto));
@@ -99,6 +99,7 @@ class GraveController extends AbstractController
             );
         }
 
+        // ADD PAYMENT
         if ($addPaymentForm->isSubmitted() and $addPaymentForm->isValid()) {
             /** @var PaymentGraveDto $dto */
             $dto = $addPaymentForm->getData();
@@ -113,7 +114,7 @@ class GraveController extends AbstractController
         }
 
         return $this->render('admin/grave/show.html.twig', [
-            'grave' => GraveDto::fromEntity($grave),
+            'grave' => $grave,
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
             'id' => $id
@@ -150,7 +151,7 @@ class GraveController extends AbstractController
         string              $id
     ): Response {
         // query
-        $dto = GraveDto::fromEntity($query->execute($id));
+        $dto = $query->execute($id);
 
         $form = $this->createForm(
             GraveType::class,

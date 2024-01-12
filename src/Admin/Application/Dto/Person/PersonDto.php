@@ -2,26 +2,25 @@
 
 namespace App\Admin\Application\Dto\Person;
 
-use App\Core\Domain\Entity\Grave;
-use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\Person;
+use DateTimeImmutable;
 
 class PersonDto
 {
     public ?string $id;
     public ?string $firstName;
     public ?string $lastName;
-    public ?\DateTimeImmutable $bornDate;
-    public ?\DateTimeImmutable $deathDate;
-    public ?Grave $grave;
+    public ?DateTimeImmutable $bornDate;
+    public ?DateTimeImmutable $deathDate;
+    public ?string $grave;
 
     public function __construct(
-        ?string $id = null,
-        ?string $firstName = null,
-        ?string $lastName = null,
-        ?\DateTimeImmutable $bornDate = null,
-        ?\DateTimeImmutable $deathDate = null,
-        ?Grave $grave = null
+        ?string            $id = null,
+        ?string            $firstName = null,
+        ?string            $lastName = null,
+        ?DateTimeImmutable $bornDate = null,
+        ?DateTimeImmutable $deathDate = null,
+        ?string            $grave = null
     ) {
         $this->id = $id;
         $this->firstName = $firstName;
@@ -39,13 +38,12 @@ class PersonDto
             $person->getLastname(),
             $person->getBornDate(),
             $person->getDeathDate(),
-            $person->getGrave(),
+            $person->getGrave()->getId(),
         );
     }
 
-    public function setGrave(?Grave $grave): void
+    public function setGrave(?string $grave): void
     {
         $this->grave = $grave;
     }
-
 }

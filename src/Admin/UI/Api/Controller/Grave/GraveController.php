@@ -3,8 +3,7 @@
 namespace App\Admin\UI\Api\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
-use App\Admin\Application\Dto\Grave\GraveDto;
-use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
+use App\Admin\Infrastructure\Query\Grave\GetGraveDtoInterface;
 use App\Admin\Infrastructure\View\Grave\GraveView;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,10 +13,10 @@ class GraveController extends AbstractController
 {
     public function get(
         string $id,
-        GetGraveInterface $query,
+        GetGraveDtoInterface $query,
         GraveView $graveView
     ): JsonResponse {
-        $dto = GraveDto::fromEntity($query->execute($id));
+        $dto = $query->execute($id);
         return new JsonResponse($graveView->getView($dto));
     }
 

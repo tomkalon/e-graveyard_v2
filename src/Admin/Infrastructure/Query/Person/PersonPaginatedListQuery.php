@@ -21,19 +21,11 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
     ): PaginationInterface {
         $query = $this->repository->getPeopleListQuery();
 
-        $paginationList = $this->paginator->paginate(
+        return  $this->paginator->paginate(
             $query,
             $page,
             $limit,
             ['limit_form' => $limit]
         );
-
-        $data = [];
-        foreach ($paginationList->getItems() as $person) {
-            $data[] = PersonDto::fromEntity($person);
-        }
-
-        $paginationList->setItems($data);
-        return $paginationList;
     }
 }

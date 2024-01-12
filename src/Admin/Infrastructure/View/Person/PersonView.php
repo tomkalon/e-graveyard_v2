@@ -16,7 +16,7 @@ class PersonView implements ViewInterface
             'lastname' => $data->lastName,
             'born_date' => $data->bornDate->format('Y-m-d'),
             'death_date' => $data->deathDate->format('Y-m-d'),
-            'grave_id' => $data->grave->getId(),
+            'grave_id' => $data->grave,
         ];
     }
 }
