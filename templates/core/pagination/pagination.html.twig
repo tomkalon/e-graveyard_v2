@@ -10,7 +10,8 @@
                 </thead>
                 <tbody class="divide-gray-700">
                 {% for item in pagination %}
-                    <tr class="{% if loop.index is odd %}bg-gray-50 dark:bg-neutral-800{% else %}bg-gray-200 dark:bg-neutral-700{% endif %} hover:bg-gray-300 hover:dark:bg-neutral-900">
+                    <tr data-item-id="{{ item.id|default('') }}"
+                        class="{% if loop.index is odd %}bg-gray-50 dark:bg-neutral-800{% else %}bg-gray-200 dark:bg-neutral-700{% endif %} hover:bg-gray-300 hover:dark:bg-neutral-900">
                         {% block body %}
                         {% endblock %}
                     </tr>
