@@ -1,5 +1,5 @@
 admin_web_grave_index:
-  path: /admin/grave/page/{page}
+  path: /admin/grave/{page<\d+>}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::index
   defaults:
@@ -12,21 +12,27 @@ admin_web_grave_show:
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::show
   options:
+    priority: 2
     expose: true
     
 admin_web_grave_create:
   path: /admin/grave/create
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::create
+  options:
+    priority: 2
   
 admin_web_grave_edit:
   path: /admin/grave/edit/{id}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::edit
+  options:
+    priority: 2
   
 admin_web_grave_remove:
   path: /admin/grave/remove/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::remove
   options:
+    priority: 2
     expose: true

@@ -1,9 +1,10 @@
 admin_web_person_index:
-  path: /admin/person/page/{page}
+  path: /admin/person/{page<\d+>}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Person\PersonController::index
   defaults:
     page: 1
   options:
+    priority: 2
     expose: true
     

@@ -5,7 +5,7 @@ namespace App\Core\Application\Utility\EntityUniqueness;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 
-class IsIsEntityUniqueness implements IsEntityUniquenessInterface
+class HasEntityChanged implements HasEntityChangedInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em
@@ -13,9 +13,8 @@ class IsIsEntityUniqueness implements IsEntityUniquenessInterface
     {
     }
 
-    public function isUnique (object $entity): bool
+    public function hasChanged(object $entity): bool
     {
-
         if (!$this->em->contains($entity)) {
             throw new InvalidArgumentException(sprintf('Invalid argument exception. You have entered a variable of type: %s. Expected variable type: %s', gettype($entity), 'EntityManager::class'));
         }

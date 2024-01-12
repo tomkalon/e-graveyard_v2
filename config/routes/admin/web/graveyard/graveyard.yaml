@@ -1,5 +1,5 @@
 admin_web_graveyard_index:
-  path: /admin/graveyard/page/{page}
+  path: /admin/graveyard/{page<\d+>}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::index
   defaults:
@@ -10,4 +10,4 @@ admin_web_graveyard_create:
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::create
   options:
-    priority: 10
+    priority: 2
