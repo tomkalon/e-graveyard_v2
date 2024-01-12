@@ -1,8 +1,8 @@
-{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.graveyard.title.index'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
-    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
         {% block title %}
             <!-- Dashboard Title -->
             <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.index'|trans }}</h1>
@@ -12,28 +12,28 @@
         {% block dashboard_content %}
             <!-- Dashboard Content -->
             <!-- Pagination -->
-            {% embed 'Core/Pagination/pagination.html.twig' %}
+            {% embed 'core/pagination/pagination.html.twig' %}
                 {% block head %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
+                    {% include 'core/pagination/_head.html.twig' with {
                         label: 'ui.graveyard.name',
                         name: 'g.name',
                     } %}
-                    {% include 'Core/Pagination/_head.html.twig' with {
+                    {% include 'core/pagination/_head.html.twig' with {
                         label: 'ui.common.updatedAt',
                         name: 'g.updatedAt',
                         class: 'text-center hidden md:block'
                     } %}
-                    {% include 'Core/Pagination/_head.html.twig' %}
+                    {% include 'core/pagination/_head.html.twig' %}
                 {% endblock %}
                 {% block body %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
+                    {% include 'core/pagination/_body_value.html.twig' with {
                         value: item.name,
                     } %}
-                    {% include 'Core/Pagination/_body_value.html.twig' with {
+                    {% include 'core/pagination/_body_value.html.twig' with {
                         value: item.updatedAt|date('Y-m-d'),
                         class: 'text-center hidden md:block'
                     } %}
-                    {% embed 'Core/Pagination/_body_action.html.twig' %}
+                    {% embed 'core/pagination/_body_action.html.twig' %}
                         {% block actions %}
                         {% endblock %}
                     {% endembed %}

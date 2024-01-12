@@ -1,9 +1,9 @@
-{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.person.title.index'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
     <div {{ stimulus_controller('admin--person--person-list') }}>
-        {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
                 <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.person.title.index'|trans }}</h1>
@@ -14,47 +14,47 @@
                 <!-- Dashboard Content -->
                 <!-- Pagination -->
                 <div {{ stimulus_target('admin--person--person-list', 'pagination') }}>
-                    {% embed 'Core/Pagination/pagination.html.twig' with {
+                    {% embed 'core/pagination/pagination.html.twig' with {
                         width: "max-w-[800px]"
                     } %}
                         {% block head %}
-                            {% include 'Core/Pagination/_head.html.twig' with {
+                            {% include 'core/pagination/_head.html.twig' with {
                                 label: 'ui.person.lastName',
                                 name: 'p.lastname',
                             } %}
-                            {% include 'Core/Pagination/_head.html.twig' with {
+                            {% include 'core/pagination/_head.html.twig' with {
                                 label: 'ui.person.firstName',
                                 name: 'p.firstname',
                                 class: 'w-48'
                             } %}
-                            {% include 'Core/Pagination/_head.html.twig' with {
+                            {% include 'core/pagination/_head.html.twig' with {
                                 label: 'ui.person.bornDate',
                                 name: 'p.born_date',
                                 class: 'w-36 text-center'
                             } %}
-                            {% include 'Core/Pagination/_head.html.twig' with {
+                            {% include 'core/pagination/_head.html.twig' with {
                                 label: 'ui.person.deathDate',
                                 name: 'p.death_date',
                                 class: 'w-36 text-center'
                             } %}
-                            {% include 'Core/Pagination/_head.html.twig' %}
+                            {% include 'core/pagination/_head.html.twig' %}
                         {% endblock %}
                         {% block body %}
-                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                            {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.lastName,
                             } %}
-                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                            {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.firstName,
                             } %}
-                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                            {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.bornDate|date('Y-m-d'),
                                 class: 'text-center'
                             } %}
-                            {% include 'Core/Pagination/_body_value.html.twig' with {
+                            {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.deathDate|date('Y-m-d'),
                                 class: 'text-center'
                             } %}
-                            {% embed 'Core/Pagination/_body_action.html.twig' %}
+                            {% embed 'core/pagination/_body_action.html.twig' %}
                                 {% block actions %}
                                     <a href="{{ path('admin_web_grave_show', {id: item.grave.id}) }}">
                                         <button class="btn btn-info">
@@ -74,7 +74,7 @@
                 <!-- Modal -->
 
                 <!-- ------------ REMOVE PERSON ------------ -->
-                {% embed 'Core/ModalBox/ModalBox.html.twig' with {
+                {% embed 'core/modal_box/modal_box.html.twig' with {
                     name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
                     {% block content %}
                         <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.person.modal.remove'|trans }}</h4>

@@ -19,7 +19,7 @@ class PersonController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
         );
 
-        return $this->render('Admin/Person/index.html.twig', [
+        return $this->render('admin/person/index.html.twig', [
             'pagination' => $paginatedPeopleList,
         ]);
     }

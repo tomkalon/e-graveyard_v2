@@ -1,8 +1,8 @@
-{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.graveyard.title.create'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
-    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
         {% block title %}
             <!-- Dashboard Title -->
             <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.create'|trans }}</h1>

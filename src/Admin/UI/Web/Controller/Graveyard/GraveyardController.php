@@ -24,7 +24,7 @@ class GraveyardController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
         );
 
-        return $this->render('Admin/Graveyard/index.html.twig', [
+        return $this->render('admin/graveyard/index.html.twig', [
             'pagination' => $paginatedGraveyardsList,
 
         ]);
@@ -50,7 +50,7 @@ class GraveyardController extends AbstractController
             );
         }
 
-        return $this->render('Admin/Graveyard/create.html.twig', [
+        return $this->render('admin/graveyard/create.html.twig', [
             'form' => $form->createView()
         ]);
     }

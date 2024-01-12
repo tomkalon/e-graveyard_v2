@@ -1,5 +1,5 @@
 <!-- ------------ ADD DECEASED ------------ -->
-{% embed 'core/modalBox/modal_box.html.twig' with {
+{% embed 'core/modal_box/modal_box.html.twig' with {
     name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans, active: form_errors(addDeceasedForm.bornDate) } %}
     {% block content %}
         <h4 class="p-4 mb-4 bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
@@ -35,7 +35,7 @@
 {% endembed %}
 
 <!-- ------------ ADD PAYMENT ------------ -->
-{% embed 'core/modalBox/modal_box.html.twig' with {
+{% embed 'core/modal_box/modal_box.html.twig' with {
     name: 'grave-modal-add-payment', title: 'ui.grave.add_payment'|trans} %}
     {% block content %}
         <h4 class="p-4 mb-4 bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_payment'|trans }}</h4>
@@ -66,7 +66,7 @@
 {% endembed %}
 
 <!-- ------------ REMOVE PERSON ------------ -->
-{% embed 'core/modalBox/modal_box.html.twig' with {
+{% embed 'core/modal_box/modal_box.html.twig' with {
     name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
     {% block content %}
         <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.person.modal.remove'|trans }}</h4>
@@ -83,7 +83,7 @@
 {% endembed %}
 
 <!-- ------------ REMOVE GRAVE ------------ -->
-{% embed 'core/modalBox/modal_box.html.twig' with {
+{% embed 'core/modal_box/modal_box.html.twig' with {
     name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
     {% block content %}
         <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.grave.modal.remove'|trans }}</h4>
@@ -100,7 +100,7 @@
 {% endembed %}
 
 <!-- ------------ REMOVE PAYMENT ------------ -->
-{% embed 'core/modalBox/modal_box.html.twig' with {
+{% embed 'core/modal_box/modal_box.html.twig' with {
     name: 'payment-modal-remove', title: 'ui.payment.remove'|trans } %}
     {% block content %}
         <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.payment.modal.remove'|trans }}</h4>

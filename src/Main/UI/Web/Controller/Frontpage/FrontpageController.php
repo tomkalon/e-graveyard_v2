@@ -9,7 +9,7 @@ class FrontpageController extends AbstractController
 {
     public function index(): Response
     {
-        return $this->render('Main/Frontpage/index.html.twig', [
+        return $this->render('main/frontpage/index.html.twig', [
             'controller_name' => 'MainController',
         ]);
     }
