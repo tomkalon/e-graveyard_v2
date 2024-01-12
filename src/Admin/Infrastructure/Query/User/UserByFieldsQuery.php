@@ -9,8 +9,7 @@ class UserByFieldsQuery implements UserByFieldsQueryInterface
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
     }
     public function execute(UserDto $dto): array
     {
