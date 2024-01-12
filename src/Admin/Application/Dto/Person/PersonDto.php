@@ -8,6 +8,7 @@ use App\Core\Domain\Entity\Person;
 
 class PersonDto
 {
+    public ?string $id;
     public ?string $firstName;
     public ?string $lastName;
     public ?\DateTimeImmutable $bornDate;
@@ -15,12 +16,14 @@ class PersonDto
     public ?Grave $grave;
 
     public function __construct(
+        ?string $id = null,
         ?string $firstName = null,
         ?string $lastName = null,
         ?\DateTimeImmutable $bornDate = null,
         ?\DateTimeImmutable $deathDate = null,
         ?Grave $grave = null
     ) {
+        $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->bornDate = $bornDate;
@@ -31,6 +34,7 @@ class PersonDto
     public static function fromEntity(Person $person): self
     {
         return new self(
+            $person->getId(),
             $person->getFirstname(),
             $person->getLastname(),
             $person->getBornDate(),
