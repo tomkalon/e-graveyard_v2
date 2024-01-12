@@ -55,7 +55,7 @@ class GraveController extends AbstractController
             );
         }
 
-        return $this->render('Admin/Grave/index.html.twig', [
+        return $this->render('admin/grave/index.html.twig', [
             'pagination' => $paginatedGravesList,
             'addDeceasedForm' => $addDeceasedForm->createView()
         ]);
@@ -112,7 +112,7 @@ class GraveController extends AbstractController
             );
         }
 
-        return $this->render('Admin/Grave/show.html.twig', [
+        return $this->render('admin/grave/show.html.twig', [
             'grave' => GraveDto::fromEntity($grave),
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
@@ -136,12 +136,9 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($dto));
-            return $this->redirectToRoute(
-                'admin_web_grave_index',
-            );
         }
 
-        return $this->render('Admin/Grave/create.html.twig', [
+        return $this->render('admin/grave/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -170,7 +167,7 @@ class GraveController extends AbstractController
             return $this->redirectToRoute('admin_web_grave_show', ['id' => $id]);
         }
 
-        return $this->render('Admin/Grave/edit.html.twig', [
+        return $this->render('admin/grave/edit.html.twig', [
             'form' => $form->createView(),
             'id' => $id
         ]);

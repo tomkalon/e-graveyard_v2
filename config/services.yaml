@@ -42,7 +42,7 @@ services:
     # DOCTRINE ENTITY PERSIST
     # # # CREATE
     
-    App\Core\Infrastructure\Event\Doctrine\CreateEntityEvent:
+    App\Core\Infrastructure\Event\Doctrine\PersistEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
 

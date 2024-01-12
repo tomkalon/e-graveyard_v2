@@ -1,6 +1,6 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    form_themes: ['Twig/Theme/tailwind.html.twig']
+    form_themes: ['twig/theme/tailwind.html.twig']
     globals:
       app_name: '%env(resolve:APP_NAME)%'
 

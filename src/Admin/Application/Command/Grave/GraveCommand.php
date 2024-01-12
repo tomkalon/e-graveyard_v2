@@ -10,8 +10,7 @@ class GraveCommand implements CommandInterface
     public function __construct(
         private readonly GraveDto $dto,
         private readonly ?string $id = null
-    )
-    {
+    ) {
     }
 
     public function getDto(): GraveDto
@@ -23,5 +22,4 @@ class GraveCommand implements CommandInterface
     {
         return $this->id;
     }
-
 }

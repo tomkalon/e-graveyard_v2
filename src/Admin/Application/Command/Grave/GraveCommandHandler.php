@@ -18,8 +18,7 @@ class GraveCommandHandler implements CommandHandlerInterface
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly NotificationInterface $notification,
         private readonly TranslatorInterface $translator,
-    )
-    {
+    ) {
     }
 
     public function __invoke(GraveCommand $command)

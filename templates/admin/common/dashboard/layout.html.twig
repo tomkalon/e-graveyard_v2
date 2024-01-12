@@ -1,4 +1,4 @@
-{% extends 'Core/base.html.twig' %}
+{% extends 'core/base.html.twig' %}
 
 {% block title %}{{ app_name }} - {{ ui.main.dashboard.index }}{% endblock %}
 
@@ -6,7 +6,7 @@
     <div class="dashboard flex flex-auto flex-shrink-0 antialiased bg-neutral-50 dark:bg-neutral-800 text-white">
 
         <!-- Sidebar -->
-        {% include('Admin/Common/Dashboard/_sidebar.html.twig') %}
+        {% include('admin/common/dashboard/_sidebar.html.twig') %}
         <!-- ./Sidebar -->
 
         <div class="content h-full ml-4 mt-6 mb-10 px-4 grow overflow-auto">

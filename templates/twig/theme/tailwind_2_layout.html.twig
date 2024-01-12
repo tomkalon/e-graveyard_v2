@@ -1,4 +1,4 @@
-{% use 'Twig/Theme/form_div_layout.html.twig' %}
+{% use 'twig/theme/form_div_layout.html.twig' %}
 
 {%- block form_row -%}
     {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('mb-6')) }) -%}

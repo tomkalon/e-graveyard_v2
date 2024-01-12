@@ -1,9 +1,9 @@
-{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.grave.title.show'|trans }}{% endblock %}
 {% block dashboard_content %}
     <div {{ stimulus_controller('admin--grave--grave-show') }}>
         <!-- Dashboard Card -->
-        {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
                 <div class="flex items-center gap-2">
@@ -38,6 +38,12 @@
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                         {{ 'ui.grave.add_deceased'|trans }}
                     </button>
+                    <a href="{{ path('admin_web_grave_create') }}">
+                        <button class="btn btn-success">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            {{ 'ui.grave.add_grave'|trans }}
+                        </button>
+                    </a>
                     <a href="{{ path('admin_web_grave_edit', {id: id}) }}">
                         <button class="btn btn-warning">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -81,10 +87,10 @@
                 </div>
 
                 <!-- ------------ PEOPLE ------------ -->
-                {% include 'Admin/Grave/show/_people.html.twig' %}
+                {% include 'admin/grave/show/_people.html.twig' %}
 
                 <!-- ------------ PAID INFORMATION ------------ -->
-                {% include 'Admin/Grave/show/_payments.html.twig' %}
+                {% include 'admin/grave/show/_payments.html.twig' %}
 
                 <!-- ------------ COORDINATES / GOOGLE MAPS ------------ -->
                 {% if grave.positionX != null and grave.positionY != null %}
@@ -100,7 +106,7 @@
                 <!-- /Dashboard Content -->
                 <!-- Modals -->
                 <div>
-                    {% include 'Admin/Grave/show/_modals.html.twig' %}
+                    {% include 'admin/grave/show/_modals.html.twig' %}
                 </div>
                 <!-- /Modals -->
             {% endblock %}

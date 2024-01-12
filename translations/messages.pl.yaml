@@ -104,6 +104,7 @@ ui:
     without_people: Brak pochowanych
     details: Szczegóły
     remove: Usuwanie grobu
+    add_grave: Dodaj grób
     add_deceased: Dodaj zmarłego
     add_payment: Opłać grób
     paid: Opłacony
