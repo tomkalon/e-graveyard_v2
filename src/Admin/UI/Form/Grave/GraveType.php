@@ -4,6 +4,7 @@ namespace App\Admin\UI\Form\Grave;
 
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Validator\Grave\IsGraveUnique;
+use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -56,7 +57,7 @@ class GraveType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => GraveDto::class,
+            'data_class' => Grave::class,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.grave.%name%',

@@ -20,19 +20,11 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
     ): PaginationInterface {
         $query = $this->repository->getGravesListQuery();
 
-        $paginationList = $this->paginator->paginate(
+        return $this->paginator->paginate(
             $query,
             $page,
             $limit,
             ['limit_form' => $limit]
         );
-
-        $data = [];
-        foreach ($paginationList->getItems() as $grave) {
-            $data[] = GraveDto::fromEntity($grave);
-        }
-
-        $paginationList->setItems($data);
-        return $paginationList;
     }
 }

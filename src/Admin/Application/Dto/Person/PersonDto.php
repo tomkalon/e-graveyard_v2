@@ -41,9 +41,4 @@ class PersonDto
             $person->getGrave()->getId(),
         );
     }
-
-    public function setGrave(?string $grave): void
-    {
-        $this->grave = $grave;
-    }
 }

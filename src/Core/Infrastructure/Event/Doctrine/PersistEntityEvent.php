@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class PersistEntityEvent extends PostPersistListener
 {
     public function __construct(
-        private readonly UrlGeneratorInterface $router,
         private readonly PersistEntityFlashInterface $flash
     ) {
     }
@@ -21,11 +20,5 @@ class PersistEntityEvent extends PostPersistListener
     {
         $entity = $args->getObject();
         $this->flash->handleNotification($entity);
-
-        if ($entity instanceof Grave) {
-            $url = $this->router->generate('admin_web_grave_show', ['id' => $entity->getId()]);
-            $response = new RedirectResponse($url);
-            $response->send();
-        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Infrastructure\Validator\Person;
 
-use App\Admin\Application\Dto\Person\PersonDto;
+use App\Core\Domain\Entity\Person;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -11,10 +11,10 @@ class PersonDateComparisonValidator extends ConstraintValidator
 
     public function validate(mixed $value, Constraint $constraint)
     {
-        /** @var PersonDto $dto */
-        $dto = $this->context->getRoot()->getData();
+        /** @var Person $person */
+        $person = $this->context->getRoot()->getData();
 
-        if ($dto->bornDate > $dto->deathDate) {
+        if ($person->getBornDate() > $person->getDeathDate()) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

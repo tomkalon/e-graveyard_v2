@@ -5,7 +5,6 @@ namespace App\Admin\Application\Dto\Payment;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use DateTimeImmutable;
-use Symfony\Component\Translation\Translator;
 
 class PaymentGraveDto
 {
@@ -38,10 +37,5 @@ class PaymentGraveDto
             $paymentGrave->getValidityTime(),
             $paymentGrave->getGrave()->getId(),
         );
-    }
-
-    public function setGrave(?string $grave): void
-    {
-        $this->grave = $grave;
     }
 }

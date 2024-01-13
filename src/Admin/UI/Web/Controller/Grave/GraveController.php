@@ -6,17 +6,15 @@ use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Command\Payment\Grave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
-use App\Admin\Application\Dto\Grave\GraveDto;
-use App\Admin\Application\Dto\Payment\PaymentGraveDto;
-use App\Admin\Application\Dto\Person\PersonDto;
-use App\Admin\Infrastructure\Query\Grave\GetGraveDto;
-use App\Admin\Infrastructure\Query\Grave\GetGraveDtoInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Admin\UI\Form\Payment\PaymentGraveType;
 use App\Admin\UI\Form\Person\PersonType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use App\Core\Domain\Entity\Grave;
+use App\Core\Domain\Entity\PaymentGrave;
+use App\Core\Domain\Entity\Person;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +26,12 @@ class GraveController extends AbstractController
         GravePaginatedListQueryInterface $query,
         CommandBusInterface              $commandBus,
         int                              $page
-    ): Response
-    {
+    ): Response {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
             PersonType::class,
-            new PersonDto()
+            new Person()
         );
         $addDeceasedForm->handleRequest($request);
 
@@ -46,12 +43,12 @@ class GraveController extends AbstractController
 
         // form handler
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
-            /** @var PersonDto $data */
-            $data = $addDeceasedForm->getData();
+            /** @var Person $person */
+            $person = $addDeceasedForm->getData();
 
             // command bus
-            $commandBus->dispatch(new PersonCommand($data));
-            $id = $data->grave->getId();
+            $commandBus->dispatch(new PersonCommand($person));
+            $id = $person->getGrave()->getId();
             return $this->redirectToRoute(
                 'admin_web_grave_show',
                 ['id' => $id]
@@ -69,20 +66,19 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request,
         string              $id
-    ): Response
-    {
+    ): Response {
 
         // add decease form
         $addDeceasedForm = $this->createForm(
             PersonType::class,
-            new PersonDto()
+            new Person()
         );
         $addDeceasedForm->handleRequest($request);
 
         // add payment form
         $addPaymentForm = $this->createForm(
             PaymentGraveType::class,
-            new PaymentGraveDto()
+            new PaymentGrave()
         );
         $addPaymentForm->handleRequest($request);
 
@@ -92,11 +88,11 @@ class GraveController extends AbstractController
         // form handler
         // ADD DECEASED
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
-            /** @var PersonDto $dto */
-            $dto = $addDeceasedForm->getData();
-            $dto->setGrave($id);
+            /** @var Person $person */
+            $person = $addDeceasedForm->getData();
+            $person->setGrave($grave);
             // command bus
-            $commandBus->dispatch(new PersonCommand($dto));
+            $commandBus->dispatch(new PersonCommand($person));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
                 ['id' => $id]
@@ -105,12 +101,12 @@ class GraveController extends AbstractController
 
         // ADD PAYMENT
         if ($addPaymentForm->isSubmitted() and $addPaymentForm->isValid()) {
-            /** @var PaymentGraveDto $dto */
-            $dto = $addPaymentForm->getData();
-            $dto->setGrave($id);
+            /** @var PaymentGrave $paymentGrave */
+            $paymentGrave = $addPaymentForm->getData();
+            $paymentGrave->setGrave($grave);
 
             // command bus
-            $commandBus->dispatch(new PaymentGraveCommand($dto));
+            $commandBus->dispatch(new PaymentGraveCommand($paymentGrave));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
                 ['id' => $id]
@@ -128,20 +124,20 @@ class GraveController extends AbstractController
     public function create(
         CommandBusInterface $commandBus,
         Request             $request
-    ): Response
-    {
+    ): Response {
         $form = $this->createForm(
             GraveType::class,
-            new GraveDto()
+            new Grave()
         );
         $form->handleRequest($request);
 
         // form handler
         if ($form->isSubmitted() and $form->isValid()) {
-            $dto = $form->getData();
+            $graveData = $form->getData();
 
             // command bus
-            $commandBus->dispatch(new GraveCommand($dto));
+            $commandBus->dispatch(new GraveCommand($graveData));
+            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/create.html.twig', [
@@ -150,28 +146,27 @@ class GraveController extends AbstractController
     }
 
     public function edit(
-        GetGraveDtoInterface $query,
+        GetGraveInterface $query,
         CommandBusInterface  $commandBus,
         Request              $request,
         string               $id
-    ): Response
-    {
+    ): Response {
         // query
-        $dto = $query->execute($id);
-
+        $grave = $query->execute($id);
         $form = $this->createForm(
             GraveType::class,
-            $dto
+            $grave
         );
         $form->handleRequest($request);
 
         // form handler
         if ($form->isSubmitted() and $form->isValid()) {
-            $dto = $form->getData();
+            /** @var Grave $grave */
+            $graveData = $form->getData();
 
             // command bus
-            $commandBus->dispatch(new GraveCommand($dto, $id));
-            return $this->redirectToRoute('admin_web_grave_show', ['id' => $id]);
+            $commandBus->dispatch(new GraveCommand($graveData));
+            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/edit.html.twig', [
@@ -183,8 +178,7 @@ class GraveController extends AbstractController
     public function remove(
         string              $id,
         CommandBusInterface $commandBus
-    ): Response
-    {
+    ): Response {
         // command bus
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->redirectToRoute('admin_web_grave_index');

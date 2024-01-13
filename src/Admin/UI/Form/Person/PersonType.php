@@ -2,9 +2,10 @@
 
 namespace App\Admin\UI\Form\Person;
 
-use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Validator\Person\PersonDateComparison;
 use App\Core\Domain\Entity\Grave;
+use App\Core\Domain\Entity\Person;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -34,7 +35,9 @@ class PersonType extends AbstractType
                 'widget' => 'single_text',
                 'required' => true,
             ])
-            ->add('grave', TextType::class, [
+            ->add('grave', EntityType::class, [
+                'class' => Grave::class,
+                'choice_label' => 'id',
                 'required' => true,
             ])
             ->add('add', SubmitType::class, [
@@ -49,7 +52,7 @@ class PersonType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PersonDto::class,
+            'data_class' => Person::class,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.person.%name%',

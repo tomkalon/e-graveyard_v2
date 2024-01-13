@@ -4,23 +4,17 @@ namespace App\Admin\Application\Command\Payment\Grave;
 
 use App\Admin\Application\Dto\Payment\PaymentGraveDto;
 use App\Core\Application\CQRS\Command\CommandInterface;
+use App\Core\Domain\Entity\PaymentGrave;
 
 class PaymentGraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly PaymentGraveDto $dto,
-        private readonly ?string $id = null
-    )
-    {
+        private readonly PaymentGrave $paymentGrave,
+    ) {
     }
 
-    public function getDto(): PaymentGraveDto
+    public function getPaymentGrave(): PaymentGrave
     {
-        return $this->dto;
-    }
-
-    public function getId(): ?string
-    {
-        return $this->id;
+        return $this->paymentGrave;
     }
 }

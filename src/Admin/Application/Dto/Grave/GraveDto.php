@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\Criteria;
 
 class GraveDto
 {
-    public ?string $id;
     public ?int $sector;
     public ?int $row;
     public ?int $number;
@@ -26,7 +25,6 @@ class GraveDto
     public ?DateTimeImmutable $createdAt;
 
     public function __construct(
-        ?string $id = null,
         ?int $sector = null,
         ?int $row = null,
         ?int $number = null,
@@ -39,7 +37,6 @@ class GraveDto
         ?DateTimeImmutable $updatedAt = null,
         ?DateTimeImmutable $createdAt = null
     ) {
-        $this->id = $id;
         $this->sector = $sector;
         $this->row = $row;
         $this->number = $number;
@@ -105,7 +102,6 @@ class GraveDto
         }
 
         return new self(
-            $grave->getId(),
             $grave->getSector(),
             $grave->getRow(),
             $grave->getNumber(),

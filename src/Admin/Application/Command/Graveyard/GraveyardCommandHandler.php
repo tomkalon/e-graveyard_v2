@@ -16,12 +16,7 @@ class GraveyardCommandHandler implements CommandHandlerInterface
 
     public function __invoke(GraveyardCommand $command)
     {
-        $dto = $command->getDto();
-
-        $graveyard = new Graveyard();
-        $graveyard->setName($dto->getName());
-        $graveyard->setDescription($dto->getDescription());
-
+        $graveyard = $command->getGraveyard();
         $this->em->persist($graveyard);
     }
 }
