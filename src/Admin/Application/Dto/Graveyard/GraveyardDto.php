@@ -9,14 +9,14 @@ class GraveyardDto
 {
     public ?string $name;
     public ?string $description = null;
-    public ?DateTimeImmutable $updatedAt;
-    public ?DateTimeImmutable $createdAt;
+    public ?string $updatedAt;
+    public ?string $createdAt;
 
     public function __construct(
         ?string $name = null,
         ?string $description = null,
-        ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?string $updatedAt = null,
+        ?string $createdAt = null
     ) {
         $this->name = $name;
         $this->description = $description;

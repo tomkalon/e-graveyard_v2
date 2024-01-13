@@ -3,11 +3,7 @@
 namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
-use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
-use App\Core\Domain\Enum\PaymentStatusEnum;
-use DateTimeImmutable;
-use Doctrine\Common\Collections\Criteria;
 
 class GraveDto
 {
@@ -16,13 +12,12 @@ class GraveDto
     public ?int $number;
     public ?string $positionX;
     public ?string $positionY;
-    public ?array $graveyard;
+    public ?string $graveyard;
     public ?array $people;
-    public ?array $payments;
-    public ?PaymentStatusEnum $paymentStatus = PaymentStatusEnum::UNPAID;
+    public ?string $paymentStatus;
 
-    public ?DateTimeImmutable $updatedAt;
-    public ?DateTimeImmutable $createdAt;
+    public ?string $updatedAt;
+    public ?string $createdAt;
 
     public function __construct(
         ?int $sector = null,
@@ -30,12 +25,11 @@ class GraveDto
         ?int $number = null,
         ?string $positionX = null,
         ?string $positionY = null,
-        ?array $graveyard = null,
+        ?string $graveyard = null,
         ?array $people = null,
-        ?array $payments = null,
-        ?PaymentStatusEnum $paymentStatus = PaymentStatusEnum::UNPAID,
-        ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?string $paymentStatus = null,
+        ?string $updatedAt = null,
+        ?string $createdAt = null
     ) {
         $this->sector = $sector;
         $this->row = $row;
@@ -44,7 +38,6 @@ class GraveDto
         $this->positionY = $positionY;
         $this->graveyard = $graveyard;
         $this->people = $people;
-        $this->payments = $payments;
         $this->paymentStatus = $paymentStatus;
         $this->updatedAt = $updatedAt;
         $this->createdAt = $createdAt;
@@ -52,54 +45,15 @@ class GraveDto
 
     public static function fromEntity(Grave $grave): self
     {
-        // graveyard
-        $graveyard = [
-            'id' => $grave->getGraveyard()->getId(),
-            'name' => $grave->getGraveyard()->getName(),
-            'description' => $grave->getGraveyard()->getDescription(),
-        ];
-
-        // payments
-        $payments = $grave->getPayments();
-        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
-        $payments = array_values($payments->matching($criteria)->toArray());
-
-        $paymentStatus = PaymentStatusEnum::UNPAID;
-        if ($payments) {
-            $lastFee = reset($payments);
-            $now = new DateTimeImmutable();
-
-            if ($now < $lastFee->getValidityTime()) {
-                $paymentStatus = PaymentStatusEnum::PAID;
-            } else {
-                $paymentStatus = PaymentStatusEnum::EXPIRED;
-            }
-        }
-
-        $paymentsGrave = [];
-        /** @var PaymentGrave $fee */
-        foreach ($payments as $fee) {
-            $paymentsGrave[] = [
-                'id' => $fee->getId(),
-                'value' => $fee->getValue(),
-                'currency' => $fee->getCurrency(),
-                'validity_time' => $fee->getValidityTime(),
-            ];
-        }
-
-        // people
-        $people = $grave->getPeople()->toArray();
-        $buried = [];
+        $people = array_map(function ($person) {
         /** @var Person $person */
-        foreach ($people as $person) {
-            $buried[] = [
-                'id' => $person->getId(),
-                'firstname' => $person->getFirstname(),
-                'lastname' => $person->getLastname(),
-                'born_date' => $person->getBornDate(),
-                'death_date' => $person->getDeathDate()
+            return [
+            'firstName' => $person->getFirstname(),
+            'lastName' => $person->getLastName(),
+            'bornDate' => $person->getBornDate()->format('Y-m-d'),
+            'deathDate' => $person->getDeathDate()->format('Y-m-d')
             ];
-        }
+        }, $grave->getPeople()->toArray());
 
         return new self(
             $grave->getSector(),
@@ -107,12 +61,11 @@ class GraveDto
             $grave->getNumber(),
             $grave->getPositionX(),
             $grave->getPositionY(),
-            $graveyard,
-            $buried,
-            $paymentsGrave,
-            $paymentStatus,
-            $grave->getUpdatedAt(),
-            $grave->getCreatedAt()
+            $grave->getGraveyard()->getName(),
+            $people,
+            $grave->getPaymentStatus()->name,
+            $grave->getUpdatedAt()->format('Y-m-d'),
+            $grave->getCreatedAt()->format('Y-m-d')
         );
     }
 }

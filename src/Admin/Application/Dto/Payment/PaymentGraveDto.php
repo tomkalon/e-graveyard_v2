@@ -9,16 +9,16 @@ use DateTimeImmutable;
 class PaymentGraveDto
 {
     public ?int $value;
-    public ?CurrencyTypeEnum $currency;
+    public ?string $currency;
     public ?string $description;
-    public ?DateTimeImmutable $validity_time;
+    public ?string $validity_time;
     public ?string $grave;
 
     public function __construct(
         ?string $value = null,
-        ?CurrencyTypeEnum $currency = null,
+        ?string $currency = null,
         ?string $description = null,
-        ?DateTimeImmutable $validity_time = null,
+        ?string $validity_time = null,
         ?string $grave = null,
     ) {
         $this->value = $value / 100;
@@ -32,9 +32,9 @@ class PaymentGraveDto
     {
         return new self(
             $paymentGrave->getValue(),
-            $paymentGrave->getCurrency(),
+            $paymentGrave->getCurrency()->value,
             $paymentGrave->getDescription(),
-            $paymentGrave->getValidityTime(),
+            $paymentGrave->getValidityTime()->format('Y-m-d'),
             $paymentGrave->getGrave()->getId(),
         );
     }
