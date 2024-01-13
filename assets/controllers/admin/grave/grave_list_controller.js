@@ -15,6 +15,8 @@ export default class extends Controller {
     {
         const container = this.element;
 
+        Modal.preLoadModal('grave-modal-add-deceased')
+
         if (this.hasPaginationTarget) {
             const pagination = this.paginationTarget;
             const items = pagination.querySelectorAll('[data-item-id]')
@@ -66,7 +68,7 @@ export default class extends Controller {
     remove(item, params)
     {
         const name = 'grave-modal-remove'
-        const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
+        const content = getGraveDetails(item)
         const modal = Modal.getModal(name, null, content)
         modal.querySelector('[data-grave-btn-remove]').addEventListener('click', () => {
             Api.remove(
