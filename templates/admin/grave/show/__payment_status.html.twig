@@ -1,0 +1,9 @@
+{% if grave.getPaymentStatus.value == 'paid' %}
+    <button class="btn btn-xs btn-success">{{ 'ui.grave.paid'|trans }}</button>
+{% elseif grave.getPaymentStatus.value  == 'unpaid' %}
+    <button class="btn btn-xs btn-danger">{{ 'ui.grave.unpaid'|trans }}</button>
+{% elseif grave.getPaymentStatus.value  == 'expired' %}
+    <button class="btn btn-xs btn-danger">{{ 'ui.grave.expired'|trans }}</button>
+{% elseif grave.getPaymentStatus.value  == 'soon' %}
+    <button class="btn btn-xs btn-warning">{{ 'ui.grave.soon'|trans }}</button>
+{% endif %}

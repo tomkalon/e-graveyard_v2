@@ -3,41 +3,34 @@
 namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
-use App\Core\Domain\Entity\Graveyard;
-use App\Core\Domain\Entity\PaymentGrave;
-use App\Core\Domain\Enum\PaymentStatusEnum;
-use DateTimeImmutable;
-use Doctrine\Common\Collections\Criteria;
-use Exception;
+use App\Core\Domain\Entity\Person;
 
 class GraveDto
 {
-    public ?string $id;
     public ?int $sector;
     public ?int $row;
     public ?int $number;
     public ?string $positionX;
     public ?string $positionY;
-    public ?Graveyard $graveyard;
+    public ?string $graveyard;
     public ?array $people;
-    public ?array $payments;
-    public ?DateTimeImmutable $updatedAt;
-    public ?DateTimeImmutable $createdAt;
+    public ?string $paymentStatus;
+
+    public ?string $updatedAt;
+    public ?string $createdAt;
 
     public function __construct(
-        ?string $id = null,
         ?int $sector = null,
         ?int $row = null,
         ?int $number = null,
         ?string $positionX = null,
         ?string $positionY = null,
-        ?Graveyard $graveyard = null,
+        ?string $graveyard = null,
         ?array $people = null,
-        ?array $payments = null,
-        ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?string $paymentStatus = null,
+        ?string $updatedAt = null,
+        ?string $createdAt = null
     ) {
-        $this->id = $id;
         $this->sector = $sector;
         $this->row = $row;
         $this->number = $number;
@@ -45,49 +38,34 @@ class GraveDto
         $this->positionY = $positionY;
         $this->graveyard = $graveyard;
         $this->people = $people;
-        $this->payments = $payments;
+        $this->paymentStatus = $paymentStatus;
         $this->updatedAt = $updatedAt;
         $this->createdAt = $createdAt;
     }
 
     public static function fromEntity(Grave $grave): self
     {
-        $payments = $grave->getPayments();
-        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
-        $payments = array_values($payments->matching($criteria)->toArray());
+        $people = array_map(function ($person) {
+        /** @var Person $person */
+            return [
+            'firstName' => $person->getFirstname(),
+            'lastName' => $person->getLastName(),
+            'bornDate' => $person->getBornDate()->format('Y-m-d'),
+            'deathDate' => $person->getDeathDate()->format('Y-m-d')
+            ];
+        }, $grave->getPeople()->toArray());
 
         return new self(
-            $grave->getId(),
             $grave->getSector(),
             $grave->getRow(),
             $grave->getNumber(),
             $grave->getPositionX(),
             $grave->getPositionY(),
-            $grave->getGraveyard(),
-            $grave->getPeople()->toArray(),
-            $payments,
-            $grave->getUpdatedAt(),
-            $grave->getCreatedAt()
+            $grave->getGraveyard()->getName(),
+            $people,
+            $grave->getPaymentStatus()->name,
+            $grave->getUpdatedAt()->format('Y-m-d'),
+            $grave->getCreatedAt()->format('Y-m-d')
         );
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function isItPaid(): PaymentStatusEnum
-    {
-        if ($this->payments) {
-            /** @var PaymentGrave $lastFee */
-            $lastFee = reset($this->payments);
-            $now = new DateTimeImmutable();
-
-            if ($now < $lastFee->getValidityTime()) {
-                return PaymentStatusEnum::PAID;
-            } else {
-                return PaymentStatusEnum::EXPIRED;
-            }
-        } else {
-            return PaymentStatusEnum::UNPAID;
-        }
     }
 }

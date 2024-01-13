@@ -2,7 +2,6 @@
 
 namespace App\Admin\Application\Dto\Payment;
 
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use DateTimeImmutable;
@@ -10,19 +9,19 @@ use DateTimeImmutable;
 class PaymentGraveDto
 {
     public ?int $value;
-    public ?CurrencyTypeEnum $currency;
+    public ?string $currency;
     public ?string $description;
-    public ?DateTimeImmutable $validity_time;
-    public ?Grave $grave;
+    public ?string $validity_time;
+    public ?string $grave;
 
     public function __construct(
         ?string $value = null,
-        ?CurrencyTypeEnum $currency = null,
+        ?string $currency = null,
         ?string $description = null,
-        ?DateTimeImmutable $validity_time = null,
-        ?Grave $grave = null,
+        ?string $validity_time = null,
+        ?string $grave = null,
     ) {
-        $this->value = $value;
+        $this->value = $value / 100;
         $this->currency = $currency;
         $this->description = $description;
         $this->validity_time = $validity_time;
@@ -33,30 +32,10 @@ class PaymentGraveDto
     {
         return new self(
             $paymentGrave->getValue(),
-            $paymentGrave->getCurrency(),
+            $paymentGrave->getCurrency()->value,
             $paymentGrave->getDescription(),
-            $paymentGrave->getValidityTime(),
-            $paymentGrave->getGrave(),
+            $paymentGrave->getValidityTime()->format('Y-m-d'),
+            $paymentGrave->getGrave()->getId(),
         );
-    }
-
-    public function getMoney(): string
-    {
-        return $this->value / 100;
-    }
-
-    public function setGrave(?Grave $grave): void
-    {
-        $this->grave = $grave;
-    }
-
-    public function isItPaid(): bool
-    {
-        $now = new DateTimeImmutable();
-        if ($now < $this->validity_time) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

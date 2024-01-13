@@ -4,22 +4,18 @@ namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Core\Application\CQRS\Command\CommandInterface;
+use App\Core\Domain\Entity\Grave;
 
 class GraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly GraveDto $dto,
-        private readonly ?string $id = null
+        private readonly Grave $grave,
     ) {
     }
 
-    public function getDto(): GraveDto
+    public function getGrave(): Grave
     {
-        return $this->dto;
+        return $this->grave;
     }
 
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
 }

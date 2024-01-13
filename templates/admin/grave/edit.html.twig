@@ -1,8 +1,8 @@
-{% extends 'Admin/Common/Dashboard/layout.html.twig' %}
+{% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.grave.title.edit'|trans }}{% endblock %}
 {% block dashboard_content %}
     <!-- Dashboard Card -->
-    {% embed 'Admin/Common/Dashboard/_dashboardCard.html.twig' %}
+    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
         {% block title %}
             <!-- Dashboard Title -->
             <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.edit'|trans }}</h1>
@@ -14,7 +14,7 @@
 
             <!-- ERRORS -->
             {% if form_errors(form) %}
-                {% embed 'Core/Alerts/Error.html.twig' %}
+                {% embed 'core/alerts/error.html.twig' %}
                     {% block content %}
                         {{ form_errors(form) }}
                     {% endblock %}

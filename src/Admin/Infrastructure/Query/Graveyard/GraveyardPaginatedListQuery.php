@@ -11,16 +11,15 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
     public function __construct(
         private readonly GraveyardRepositoryInterface $repository,
         private readonly PaginatorInterface $paginator
-    )
-    {
+    ) {
     }
 
     public function execute(
         ?int $page = null,
         ?string $limit = null
-    ): PaginationInterface
-    {
+    ): PaginationInterface {
         $query = $this->repository->getGraveyardsListQuery();
+
         return $this->paginator->paginate(
             $query,
             $page,

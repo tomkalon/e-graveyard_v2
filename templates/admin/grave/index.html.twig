@@ -92,19 +92,19 @@
                                 class: 'w-36'
                             } %}
                                 {% block actions %}
-                                    {% if item.isItPaid.value == 'paid' %}
+                                    {% if item.paymentStatus.value == 'paid' %}
                                         <button class="btn btn-xs btn-success">
                                             <i class="fa fa-check" aria-hidden="true"></i>
                                         </button>
-                                    {% elseif item.isItPaid.value == 'unpaid' %}
+                                    {% elseif item.paymentStatus.value == 'unpaid' %}
                                         <button class="btn btn-xs btn-danger">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
-                                    {% elseif item.isItPaid.value == 'expired' %}
+                                    {% elseif item.paymentStatus.value == 'expired' %}
                                         <button class="btn btn-xs btn-danger">
                                             <i class="fa fa-hourglass-end" aria-hidden="true"></i>
                                         </button>
-                                    {% elseif item.isItPaid.value == 'soon' %}
+                                    {% elseif item.paymentStatus.value == 'soon' %}
                                         <button class="btn btn-xs btn-warning">
                                             <i class="fa fa-hourglass-half" aria-hidden="true"></i>
                                         </button>

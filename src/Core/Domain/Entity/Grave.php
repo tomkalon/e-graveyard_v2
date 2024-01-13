@@ -2,11 +2,14 @@
 
 namespace App\Core\Domain\Entity;
 
+use App\Core\Domain\Enum\PaymentStatusEnum;
 use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use Exception;
 
 class Grave
 {
@@ -112,6 +115,25 @@ class Grave
         }
 
         return $this;
+    }
+
+    public function getPaymentStatus(): PaymentStatusEnum
+    {
+        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
+
+        /** @var Collection $payments */
+        $payments = $this->payments->matching($criteria);
+        if (!$payments->isEmpty()) {
+            $lastFee = $payments->first();
+            $now = new DateTimeImmutable();
+
+            if ($now < $lastFee->getValidityTime()) {
+                return PaymentStatusEnum::PAID;
+            } else {
+                return PaymentStatusEnum::EXPIRED;
+            }
+        }
+        return PaymentStatusEnum::UNPAID;
     }
 
     public function getPositionX(): ?string

@@ -22,7 +22,8 @@ export default class extends Controller {
         }
     }
 
-    paginationActions(button, id, action) {
+    paginationActions(button, id, action)
+    {
         let callback, options;
         switch (action) {
             case 'grave-modal-details':
@@ -38,7 +39,7 @@ export default class extends Controller {
     show(item, params)
     {
         const name = 'grave-modal-details'
-        const content = getGraveDetails(item.graveyard, item.sector, item.row, item.number, item.people)
+        const content = getGraveDetails(item)
         const modal = Modal.getModal(name, content)
         modal.querySelector('[data-grave-btn-details]').setAttribute('href', Routing.generate('admin_web_grave_show', {id: params.id}))
         modal.querySelector('[data-grave-btn-add-deceased]').addEventListener('click', () => {

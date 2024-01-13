@@ -2,26 +2,19 @@
 
 namespace App\Admin\Application\Command\Person;
 
-use App\Admin\Application\Dto\Person\PersonDto;
 use App\Core\Application\CQRS\Command\CommandInterface;
+use App\Core\Domain\Entity\Person;
 
 class PersonCommand implements CommandInterface
 {
     public function __construct(
-        private readonly PersonDto $dto,
-        private readonly ?string $id = null
-    )
-    {
+        private readonly Person $person,
+    ) {
     }
 
-    public function getDto(): PersonDto
+    public function getPerson(): Person
     {
-        return $this->dto;
-    }
-
-    public function getId(): ?string
-    {
-        return $this->id;
+        return $this->person;
     }
 
 }

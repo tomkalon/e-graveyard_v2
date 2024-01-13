@@ -5,21 +5,20 @@ namespace App\Admin\UI\Api\Controller\Person;
 use App\Admin\Application\Command\Person\RemovePersonCommand;
 use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Infrastructure\Query\Person\GetPersonInterface;
-use App\Admin\Infrastructure\View\Person\PersonView;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
 
-class PersonController extends AbstractController
+class PersonController extends AbstractFOSRestController
 {
     public function get(
         string $id,
         GetPersonInterface $query,
-        PersonView $personView
-    ): JsonResponse {
+        SerializerInterface $serializer
+    ): Response {
         $dto = PersonDto::fromEntity($query->execute($id));
-        return new JsonResponse($personView->getView($dto));
+        return new Response($serializer->serialize($dto, 'json'));
     }
 
     public function remove(
@@ -27,6 +26,6 @@ class PersonController extends AbstractController
         CommandBusInterface $commandBus
     ): Response {
         $commandBus->dispatch(new RemovePersonCommand($id));
-        return new JsonResponse(true);
+        return $this->json('true');
     }
 }

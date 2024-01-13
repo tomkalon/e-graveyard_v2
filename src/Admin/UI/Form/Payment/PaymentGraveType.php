@@ -2,7 +2,7 @@
 
 namespace App\Admin\UI\Form\Payment;
 
-use App\Admin\Application\Dto\Payment\PaymentGraveDto;
+use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Enum\CurrencyTypeEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -50,7 +50,7 @@ class PaymentGraveType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PaymentGraveDto::class,
+            'data_class' => PaymentGrave::class,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.payment.%name%',
