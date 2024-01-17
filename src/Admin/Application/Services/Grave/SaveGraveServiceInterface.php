@@ -4,7 +4,7 @@ namespace App\Admin\Application\Services\Grave;
 
 use App\Core\Domain\Entity\Grave;
 
-interface GravePersistServiceInterface
+interface SaveGraveServiceInterface
 {
     public function persist(Grave $grave): void;
 }

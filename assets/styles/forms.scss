@@ -22,16 +22,24 @@
   }
 
   input {
-      color: #000000 !important;
+    &[type="number"], &[type="text"] {
+      color: #000000;
+    }
   }
 
   [data-te-select-input-ref] {
     height: 2.5rem;
     background: theme('colors.slate.100');
-
+    color: #000000;
   }
 
   svg {
     color: theme('colors.slate.900')!important;
+  }
+}
+
+.dark {
+  [data-te-select-input-ref] {
+    color: #000000!important;
   }
 }

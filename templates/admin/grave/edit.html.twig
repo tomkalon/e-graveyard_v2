@@ -46,7 +46,10 @@
                     {{ form_row(form.positionY) }}
                 </div>
             </div>
-            <div class="mt-4 flex">
+            <div class="mt-4">
+                {{ form_row(form.mainImage) }}
+            </div>
+            <div class="mt-8 flex">
                 {{ form_row(form.create, {
                     'label': 'ui.buttons.confirm'|trans,
                     'attr': {

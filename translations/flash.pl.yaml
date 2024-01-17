@@ -25,10 +25,9 @@ notification:
     grave: Grób
     graveyard: Cmentarz
     person: Zmarły
-    file: Plik
     user: Użytkownik
     paymentGrave: Opłata za grób
-    
+  
   grave:
     empty: Nie znaleziono wskazanego grobu. Prawdopodobnie została już usunięty.
     no_changes: Nie wprowadzono zmian.
@@ -38,3 +37,10 @@ notification:
 
   paymentGrave:
     empty: Nie znaleziono wskazanej płatności. Prawdopodobnie została już usunięta.
+    
+  file:
+    name: Plik
+    create:
+      label: Zapisywanie plików
+      upload_error: Wystąpił błąd przy zapisywaniu pliku. Jeśli problem będzie się powtarzał, skontaktuj się z administratorem.
+      invalid_extension_error: Niewłaściwy format pliku.

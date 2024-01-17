@@ -26,6 +26,7 @@
         </one-to-many>
         <one-to-many field="payments" target-entity="PaymentGrave" mapped-by="grave" orphan-removal="true">
         </one-to-many>
+        <one-to-one field="main_image" target-entity="File" orphan-removal="true" />
 
         <unique-constraints>
             <unique-constraint name="unique_entity" columns="sector,row,number,graveyard_id"/>

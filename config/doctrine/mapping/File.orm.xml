@@ -10,7 +10,7 @@
         </id>
         <field name="name" />
         <field name="extension" />
-        <field name="primary" type="boolean" nullable="true"/>
+        <field name="type" nullable="true"/>
 
         <many-to-one field="grave" target-entity="Grave" inversed-by="images">
             <cascade>

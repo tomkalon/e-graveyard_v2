@@ -9,7 +9,7 @@ use App\Core\Domain\Enum\NotificationTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class GravePersistPersistService implements GravePersistServiceInterface
+class SaveGraveService implements SaveGraveServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,

@@ -100,6 +100,8 @@ ui:
     number: Numer
     positionX: Dł. geograficzna
     positionY: Szer. geograficzna
+    main_image: Zdjęcie główne
+    images: Zdjęcia
     people: Pochowani
     without_people: Brak pochowanych
     details: Szczegóły
