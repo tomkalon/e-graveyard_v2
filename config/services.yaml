@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-  file_grave_directory: '%kernel.project_dir%/public/uploads/grave'
+  app.path.grave_images: '%kernel.project_dir%/public/uploads/grave/images'
+  app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads/grave/thumbs'
 
 services:
     # default configuration for services in *this* file
@@ -52,6 +53,7 @@ services:
         - { name: doctrine.event_listener, event: postRemove }
   
     ### DOCTRINE ENTITY PERSIST ###
-    App\Admin\Application\Service\File\Grave\GraveUploaderService:
+    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
       arguments:
-        $targetDirectory: '%file_grave_directory%'
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'

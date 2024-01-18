@@ -15,7 +15,6 @@
         </id>
         <field name="name" />
         <field name="extension" />
-        <field name="type" nullable="true"/>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onPrePersist" />

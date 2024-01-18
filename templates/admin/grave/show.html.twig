@@ -1,7 +1,7 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.grave.title.show'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <div {{ stimulus_controller('admin--grave--grave-show') }}>
+    <div {{ stimulus_controller('admin--grave--grave-show') }} class="max-w-[800px]">
         <!-- Dashboard Card -->
         {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
@@ -55,28 +55,53 @@
 
                 <!-- ------------ POSITION ------------ -->
                 <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
-                <hr class="max-w-[800px]">
-                <div class="grid gap-2 grid-cols-1 lg:grid-cols-2 text-neutral-900 dark:text-neutral-50">
+                <hr>
+                <div class="grid grid-cols-3 text-neutral-900 dark:text-neutral-50">
                     <div>
+                        <img src="" alt="">
+                    </div>
+                    <div class="col-span-2">
                         <p class="py-2 px-4 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.graveyard.name }}</p>
-                    </div>
-                </div>
-                <div class="mt-6 grid gap-2 grid-cols-3 lg:grid-cols-6 text-center text-neutral-900 dark:text-neutral-50">
-                    <div>
-                        <p class="mb-1 text-xs uppercase">{{ 'ui.grave.sector'|trans }}</p>
-                        <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.sector }}</p>
-                    </div>
-                    {% if grave.row %}
-                        <div>
-                            <p class="mb-1 text-xs uppercase">{{ 'ui.grave.row'|trans }}</p>
-                            <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.row }}</p>
+                        <div class="mt-6 grid gap-2 grid-cols-3 text-center text-neutral-900 dark:text-neutral-50">
+                            <div>
+                                <p class="mb-1 text-xs uppercase">{{ 'ui.grave.sector'|trans }}</p>
+                                <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.sector }}</p>
+                            </div>
+                            {% if grave.row %}
+                                <div>
+                                    <p class="mb-1 text-xs uppercase">{{ 'ui.grave.row'|trans }}</p>
+                                    <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.row }}</p>
+                                </div>
+                            {% endif %}
+                            <div>
+                                <p class="mb-1 text-xs uppercase">{{ 'ui.grave.number'|trans }}</p>
+                                <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.number }}</p>
+                            </div>
                         </div>
-                    {% endif %}
-                    <div>
-                        <p class="mb-1 text-xs uppercase">{{ 'ui.grave.number'|trans }}</p>
-                        <p class="p-2 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.number }}</p>
+
                     </div>
                 </div>
+
+                <!-- ------------ IMAGES ------------ -->
+                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.images'|trans }}</h3>
+                <hr>
+                {% if grave.images|length %}
+                <div
+                        data-te-lightbox-init
+                        class="flex flex-col space-y-5 lg:flex-row lg:space-x-5 lg:space-y-0">
+                    {% for image in grave.images %}
+                        <div class="h-full w-full">
+                            <img
+                                    src="{{ asset(file_grave.images_thumbnail_directory ~ image.name ~ '.' ~ image.extension.value) }}"
+                                    data-te-img="{{ asset(file_grave.images_directory ~ image.name ~ '.' ~ image.extension.value) }}"
+                                    alt="Grave Image"
+                                    class="w-full cursor-zoom-in rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto" />
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+                {% endif %}
 
                 <!-- ------------ PEOPLE ------------ -->
                 {% include 'admin/grave/show/_people.html.twig' %}

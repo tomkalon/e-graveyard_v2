@@ -9,10 +9,11 @@ import 'tw-elements'
 import {
     Input,
     Ripple,
+    Lightbox,
     initTE
 } from "tw-elements";
 
-initTE({ Input, Ripple });
+initTE({ Input, Ripple, Lightbox });
 
 // icons
 import 'fontawesome-4.7'

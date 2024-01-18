@@ -15,7 +15,6 @@ class File
 
     private string $name;
     private FileExtensionTypeEnum $extension;
-    private ?FileTypeEnum $type;
 
     public function __construct(?string $name = null)
     {
@@ -45,13 +44,8 @@ class File
         $this->extension = $extension;
     }
 
-    public function getType(): ?FileTypeEnum
+    public function getFilename()
     {
-        return $this->type;
-    }
 
-    public function setType(?FileTypeEnum $type): void
-    {
-        $this->type = $type;
     }
 }
