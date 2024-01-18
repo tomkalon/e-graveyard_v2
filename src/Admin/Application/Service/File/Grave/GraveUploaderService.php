@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Admin\Application\Services\File;
+namespace App\Admin\Application\Service\File\Grave;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\File;
+use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Enum\FileExtensionTypeEnum;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class UploaderService implements UploaderServiceInterface
+class GraveUploaderService implements GraveUploaderServiceInterface
 {
 
     public function __construct(
@@ -27,7 +28,7 @@ class UploaderService implements UploaderServiceInterface
     /**
      * @throws Exception
      */
-    public function upload(UploadedFile $file): ?File
+    public function upload(UploadedFile $file): ?FileGrave
     {
         // set fileName
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -35,7 +36,7 @@ class UploaderService implements UploaderServiceInterface
         $fileName = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
 
         // create new File
-        $newFile = new File();
+        $newFile = new FileGrave();
         $newFile->setName($safeFilename.'-'.uniqid());
 
         $ext = FileExtensionTypeEnum::tryFrom($file->guessExtension());

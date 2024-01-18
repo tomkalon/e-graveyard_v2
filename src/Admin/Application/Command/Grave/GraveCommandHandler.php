@@ -2,30 +2,30 @@
 
 namespace App\Admin\Application\Command\Grave;
 
-use App\Admin\Application\Services\File\UploaderServiceInterface;
-use App\Admin\Application\Services\Grave\SaveGraveServiceInterface;
+use App\Admin\Application\Service\File\Grave\GraveUploaderServiceInterface;
+use App\Admin\Application\Service\Grave\SaveGraveServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 
 class GraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly UploaderServiceInterface  $uploaderService,
-        private readonly SaveGraveServiceInterface $graveService,
+        private readonly GraveUploaderServiceInterface $uploaderService,
+        private readonly SaveGraveServiceInterface     $graveService,
     ) {
     }
 
     public function __invoke(GraveCommand $command)
     {
         $grave = $command->getGrave();
-        $images = $command->getImages();
-
-        if (reset($images)) {
-            $image = $this->uploaderService->upload(reset($images));
-            if ($image) {
-                $grave->setMainImage($image);
+        $uploadedImages = $command->getImages();
+        if ($uploadedImages and reset($uploadedImages)) {
+            foreach ($uploadedImages as $uploadedImage) {
+                $image = $this->uploaderService->upload($uploadedImage);
+                if ($image) {
+                    $grave->addImages($image);
+                }
             }
         }
-
 
         $this->graveService->persist($grave);
     }

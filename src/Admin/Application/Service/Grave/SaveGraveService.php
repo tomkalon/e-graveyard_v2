@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Services\Grave;
+namespace App\Admin\Application\Service\Grave;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;

@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-  file_directory: '%kernel.project_dir%/public/uploads'
+  file_grave_directory: '%kernel.project_dir%/public/uploads/grave'
 
 services:
     # default configuration for services in *this* file
@@ -33,7 +33,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    # EVENT LISTENERS
+    ### EVENT LISTENERS ###
     App\Core\Domain\EventListener\LoginSuccessListener:
       arguments:
         $tokenStorage: '@security.token_storage'
@@ -41,23 +41,17 @@ services:
         - { name: kernel.event_subscriber }
         
     # DOCTRINE ENTITY PERSIST
-    # # # CREATE
-    
     App\Core\Infrastructure\Event\Doctrine\PersistEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
-
-    # # # UPDATE
     App\Core\Infrastructure\Event\Doctrine\UpdateEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
-        
-  # # # REMOVE
     App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postRemove }
-    
-    
-    App\Admin\Application\Services\File\UploaderService:
+  
+    ### DOCTRINE ENTITY PERSIST ###
+    App\Admin\Application\Service\File\Grave\GraveUploaderService:
       arguments:
-        $targetDirectory: '%file_directory%'
+        $targetDirectory: '%file_grave_directory%'

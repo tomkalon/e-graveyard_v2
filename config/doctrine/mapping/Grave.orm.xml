@@ -20,13 +20,11 @@
             </cascade>
             <join-column name="graveyard_id" referenced-column-name="id" on-delete="SET NULL" />
         </many-to-one>
-        <one-to-many field="people" target-entity="Person" mapped-by="grave" orphan-removal="true">
-        </one-to-many>
-        <one-to-many field="images" target-entity="File" mapped-by="grave" orphan-removal="true">
-        </one-to-many>
-        <one-to-many field="payments" target-entity="PaymentGrave" mapped-by="grave" orphan-removal="true">
-        </one-to-many>
-        <one-to-one field="main_image" target-entity="File" orphan-removal="true" />
+
+        <one-to-many field="people" target-entity="Person" mapped-by="grave" orphan-removal="true" />
+        <one-to-many field="images" target-entity="FileGrave" mapped-by="grave" orphan-removal="true" />
+        <one-to-many field="payments" target-entity="PaymentGrave" mapped-by="grave" orphan-removal="true" />
+        <one-to-one field="main_image" target-entity="FileGrave" />
 
         <unique-constraints>
             <unique-constraint name="unique_entity" columns="sector,row,number,graveyard_id"/>

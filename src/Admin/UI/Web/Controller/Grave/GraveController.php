@@ -161,7 +161,6 @@ class GraveController extends AbstractController
 
         // form handler
         if ($form->isSubmitted() and $form->isValid()) {
-            /** @var Grave $grave */
             $graveData = $form->getData();
             $mainImage = $form->get('mainImage')->getData();
 

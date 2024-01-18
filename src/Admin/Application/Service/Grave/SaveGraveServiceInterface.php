@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Services\Grave;
+namespace App\Admin\Application\Service\Grave;
 
 use App\Core\Domain\Entity\Grave;
 

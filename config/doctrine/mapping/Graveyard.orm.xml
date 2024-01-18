@@ -14,8 +14,6 @@
 
         <one-to-many field="graves" target-entity="Grave" mapped-by="graveyard" orphan-removal="true">
         </one-to-many>
-        <one-to-many field="images" target-entity="File" mapped-by="graveyard">
-        </one-to-many>
 
         <lifecycle-callbacks>
             <lifecycle-callback type="prePersist" method="onPrePersist" />

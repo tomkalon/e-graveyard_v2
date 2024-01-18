@@ -16,8 +16,6 @@ class File
     private string $name;
     private FileExtensionTypeEnum $extension;
     private ?FileTypeEnum $type;
-    private ?Grave $grave;
-    private ?Graveyard $graveyard;
 
     public function __construct(?string $name = null)
     {
@@ -55,25 +53,5 @@ class File
     public function setType(?FileTypeEnum $type): void
     {
         $this->type = $type;
-    }
-
-    public function getGrave(): ?Grave
-    {
-        return $this->grave;
-    }
-
-    public function setGrave(?Grave $grave): void
-    {
-        $this->grave = $grave;
-    }
-
-    public function getGraveyard(): ?Graveyard
-    {
-        return $this->graveyard;
-    }
-
-    public function setGraveyard(?Graveyard $graveyard): void
-    {
-        $this->graveyard = $graveyard;
     }
 }

@@ -19,16 +19,17 @@ class RemoveEntityEvent extends PostRemoveListener
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
-        private readonly NotificationInterface $flashMessage
-    )
-    {
+        private readonly NotificationInterface $flashMessage,
+    ) {
     }
 
     public function postRemove(LifecycleEventArgs $args): void
     {
         $entity = $args->getObject();
 
-        $title = match(true) {
+
+
+        $title = match (true) {
             $entity instanceof Grave => $this->translator->trans('notification.entity.grave', [], 'flash'),
             $entity instanceof Graveyard => $this->translator->trans('notification.entity.graveyard', [], 'flash'),
             $entity instanceof User => $this->translator->trans('notification.entity.user', [], 'flash'),

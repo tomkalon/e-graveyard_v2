@@ -9,7 +9,6 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use Exception;
 
 class Grave
 {
@@ -23,14 +22,15 @@ class Grave
     private ?string $positionY;
     private ?Graveyard $graveyard;
     private ?File $main_image;
-    private ?Collection $people;
-    private ?Collection $images;
-    private ?Collection $payments;
+    private Collection $people;
+    private Collection $images;
+    private Collection $payments;
 
     public function __construct()
     {
         $this->people = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
 
     public function getSector(): int
@@ -88,22 +88,21 @@ class Grave
         return $this;
     }
 
-    public function getImages(): ?Collection
+    public function getImages(): Collection
     {
         return $this->images;
     }
 
-    public function addImages(File $image): self
+    public function addImages(FileGrave $image): self
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
             $image->setGrave($this);
         }
-
         return $this;
     }
 
-    public function getPayments(): ?Collection
+    public function getPayments(): Collection
     {
         return $this->payments;
     }

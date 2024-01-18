@@ -48,6 +48,10 @@
                 </div>
             </div>
             <div class="mt-4 flex">
+                {{ form_row(form.mainImage, {
+                    'attr': {'disabled':'disabled', 'class': 'hidden'},
+                    'label_attr': {'class': 'hidden'},
+                }) }}
                 {{ form_row(form.create) }}
             </div>
             {{ form_end(form) }}
