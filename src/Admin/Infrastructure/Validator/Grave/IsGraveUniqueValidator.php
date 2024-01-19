@@ -18,7 +18,7 @@ class IsGraveUniqueValidator extends ConstraintValidator
 
     public function validate(mixed $value, Constraint $constraint)
     {
-        /** @var Grave $grave */
+        /** @var Grave $graveData */
         $graveData = $this->context->getRoot()->getData();
 
         $request = $this->requestStack->getCurrentRequest();

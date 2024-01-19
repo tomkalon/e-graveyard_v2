@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class ImagesOptionsValidator extends ConstraintValidator
+class GraveImagesRequirementsValidator extends ConstraintValidator
 {
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
@@ -21,10 +21,15 @@ class ImagesOptionsValidator extends ConstraintValidator
     {
         $request = $this->requestStack->getCurrentRequest();
         $id = $request->attributes->get('id');
-        $grave = $this->graveRepository->find($id);
+
+        $grave = $this->graveRepository->findBy([
+            'id' => $id
+        ]);
 
         if ($grave) {
-            /** @var Grave $grave */
+            $grave = reset($grave);
+
+            /** @var Grave $graveData */
             $graveData = $this->context->getRoot()->getData();
         }
     }

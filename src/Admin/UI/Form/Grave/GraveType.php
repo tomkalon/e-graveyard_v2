@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Form\Grave;
 
 use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Infrastructure\Validator\Grave\GraveImagesRequirements;
 use App\Admin\Infrastructure\Validator\Grave\IsGraveUnique;
 use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\Grave;
@@ -68,7 +69,7 @@ class GraveType extends AbstractType
                 ],
 
                 'constraints' => [
-                    new IsGraveUnique()
+                    new GraveImagesRequirements()
                 ]
             ])
             ->add('create', SubmitType::class, [
