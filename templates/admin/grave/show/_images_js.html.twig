@@ -1,0 +1,7 @@
+{% if grave.images|length %}
+    <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.images'|trans }}</h3>
+    <hr>
+    <div {{ stimulus_target('admin--grave--grave-show', 'gallery') }}>
+
+    </div>
+{% endif %}
