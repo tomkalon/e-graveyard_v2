@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import Api from '@Api'
-import {getImage} from "@View/file/lb2_gallery_view";
 
-const createGallery = (container, id, path, thumbPath) => {
+const createGallery = (container, id, path, thumbPath, galleryName = null) => {
     const loader = container.querySelector('[data-gallery-loader]')
     const gallery = container.querySelector('[data-gallery-box]')
 
@@ -17,13 +16,35 @@ const createGallery = (container, id, path, thumbPath) => {
         console.log(item)
     }
 
+    const getImage = (image) => {
+        const fullPath = '/'+ path + image.name + '.' + image.extension
+        const thumbFullPath = '/'+ thumbPath + image.name + '.' + image.thumb_extension
+
+        let gallery = 'Gallery'
+        if (galleryName) {
+            gallery = galleryName
+        }
+
+        let link = $('<a/>', {
+            href: fullPath,
+            'data-lightbox-thumb': '',
+            'data-lightbox': gallery
+        });
+
+        let img = $('<img/>', {
+            src: thumbFullPath,
+            alt: 'Image',
+        });
+
+        $(link).append(img)
+        return link
+    }
+
     Api.get(
         'admin_api_grave_get_images',
         {id: id},
-        create
+        create.bind(this)
     )
 }
-
-
 
 export { createGallery }

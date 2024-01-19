@@ -91,6 +91,7 @@ ui:
         position: Położenie grobu
         coordinates: Współrzędne geograficzne
         people: Pochowani
+        noPeople: Brak pochowanych
         images: Galeria zdjęć
         paid: Informacje na temat opłat
         noPaid: Brak opłat
