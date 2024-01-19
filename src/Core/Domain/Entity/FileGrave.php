@@ -28,4 +28,9 @@ class FileGrave extends File
     {
         $this->thumbnail_extension = $thumbnail_extension;
     }
+
+    public function getThumbFilename(): string
+    {
+        return $this->name . '.' . $this->thumbnail_extension->value;
+    }
 }

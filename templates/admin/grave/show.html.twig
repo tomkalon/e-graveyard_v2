@@ -1,7 +1,9 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.grave.title.show'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <div {{ stimulus_controller('admin--grave--grave-show', {'id': id}) }} class="max-w-[800px]">
+    <div {{ stimulus_controller('admin--grave--grave-show', {
+        'id': id, 'imagesPath': file_grave.images_directory, 'thumbsPath': file_grave.images_thumbnail_directory
+    }) }} class="max-w-[800px]">
         <!-- Dashboard Card -->
         {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
@@ -92,7 +94,7 @@
                 </div>
 
                 <!-- ------------ IMAGES ------------ -->
-                {% include 'admin/grave/show/_images.html.twig' %}
+                {% include 'admin/grave/show/_images_js.html.twig' %}
 
                 <!-- ------------ PEOPLE ------------ -->
                 {% include 'admin/grave/show/_people.html.twig' %}

@@ -3,7 +3,7 @@ import Api from '@Api';
 import Modal from '@Modal';
 import Routing from '@Routing';
 import HandleItems from "@HandleItems";
-import ImageGallery from "@ImageGallery";
+import {createGallery} from "@ImageGallery";
 import $ from 'jquery'
 
 import {getPerson} from "@View/person/person_view";
@@ -13,7 +13,11 @@ export default class extends Controller {
 
     // TARGETS
     static targets = ['people', 'payments', 'gallery']
-
+    static values = {
+        id: String,
+        imagesPath: String,
+        thumbsPath: String,
+    }
     connect()
     {
         const container = this.element;
@@ -22,6 +26,7 @@ export default class extends Controller {
 
         if (this.hasGalleryTarget) {
             const gallery = this.galleryTarget
+            createGallery(gallery, this.idValue, this.imagesPathValue, this.thumbsPathValue)
         }
 
         if (this.hasPaymentsTarget) {

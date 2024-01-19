@@ -4,6 +4,8 @@ namespace App\Admin\Infrastructure\Query\Person;
 
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
 use App\Core\Domain\Entity\Person;
+use Doctrine\ORM\EntityNotFoundException;
+use Exception;
 
 class GetPerson implements GetPersonInterface
 {
@@ -12,8 +14,16 @@ class GetPerson implements GetPersonInterface
     ) {
     }
 
+    /**
+     * @throws EntityNotFoundException
+     */
     public function execute(?string $id): Person
     {
-        return $this->personRepository->find($id);
+        try {
+            $person = $this->personRepository->find($id);
+        } catch (Exception $e) {
+            throw new EntityNotFoundException($e->getMessage());
+        }
+        return $person;
     }
 }

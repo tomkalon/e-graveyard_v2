@@ -12,7 +12,7 @@ class File
     use IdTrait;
     use LifecycleTrait;
 
-    private string $name;
+    protected string $name;
     private FileExtensionTypeEnum $extension;
 
     public function __construct(?string $name = null)
@@ -43,8 +43,8 @@ class File
         $this->extension = $extension;
     }
 
-    public function getFilename()
+    public function getFilename(): string
     {
-
+        return $this->name . '.' . $this->extension->value;
     }
 }

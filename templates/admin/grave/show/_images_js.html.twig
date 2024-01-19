@@ -1,7 +1,23 @@
 {% if grave.images|length %}
     <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.images'|trans }}</h3>
     <hr>
-    <div {{ stimulus_target('admin--grave--grave-show', 'gallery') }}>
-
+    <div {{ stimulus_target('admin--grave--grave-show', 'gallery') }} class="min-h-[165px] relative">
+        <div data-gallery-loader class="flex w-full h-full justify-center absolute">
+            <div class="min-h-[165px] w-full h-full bg-black/20 flex flex-col items-center justify-center">
+                <div
+                        class="inline-block h-8 w-8 mb-2 animate-spin rounded-full border-4 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                        role="status"></div>
+                <span>Loading...</span>
+            </div>
+        </div>
+        <div data-gallery-box class="mt-2 flex gap-2 flex-wrap hidden absolute">
+{#            {% for image in grave.images %}#}
+{#                <a href="{{ asset(file_grave.images_directory ~ image.getFilename) }}"#}
+{#                   data-lightbox-thumb#}
+{#                   data-lightbox="Image">#}
+{#                    <img src="{{ asset(file_grave.images_thumbnail_directory ~ image.getThumbFilename) }}" alt="Grave Image">#}
+{#                </a>#}
+{#            {% endfor %}#}
+        </div>
     </div>
 {% endif %}
