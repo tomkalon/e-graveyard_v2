@@ -3,7 +3,6 @@
 namespace App\Core\Domain\Entity;
 
 use App\Core\Domain\Enum\FileExtensionTypeEnum;
-use App\Core\Domain\Enum\FileTypeEnum;
 use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
 use Ramsey\Uuid\Uuid;

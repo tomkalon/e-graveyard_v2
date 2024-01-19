@@ -2,13 +2,15 @@
 
 namespace App\Admin\Application\Service\File\Grave;
 
-use App\Admin\Application\Service\File\ImageUploaderServiceInterface;
+use App\Admin\Application\Service\Upload\ImageUploaderServiceInterface;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\FileExtensionTypeEnum;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use App\Core\Domain\ValueObject\File\FileVo;
 use Exception;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -34,10 +36,11 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
         $name = $safeFilename.'-'.uniqid();
 
         $fileName = $name . '.' .$file->guessExtension();
-        $ext = FileExtensionTypeEnum::tryFrom($file->guessExtension());
+        $ext = FileExtensionTypeEnum::tryFrom($file->guessExtension())->value;
+        $thumbExt = FileExtensionTypeEnum::WEBP->value;
 
         if ($ext) {
-            $fileVo = new FileVo($name, $ext->value);
+            $fileVo = new FileVo($name, $ext, $thumbExt);
         } else {
             $this->notification->addNotification('notification', new NotificationDto(
                 'notification.file.create.label',
@@ -47,9 +50,17 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             return null;
         }
 
-        // save file to uploads directory and persist in database
+        $imagePath = $this->getTargetDirectory() . '/';
+        $thumbPath = $this->getTargetThumbnailDirectory() . '/';
+
+        // save image and thumbnail to proper directory
         try {
             $file->move($this->getTargetDirectory(), $fileName);
+            $manager = new ImageManager(new Driver());
+            $image = $manager->read(file_get_contents($imagePath . $fileName));
+            $image->cover(200, 150);
+            $encoded = $image->toWebp(80);
+            $encoded->save($thumbPath . $name . '.' . $thumbExt);
             return $fileVo;
         } catch (FileException) {
             $this->notification->addNotification('notification', new NotificationDto(

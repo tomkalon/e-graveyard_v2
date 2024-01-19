@@ -3,8 +3,8 @@
 namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Application\Service\File\Grave\SaveFileGraveServiceInterface;
-use App\Admin\Application\Service\File\ImageUploaderServiceInterface;
 use App\Admin\Application\Service\Grave\SaveGraveServiceInterface;
+use App\Admin\Application\Service\Upload\ImageUploaderServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

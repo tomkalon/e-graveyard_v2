@@ -6,11 +6,13 @@ class FileVo
 {
     private string $name;
     private string $extension;
+    private ?string $thumbnail_extension;
 
-    public function __construct(string $name, string $extension)
+    public function __construct(string $name, string $extension, ?string $thumbnail_extension = null)
     {
         $this->name = $name;
         $this->extension = $extension;
+        $this->thumbnail_extension = $extension;
     }
 
     public function equals(FileVo $fileVo): bool
@@ -31,5 +33,10 @@ class FileVo
     public function getExtension(): string
     {
         return $this->extension;
+    }
+
+    public function getThumbnailExtension(): string
+    {
+        return $this->thumbnail_extension;
     }
 }

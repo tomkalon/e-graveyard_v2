@@ -23,18 +23,22 @@ class SaveGraveService implements SaveGraveServiceInterface
         if (!$this->em->contains($grave)) {
             $this->em->persist($grave);
         } else {
+            // checks whether the entity is different from the one already saved in the database.
             $uow = $this->em->getUnitOfWork();
             $uow->computeChangeSets();
             $changeSet = $uow->getEntityChangeSet($grave);
+            foreach ($grave->getImages() as $image) {
+                $changeSet = $uow->getEntityChangeSet($image);
+            }
 
             if (empty($changeSet)) {
+                // no changes notification
                 $this->notification->addNotification('notification', new NotificationDto(
                     $this->translator->trans('notification.entity.grave', [], 'flash'),
                     NotificationTypeEnum::INFO,
                     $this->translator->trans('notification.grave.no_changes', [], 'flash')
                 ));
             } else {
-                dd($grave);
                 $this->em->persist($grave);
             }
         }

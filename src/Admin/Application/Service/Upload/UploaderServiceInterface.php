@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Service\File;
+namespace App\Admin\Application\Service\Upload;
 
 use App\Core\Domain\ValueObject\File\FileVo;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
