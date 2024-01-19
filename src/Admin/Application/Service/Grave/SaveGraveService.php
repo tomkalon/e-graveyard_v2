@@ -13,9 +13,10 @@ class SaveGraveService implements SaveGraveServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly NotificationInterface $notification,
-        private readonly TranslatorInterface $translator,
-    ) {
+        private readonly NotificationInterface  $notification,
+        private readonly TranslatorInterface    $translator,
+    )
+    {
     }
 
     public function persist(Grave $grave): void
@@ -23,6 +24,18 @@ class SaveGraveService implements SaveGraveServiceInterface
         if (!$this->em->contains($grave)) {
             $this->em->persist($grave);
         } else {
+
+
+            // set main image
+            if (!$grave->getMainImage()) {
+                $images = $grave->getImages();
+                if ($images->count()) {
+                    $firstImage = $images->first();
+                    $grave->removeImage($firstImage);
+                    $grave->setMainImage($firstImage);
+                }
+            }
+
             // checks whether the entity is different from the one already saved in the database.
             $uow = $this->em->getUnitOfWork();
             $uow->computeChangeSets();

@@ -14,7 +14,7 @@ class FileGrave extends File
         return $this->grave;
     }
 
-    public function setGrave(Grave $grave): void
+    public function setGrave(?Grave $grave = null): void
     {
         $this->grave = $grave;
     }

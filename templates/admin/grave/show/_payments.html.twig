@@ -1,5 +1,5 @@
 {% if grave.payments|length %}
-    <div class="max-w-[800px]" {{ stimulus_target('admin--grave--grave-show', 'payments') }}>
+    <div {{ stimulus_target('admin--grave--grave-show', 'payments') }}>
         <div class="mt-6 flex items-center">
             <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.paid'|trans }}</h3>
             {% include 'admin/grave/show/__payment_status.html.twig' %}

@@ -1,0 +1,16 @@
+{% if grave.images|length %}
+<h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.images'|trans }}</h3>
+<hr>
+    <div
+            data-te-lightbox-init
+            class="flex flex-wrap flex-row gap-2">
+        {% for image in grave.images %}
+            <img
+                    src="{{ asset(file_grave.images_thumbnail_directory ~ image.name ~ '.' ~ image.thumbnailExtension.value) }}"
+                    data-te-img="{{ asset(file_grave.images_directory ~ image.name ~ '.' ~ image.extension.value) }}"
+                    data-lightbox-thumb
+                    alt="Grave Image"
+                    class="mx-auto sm:mx-0 w-fit cursor-zoom-in rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto"/>
+        {% endfor %}
+    </div>
+{% endif %}

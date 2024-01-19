@@ -56,11 +56,20 @@
                 <!-- ------------ POSITION ------------ -->
                 <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
                 <hr>
-                <div class="grid grid-cols-3 text-neutral-900 dark:text-neutral-50">
-                    <div>
-                        <img src="" alt="">
+                <div class="flex gap-2 items-center text-neutral-900 dark:text-neutral-50">
+                    <div class="w-[200px]">
+                        {% if grave.mainImage %}
+                            <div data-te-lightbox-init>
+                                <img src="{{ asset(file_grave.images_thumbnail_directory ~ grave.mainImage.name  ~ '.' ~ grave.mainImage.extension.value) }}"
+                                     data-te-img="{{ asset(file_grave.images_directory ~ grave.mainImage.name ~ '.' ~ grave.mainImage.extension.value) }}"
+                                     alt="Main image" data-lightbox-thumb class="cursor-pointer rounded opacity-100">
+                            </div>
+                        {% else %}
+                            <img src="{{ asset('build/images/no_image.svg') }}" class="rounded opacity-90" width="190"
+                                 alt="Main image">
+                        {% endif %}
                     </div>
-                    <div class="col-span-2">
+                    <div class="flex-grow">
                         <p class="py-2 px-4 rounded-lg bg-neutral-800 dark:bg-white bg-opacity-20 dark:bg-opacity-10">{{ grave.graveyard.name }}</p>
                         <div class="mt-6 grid gap-2 grid-cols-3 text-center text-neutral-900 dark:text-neutral-50">
                             <div>
@@ -83,24 +92,7 @@
                 </div>
 
                 <!-- ------------ IMAGES ------------ -->
-                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.images'|trans }}</h3>
-                <hr>
-                {% if grave.images|length %}
-                <div
-                        data-te-lightbox-init
-                        class="flex flex-wrap flex-row gap-2">
-                    {% for image in grave.images %}
-                            <img
-                                    src="{{ asset(file_grave.images_thumbnail_directory ~ image.name ~ '.' ~ image.thumbnailExtension.value) }}"
-                                    data-te-img="{{ asset(file_grave.images_directory ~ image.name ~ '.' ~ image.extension.value) }}"
-                                    data-lightbox-thumb
-                                    alt="Grave Image"
-                                    class="mx-auto sm:mx-0 w-fit cursor-zoom-in rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto" />
-
-                    {% endfor %}
-                </div>
-
-                {% endif %}
+                {% include 'admin/grave/show/_images.html.twig' %}
 
                 <!-- ------------ PEOPLE ------------ -->
                 {% include 'admin/grave/show/_people.html.twig' %}
