@@ -58,7 +58,7 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             $file->move($this->getTargetDirectory(), $fileName);
             $manager = new ImageManager(new Driver());
             $image = $manager->read(file_get_contents($imagePath . $fileName));
-            $image->cover(200, 150);
+            $image->cover(190, 150);
             $encoded = $image->toWebp(80);
             $encoded->save($thumbPath . $name . '.' . $thumbExt);
             return $fileVo;

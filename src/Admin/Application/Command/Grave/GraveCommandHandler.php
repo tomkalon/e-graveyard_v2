@@ -20,11 +20,10 @@ class GraveCommandHandler implements CommandHandlerInterface
     public function __invoke(GraveCommand $command)
     {
         $grave = $command->getGrave();
-
         /** @var UploadedFile[] $uploadedImages */
         $uploadedImages = $command->getImages();
 
-        if ($uploadedImages and reset($uploadedImages)) {
+        if ($uploadedImages) {
             foreach ($uploadedImages as $uploadedImage) {
                 $imageVo = $this->uploaderService->upload($uploadedImage);
                 if ($imageVo) {

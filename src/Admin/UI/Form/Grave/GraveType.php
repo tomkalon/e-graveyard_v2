@@ -47,9 +47,10 @@ class GraveType extends AbstractType
             ->add('positionY', TextType::class, [
                 'required' => false,
             ])
-            ->add('mainImage', FileType::class, [
+            ->add('images', FileType::class, [
                 'mapped' => false,
                 'required' => false,
+                'multiple' => true,
                 'label' => 'ui.grave.main_image',
                 'label_attr' => ['class' => 'mb-2 inline-block text-neutral-700 dark:text-neutral-200 uppercase'],
                 'attr' => [
@@ -65,6 +66,10 @@ class GraveType extends AbstractType
                              dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100
                               dark:focus:border-primary'
                 ],
+
+                'constraints' => [
+                    new IsGraveUnique()
+                ]
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',

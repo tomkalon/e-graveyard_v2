@@ -162,10 +162,10 @@ class GraveController extends AbstractController
         // form handler
         if ($form->isSubmitted() and $form->isValid()) {
             $graveData = $form->getData();
-            $mainImage = $form->get('mainImage')->getData();
+            $mainImage = $form->get('images')->getData();
 
             // command bus
-            $commandBus->dispatch(new GraveCommand($graveData, [$mainImage]));
+            $commandBus->dispatch(new GraveCommand($graveData, $mainImage));
             return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
         }
 

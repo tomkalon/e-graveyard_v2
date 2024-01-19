@@ -1,0 +1,8 @@
+[data-lightbox-thumb] {
+  opacity: 0.75;
+  transition: 0.5s transform, 0.5s opacity;
+  &:hover {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}

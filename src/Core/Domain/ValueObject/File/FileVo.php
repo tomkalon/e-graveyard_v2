@@ -12,7 +12,7 @@ class FileVo
     {
         $this->name = $name;
         $this->extension = $extension;
-        $this->thumbnail_extension = $extension;
+        $this->thumbnail_extension = $thumbnail_extension;
     }
 
     public function equals(FileVo $fileVo): bool
