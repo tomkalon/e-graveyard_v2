@@ -6,8 +6,8 @@
         class="flex flex-wrap flex-row gap-2">
         {% for image in grave.images %}
             <img
-                src="{{ asset(file_grave.images_thumbnail_directory ~ image.name ~ '.' ~ image.thumbnailExtension.value) }}"
-                data-te-img="{{ asset(file_grave.images_directory ~ image.name ~ '.' ~ image.extension.value) }}"
+                src="{{ asset(file_grave.images_thumbnail_directory ~ image.getThumbFilename) }}"
+                data-te-img="{{ asset(file_grave.images_directory ~ image.getFilename) }}"
                 data-lightbox-thumb
                 data-gallery-action="{{ image.id }}"
                 alt="Grave Image"
