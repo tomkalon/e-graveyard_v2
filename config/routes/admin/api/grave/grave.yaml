@@ -5,16 +5,23 @@ admin_api_grave_get:
   options:
     expose: true
     
+admin_api_grave_remove:
+  path: /grave/{id}
+  methods: [ DELETE ]
+  controller: App\Admin\UI\Api\Controller\Grave\GraveController::remove
+  options:
+    expose: true
+    
 admin_api_grave_get_images:
   path: /grave/images/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Api\Controller\Grave\GraveController::getImages
   options:
     expose: true
-    
-admin_api_grave_remove:
-  path: /grave/{id}
-  methods: [ DELETE ]
-  controller: App\Admin\UI\Api\Controller\Grave\GraveController::remove
+
+admin_api_grave_set_main_image:
+  path: /grave/images/set_main/{id}
+  methods: [ PUT ]
+  controller: App\Admin\UI\Api\Controller\Grave\GraveController::setMainImage
   options:
     expose: true

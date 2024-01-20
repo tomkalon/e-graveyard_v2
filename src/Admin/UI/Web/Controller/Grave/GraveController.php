@@ -65,7 +65,7 @@ class GraveController extends AbstractController
         GetGraveInterface   $query,
         CommandBusInterface $commandBus,
         Request             $request,
-        string              $id
+        Grave               $grave
     ): Response {
 
         // add decease form
@@ -82,9 +82,6 @@ class GraveController extends AbstractController
         );
         $addPaymentForm->handleRequest($request);
 
-        // query
-        $grave = $query->execute($id);
-
         // form handler
         // ADD DECEASED
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
@@ -95,7 +92,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PersonCommand($person));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['id' => $grave->getId()]
             );
         }
 
@@ -109,7 +106,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PaymentGraveCommand($paymentGrave));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['id' => $grave->getId()]
             );
         }
 
@@ -117,7 +114,7 @@ class GraveController extends AbstractController
             'grave' => $grave,
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
-            'id' => $id
+            'id' => $grave->getId()
         ]);
     }
 
@@ -149,10 +146,9 @@ class GraveController extends AbstractController
         GetGraveInterface $query,
         CommandBusInterface  $commandBus,
         Request              $request,
-        string               $id
+        Grave                $grave
     ): Response {
         // query
-        $grave = $query->execute($id);
         $form = $this->createForm(
             GraveType::class,
             $grave
@@ -171,7 +167,7 @@ class GraveController extends AbstractController
 
         return $this->render('admin/grave/edit.html.twig', [
             'form' => $form->createView(),
-            'id' => $id
+            'id' => $grave->getId()
         ]);
     }
 

@@ -29,7 +29,12 @@ notification:
     paymentGrave: Opłata za grób
   
   grave:
-    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie została już usunięty.
+    name: Grób
+    set_main_image:
+      label: Ustawianie głównego zdjęcia
+      empty: Nie można było wykonać polecenia. Albo wskazany grób, albo wskazane zdjęcie już nie istnieje.
+    
+    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie został już usunięty.
     no_changes: Nie wprowadzono zmian.
 
   person:
@@ -44,3 +49,6 @@ notification:
       label: Zapisywanie plików
       upload_error: Wystąpił błąd przy zapisywaniu pliku. Jeśli problem będzie się powtarzał, skontaktuj się z administratorem.
       invalid_extension_error: Niewłaściwy format pliku.
+    remove:
+      label: Usuwanie zdjęcia
+      empty: Nie znaleziono wskazanego zdjęcia. Prawdopodobnie zostało już usunięte.

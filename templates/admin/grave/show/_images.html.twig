@@ -5,12 +5,18 @@
         data-te-lightbox-init
         class="flex flex-wrap flex-row gap-2">
         {% for image in grave.images %}
-            <img
-                src="{{ asset(file_grave.images_thumbnail_directory ~ image.getThumbFilename) }}"
-                data-te-img="{{ asset(file_grave.images_directory ~ image.getFilename) }}"
-                data-lightbox-thumb
-                alt="Grave Image"
-                class="mx-auto sm:mx-0 w-fit cursor-pointer rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto"/>
+            <div class="flex flex-col">
+                <img
+                        src="{{ asset(file_grave.images_thumbnail_directory ~ image.getThumbFilename) }}"
+                        data-te-img="{{ asset(file_grave.images_directory ~ image.getFilename) }}"
+                        data-lightbox-thumb
+                        alt="Grave Image"
+                        class="mx-auto sm:mx-0 w-fit cursor-pointer rounded shadow-sm data-[te-lightbox-disabled]:cursor-auto"/>
+                <div class="flex justify-center p-2 gap-1">
+                    <button class="btn btn-xs btn-neutral">Ustaw jako główne</button>
+                    <button class="btn btn-xs btn-dark">Usuń</button>
+                </div>
+            </div>
         {% endfor %}
     </div>
 {% endif %}

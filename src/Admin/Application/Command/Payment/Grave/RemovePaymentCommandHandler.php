@@ -8,6 +8,7 @@ use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RemovePaymentCommandHandler implements CommandHandlerInterface
@@ -17,23 +18,25 @@ class RemovePaymentCommandHandler implements CommandHandlerInterface
         private readonly EntityManagerInterface $em,
         private readonly NotificationInterface $notification,
         private readonly TranslatorInterface $translator
-    )
-    {
+    ) {
     }
 
     public function __invoke(RemovePaymentCommand $command)
     {
-        $payment = $this->paymentGraveRepository->find($command->getId());
+        $payment = null;
 
-        if ($payment) {
-            $this->em->remove($payment);
-            $this->em->flush();
-        } else {
+        try {
+            $payment = $this->paymentGraveRepository->find($command->getId());
+        } catch (Exception) {
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
                 NotificationTypeEnum::FAILED,
                 $this->translator->trans('notification.paymentGrave.empty', [], 'flash')
-            ));
+            ));        }
+
+        if ($payment) {
+            $this->em->remove($payment);
+            $this->em->flush();
         }
     }
 }
