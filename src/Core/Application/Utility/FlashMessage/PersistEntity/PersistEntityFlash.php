@@ -5,6 +5,7 @@ namespace App\Core\Application\Utility\FlashMessage\PersistEntity;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\File;
+use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\PaymentGrave;
@@ -25,42 +26,71 @@ class PersistEntityFlash implements PersistEntityFlashInterface
     {
         $title = match (true) {
             $entity instanceof Grave => $this->translator->trans(
-                'notification.entity.grave',
+                'notification.grave.create.label',
                 [], 'flash'
             ),
             $entity instanceof Graveyard => $this->translator->trans(
-                'notification.entity.graveyard',
+                'notification.graveyard.create.label',
                 [], 'flash'
             ),
             $entity instanceof User => $this->translator->trans(
-                'notification.entity.user',
+                'notification.user.create.label',
                 [], 'flash'
             ),
-            $entity instanceof File => $this->translator->trans(
-                'notification.entity.file',
+            $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
+                'notification.file.create.label',
                 [], 'flash'
             ),
             $entity instanceof Person => $this->translator->trans(
-                'notification.entity.person',
+                'notification.person.create.label',
                 [], 'flash'
             ),
             $entity instanceof PaymentGrave => $this->translator->trans(
-                'notification.entity.paymentGrave',
+                'notification.paymentGrave.create.label',
                 [], 'flash'
             ),
-            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.create.label', [], 'flash'),
         };
 
         $content = match (true) {
+            $entity instanceof Grave => $this->translator->trans(
+                'notification.grave.create.success',
+                [
+                    '%graveyard%' =>$entity->getGraveyard()->getName()
+                ],
+                'flash'
+            ),
+            $entity instanceof Graveyard => $this->translator->trans(
+                'notification.graveyard.create.success',
+                [
+                    '%graveyard%' =>$entity->getName()
+                ],
+                'flash'
+            ),
             $entity instanceof Person => $this->translator->trans(
-                'notification.lifecycle.create.person.content',
-                [], 'flash'
+                'notification.person.create.success',
+                [
+                    '%firstname%' =>$entity->getFirstname(),
+                    '%lastname%' =>$entity->getLastname(),
+                ],
+                'flash'
             ),
             $entity instanceof PaymentGrave => $this->translator->trans(
-                'notification.lifecycle.create.paymentGrave.content',
-                [], 'flash'
+                'notification.paymentGrave.create.success',
+                [
+                    '%payment%' =>$entity->getMoney(),
+                    '%currency%' =>$entity->getCurrency()->trans($this->translator),
+                ],
+                'flash'
             ),
-            default => $this->translator->trans('notification.lifecycle.create.content', [], 'flash')
+            $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
+                'notification.file.create.success',
+                [
+                    '%name%' =>$entity->getFilename(),
+                ],
+                'flash'
+            ),
+            default => $this->translator->trans('notification.lifecycle.create.success', [], 'flash')
         };
 
 
