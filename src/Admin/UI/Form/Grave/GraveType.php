@@ -52,7 +52,7 @@ class GraveType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'multiple' => true,
-                'label' => 'ui.grave.main_image',
+                'label' => 'ui.grave.add_images',
                 'label_attr' => ['class' => 'mb-2 inline-block text-neutral-700 dark:text-neutral-200 uppercase'],
                 'attr' => [
                     'class' => 'relative m-0 block w-full min-w-0 flex-auto rounded

@@ -103,7 +103,7 @@ ui:
     number: Numer
     positionX: Dł. geograficzna
     positionY: Szer. geograficzna
-    main_image: Zdjęcie główne
+    add_images: Dodaj zdjęcia
     images: Zdjęcia
     image_remove: Usuwanie zdjęcia
     people: Pochowani

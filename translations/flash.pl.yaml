@@ -58,30 +58,30 @@ notification:
     name: Zmarły
     create:
       label: Dodawanie zmarłego
-      success: 'Do grobu dodano zmarłego:<br/><b>%firstname% %lastname%<b/>'
+      success: 'Do grobu dodano zmarłego:<br/><b>%firstname% %lastname%</b>'
     remove:
       label: Usuwanie zmarłego
-      success: 'Usunięto zmarłego:<br/><b>%firstname% %lastname%<b/>'
+      success: 'Usunięto zmarłego:<br/><b>%firstname% %lastname%</b>'
     empty: Nie znaleziono wskazanego zmarłego. Prawdopodobnie został już usunięty z danego grobu.
 
   paymentGrave:
     name: Opłata za grób
     create:
       label: Dodawanie opłaty za grób
-      success: 'Opłacono grób na kwotę: <b>%payment%%currency%<b/>'
+      success: 'Opłacono grób na kwotę: <b>%payment%%currency%</b>'
     remove:
       label: Usuwanie płatności
-      success: 'Usunięto płatność za grób na kwotę: <b>%payment%%currency%<b/>'
+      success: 'Usunięto płatność za grób na kwotę: <b>%payment%%currency%</b>'
     empty: Nie znaleziono wskazanej płatności. Prawdopodobnie została już usunięta.
     
   file:
     name: Plik
     create:
       label: Dodawanie nowego pliku
-      success: 'Dodano nowy plik:<br/><b>%name%<b/>'
+      success: 'Dodano nowy plik:<br/><b>%name%</b>'
       upload_error: Wystąpił błąd przy zapisywaniu pliku. Jeśli problem będzie się powtarzał, skontaktuj się z administratorem.
       invalid_extension_error: Niewłaściwy format pliku.
     remove:
       label: Usuwanie pliku
-      success: 'Usunięto plik:<br/><b>%name%<b/>'
+      success: 'Usunięto plik:<br/><b>%name%</b>'
       empty: Nie znaleziono wskazanego pliku. Prawdopodobnie został już usunięty.
