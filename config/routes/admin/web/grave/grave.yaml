@@ -30,7 +30,7 @@ admin_web_grave_edit:
     priority: 2
   
 admin_web_grave_remove:
-  path: /admin/grave/remove/{id}
+  path: /admin/grave/remove/{grave}
   methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::remove
   options:

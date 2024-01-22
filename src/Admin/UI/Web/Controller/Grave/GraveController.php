@@ -6,7 +6,6 @@ use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Command\Payment\Grave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
-use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Admin\UI\Form\Payment\PaymentGraveType;
@@ -62,7 +61,6 @@ class GraveController extends AbstractController
     }
 
     public function show(
-        GetGraveInterface   $query,
         CommandBusInterface $commandBus,
         Request             $request,
         Grave               $grave
@@ -143,7 +141,6 @@ class GraveController extends AbstractController
     }
 
     public function edit(
-        GetGraveInterface $query,
         CommandBusInterface  $commandBus,
         Request              $request,
         Grave                $grave
@@ -172,11 +169,11 @@ class GraveController extends AbstractController
     }
 
     public function remove(
-        string              $id,
+        Grave               $grave,
         CommandBusInterface $commandBus
     ): Response {
         // command bus
-        $commandBus->dispatch(new RemoveGraveCommand($id));
+        $commandBus->dispatch(new RemoveGraveCommand($grave));
         return $this->redirectToRoute('admin_web_grave_index');
     }
 }

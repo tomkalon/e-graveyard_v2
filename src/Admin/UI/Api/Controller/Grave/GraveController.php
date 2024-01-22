@@ -4,11 +4,10 @@ namespace App\Admin\UI\Api\Controller\Grave;
 
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Command\Grave\SetMainImageCommand;
-use App\Admin\Infrastructure\Query\Grave\GetGraveDtoInterface;
-use App\Admin\Infrastructure\Query\Grave\GetGraveImagesDto;
+use App\Admin\Application\Dto\File\GraveImageDto;
+use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\Grave;
-use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,11 +16,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class GraveController extends AbstractFOSRestController
 {
     public function get(
-        string $id,
-        GetGraveDtoInterface $query,
+        Grave $id,
         SerializerInterface $serializer
     ): Response {
-        $dto = $query->execute($id);
+        $dto = GraveDto::fromEntity($id);
         return new Response($serializer->serialize($dto, 'json'));
     }
 
@@ -33,16 +31,18 @@ class GraveController extends AbstractFOSRestController
         return $this->json('true');
     }
 
-    /**
-     * @throws EntityNotFoundException
-     */
     public function getImages(
-        string $id,
-        GetGraveImagesDto $query,
+        Grave $id,
         SerializerInterface $serializer
     ): Response {
-        $dto = $query->execute($id);
-        return new Response($serializer->serialize($dto, 'json'));
+
+        $images = $id->getImages();
+        $dtoArray = [];
+        foreach ($images as $image) {
+            $dtoArray[] = GraveImageDto::fromEntity($image);
+        }
+
+        return new Response($serializer->serialize($dtoArray, 'json'));
     }
 
     public function setMainImage(
