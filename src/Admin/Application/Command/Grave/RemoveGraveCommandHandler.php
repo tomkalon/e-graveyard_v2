@@ -15,29 +15,12 @@ class RemoveGraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly GraveRepositoryInterface $graveRepository,
-        private readonly NotificationInterface $notification,
-        private readonly TranslatorInterface $translator
     ) {
     }
 
     public function __invoke(RemoveGraveCommand $command)
     {
-        $grave = null;
-
-        try {
-            $grave = $this->graveRepository->find($command->getId());
-        } catch (Exception) {
-            $this->notification->addNotification('notification', new NotificationDto(
-                $this->translator->trans('notification.entity.grave', [], 'flash'),
-                NotificationTypeEnum::FAILED,
-                $this->translator->trans('notification.grave.empty', [], 'flash')
-            ));
-        }
-
-        if ($grave) {
-            $this->em->remove($grave);
-            $this->em->flush();
-        }
+         $this->em->remove($command->getGrave());
+         $this->em->flush();
     }
 }

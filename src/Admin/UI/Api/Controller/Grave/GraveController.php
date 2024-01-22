@@ -26,7 +26,7 @@ class GraveController extends AbstractFOSRestController
     }
 
     public function remove(
-        string $id,
+        Grave $id,
         CommandBusInterface $commandBus
     ): Response {
         $commandBus->dispatch(new RemoveGraveCommand($id));

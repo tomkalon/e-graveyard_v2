@@ -35,10 +35,10 @@ notification:
     remove:
       label: Usuwanie grobu
       success: Pomyślnie usunięto wskazany grób
+      failed:
     set_main_image:
       label: Ustawianie głównego zdjęcia
       empty: Nie można było wykonać polecenia. Albo wskazany grób, albo wskazane zdjęcie już nie istnieje.
-    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie został już usunięty.
     no_changes: Nie wprowadzono zmian.
     
   graveyard:
