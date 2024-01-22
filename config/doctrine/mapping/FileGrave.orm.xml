@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                     https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
     <entity name="App\Core\Domain\Entity\FileGrave" repository-class="App\Core\Infrastructure\Repository\FileGraveRepository">
-        <many-to-one field="grave" target-entity="Grave" inversed-by="images">
+        <many-to-one field="grave_gallery" target-entity="Grave" inversed-by="images">
             <cascade>
                 <cascade-persist/>
             </cascade>

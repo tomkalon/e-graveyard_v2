@@ -6,17 +6,17 @@ use App\Core\Domain\Enum\FileExtensionTypeEnum;
 
 class FileGrave extends File
 {
-    private ?Grave $grave = null;
-    private ?Grave $grave_main_image = null;
+    private ?Grave $grave_gallery = null;
+    private ?Grave $grave_main_image;
 
-    public function getGrave(): ?Grave
+    public function getGrave(): Grave
     {
-        return $this->grave;
+        return $this->grave_gallery;
     }
 
     public function setGrave(?Grave $grave = null): void
     {
-        $this->grave = $grave;
+        $this->grave_gallery = $grave;
     }
 
     public function getGraveMainImage(): ?Grave
@@ -24,7 +24,7 @@ class FileGrave extends File
         return $this->grave_main_image;
     }
 
-    public function setGraveMainImage(?Grave $grave_main_image): void
+    public function setGraveMainImage(?Grave $grave_main_image = null): void
     {
         $this->grave_main_image = $grave_main_image;
     }

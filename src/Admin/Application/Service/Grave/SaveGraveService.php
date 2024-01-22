@@ -28,11 +28,7 @@ class SaveGraveService implements SaveGraveServiceInterface
             // set main image
             if (!$grave->getMainImage()) {
                 $images = $grave->getImages();
-                if ($images->count()) {
-                    $firstImage = $images->first();
-                    $grave->removeImage($firstImage);
-                    $grave->setMainImage($firstImage);
-                }
+                $grave->setMainImage($images->first());
             }
 
             // checks whether the entity is different from the one already saved in the database.

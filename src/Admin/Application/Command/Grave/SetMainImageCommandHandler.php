@@ -25,10 +25,10 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
     public function __invoke(SetMainImageCommand $command)
     {
         $grave = $command->getGrave();
-        $image = null;
+        $newImage = null;
 
         try {
-            $image = $this->fileGraveRepository->find($command->getImageId());
+            $newImage = $this->fileGraveRepository->find($command->getImageId());
         } catch (Exception) {
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.grave.set_main_image.label', [], 'flash'),
@@ -37,15 +37,8 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
             ));
         }
 
-        if ($image) {
-            $currentImage = $grave->getMainImage();
-            $grave->setMainImage($image);
-
-            if ($currentImage) {
-                $grave->addImages($currentImage);
-                $image->setGrave();
-            }
-
+        if ($newImage) {
+            $grave->setMainImage($newImage);
             $this->em->persist($grave);
         }
     }
