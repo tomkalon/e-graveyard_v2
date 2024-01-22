@@ -3,16 +3,17 @@
 namespace App\Admin\Application\Command\Grave;
 
 use App\Core\Application\CQRS\Command\CommandInterface;
+use App\Core\Domain\Entity\Grave;
 
 class RemoveGraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly string $id
+        private readonly Grave $grave
     ) {
     }
 
-    public function getId(): string
+    public function getGrave(): Grave
     {
-        return $this->id;
+        return $this->grave;
     }
 }
