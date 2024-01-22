@@ -5,7 +5,7 @@ use Symfony\Component\Validator\Constraint;
 
 class GraveImagesRequirements extends Constraint
 {
-    public string $message = 'test';
+    public string $maxNumberOfImagesExceeded = 'validation.grave.max_number_of_images_exceeded';
 
     public function validatedBy(): string
     {

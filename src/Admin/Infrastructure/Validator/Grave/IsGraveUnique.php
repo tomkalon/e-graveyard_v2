@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraint;
 
 class IsGraveUnique extends Constraint
 {
-    public string $message = 'validation.no_unique';
+    public string $message = 'validation.grave.no_unique';
 
     public function validatedBy(): string
     {

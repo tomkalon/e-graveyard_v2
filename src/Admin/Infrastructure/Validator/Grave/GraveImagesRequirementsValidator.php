@@ -11,26 +11,19 @@ use Symfony\Component\Validator\ConstraintValidator;
 class GraveImagesRequirementsValidator extends ConstraintValidator
 {
     public function __construct(
-        private readonly GraveRepositoryInterface $graveRepository,
-        private readonly RequestStack $requestStack
-    )
-    {
+    ) {
     }
 
     public function validate(mixed $value, Constraint $constraint)
     {
-        $request = $this->requestStack->getCurrentRequest();
-        $id = $request->attributes->get('id');
+        /** @var Grave $graveData */
+        $graveData = $this->context->getRoot()->getData();
+        $currentImagesCount = $graveData->getImages()->count();
+        $newImagesCount = count($this->context->getRoot()->get('images')->getData());
 
-        $grave = $this->graveRepository->findBy([
-            'id' => $id
-        ]);
-
-        if ($grave) {
-            $grave = reset($grave);
-
-            /** @var Grave $graveData */
-            $graveData = $this->context->getRoot()->getData();
+        if (($currentImagesCount + $newImagesCount) > 4) {
+            $this->context->buildViolation($constraint->maxNumberOfImagesExceeded)
+                ->addViolation();
         }
     }
 }
