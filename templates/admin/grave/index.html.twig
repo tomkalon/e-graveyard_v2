@@ -69,8 +69,13 @@
                             {% include 'core/pagination/_head.html.twig' %}
                         {% endblock %}
                         {% block body %}
+                            {% if item.mainImage != null %}
+                                {% set name = item.graveyard.name ~ '<i class="fa fa-file-image-o ml-2" aria-hidden="true"></i>' %}
+                            {% else %}
+                                {% set name = item.graveyard.name %}
+                            {% endif %}
                             {% include 'core/pagination/_body_value.html.twig' with {
-                                value: item.graveyard.name
+                                value: name
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.sector,

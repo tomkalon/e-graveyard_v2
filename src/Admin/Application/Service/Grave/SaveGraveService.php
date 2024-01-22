@@ -46,7 +46,7 @@ class SaveGraveService implements SaveGraveServiceInterface
             if (empty($changeSet)) {
                 // no changes notification
                 $this->notification->addNotification('notification', new NotificationDto(
-                    $this->translator->trans('notification.entity.grave', [], 'flash'),
+                    $this->translator->trans('notification.grave.update.label', [], 'flash'),
                     NotificationTypeEnum::INFO,
                     $this->translator->trans('notification.grave.no_changes', [], 'flash')
                 ));
