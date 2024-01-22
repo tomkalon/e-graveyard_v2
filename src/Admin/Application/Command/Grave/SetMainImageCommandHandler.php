@@ -15,7 +15,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SetMainImageCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly GraveRepositoryInterface     $graveRepository,
         private readonly FileGraveRepositoryInterface $fileGraveRepository,
         private readonly NotificationInterface        $notification,
         private readonly TranslatorInterface          $translator,
@@ -25,11 +24,10 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
 
     public function __invoke(SetMainImageCommand $command)
     {
-        $grave = null;
+        $grave = $command->getGrave();
         $image = null;
 
         try {
-            $grave = $this->graveRepository->find($command->getId());
             $image = $this->fileGraveRepository->find($command->getImageId());
         } catch (Exception) {
             $this->notification->addNotification('notification', new NotificationDto(
@@ -39,7 +37,7 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
             ));
         }
 
-        if ($grave and $image) {
+        if ($image) {
             $currentImage = $grave->getMainImage();
             $grave->setMainImage($image);
 

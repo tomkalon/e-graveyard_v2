@@ -7,6 +7,7 @@ use App\Admin\Application\Command\Grave\SetMainImageCommand;
 use App\Admin\Infrastructure\Query\Grave\GetGraveDtoInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveImagesDto;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use App\Core\Domain\Entity\Grave;
 use Doctrine\ORM\EntityNotFoundException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +46,7 @@ class GraveController extends AbstractFOSRestController
     }
 
     public function setMainImage(
-        string $id,
+        Grave $id,
         Request $request,
         CommandBusInterface $commandBus
     ): Response {
