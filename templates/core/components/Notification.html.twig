@@ -72,7 +72,7 @@
                         </svg>
                     </button>
                 </div>
-                <p class="mx-3 text-gray-600">{{ content }}</p>
+                <p class="mx-3 text-gray-600">{{ content|raw }}</p>
                 {% if time is defined and time is not null %}
                     <hr class="my-1">
                     <p class="mx-3 text-xs text-neutral-400">{{ time }}</p>

@@ -1,54 +1,87 @@
 notification:
   lifecycle:
     create:
-      title: Nowy obiekt
-      content: Pomyślnie utworzono
-      person:
-        content: Przypisano do grobu
-      paymentGrave:
-        content: Opłata za grób pomyślnie dodana
+      label: Dodawanie nowego obiektu
+      success: Pomyślnie dodano
     update:
       title: Aktualizacja obiektu
-      content: Pomyślnie zaktualizowano
+      success: Pomyślnie zaktualizowano
     remove:
       title: Usuwanie obiektu
-      content: Pomyślnie usunięto
+      success: Pomyślnie usunięto
       
   user:
+    name: Użytkownik
+    create:
+      label: Tworzenie nowego użytkownika
+    update:
+      label: Aktualizacja danych użytkownika
+    remove:
+      label: Usuwanie użytkownika
+      success: Usuwanie użytkownika
     login:
       title: Logowanie
       time: Czas
       success:
         content: Logowanie zakończone powodzeniem
-        
-  entity:
-    grave: Grób
-    graveyard: Cmentarz
-    person: Zmarły
-    user: Użytkownik
-    paymentGrave: Opłata za grób
   
   grave:
     name: Grób
+    create:
+      label: Dodawanie nowego grobu
+      success: 'Dodano nowy grób do cmentarza - %graveyard%'
+    update:
+      label: Aktualizacja danych grobu
+    remove:
+      label: Usuwanie grobu
+      success: Pomyślnie usunięto wskazany grób
     set_main_image:
       label: Ustawianie głównego zdjęcia
       empty: Nie można było wykonać polecenia. Albo wskazany grób, albo wskazane zdjęcie już nie istnieje.
+    empty: Nie znaleziono wskazanego grobu. Prawdopodobnie został już usunięty.
+    no_changes: Nie wprowadzono zmian.
     
+  graveyard:
+    name: Cmentarz
+    create:
+      label: Dodawanie nowego cmentarza
+      success: 'Pomyślnie utworzono cmentarz:<br/>%graveyard%'
+    update:
+      label: Aktualizacja danych cmentarza
+    remove:
+      label: Usuwanie cmentarza
+      success: 'Pomyślnie usunięto wskazany cmentarz:<br/>%graveyard%'
     empty: Nie znaleziono wskazanego grobu. Prawdopodobnie został już usunięty.
     no_changes: Nie wprowadzono zmian.
 
   person:
-    empty: Nie znaleziono wskazanej osoby. Prawdopodobnie została już usunięta.
+    name: Zmarły
+    create:
+      label: Dodawanie zmarłego
+      success: 'Do grobu dodano zmarłego:<br/><b>%firstname% %lastname%<b/>'
+    remove:
+      label: Usuwanie zmarłego
+      success: 'Usunięto zmarłego:<br/><b>%firstname% %lastname%<b/>'
+    empty: Nie znaleziono wskazanego zmarłego. Prawdopodobnie został już usunięty z danego grobu.
 
   paymentGrave:
+    name: Opłata za grób
+    create:
+      label: Dodawanie opłaty za grób
+      success: 'Opłacono grób na kwotę: <b>%payment%%currency%<b/>'
+    remove:
+      label: Usuwanie płatności
+      success: 'Usunięto płatność za grób na kwotę: <b>%payment%%currency%<b/>'
     empty: Nie znaleziono wskazanej płatności. Prawdopodobnie została już usunięta.
     
   file:
     name: Plik
     create:
-      label: Zapisywanie plików
+      label: Dodawanie nowego pliku
+      success: 'Dodano nowy plik:<br/><b>%name%<b/>'
       upload_error: Wystąpił błąd przy zapisywaniu pliku. Jeśli problem będzie się powtarzał, skontaktuj się z administratorem.
       invalid_extension_error: Niewłaściwy format pliku.
     remove:
-      label: Usuwanie zdjęcia
-      empty: Nie znaleziono wskazanego zdjęcia. Prawdopodobnie zostało już usunięte.
+      label: Usuwanie pliku
+      success: 'Usunięto plik:<br/><b>%name%<b/>'
+      empty: Nie znaleziono wskazanego pliku. Prawdopodobnie został już usunięty.

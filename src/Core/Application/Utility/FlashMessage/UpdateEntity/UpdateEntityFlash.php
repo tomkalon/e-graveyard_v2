@@ -5,6 +5,7 @@ namespace App\Core\Application\Utility\FlashMessage\UpdateEntity;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\File;
+use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\PaymentGrave;
@@ -26,38 +27,29 @@ class UpdateEntityFlash implements UpdateEntityFlashInterface
     {
         $title = match (true) {
             $entity instanceof Grave => $this->translator->trans(
-                'notification.entity.grave',
+                'notification.grave.update.label',
                 [], 'flash'
             ),
             $entity instanceof Graveyard => $this->translator->trans(
-                'notification.entity.graveyard',
+                'notification.graveyard.create.label',
                 [], 'flash'
             ),
             $entity instanceof User => $this->translator->trans(
-                'notification.entity.user',
+                'notification.user.create.label',
                 [], 'flash'
             ),
-            $entity instanceof File => $this->translator->trans(
-                'notification.entity.file',
-                [], 'flash'
-            ),
-            $entity instanceof Person => $this->translator->trans(
-                'notification.entity.person',
-                [], 'flash'
-            ),
-            $entity instanceof PaymentGrave => $this->translator->trans(
-                'notification.entity.paymentGrave',
-                [], 'flash'
-            ),
-            default => $this->translator->trans('notification.lifecycle.create.title', [], 'flash'),
+            default => $this->translator->trans('notification.lifecycle.create.label', [], 'flash'),
         };
 
-        $content = $this->translator->trans('notification.lifecycle.update.content', [], 'flash');
+        $content = $this->translator->trans('notification.lifecycle.update.success', [], 'flash');
 
-        $this->flashMessage->addNotification('notification', new NotificationDto(
-            $title,
-            NotificationTypeEnum::SUCCESS,
-            $content
-        ));
+
+        if (!$entity instanceof FileGrave) {
+            $this->flashMessage->addNotification('notification', new NotificationDto(
+                $title,
+                NotificationTypeEnum::SUCCESS,
+                $content
+            ));
+        }
     }
 }
