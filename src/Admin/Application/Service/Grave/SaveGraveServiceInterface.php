@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Admin\Application\Services\Grave;
+namespace App\Admin\Application\Service\Grave;
 
 use App\Core\Domain\Entity\Grave;
 
-interface GravePersistServiceInterface
+interface SaveGraveServiceInterface
 {
     public function persist(Grave $grave): void;
 }

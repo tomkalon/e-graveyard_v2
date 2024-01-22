@@ -1,6 +1,5 @@
 import $ from 'jquery';
 
-
 const preLoadModal = (name) => {
     const modal = document.querySelector('[data-modal-box="' + name + '"]')
     const submit = modal.querySelector('[type="submit"]')

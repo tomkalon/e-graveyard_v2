@@ -1,16 +1,17 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.graveyard.title.create'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <!-- Dashboard Card -->
-    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
-        {% block title %}
-            <!-- Dashboard Title -->
-            <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.create'|trans }}</h1>
-            <!-- /Dashboard Title -->
-        {% endblock %}
-        {% block dashboard_content %}
-            <!-- Dashboard Content -->
-            {{ form_start(form) }}
+    <div class="max-w-[800px]">
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.create'|trans }}</h1>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                {{ form_start(form) }}
                 <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.graveyard.description.info'|trans }}</h3>
                 <hr>
                 <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
@@ -27,11 +28,12 @@
                 <div class="mt-4 flex">
                     {{ form_row(form.create) }}
                 </div>
-            {{ form_end(form) }}
-            <!-- /Dashboard Content -->
-        {% endblock %}
-        {% block buttons_after %}
-        {% endblock %}
-    {% endembed %}
-    <!-- /Dashboard Card -->
+                {{ form_end(form) }}
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
 {% endblock %}

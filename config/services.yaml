@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+  app.path.grave_images: '%kernel.project_dir%/public/uploads/grave/images'
+  app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads/grave/thumbs'
 
 services:
     # default configuration for services in *this* file
@@ -32,7 +34,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    # EVENT LISTENERS
+    ### EVENT LISTENERS ###
     App\Core\Domain\EventListener\LoginSuccessListener:
       arguments:
         $tokenStorage: '@security.token_storage'
@@ -40,18 +42,21 @@ services:
         - { name: kernel.event_subscriber }
         
     # DOCTRINE ENTITY PERSIST
-    # # # CREATE
-    
     App\Core\Infrastructure\Event\Doctrine\PersistEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postPersist }
-
-    # # # UPDATE
     App\Core\Infrastructure\Event\Doctrine\UpdateEntityEvent:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
-        
-  # # # REMOVE
     App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
+      arguments:
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
       tags:
         - { name: doctrine.event_listener, event: postRemove }
+  
+    ### DOCTRINE ENTITY PERSIST ###
+    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
+      arguments:
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'

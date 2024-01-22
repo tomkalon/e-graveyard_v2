@@ -4,6 +4,8 @@ namespace App\Admin\Infrastructure\Query\Grave;
 
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
+use Doctrine\ORM\EntityNotFoundException;
+use Exception;
 
 class GetGraveDto implements GetGraveDtoInterface
 {
@@ -11,8 +13,18 @@ class GetGraveDto implements GetGraveDtoInterface
         private readonly GraveRepositoryInterface $repository,
     ) {
     }
+
+    /**
+     * @throws EntityNotFoundException
+     */
     public function execute(?string $id): GraveDto
     {
-        return GraveDto::fromEntity($this->repository->find($id));
+        try {
+            $grave = $this->repository->find($id);
+        } catch (Exception $e) {
+            throw new EntityNotFoundException($e->getMessage());
+        }
+
+        return GraveDto::fromEntity($grave);
     }
 }

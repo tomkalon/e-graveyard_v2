@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Core\Domain\Entity;
+
+use App\Core\Domain\Enum\FileExtensionTypeEnum;
+
+class FileGrave extends File
+{
+    private ?Grave $grave = null;
+
+    public function getGrave(): ?Grave
+    {
+        return $this->grave;
+    }
+
+    public function setGrave(?Grave $grave = null): void
+    {
+        $this->grave = $grave;
+    }
+}

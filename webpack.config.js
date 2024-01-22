@@ -44,6 +44,7 @@ Encore
         '@Api': path.resolve(__dirname, 'assets/js/modules/Api'),
         '@Routing': path.resolve(__dirname, 'assets/js/modules/Routing'),
         '@HandleItems': path.resolve(__dirname, 'assets/js/modules/HandleItems'),
+        '@ImageGallery': path.resolve(__dirname, 'assets/js/modules/ImageGallery'),
         // VIEWS
         '@View': path.resolve(__dirname, 'assets/js/views'),
         // ASSETS

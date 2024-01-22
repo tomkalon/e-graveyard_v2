@@ -8,6 +8,7 @@ use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RemovePersonCommandHandler implements CommandHandlerInterface
@@ -22,17 +23,21 @@ class RemovePersonCommandHandler implements CommandHandlerInterface
 
     public function __invoke(RemovePersonCommand $command)
     {
-        $person = $this->personRepository->find($command->getId());
+        $person = null;
 
-        if ($person) {
-            $this->em->remove($person);
-            $this->em->flush();
-        } else {
+        try {
+            $person = $this->personRepository->find($command->getId());
+        } catch (Exception) {
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.entity.person', [], 'flash'),
                 NotificationTypeEnum::FAILED,
                 $this->translator->trans('notification.person.empty', [], 'flash')
             ));
+        }
+
+        if ($person) {
+            $this->em->remove($person);
+            $this->em->flush();
         }
     }
 }

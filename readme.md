@@ -48,10 +48,9 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml --env-file .
 
 ### 5) Once completed, navigate to the 'php-apache' container and execute the following commands:
 ```
-$ composer install
-$ symfony console d:m:m
-$ symfony console fos:js-routing:dump --format=json --target=public/js/routes.json
-
+composer install
+symfony console d:m:m
+symfony console fos:js-routing:dump --format=json --target=public/js/routes.json
 ```
 
 ### 6) In the "node" container, execute the following commands in the terminal:
@@ -62,7 +61,7 @@ yarn run dev
 
 ### 7) To create new administrator account run:
 ```
-symfony console user:add
+symfony console app:user:add
 ```
 
 

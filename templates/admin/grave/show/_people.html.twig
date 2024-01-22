@@ -1,4 +1,4 @@
-<div class="max-w-[800px]" {{ stimulus_target('admin--grave--grave-show', 'people') }}>
+<div {{ stimulus_target('admin--grave--grave-show', 'people') }}>
     {% if grave.people|length %}
         <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.people'|trans }}</h3>
         <hr>
@@ -57,6 +57,14 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    {% else %}
+        <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.people'|trans }}</h3>
+        <hr>
+        <div class="mt-4 max-w-[800px]">
+            <div class="p-4 border rounded-md shadow-md bg-neutral-200 text-neutral-700 border-neutral-400 dark:bg-neutral-700 dark:text-gray-50 dark:border-neutral-800">
+                <h4 class="text-lg font-semibold">{{ 'ui.grave.description.noPeople'|trans }}</h4>
             </div>
         </div>
     {% endif %}

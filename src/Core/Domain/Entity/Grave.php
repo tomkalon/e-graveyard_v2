@@ -9,7 +9,6 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use Exception;
 
 class Grave
 {
@@ -22,14 +21,16 @@ class Grave
     private ?string $positionX;
     private ?string $positionY;
     private ?Graveyard $graveyard;
-    private ?Collection $people;
-    private ?Collection $images;
-    private ?Collection $payments;
+    private ?FileGrave $main_image;
+    private Collection $people;
+    private Collection $images;
+    private Collection $payments;
 
     public function __construct()
     {
         $this->people = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
 
     public function getSector(): int
@@ -87,22 +88,27 @@ class Grave
         return $this;
     }
 
-    public function getImages(): ?Collection
+    public function getImages(): Collection
     {
         return $this->images;
     }
 
-    public function addImages(File $image): self
+    public function addImages(FileGrave $image): self
     {
         if (!$this->images->contains($image)) {
             $this->images->add($image);
             $image->setGrave($this);
         }
-
         return $this;
     }
 
-    public function getPayments(): ?Collection
+    public function removeImage(FileGrave $image): self
+    {
+        $image->setGrave();
+        return $this;
+    }
+
+    public function getPayments(): Collection
     {
         return $this->payments;
     }
@@ -151,5 +157,15 @@ class Grave
     public function setPositionY(?string $positionY):void
     {
         $this->positionY = $positionY;
+    }
+
+    public function getMainImage(): ?FileGrave
+    {
+        return $this->main_image;
+    }
+
+    public function setMainImage(?FileGrave $main_image): void
+    {
+        $this->main_image = $main_image;
     }
 }

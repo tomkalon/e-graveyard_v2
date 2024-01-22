@@ -51,7 +51,7 @@ class GraveController extends AbstractController
             $id = $person->getGrave()->getId();
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['grave' => $id]
             );
         }
 
@@ -65,7 +65,7 @@ class GraveController extends AbstractController
         GetGraveInterface   $query,
         CommandBusInterface $commandBus,
         Request             $request,
-        string              $id
+        Grave               $grave
     ): Response {
 
         // add decease form
@@ -82,9 +82,6 @@ class GraveController extends AbstractController
         );
         $addPaymentForm->handleRequest($request);
 
-        // query
-        $grave = $query->execute($id);
-
         // form handler
         // ADD DECEASED
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
@@ -95,7 +92,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PersonCommand($person));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['grave' => $grave->getId()]
             );
         }
 
@@ -109,7 +106,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PaymentGraveCommand($paymentGrave));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['grave' => $grave->getId()]
             );
         }
 
@@ -117,7 +114,7 @@ class GraveController extends AbstractController
             'grave' => $grave,
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
-            'id' => $id
+            'id' => $grave->getId()
         ]);
     }
 
@@ -137,7 +134,7 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($graveData));
-            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
+            return $this->redirectToRoute('admin_web_grave_show', ['grave' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/create.html.twig', [
@@ -149,10 +146,9 @@ class GraveController extends AbstractController
         GetGraveInterface $query,
         CommandBusInterface  $commandBus,
         Request              $request,
-        string               $id
+        Grave                $grave
     ): Response {
         // query
-        $grave = $query->execute($id);
         $form = $this->createForm(
             GraveType::class,
             $grave
@@ -161,17 +157,17 @@ class GraveController extends AbstractController
 
         // form handler
         if ($form->isSubmitted() and $form->isValid()) {
-            /** @var Grave $grave */
             $graveData = $form->getData();
+            $mainImage = $form->get('images')->getData();
 
             // command bus
-            $commandBus->dispatch(new GraveCommand($graveData));
-            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
+            $commandBus->dispatch(new GraveCommand($graveData, $mainImage));
+            return $this->redirectToRoute('admin_web_grave_show', ['grave' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/edit.html.twig', [
             'form' => $form->createView(),
-            'id' => $id
+            'id' => $grave->getId()
         ]);
     }
 

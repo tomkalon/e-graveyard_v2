@@ -17,25 +17,25 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[AsCommand(
-    name: 'user:add',
+    name: 'app:user:add',
     description: 'Create New User',
 )]
 class UserAddCommand extends Command
 {
-    const ADD_NEW_USER = 'Dodawanie nowego użytkownika.';
-    const SUCCESS_USER_CREATED = 'Konto zostało utworzone: nazwa użytkownika -> ';
-    const FAILURE_EMAIL_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane!
-     Email jest już zajęty.';
-    const FAILURE_EMAIL_ERROR = 'Utworzenie nowego użytkownika zostało anulowane!
-     Wpisany email jest niepoprawny.';
-    const FAILURE_USERNAME_ALREADY_EXIST = 'Utworzenie nowego użytkownika zostało anulowane!
-     Podana nazwa użytkownika jest już zajęta';
-    const FAILURE_USERNAME_ERROR = 'Utworzenie nowego użytkownika zostało anulowane!
-     Błędna nazwa użytkownika.';
-    const FAILURE_PASSWORD_TOO_SHORT = 'Utworzenie nowego użytkownika zostało anulowane!
-     Hasło jest zbyt krótkie.';
-    const FAILURE_PASSWORD_DONT_MATCH = 'Utworzenie nowego użytkownika zostało anulowane!
-     Wprowadzone hasła różnią się.';
+    const ADD_NEW_USER = 'Adding a new user.';
+    const SUCCESS_USER_CREATED = 'The account has been created: username ->';
+    const FAILURE_EMAIL_ALREADY_EXIST = 'The new user creation was canceled!
+     Email is already taken.';
+    const FAILURE_EMAIL_ERROR = 'The new user creation was canceled!
+     The email address entered is incorrect.';
+    const FAILURE_USERNAME_ALREADY_EXIST = 'The new user creation was canceled!
+     The username you entered is already taken.';
+    const FAILURE_USERNAME_ERROR = 'The new user creation was canceled!
+     Invalid username.';
+    const FAILURE_PASSWORD_TOO_SHORT = 'The new user creation was canceled!
+     The password is too short.';
+    const FAILURE_PASSWORD_DONT_MATCH = 'The new user creation was canceled!
+     The passwords you entered differ.';
 
     public function __construct(
         private readonly UserByFieldsQueryInterface $query,
@@ -123,7 +123,7 @@ class UserAddCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $addUsername = new Question(
-            'Nazwa użytkownika: ',
+            'Username: ',
             false,
         );
         $username = $helper->ask($input, $output, $addUsername);
@@ -158,7 +158,7 @@ class UserAddCommand extends Command
 
         // set password
         $addPassword = new Question(
-            'Hasło (co najmniej 6 znaków): ',
+            'Password (at least 6 characters):',
             false,
         );
         $addPassword->setHidden(true);
@@ -171,7 +171,7 @@ class UserAddCommand extends Command
 
         // set password repeat
         $addPasswordRepeat = new Question(
-            'Powtórz hasło: ',
+            'Repeat password:',
             false,
         );
         $addPasswordRepeat->setHidden(true);

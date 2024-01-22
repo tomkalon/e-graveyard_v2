@@ -3,11 +3,8 @@
 namespace App\Core\Infrastructure\Event\Doctrine;
 
 use App\Core\Application\Utility\FlashMessage\PersistEntity\PersistEntityFlashInterface;
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\EventListener\Doctrine\PostPersistListener;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PersistEntityEvent extends PostPersistListener
 {

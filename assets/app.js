@@ -4,16 +4,6 @@ import './bootstrap.js';
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 
-// tailwind plugin
-import 'tw-elements'
-import {
-    Input,
-    Ripple,
-    initTE
-} from "tw-elements";
-
-initTE({ Input, Ripple });
-
 // icons
 import 'fontawesome-4.7'
 

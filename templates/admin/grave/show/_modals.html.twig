@@ -115,3 +115,20 @@
         </button>
     {% endblock %}
 {% endembed %}
+
+<!-- ------------ REMOVE IMAGE ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'grave-image-modal-remove', title: 'ui.grave.image_remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 rounded">{{ 'ui.grave.modal.remove_image'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-grave-image-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

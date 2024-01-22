@@ -12,3 +12,8 @@ payment_api_routes:
   prefix: '/api/admin'
   resource: 'payment'
   type: directory
+  
+file_api_routes:
+  prefix: '/api/admin'
+  resource: 'file'
+  type: directory

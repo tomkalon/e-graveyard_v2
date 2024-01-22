@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Services\Grave;
+namespace App\Admin\Application\Service\Grave;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
@@ -9,13 +9,14 @@ use App\Core\Domain\Enum\NotificationTypeEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class GravePersistPersistService implements GravePersistServiceInterface
+class SaveGraveService implements SaveGraveServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em,
-        private readonly NotificationInterface $notification,
-        private readonly TranslatorInterface $translator,
-    ) {
+        private readonly NotificationInterface  $notification,
+        private readonly TranslatorInterface    $translator,
+    )
+    {
     }
 
     public function persist(Grave $grave): void
@@ -23,11 +24,27 @@ class GravePersistPersistService implements GravePersistServiceInterface
         if (!$this->em->contains($grave)) {
             $this->em->persist($grave);
         } else {
+
+            // set main image
+            if (!$grave->getMainImage()) {
+                $images = $grave->getImages();
+                if ($images->count()) {
+                    $firstImage = $images->first();
+                    $grave->removeImage($firstImage);
+                    $grave->setMainImage($firstImage);
+                }
+            }
+
+            // checks whether the entity is different from the one already saved in the database.
             $uow = $this->em->getUnitOfWork();
             $uow->computeChangeSets();
             $changeSet = $uow->getEntityChangeSet($grave);
+            foreach ($grave->getImages() as $image) {
+                $changeSet = $uow->getEntityChangeSet($image);
+            }
 
             if (empty($changeSet)) {
+                // no changes notification
                 $this->notification->addNotification('notification', new NotificationDto(
                     $this->translator->trans('notification.entity.grave', [], 'flash'),
                     NotificationTypeEnum::INFO,

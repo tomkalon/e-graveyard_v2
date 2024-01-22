@@ -2,6 +2,7 @@
 
 namespace App\Core\Domain\Entity;
 
+use App\Core\Domain\Enum\FileExtensionTypeEnum;
 use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
 use Ramsey\Uuid\Uuid;
@@ -11,13 +12,10 @@ class File
     use IdTrait;
     use LifecycleTrait;
 
-    private string $name;
-    private string $extension;
-    private ?bool $primary;
-    private ?Grave $grave;
-    private ?Graveyard $graveyard;
+    protected string $name;
+    private FileExtensionTypeEnum $extension;
 
-    public function __construct(?string $name)
+    public function __construct(?string $name = null)
     {
         $this->id = Uuid::uuid4();
         if ($name) {
@@ -35,43 +33,18 @@ class File
         $this->name = $name;
     }
 
-    public function getExtension(): string
+    public function getExtension(): FileExtensionTypeEnum
     {
         return $this->extension;
     }
 
-    public function setExtension(string $extension): void
+    public function setExtension(FileExtensionTypeEnum $extension): void
     {
         $this->extension = $extension;
     }
 
-    public function getPrimary(): ?bool
+    public function getFilename(): string
     {
-        return $this->primary;
-    }
-
-    public function setPrimary(?bool $primary): void
-    {
-        $this->primary = $primary;
-    }
-
-    public function getGrave(): ?Grave
-    {
-        return $this->grave;
-    }
-
-    public function setGrave(?Grave $grave): void
-    {
-        $this->grave = $grave;
-    }
-
-    public function getGraveyard(): ?Graveyard
-    {
-        return $this->graveyard;
-    }
-
-    public function setGraveyard(?Graveyard $graveyard): void
-    {
-        $this->graveyard = $graveyard;
+        return $this->name . '.' . $this->extension->value;
     }
 }

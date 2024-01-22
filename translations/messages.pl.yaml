@@ -42,6 +42,7 @@ ui:
     close: Zamknij
     cancel: Anuluj
     return: Wróć
+    set_main_image: Ustaw zdjęcie główne
     
   enums:
     currencyType:
@@ -91,6 +92,8 @@ ui:
         position: Położenie grobu
         coordinates: Współrzędne geograficzne
         people: Pochowani
+        noPeople: Brak pochowanych
+        images: Galeria zdjęć
         paid: Informacje na temat opłat
         noPaid: Brak opłat
         map: Położenie na mapie
@@ -100,6 +103,9 @@ ui:
     number: Numer
     positionX: Dł. geograficzna
     positionY: Szer. geograficzna
+    main_image: Zdjęcie główne
+    images: Zdjęcia
+    image_remove: Usuwanie zdjęcia
     people: Pochowani
     without_people: Brak pochowanych
     details: Szczegóły
@@ -115,6 +121,7 @@ ui:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.
       remove: Czy chcesz usunąć wskazany grób wraz ze wszystkimi przypisanymi do niego zmarłymi?
+      remove_image: Czy chcesz usunąć wskazane zdjęcie?
   
   graveyard:
     title:

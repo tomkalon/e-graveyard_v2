@@ -1,0 +1,6 @@
+admin_api_file_grave_remove:
+  path: /file/grave/{id}
+  methods: [ DELETE ]
+  controller: App\Admin\UI\Api\Controller\File\FileGraveController::remove
+  options:
+    expose: true

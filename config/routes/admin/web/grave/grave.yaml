@@ -8,7 +8,7 @@ admin_web_grave_index:
     expose: true
     
 admin_web_grave_show:
-  path: /admin/grave/show/{id}
+  path: /admin/grave/show/{grave}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::show
   options:
@@ -23,7 +23,7 @@ admin_web_grave_create:
     priority: 2
   
 admin_web_grave_edit:
-  path: /admin/grave/edit/{id}
+  path: /admin/grave/edit/{grave}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\Grave\GraveController::edit
   options:

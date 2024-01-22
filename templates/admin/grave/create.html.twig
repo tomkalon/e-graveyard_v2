@@ -1,60 +1,66 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.grave.title.create'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <!-- Dashboard Card -->
-    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
-        {% block title %}
-            <!-- Dashboard Title -->
-            <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.create'|trans }}</h1>
-            <!-- /Dashboard Title -->
-        {% endblock %}
-        {% block dashboard_content %}
-            <!-- Dashboard Content -->
-            {{ form_start(form) }}
+    <div class="max-w-[800px]">
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.grave.title.create'|trans }}</h1>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                {{ form_start(form) }}
 
-            <!-- ERRORS -->
-            {% if form_errors(form) %}
-                {% embed 'core/alerts/error.html.twig' %}
-                    {% block content %}
-                        {{ form_errors(form) }}
-                    {% endblock %}
-                {% endembed %}
-            {% endif %}
+                <!-- ERRORS -->
+                {% if form_errors(form) %}
+                    {% embed 'core/alerts/error.html.twig' %}
+                        {% block content %}
+                            {{ form_errors(form) }}
+                        {% endblock %}
+                    {% endembed %}
+                {% endif %}
 
-            <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
-            <hr>
-            <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                <div>
-                    {{ form_row(form.graveyard) }}
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.position'|trans }}</h3>
+                <hr>
+                <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div>
+                        {{ form_row(form.graveyard) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.sector) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.row) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.number) }}
+                    </div>
                 </div>
-                <div>
-                    {{ form_row(form.sector) }}
+                <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.coordinates'|trans }}</h3>
+                <hr>
+                <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    <div>
+                        {{ form_row(form.positionX) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.positionY) }}
+                    </div>
                 </div>
-                <div>
-                    {{ form_row(form.row) }}
+                <div class="mt-4 flex">
+                    {{ form_row(form.images, {
+                        'attr': {'disabled':'disabled', 'class': 'hidden'},
+                        'label_attr': {'class': 'hidden'},
+                    }) }}
+                    {{ form_row(form.create) }}
                 </div>
-                <div>
-                    {{ form_row(form.number) }}
-                </div>
-            </div>
-            <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.coordinates'|trans }}</h3>
-            <hr>
-            <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                <div>
-                    {{ form_row(form.positionX) }}
-                </div>
-                <div>
-                    {{ form_row(form.positionY) }}
-                </div>
-            </div>
-            <div class="mt-4 flex">
-                {{ form_row(form.create) }}
-            </div>
-            {{ form_end(form) }}
-            <!-- /Dashboard Content -->
-        {% endblock %}
-        {% block buttons_after %}
-        {% endblock %}
-    {% endembed %}
-    <!-- /Dashboard Card -->
+                {{ form_end(form) }}
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
 {% endblock %}
