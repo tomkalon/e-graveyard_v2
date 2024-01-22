@@ -10,6 +10,5 @@
             </cascade>
             <join-column name="grave_id" referenced-column-name="id" on-delete="SET NULL" />
         </many-to-one>
-        <field name="thumbnail_extension"/>
     </entity>
 </doctrine-mapping>

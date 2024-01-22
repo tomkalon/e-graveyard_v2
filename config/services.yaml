@@ -49,6 +49,9 @@ services:
       tags:
         - { name: doctrine.event_listener, event: postUpdate }
     App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
+      arguments:
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
       tags:
         - { name: doctrine.event_listener, event: postRemove }
   

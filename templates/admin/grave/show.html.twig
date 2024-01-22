@@ -62,7 +62,7 @@
                     <div class="w-[200px]">
                         {% if grave.mainImage %}
                             <div data-te-lightbox-init>
-                                <img src="{{ asset(file_grave.images_thumbnail_directory ~ grave.mainImage.getThumbFilename) }}"
+                                <img src="{{ asset(file_grave.images_thumbnail_directory ~ grave.mainImage.getFilename) }}"
                                      data-te-img="{{ asset(file_grave.images_directory ~ grave.mainImage.getFilename) }}"
                                      alt="Main image" data-lightbox-thumb class="cursor-pointer rounded opacity-100">
                             </div>

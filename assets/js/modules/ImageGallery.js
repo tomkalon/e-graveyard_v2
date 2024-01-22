@@ -32,7 +32,7 @@ const createGallery = (container, id, path, thumbPath, galleryName = null) => {
 
     const getImage = (image) => {
         const fullPath = '/' + path + image.name + '.' + image.extension
-        const thumbFullPath = '/' + thumbPath + image.name + '.' + image.thumb_extension
+        const thumbFullPath = '/' + thumbPath + image.name + '.' + image.extension
 
         // gallery elements
         const imageBox = $('<div/>', {

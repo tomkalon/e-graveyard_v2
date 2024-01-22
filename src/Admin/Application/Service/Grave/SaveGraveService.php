@@ -25,7 +25,6 @@ class SaveGraveService implements SaveGraveServiceInterface
             $this->em->persist($grave);
         } else {
 
-
             // set main image
             if (!$grave->getMainImage()) {
                 $images = $grave->getImages();

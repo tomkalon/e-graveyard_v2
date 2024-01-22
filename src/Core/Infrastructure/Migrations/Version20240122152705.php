@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240119110149 extends AbstractMigration
+final class Version20240122152705 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20240119110149 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE file_grave (id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', grave_id CHAR(36) DEFAULT NULL COMMENT \'(DC2Type:uuid)\', thumbnail_extension VARCHAR(255) NOT NULL, INDEX IDX_8B2D6ED0E439654A (grave_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE file_grave (id CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', grave_id CHAR(36) DEFAULT NULL COMMENT \'(DC2Type:uuid)\', INDEX IDX_8B2D6ED0E439654A (grave_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE file_grave ADD CONSTRAINT FK_8B2D6ED0E439654A FOREIGN KEY (grave_id) REFERENCES grave (id) ON DELETE SET NULL');
         $this->addSql('ALTER TABLE file_grave ADD CONSTRAINT FK_8B2D6ED0BF396750 FOREIGN KEY (id) REFERENCES file (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE file ADD discr VARCHAR(255) NOT NULL, DROP grave_id, DROP graveyard_id, DROP `primary`');

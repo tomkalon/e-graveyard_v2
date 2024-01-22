@@ -40,7 +40,6 @@ class GraveController extends AbstractFOSRestController
         GetGraveImagesDto $query,
         SerializerInterface $serializer
     ): Response {
-
         $dto = $query->execute($id);
         return new Response($serializer->serialize($dto, 'json'));
     }

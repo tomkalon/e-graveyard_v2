@@ -19,7 +19,6 @@ class SaveFileGraveService implements SaveFileGraveServiceInterface
         $file = new FileGrave();
         $file->setName($fileVo->getName());
         $file->setExtension(FileExtensionTypeEnum::tryFrom($fileVo->getExtension()));
-        $file->setThumbnailExtension(FileExtensionTypeEnum::tryFrom($fileVo->getThumbnailExtension()));
         $this->em->persist($file);
         return $file;
     }

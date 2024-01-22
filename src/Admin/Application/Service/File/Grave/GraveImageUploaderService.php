@@ -11,6 +11,7 @@ use App\Core\Domain\ValueObject\File\FileVo;
 use Exception;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -36,32 +37,36 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
         $name = $safeFilename.'-'.uniqid();
 
         $fileName = $name . '.' .$file->guessExtension();
-        $ext = FileExtensionTypeEnum::tryFrom($file->guessExtension())->value;
-        $thumbExt = FileExtensionTypeEnum::WEBP->value;
+        $ext = FileExtensionTypeEnum::WEBP->value;
 
-        if ($ext) {
-            $fileVo = new FileVo($name, $ext, $thumbExt);
-        } else {
-            $this->notification->addNotification('notification', new NotificationDto(
-                'notification.file.create.label',
-                NotificationTypeEnum::FAILED,
-                'notification.file.create.invalid_extension_error',
-            ));
-            return null;
-        }
-
-        $imagePath = $this->getTargetDirectory() . '/';
-        $thumbPath = $this->getTargetThumbnailDirectory() . '/';
+        $imageDirectory = $this->getTargetDirectory() . '/';
+        $thumbDirectory = $this->getTargetThumbnailDirectory() . '/';
+        $imagePath = $imageDirectory . $fileName;
 
         // save image and thumbnail to proper directory
         try {
             $file->move($this->getTargetDirectory(), $fileName);
+
+            $filesystem = new Filesystem();
+            $readFile = null;
+            if ($filesystem->exists($imagePath)) {
+                $readFile = file_get_contents($imagePath);
+                $filesystem->remove($imagePath);
+            }
+
             $manager = new ImageManager(new Driver());
-            $image = $manager->read(file_get_contents($imagePath . $fileName));
-            $image->cover(190, 150);
-            $encoded = $image->toWebp(80);
-            $encoded->save($thumbPath . $name . '.' . $thumbExt);
-            return $fileVo;
+            $originalImage = $manager->read($readFile);
+
+            $image = $originalImage->toWebp(75);
+            $image->save($imageDirectory . $name . '.' . $ext);
+
+            $thumb = $originalImage->cover(190, 150);
+            $encoded = $thumb->toWebp(80);
+            $encoded->save($thumbDirectory . $name . '.' . $ext);
+
+
+            return new FileVo($name, $ext);
+
         } catch (FileException) {
             $this->notification->addNotification('notification', new NotificationDto(
                 'notification.file.create.label',

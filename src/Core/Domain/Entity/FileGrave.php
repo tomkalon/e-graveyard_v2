@@ -7,7 +7,6 @@ use App\Core\Domain\Enum\FileExtensionTypeEnum;
 class FileGrave extends File
 {
     private ?Grave $grave = null;
-    private FileExtensionTypeEnum $thumbnail_extension;
 
     public function getGrave(): ?Grave
     {
@@ -17,20 +16,5 @@ class FileGrave extends File
     public function setGrave(?Grave $grave = null): void
     {
         $this->grave = $grave;
-    }
-
-    public function getThumbnailExtension(): FileExtensionTypeEnum
-    {
-        return $this->thumbnail_extension;
-    }
-
-    public function setThumbnailExtension(FileExtensionTypeEnum $thumbnail_extension): void
-    {
-        $this->thumbnail_extension = $thumbnail_extension;
-    }
-
-    public function getThumbFilename(): string
-    {
-        return $this->name . '.' . $this->thumbnail_extension->value;
     }
 }
