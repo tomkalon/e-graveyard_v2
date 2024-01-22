@@ -7,9 +7,6 @@ import './styles/app.scss';
 // icons
 import 'fontawesome-4.7'
 
-// lightbox
-import 'lightbox2'
-
 // prevents the form from being resubmitted
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);

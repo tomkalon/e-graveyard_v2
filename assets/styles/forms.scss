@@ -22,7 +22,9 @@
   }
 
   input {
-    &[type="number"], &[type="text"] {
+    &[type="number"],
+    &[type="text"],
+    &[type='date'] {
       color: #000000;
     }
   }

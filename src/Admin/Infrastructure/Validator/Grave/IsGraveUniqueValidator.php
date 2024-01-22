@@ -22,8 +22,7 @@ class IsGraveUniqueValidator extends ConstraintValidator
         $graveData = $this->context->getRoot()->getData();
 
         $request = $this->requestStack->getCurrentRequest();
-        $id = $request->attributes->get('id');
-
+        $id = $request->attributes->get('grave');
 
         /** @var Grave[] $grave */
         $grave = $this->graveRepository->findBy([

@@ -51,7 +51,7 @@ class GraveController extends AbstractController
             $id = $person->getGrave()->getId();
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $id]
+                ['grave' => $id]
             );
         }
 
@@ -92,7 +92,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PersonCommand($person));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $grave->getId()]
+                ['grave' => $grave->getId()]
             );
         }
 
@@ -106,7 +106,7 @@ class GraveController extends AbstractController
             $commandBus->dispatch(new PaymentGraveCommand($paymentGrave));
             return $this->redirectToRoute(
                 'admin_web_grave_show',
-                ['id' => $grave->getId()]
+                ['grave' => $grave->getId()]
             );
         }
 
@@ -134,7 +134,7 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($graveData));
-            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
+            return $this->redirectToRoute('admin_web_grave_show', ['grave' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/create.html.twig', [
@@ -162,7 +162,7 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($graveData, $mainImage));
-            return $this->redirectToRoute('admin_web_grave_show', ['id' => $graveData->getId()]);
+            return $this->redirectToRoute('admin_web_grave_show', ['grave' => $graveData->getId()]);
         }
 
         return $this->render('admin/grave/edit.html.twig', [

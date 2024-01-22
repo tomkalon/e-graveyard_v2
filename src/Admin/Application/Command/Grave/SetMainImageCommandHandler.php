@@ -20,8 +20,7 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
         private readonly NotificationInterface        $notification,
         private readonly TranslatorInterface          $translator,
         private readonly EntityManagerInterface       $em
-    )
-    {
+    ) {
     }
 
     public function __invoke(SetMainImageCommand $command)
@@ -42,13 +41,12 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
 
         if ($grave and $image) {
             $currentImage = $grave->getMainImage();
+            $grave->setMainImage($image);
 
             if ($currentImage) {
                 $grave->addImages($currentImage);
+                $image->setGrave();
             }
-
-            $grave->removeImage($image);
-            $grave->setMainImage($image);
 
             $this->em->persist($grave);
         }

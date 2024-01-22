@@ -21,7 +21,7 @@ class Grave
     private ?string $positionX;
     private ?string $positionY;
     private ?Graveyard $graveyard;
-    private ?File $main_image;
+    private ?FileGrave $main_image;
     private Collection $people;
     private Collection $images;
     private Collection $payments;
@@ -159,12 +159,12 @@ class Grave
         $this->positionY = $positionY;
     }
 
-    public function getMainImage(): ?File
+    public function getMainImage(): ?FileGrave
     {
         return $this->main_image;
     }
 
-    public function setMainImage(?File $main_image): void
+    public function setMainImage(?FileGrave $main_image): void
     {
         $this->main_image = $main_image;
     }
