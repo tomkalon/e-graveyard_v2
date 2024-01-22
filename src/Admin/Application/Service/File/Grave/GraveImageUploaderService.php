@@ -48,9 +48,8 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             $file->move($this->getTargetDirectory(), $fileName);
 
             $filesystem = new Filesystem();
-            $readFile = null;
+            $readFile = file_get_contents($imagePath);
             if ($filesystem->exists($imagePath)) {
-                $readFile = file_get_contents($imagePath);
                 $filesystem->remove($imagePath);
             }
 
@@ -63,7 +62,6 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             $thumb = $originalImage->cover(190, 150);
             $encoded = $thumb->toWebp(80);
             $encoded->save($thumbDirectory . $name . '.' . $ext);
-
 
             return new FileVo($name, $ext);
 
