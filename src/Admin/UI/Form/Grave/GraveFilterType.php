@@ -33,7 +33,7 @@ class GraveFilterType extends AbstractType
                 'required' => false,
             ])
             ->add('search', SubmitType::class, [
-                'label' => 'ui.buttons.create',
+                'label' => 'ui.buttons.search',
                 'attr' => array(
                     'class' => 'btn btn-green'
                 )
@@ -45,7 +45,7 @@ class GraveFilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => GraveFilterView::class,
-            'allow_extra_fields' => true,
+            'allow_extra_fields' => false,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.grave.%name%',

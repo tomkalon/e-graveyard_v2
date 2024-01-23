@@ -19,6 +19,21 @@
                     </button>
                 </a>
             {% endblock %}
+            {% block filters %}
+                {{ form_start(filterForm) }}
+                <div class="grid gap-2 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
+                    <div>{{ form_row(filterForm.sector) }}</div>
+                    <div>{{ form_row(filterForm.row) }}</div>
+                    <div>{{ form_row(filterForm.number) }}</div>
+                    <div>{{ form_row(filterForm.graveyard) }}</div>
+                </div>
+                <div class="flex justify-end gap-2 mt-4">
+                    <button type="button" class="btn btn-danger">{{ 'ui.buttons.hide'|trans }}</button>
+                    <button type="reset" class="btn btn-warning">{{ 'ui.buttons.reset'|trans }}</button>
+                    {{ form_row(filterForm.search) }}
+                </div>
+                {{ form_end(filterForm) }}
+            {% endblock %}
             {% block dashboard_content %}
                 <!-- Dashboard Content -->
                 <!-- Pagination -->
