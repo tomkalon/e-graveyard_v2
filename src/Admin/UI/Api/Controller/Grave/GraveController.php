@@ -9,7 +9,6 @@ use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveViewInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use App\Core\Domain\Entity\Grave;
 use Exception;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Request;

@@ -6,10 +6,12 @@ use App\Admin\Application\Command\Grave\GraveCommand;
 use App\Admin\Application\Command\Grave\RemoveGraveCommand;
 use App\Admin\Application\Command\Payment\Grave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
+use App\Admin\Domain\View\Grave\GraveFilterView;
 use App\Admin\Domain\View\Grave\GraveView;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveViewInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
+use App\Admin\UI\Form\Grave\GraveFilterType;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Admin\UI\Form\Payment\PaymentGraveType;
 use App\Admin\UI\Form\Person\PersonType;
@@ -36,6 +38,13 @@ class GraveController extends AbstractController
         );
         $addDeceasedForm->handleRequest($request);
 
+        // filter form
+        $filterForm = $this->createForm(
+            GraveFilterType::class,
+            new GraveFilterView()
+        );
+        $filterForm->handleRequest($request);
+
         // query
         $paginatedGravesList = $query->execute(
             $page,
@@ -58,7 +67,8 @@ class GraveController extends AbstractController
 
         return $this->render('admin/grave/index.html.twig', [
             'pagination' => $paginatedGravesList,
-            'addDeceasedForm' => $addDeceasedForm->createView()
+            'addDeceasedForm' => $addDeceasedForm->createView(),
+            'filterForm' => $filterForm->createView()
         ]);
     }
 
@@ -140,7 +150,7 @@ class GraveController extends AbstractController
 
             // command bus
             $commandBus->dispatch(new GraveCommand($graveData));
-            return $this->redirectToRoute('admin_web_grave_show');
+            return $this->redirectToRoute('admin_web_grave_index');
         }
 
         return $this->render('admin/grave/create.html.twig', [

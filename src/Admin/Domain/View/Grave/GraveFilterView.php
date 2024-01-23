@@ -14,14 +14,9 @@ class GraveFilterView
     private ?int $deceased_number = null;
     private ?PaymentStatusEnum $payment_status = null;
 
-    public function getGraveyardName(): ?Graveyard
+    public function getGraveyard(): ?Graveyard
     {
         return $this->graveyard;
-    }
-
-    public function setGraveyardName(?Graveyard $graveyard): void
-    {
-        $this->graveyard = $graveyard;
     }
 
     public function getSector(): ?int

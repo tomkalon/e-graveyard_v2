@@ -103,12 +103,6 @@ class Grave
         return $this;
     }
 
-    public function removeImage(FileGrave $image): self
-    {
-        $image->setGrave();
-        return $this;
-    }
-
     public function getPayments(): Collection
     {
         return $this->payments;

@@ -21,23 +21,18 @@ class GraveFilterType extends AbstractType
             ->add('graveyard', EntityType::class, [
                 'class' => Graveyard::class,
                 'choice_label' => 'name',
-                'required' => true,
-                'constraints' => [
-                    new NotNull([
-                        'message' => 'validation.not_null'
-                    ])
-                ]
+                'required' => false,
             ])
             ->add('sector', IntegerType::class, [
-                'required' => true,
+                'required' => false,
             ])
             ->add('row', IntegerType::class, [
                 'required' => false,
             ])
             ->add('number', IntegerType::class, [
-                'required' => true,
+                'required' => false,
             ])
-            ->add('create', SubmitType::class, [
+            ->add('search', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => array(
                     'class' => 'btn btn-green'
