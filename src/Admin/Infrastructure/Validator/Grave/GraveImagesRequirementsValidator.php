@@ -2,23 +2,22 @@
 
 namespace App\Admin\Infrastructure\Validator\Grave;
 
-use App\Admin\Domain\Repository\GraveRepositoryInterface;
-use App\Core\Domain\Entity\Grave;
-use Symfony\Component\HttpFoundation\RequestStack;
+use App\Admin\Domain\View\Grave\GraveView;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class GraveImagesRequirementsValidator extends ConstraintValidator
 {
-    public function __construct(
-    ) {
+    public function __construct()
+    {
     }
 
     public function validate(mixed $value, Constraint $constraint)
     {
-        /** @var Grave $graveData */
+        /** @var GraveView $graveData */
         $graveData = $this->context->getRoot()->getData();
-        $currentImagesCount = $graveData->getImages()->count();
+
+        $currentImagesCount = $graveData->getImages() ? count($graveData->getImages()) : 0;
         $newImagesCount = count($this->context->getRoot()->get('images')->getData());
 
         if (($currentImagesCount + $newImagesCount) > 4) {

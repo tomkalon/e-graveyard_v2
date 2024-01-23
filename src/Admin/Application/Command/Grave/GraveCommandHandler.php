@@ -19,7 +19,8 @@ class GraveCommandHandler implements CommandHandlerInterface
 
     public function __invoke(GraveCommand $command)
     {
-        $grave = $command->getGrave();
+        $graveView = $command->getGrave();
+
         /** @var UploadedFile[] $uploadedImages */
         $uploadedImages = $command->getImages();
 
@@ -28,11 +29,11 @@ class GraveCommandHandler implements CommandHandlerInterface
                 $imageVo = $this->uploaderService->upload($uploadedImage);
                 if ($imageVo) {
                     $image = $this->saveFileGrave->persist($imageVo);
-                    $grave->addImages($image);
+                    $graveView->addImage($image);
                 }
             }
         }
 
-        $this->graveService->persist($grave);
+        $this->graveService->persist($graveView);
     }
 }

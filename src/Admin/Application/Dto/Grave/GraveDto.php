@@ -4,6 +4,7 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Person;
+use Exception;
 
 class GraveDto
 {
@@ -43,6 +44,9 @@ class GraveDto
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * @throws Exception
+     */
     public static function fromEntity(Grave $grave): self
     {
         $people = array_map(function ($person) {

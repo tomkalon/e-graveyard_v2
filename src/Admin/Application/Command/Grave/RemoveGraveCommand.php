@@ -8,12 +8,12 @@ use App\Core\Domain\Entity\Grave;
 class RemoveGraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly Grave $grave
+        private readonly string $graveId
     ) {
     }
 
-    public function getGrave(): Grave
+    public function getGraveId(): string
     {
-        return $this->grave;
+        return $this->graveId;
     }
 }

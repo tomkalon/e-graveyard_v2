@@ -19,8 +19,7 @@ class RemoveEntityEvent extends PostRemoveListener
         private readonly RemoveEntityFlashInterface $flash,
         private readonly string                     $targetDirectory,
         private readonly string                     $targetThumbnailDirectory
-    )
-    {
+    ) {
     }
 
     public function postRemove(LifecycleEventArgs $args): void
@@ -62,7 +61,7 @@ class RemoveEntityEvent extends PostRemoveListener
                 throw new FileNotFoundException($e->getMessage());
             }
             $this->em->flush();
-            $this->flash->handleNotification($entity);
         }
+        $this->flash->handleNotification($entity);
     }
 }

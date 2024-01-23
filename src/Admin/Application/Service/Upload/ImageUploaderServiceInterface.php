@@ -2,7 +2,7 @@
 
 namespace App\Admin\Application\Service\Upload;
 
-use App\Core\Domain\ValueObject\File\FileVo;
+use App\Admin\Domain\ValueObject\File\FileVo;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface ImageUploaderServiceInterface

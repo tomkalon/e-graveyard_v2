@@ -3,6 +3,7 @@
 namespace App\Admin\Infrastructure\Validator\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
+use App\Admin\Domain\View\Grave\GraveView;
 use App\Core\Domain\Entity\Grave;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraint;
@@ -18,11 +19,11 @@ class IsGraveUniqueValidator extends ConstraintValidator
 
     public function validate(mixed $value, Constraint $constraint)
     {
-        /** @var Grave $graveData */
+        /** @var GraveView $graveData */
         $graveData = $this->context->getRoot()->getData();
 
         $request = $this->requestStack->getCurrentRequest();
-        $id = $request->attributes->get('grave');
+        $id = $request->attributes->get('id');
 
         /** @var Grave[] $grave */
         $grave = $this->graveRepository->findBy([

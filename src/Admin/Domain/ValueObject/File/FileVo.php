@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Core\Domain\ValueObject\File;
+namespace App\Admin\Domain\ValueObject\File;
 
 class FileVo
 {
     private string $name;
     private string $extension;
 
-    public function __construct(string $name, string $extension, ?string $thumbnail_extension = null)
+    public function __construct(string $name, string $extension)
     {
         $this->name = $name;
         $this->extension = $extension;

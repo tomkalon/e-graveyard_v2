@@ -2,13 +2,12 @@
 
 namespace App\Admin\Application\Command\Grave;
 
+use App\Admin\Application\Service\Grave\SaveGraveServiceInterface;
 use App\Admin\Domain\Repository\FileGraveRepositoryInterface;
-use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -18,28 +17,29 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
         private readonly FileGraveRepositoryInterface $fileGraveRepository,
         private readonly NotificationInterface        $notification,
         private readonly TranslatorInterface          $translator,
-        private readonly EntityManagerInterface       $em
+        private readonly SaveGraveServiceInterface    $saveGraveService
     ) {
     }
 
     public function __invoke(SetMainImageCommand $command)
     {
-        $grave = $command->getGrave();
-        $newImage = null;
+        $graveView = $command->getGraveView();
 
         try {
-            $newImage = $this->fileGraveRepository->find($command->getImageId());
+            $image = $this->fileGraveRepository->find($command->getImageId());
         } catch (Exception) {
+            $image = null;
+        }
+
+        if (!$image) {
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.grave.set_main_image.label', [], 'flash'),
                 NotificationTypeEnum::FAILED,
                 $this->translator->trans('notification.grave.set_main_image.empty', [], 'flash')
             ));
-        }
-
-        if ($newImage) {
-            $grave->setMainImage($newImage);
-            $this->em->persist($grave);
+        } else {
+            $graveView->setMainImage($image);
+            $this->saveGraveService->persist($graveView);
         }
     }
 }

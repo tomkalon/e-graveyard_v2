@@ -7,7 +7,7 @@ use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\FileExtensionTypeEnum;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\ValueObject\File\FileVo;
+use App\Admin\Domain\ValueObject\File\FileVo;
 use Exception;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -56,15 +56,14 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             $manager = new ImageManager(new Driver());
             $originalImage = $manager->read($readFile);
 
-            $image = $originalImage->toWebp(75);
+            $image = $originalImage->toWebp();
             $image->save($imageDirectory . $name . '.' . $ext);
 
             $thumb = $originalImage->cover(190, 150);
-            $encoded = $thumb->toWebp(80);
+            $encoded = $thumb->toWebp();
             $encoded->save($thumbDirectory . $name . '.' . $ext);
 
             return new FileVo($name, $ext);
-
         } catch (FileException) {
             $this->notification->addNotification('notification', new NotificationDto(
                 'notification.file.create.label',
