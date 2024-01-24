@@ -19,6 +19,11 @@ class GraveFilterView
         return $this->graveyard;
     }
 
+    public function setGraveyard(?Graveyard $graveyard): void
+    {
+        $this->graveyard = $graveyard;
+    }
+
     public function getSector(): ?int
     {
         return $this->sector;

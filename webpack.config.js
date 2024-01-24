@@ -45,10 +45,14 @@ Encore
         '@Routing': path.resolve(__dirname, 'assets/js/modules/Routing'),
         '@HandleItems': path.resolve(__dirname, 'assets/js/modules/HandleItems'),
         '@ImageGallery': path.resolve(__dirname, 'assets/js/modules/ImageGallery'),
+        '@FilterSwitch': path.resolve(__dirname, 'assets/js/modules/FilterSwitch'),
+
         // VIEWS
         '@View': path.resolve(__dirname, 'assets/js/views'),
+
         // ASSETS
         '@Translator': path.resolve(__dirname, 'assets/translator'),
+
         // OTHER
         '@Routes': path.resolve(__dirname, 'public/js/routes.json'),
         '@FosRoutes': path.resolve(__dirname, 'vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js')

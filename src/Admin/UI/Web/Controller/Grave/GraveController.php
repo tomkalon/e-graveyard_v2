@@ -32,24 +32,12 @@ class GraveController extends AbstractController
     ): Response {
 
         // add decease form
-        $addDeceasedForm = $this->createForm(
-            PersonType::class,
-            new Person()
-        );
+        $addDeceasedForm = $this->createForm(PersonType::class, new Person());
         $addDeceasedForm->handleRequest($request);
 
         // filter form
-        $filterForm = $this->createForm(
-            GraveFilterType::class,
-            new GraveFilterView()
-        );
+        $filterForm = $this->createForm(GraveFilterType::class, new GraveFilterView());
         $filterForm->handleRequest($request);
-
-        // query
-        $paginatedGravesList = $query->execute(
-            $page,
-            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
-        );
 
         // form handler
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
@@ -64,6 +52,18 @@ class GraveController extends AbstractController
                 ['id' => $id]
             );
         }
+
+        $filter = null;
+        if ($filterForm->isSubmitted() and $filterForm->isValid()) {
+            $filter = $filterForm->getData();
+        }
+
+        // query
+        $paginatedGravesList = $query->execute(
+            $page,
+            $filter,
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
+        );
 
         return $this->render('admin/grave/index.html.twig', [
             'pagination' => $paginatedGravesList,
@@ -84,17 +84,11 @@ class GraveController extends AbstractController
         $grave = $getGraveView->execute($id);
 
         // add decease form
-        $addDeceasedForm = $this->createForm(
-            PersonType::class,
-            new Person()
-        );
+        $addDeceasedForm = $this->createForm(PersonType::class, new Person());
         $addDeceasedForm->handleRequest($request);
 
         // add payment form
-        $addPaymentForm = $this->createForm(
-            PaymentGraveType::class,
-            new PaymentGrave()
-        );
+        $addPaymentForm = $this->createForm(PaymentGraveType::class, new PaymentGrave());
         $addPaymentForm->handleRequest($request);
 
         // form handler
@@ -137,10 +131,7 @@ class GraveController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request
     ): Response {
-        $form = $this->createForm(
-            GraveType::class,
-            new GraveView()
-        );
+        $form = $this->createForm(GraveType::class, new GraveView());
         $form->handleRequest($request);
 
         // form handler
@@ -168,10 +159,8 @@ class GraveController extends AbstractController
         // query
         $grave = $getGraveView->execute($id);
 
-        $form = $this->createForm(
-            GraveType::class,
-            $grave
-        );
+        // create grave form
+        $form = $this->createForm(GraveType::class, $grave);
         $form->handleRequest($request);
 
         // form handler
