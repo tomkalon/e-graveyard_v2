@@ -19,11 +19,23 @@
                             {{ 'ui.buttons.new'|trans }}
                         </button>
                     </a>
-                    <button {{ stimulus_target('admin--grave--grave-list', 'toggleFilter') }}
-                            type="button"
-                            class="btn btn-danger">
-                        {{ 'ui.buttons.hide'|trans }}
-                    </button>
+                    <!-- Toggle Filter Button -->
+                    {% if app.request.cookies.get('ADMIN_GRAVE_LIST_TOGGLE_FILTER_STATUS') == 'true' %}
+                        <button {{ stimulus_target('admin--grave--grave-list', 'toggleFilter') }}
+                                type="button"
+                                class="btn btn-danger">
+                                <i class="fa fa-filter" aria-hidden="true"></i>
+                                {{ 'ui.buttons.hide_filter'|trans }}
+                        </button>
+                    {% else %}
+                        <button {{ stimulus_target('admin--grave--grave-list', 'toggleFilter') }}
+                                type="button"
+                                class="btn btn-warning">
+                                <i class="fa fa-filter" aria-hidden="true"></i>
+                                {{ 'ui.buttons.show_filter'|trans }}
+                        </button>
+                    {% endif %}
+                    <!-- /Toggle Filter Button -->
                 </div>
             {% endblock %}
             {% block filters %}
