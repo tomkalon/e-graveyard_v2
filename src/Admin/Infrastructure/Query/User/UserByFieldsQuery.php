@@ -4,6 +4,7 @@ namespace App\Admin\Infrastructure\Query\User;
 
 use App\Admin\Application\Dto\User\UserDto;
 use App\Admin\Domain\Repository\UserRepositoryInterface;
+use App\Admin\Domain\View\User\UserView;
 
 class UserByFieldsQuery implements UserByFieldsQueryInterface
 {
@@ -11,11 +12,11 @@ class UserByFieldsQuery implements UserByFieldsQueryInterface
         private readonly UserRepositoryInterface $userRepository
     ) {
     }
-    public function execute(UserDto $dto): array
+    public function execute(UserView $userView): ?array
     {
         return $this->userRepository->getUsersByOptions(
-            $dto->getEmail(),
-            $dto->getUsername()
+            $userView->getEmail(),
+            $userView->getUsername()
         );
     }
 }

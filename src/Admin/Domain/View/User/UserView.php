@@ -1,22 +1,47 @@
 <?php
 
-namespace App\Admin\Application\Dto\User;
+namespace App\Admin\Domain\View\User;
 
-class UserDto
+use App\Core\Domain\Entity\User;
+
+class UserView
 {
-    private ?string $id = null;
+    private ?string $id;
     private ?string $email;
-    private ?string $username = null;
+    private ?string $username;
     /**
      * @var ?string The hashed password
      */
-    private ?string $password = null;
-    private ?array $roles = null;
-    private ?bool $isVerified = null;
+    private ?string $password;
+    private ?array $roles;
+    private ?bool $isVerified;
 
-    public function __construct($email = null)
-    {
+    public function __construct(
+        ?string $id = null,
+        ?string $email = null,
+        ?string $username = null,
+        ?string $password = null,
+        ?array $roles = null,
+        ?bool $isVerified = null,
+    ) {
+        $this->id = $email;
         $this->email = $email;
+        $this->username = $username;
+        $this->password = $password;
+        $this->roles = $roles;
+        $this->isVerified = $isVerified;
+    }
+
+    public static function fromEntity(User $user): self
+    {
+        return new self(
+            $user->getId(),
+            $user->getEmail(),
+            $user->getUsername(),
+            $user->getPassword(),
+            $user->getRoles(),
+            $user->isVerified(),
+        );
     }
 
     public function getId(): ?string

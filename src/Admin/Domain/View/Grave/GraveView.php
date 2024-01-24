@@ -8,10 +8,13 @@ use App\Core\Domain\Entity\Graveyard;
 use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Enum\PaymentStatusEnum;
+use DateTimeImmutable;
 use Exception;
 
 class GraveView
 {
+
+
     private ?string $id;
     private ?Graveyard $graveyard;
     private ?int $sector;
@@ -31,6 +34,8 @@ class GraveView
     /** @var PaymentGrave[] $payments */
     private ?array $payments;
     private ?PaymentStatusEnum $paymentStatus;
+    private ?DateTimeImmutable $updatedAt;
+    private ?DateTimeImmutable $createdAt;
 
     public function __construct(
         ?string $id = null,
@@ -44,7 +49,9 @@ class GraveView
         ?FileGrave $main_image = null,
         ?array $images = null,
         ?array $payments = null,
-        ?PaymentStatusEnum $paymentStatus = null
+        ?PaymentStatusEnum $paymentStatus = null,
+        ?DateTimeImmutable $updatedAt = null,
+        ?DateTimeImmutable $createdAt = null
     ) {
         $this->id = $id;
         $this->graveyard = $graveyard;
@@ -58,6 +65,8 @@ class GraveView
         $this->images = $images;
         $this->payments = $payments;
         $this->paymentStatus = $paymentStatus;
+        $this->updatedAt = $updatedAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -77,7 +86,9 @@ class GraveView
             $grave->getMainImage(),
             $grave->getImages()->toArray(),
             $grave->getPayments()->toArray(),
-            $grave->getPaymentStatus()
+            $grave->getPaymentStatus(),
+            $grave->getUpdatedAt(),
+            $grave->getCreatedAt()
         );
     }
 
@@ -199,5 +210,25 @@ class GraveView
     public function setPaymentStatus(?PaymentStatusEnum $paymentStatus): void
     {
         $this->paymentStatus = $paymentStatus;
+    }
+
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 }

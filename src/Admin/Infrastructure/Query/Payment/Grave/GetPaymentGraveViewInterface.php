@@ -2,12 +2,12 @@
 
 namespace App\Admin\Infrastructure\Query\Payment\Grave;
 
+use App\Admin\Domain\View\Payment\PaymentGraveView;
 use App\Core\Application\CQRS\Query\QueryInterface;
-use App\Core\Domain\Entity\PaymentGrave;
 
-interface GetPaymentGraveInterface extends QueryInterface
+interface GetPaymentGraveViewInterface extends QueryInterface
 {
     public function execute(
         ?string $id
-    ): ?PaymentGrave;
+    ): ?PaymentGraveView;
 }

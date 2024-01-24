@@ -17,7 +17,7 @@ class GetPerson implements GetPersonInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function execute(?string $id): Person
+    public function execute(?string $id): ?Person
     {
         try {
             $person = $this->personRepository->find($id);

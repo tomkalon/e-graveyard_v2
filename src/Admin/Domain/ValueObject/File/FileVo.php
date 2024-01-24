@@ -4,13 +4,10 @@ namespace App\Admin\Domain\ValueObject\File;
 
 class FileVo
 {
-    private string $name;
-    private string $extension;
-
-    public function __construct(string $name, string $extension)
-    {
-        $this->name = $name;
-        $this->extension = $extension;
+    public function __construct(
+        private readonly string $name,
+        private readonly string $extension
+    ) {
     }
 
     public function equals(FileVo $fileVo): bool

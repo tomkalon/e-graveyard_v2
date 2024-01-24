@@ -3,10 +3,10 @@
 namespace App\Admin\UI\Web\Controller\Graveyard;
 
 use App\Admin\Application\Command\Graveyard\GraveyardCommand;
+use App\Admin\Domain\View\Graveyard\GraveyardView;
 use App\Admin\Infrastructure\Query\Graveyard\GraveyardPaginatedListQueryInterface;
 use App\Admin\UI\Form\Graveyard\GraveyardType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use App\Core\Domain\Entity\Graveyard;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,14 +36,13 @@ class GraveyardController extends AbstractController
 
         $form = $this->createForm(
             GraveyardType::class,
-            new Graveyard()
+            new GraveyardView()
         );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() and $form->isValid()) {
             $graveyard = $form->getData();
             $commandBus->dispatch(new GraveyardCommand($graveyard));
-
             return $this->redirectToRoute(
                 'admin_web_graveyard_index'
             );

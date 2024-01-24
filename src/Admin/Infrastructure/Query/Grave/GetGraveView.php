@@ -17,13 +17,18 @@ class GetGraveView implements GetGraveViewInterface
     /**
      * @throws Exception
      */
-    public function execute(string $id): GraveView
+    public function execute(string $id): ?GraveView
     {
         try {
             $grave = $this->graveRepository->find($id);
-            return GraveView::fromEntity($grave);
         } catch (Exception $e) {
             throw new EntityNotFoundException($e->getMessage());
+        }
+
+        if ($grave) {
+            return GraveView::fromEntity($grave);
+        } else {
+            return null;
         }
     }
 }
