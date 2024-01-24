@@ -14,8 +14,8 @@ class UserRepository extends BaseUserRepository implements BaseUserRepositoryInt
     {
         $qb = $this->createQueryBuilder('u');
 
-            $this->addFilterIsEqualCondition($qb, 'u.email', $email, 'email');
-            $this->addFilterIsEqualCondition($qb, 'u.username', $username, 'username');
+        $this->addFilterIsEqualCondition($qb, 'u.email', $email, 'email');
+        $this->addFilterIsEqualCondition($qb, 'u.username', $username, 'username');
 
         return $qb->getQuery()->getResult();
     }

@@ -9,5 +9,5 @@ interface GetPersonInterface extends QueryInterface
 {
     public function execute(
         ?string $id
-    ): Person;
+    ): ?Person;
 }

@@ -2,21 +2,20 @@
 
 namespace App\Admin\Application\Command\Graveyard;
 
+use App\Admin\Application\Service\Graveyard\SaveGraveyardServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
-use App\Core\Domain\Entity\Graveyard;
-use Doctrine\ORM\EntityManagerInterface;
 
 class GraveyardCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em
+        private readonly SaveGraveyardServiceInterface $graveyardService
     )
     {
     }
 
     public function __invoke(GraveyardCommand $command)
     {
-        $graveyard = $command->getGraveyard();
-        $this->em->persist($graveyard);
+        $graveyardView = $command->getGraveyard();
+        $this->graveyardService->persist($graveyardView);
     }
 }

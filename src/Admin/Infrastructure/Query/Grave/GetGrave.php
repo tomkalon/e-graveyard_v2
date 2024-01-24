@@ -18,7 +18,7 @@ class GetGrave implements GetGraveInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function execute(string $id): Grave
+    public function execute(string $id): ?Grave
     {
         try {
             return $this->graveRepository->find($id);

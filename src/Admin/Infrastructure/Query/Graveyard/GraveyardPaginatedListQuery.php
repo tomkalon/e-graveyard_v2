@@ -3,6 +3,8 @@
 namespace App\Admin\Infrastructure\Query\Graveyard;
 
 use App\Admin\Domain\Repository\GraveyardRepositoryInterface;
+use App\Admin\Domain\View\Graveyard\GraveyardView;
+use App\Core\Domain\Entity\Graveyard;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
@@ -20,11 +22,20 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
     ): PaginationInterface {
         $query = $this->repository->getGraveyardsListQuery();
 
-        return $this->paginator->paginate(
+        $graveyardsList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
             ['limit_form' => $limit]
         );
+
+        $graveyardViewList = [];
+        /** @var Graveyard $graveyard */
+        foreach ($graveyardsList->getItems() as $graveyard) {
+            $graveyardViewList[] = GraveyardView::fromEntity($graveyard);
+        }
+        $graveyardsList->setItems($graveyardViewList);
+
+        return $graveyardsList;
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Admin\Infrastructure\Cli;
 
 use App\Admin\Application\Command\User\CreateUserCommand;
-use App\Admin\Application\Dto\User\UserDto;
+use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Query\User\UserByFieldsQueryInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -55,12 +55,12 @@ class UserAddCommand extends Command
     {
         $this->getHelper('question');
         $io = new SymfonyStyle($input, $output);
-        $dto = new UserDto();
+        $userView = new UserView();
 
         // set email
         $email = $this->setEmail($input, $output);
         if ($email !== null) {
-            $dto->setEmail($email);
+            $userView->setEmail($email);
         } else {
             return Command::FAILURE;
         }
@@ -68,7 +68,7 @@ class UserAddCommand extends Command
         // set username
         $username = $this->setUsername($input, $output);
         if ($username !== null) {
-            $dto->setUsername($username);
+            $userView->setUsername($username);
         } else {
             return Command::FAILURE;
         }
@@ -76,14 +76,14 @@ class UserAddCommand extends Command
         // set password
         $password = $this->setPassword($input, $output);
         if ($password !== null) {
-            $dto->setPassword($password);
+            $userView->setPassword($password);
         } else {
             return Command::FAILURE;
         }
 
         // persist
-        $this->commandBus->dispatch(new CreateUserCommand($dto));
-        $io->success(sprintf(self::SUCCESS_USER_CREATED . '%s', $dto->getEmail()));
+        $this->commandBus->dispatch(new CreateUserCommand($userView));
+        $io->success(sprintf(self::SUCCESS_USER_CREATED . '%s', $userView->getEmail()));
         return Command::SUCCESS;
     }
 
@@ -106,8 +106,9 @@ class UserAddCommand extends Command
             return null;
         }
 
-        $dto = new UserDto($email);
-        $isEmailExist = $this->query->execute($dto);
+        $userView = new UserView();
+        $userView->setEmail($email);
+        $isEmailExist = $this->query->execute($userView);
 
         if ($isEmailExist) {
             $io->error(self::FAILURE_EMAIL_ALREADY_EXIST);
@@ -139,9 +140,9 @@ class UserAddCommand extends Command
             return null;
         }
 
-        $dto = new UserDto();
-        $dto->setUsername($username);
-        $isUsernameExist = $this->query->execute($dto);
+        $userView = new UserView();
+        $userView->setUsername($username);
+        $isUsernameExist = $this->query->execute($userView);
 
         if ($isUsernameExist) {
             $io->error(self::FAILURE_USERNAME_ALREADY_EXIST);

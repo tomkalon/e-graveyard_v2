@@ -2,19 +2,20 @@
 
 namespace App\Admin\Application\Command\User;
 
-use App\Admin\Application\Dto\User\UserDto;
+use App\Admin\Domain\View\User\UserView;
 use App\Core\Application\CQRS\Command\CommandInterface;
 
 class CreateUserCommand implements CommandInterface
 {
     public function __construct(
-        private readonly UserDto $dto
+        private readonly UserView $userView
     )
     {
     }
 
-    public function getDto(): UserDto
+    public function getUserView(): UserView
     {
-        return $this->dto;
+        return $this->userView;
     }
+
 }

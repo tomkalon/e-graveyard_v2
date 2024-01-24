@@ -2,8 +2,9 @@
 
 namespace App\Admin\Infrastructure\Query\Person;
 
-use App\Admin\Application\Dto\Person\PersonDto;
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
+use App\Admin\Domain\View\Person\PersonView;
+use App\Core\Domain\Entity\Person;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
@@ -21,11 +22,19 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
     ): PaginationInterface {
         $query = $this->repository->getPeopleListQuery();
 
-        return  $this->paginator->paginate(
+        $peopleList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
             ['limit_form' => $limit]
         );
+
+        $peopleViewList = [];
+        /** @var Person $person */
+        foreach ($peopleList->getItems() as $person) {
+            $peopleViewList[] = PersonView::fromEntity($person);
+        }
+        $peopleList->setItems($peopleViewList);
+        return $peopleList;
     }
 }
