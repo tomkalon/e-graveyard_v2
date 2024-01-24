@@ -8,6 +8,7 @@ use DateTimeImmutable;
 
 class PersonView
 {
+    private ?string $id;
     private ?string $firstname;
     private ?string $lastname;
     private DateTimeImmutable $born_date;
@@ -17,6 +18,7 @@ class PersonView
     private ?DateTimeImmutable $createdAt;
 
     public function __construct(
+        ?string $id = null,
         ?string $firstname = null,
         ?string $lastname = null,
         ?DateTimeImmutable $born_date = null,
@@ -25,6 +27,7 @@ class PersonView
         ?DateTimeImmutable $updatedAt = null,
         ?DateTimeImmutable $createdAt = null
     ) {
+        $this->id = $id;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->born_date = $born_date;
@@ -37,6 +40,7 @@ class PersonView
     public static function fromEntity(Person $person): self
     {
         return new self(
+            $person->getId(),
             $person->getFirstname(),
             $person->getLastname(),
             $person->getBornDate(),
@@ -45,6 +49,11 @@ class PersonView
             $person->getUpdatedAt(),
             $person->getCreatedAt()
         );
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getFirstname(): ?string
