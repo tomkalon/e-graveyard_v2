@@ -28,4 +28,13 @@ class FileGrave extends File
     {
         $this->grave_main_image = $grave_main_image;
     }
+
+    public function isMainImage(): bool
+    {
+        if ($this->getGraveMainImage() !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
