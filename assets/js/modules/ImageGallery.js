@@ -16,8 +16,10 @@ const createGallery = (container, id, path, thumbPath, galleryName = null) => {
 
         // append gallery items
         item.forEach((image) => {
-            let item = getImage(image, path, thumbPath)
-            $(gallery).append(item)
+            if (!image.isMainImage) {
+                let item = getImage(image, path, thumbPath)
+                $(gallery).append(item)
+            }
         })
 
         // events
