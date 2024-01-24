@@ -2,11 +2,9 @@
 
 namespace App\Admin\UI\Form\Grave;
 
-use App\Admin\Application\Dto\Grave\GraveDto;
+use App\Admin\Domain\View\Grave\GraveView;
 use App\Admin\Infrastructure\Validator\Grave\GraveImagesRequirements;
 use App\Admin\Infrastructure\Validator\Grave\IsGraveUnique;
-use App\Core\Domain\Entity\File;
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -84,7 +82,7 @@ class GraveType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Grave::class,
+            'data_class' => GraveView::class,
             'allow_extra_fields' => true,
             'method' => 'POST',
             'csrf_protection' => true,

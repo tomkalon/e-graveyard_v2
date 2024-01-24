@@ -36,12 +36,17 @@ ui:
     create: Utwórz
     edit: Edytuj
     remove: Usuń
+    hide: Ukryj
+    hide_filter: Ukryj filtr
+    show_filter: Pokaż filtr
+    reset: Reset
     list: Lista
     details: Szczegóły
     show_more: Pokaż więcej
     close: Zamknij
     cancel: Anuluj
     return: Wróć
+    search: Szukaj
     set_main_image: Ustaw zdjęcie główne
     
   enums:

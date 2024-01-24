@@ -6,14 +6,17 @@ use Doctrine\ORM\QueryBuilder;
 
 trait QueryTraits
 {
-    public function isEqual(?string $column, ?string $parameter, QueryBuilder $qb): void
+    protected function isEqual(QueryBuilder $qb, string $column, $value, string $parameterName): void
     {
-        $qb->andWhere(
-            $qb->expr()->eq(
-                $column,
-                ':parameter'
-            )
-        );
-        $qb->setParameter('parameter', $parameter);
+        $qb->andWhere($qb->expr()->eq($column, ':' . $parameterName));
+        $qb->setParameter($parameterName, $value);
+    }
+
+    protected function addFilterIsEqualCondition(QueryBuilder $qb, ?string $column, $value, string $parameterName): void
+    {
+        if ($value !== null) {
+            $qb->andWhere($qb->expr()->eq($column, ':' . $parameterName));
+            $qb->setParameter($parameterName, $value);
+        }
     }
 }

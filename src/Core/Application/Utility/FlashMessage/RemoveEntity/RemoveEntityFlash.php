@@ -38,7 +38,7 @@ class RemoveEntityFlash implements RemoveEntityFlashInterface
                 'notification.user.remove.label',
                 [], 'flash'
             ),
-            $entity instanceof File => $this->translator->trans(
+            $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
                 'notification.file.remove.label',
                 [], 'flash'
             ),

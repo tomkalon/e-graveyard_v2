@@ -3,7 +3,7 @@
 namespace App\Admin\Application\Service\File\Grave;
 
 use App\Core\Domain\Entity\FileGrave;
-use App\Core\Domain\ValueObject\File\FileVo;
+use App\Admin\Domain\ValueObject\File\FileVo;
 
 interface SaveFileGraveServiceInterface
 {

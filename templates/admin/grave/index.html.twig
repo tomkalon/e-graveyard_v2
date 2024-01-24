@@ -12,12 +12,44 @@
                 <!-- /Dashboard Title -->
             {% endblock %}
             {% block buttons_before %}
-                <a href="{{ path('admin_web_grave_create') }}">
-                    <button class="btn btn-success gap-2">
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        {{ 'ui.buttons.new'|trans }}
+                <div class=" mb-8 flex gap-2 justify-end grow">
+                    <a href="{{ path('admin_web_grave_create') }}">
+                        <button class="btn btn-success gap-2">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            {{ 'ui.buttons.new'|trans }}
+                        </button>
+                    </a>
+                    <button {{ stimulus_target('admin--grave--grave-list', 'toggleFilter') }}
+                            type="button"
+                            class="btn btn-danger">
+                        {{ 'ui.buttons.hide'|trans }}
                     </button>
-                </a>
+                </div>
+            {% endblock %}
+            {% block filters %}
+                <div {{ stimulus_target('admin--grave--grave-list', 'filterContainer') }}
+                    class="{% if app.request.cookies.get('ADMIN_GRAVE_LIST_TOGGLE_FILTER_STATUS') == 'true' %}block
+                           {% else %}hidden{% endif %}">
+                    {{ form_start(filterForm, {
+                        'attr': {'class': 'flex justify-end mb-8'}
+                    }) }}
+                    <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 w-full">
+                        <div class="grid gap-2 grid-cols-1 sm:grid-cols-3">
+                            {{ form_row(filterForm.sector) }}
+                            {{ form_row(filterForm.row) }}
+                            {{ form_row(filterForm.number) }}
+                        </div>
+                        <div>
+                            {{ form_row(filterForm.graveyard) }}
+
+                            <div class="flex justify-end gap-2 mt-4">
+                                {{ form_row(filterForm.search) }}
+                                <button type="button" onClick="location.reload()" class="btn btn-warning">{{ 'ui.buttons.reset'|trans }}</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(filterForm) }}
+                </div>
             {% endblock %}
             {% block dashboard_content %}
                 <!-- Dashboard Content -->
@@ -73,6 +105,9 @@
                                 {% set name = item.graveyard.name ~ '<i class="fa fa-file-image-o ml-2" aria-hidden="true"></i>' %}
                             {% else %}
                                 {% set name = item.graveyard.name %}
+                            {% endif %}
+                            {% if item.positionX != null and item.positionY != null %}
+                                {% set name = name ~ '<i class="fa fa-map-marker ml-2" aria-hidden="true"></i>' %}
                             {% endif %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: name
@@ -132,7 +167,7 @@
                                             data-modal-target="grave-modal-details">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
-                                    <a href="{{ path('admin_web_grave_show', {grave: item.id}) }}">
+                                    <a href="{{ path('admin_web_grave_show', {id: item.id}) }}">
                                         <button class="btn btn-info">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         </button>

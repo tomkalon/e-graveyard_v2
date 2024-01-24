@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Exception;
 
 class Grave
 {
@@ -102,12 +103,6 @@ class Grave
         return $this;
     }
 
-    public function removeImage(FileGrave $image): self
-    {
-        $image->setGrave();
-        return $this;
-    }
-
     public function getPayments(): Collection
     {
         return $this->payments;
@@ -123,6 +118,9 @@ class Grave
         return $this;
     }
 
+    /**
+     * @throws Exception
+     */
     public function getPaymentStatus(): PaymentStatusEnum
     {
         $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
@@ -130,10 +128,18 @@ class Grave
         /** @var Collection $payments */
         $payments = $this->payments->matching($criteria);
         if (!$payments->isEmpty()) {
-            $lastFee = $payments->first();
+            $lastFee = $payments->first()->getValidityTime();
             $now = new DateTimeImmutable();
 
-            if ($now < $lastFee->getValidityTime()) {
+            try {
+                $threeMonthsEarlier = $lastFee->modify('- 3 months');
+            } catch (Exception $e) {
+                throw new Exception($e->getMessage());
+            }
+
+            if ($threeMonthsEarlier < $now and $now < $lastFee) {
+                return PaymentStatusEnum::SOON;
+            } elseif ($now < $lastFee) {
                 return PaymentStatusEnum::PAID;
             } else {
                 return PaymentStatusEnum::EXPIRED;

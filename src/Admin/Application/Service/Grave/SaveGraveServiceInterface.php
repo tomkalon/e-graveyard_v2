@@ -2,9 +2,9 @@
 
 namespace App\Admin\Application\Service\Grave;
 
-use App\Core\Domain\Entity\Grave;
+use App\Admin\Domain\View\Grave\GraveView;
 
 interface SaveGraveServiceInterface
 {
-    public function persist(Grave $grave): void;
+    public function persist(GraveView $graveView): void;
 }

@@ -1,15 +1,17 @@
 import {Controller} from '@hotwired/stimulus';
+
 import Api from '@Api';
 import Routing from '@Routing';
 import Modal from '@Modal';
 import HandleItems from "@HandleItems";
+import {FilterSwitch} from "@FilterSwitch";
 
 import {getGraveDetails} from "@View/grave/grave_view";
 
 export default class extends Controller {
 
     // TARGETS
-    static targets = ['pagination']
+    static targets = ['pagination', 'filterContainer', 'toggleFilter']
 
     connect()
     {
@@ -18,9 +20,13 @@ export default class extends Controller {
         Modal.preLoadModal('grave-modal-add-deceased')
 
         if (this.hasPaginationTarget) {
-            const pagination = this.paginationTarget;
+            const pagination = this.paginationTarget
             const items = pagination.querySelectorAll('[data-item-id]')
             HandleItems.handleItems(items, this.paginationActions.bind(this))
+        }
+
+        if (this.hasToggleFilterTarget && this.hasFilterContainerTarget) {
+            FilterSwitch(this.toggleFilterTarget, this.filterContainerTarget)
         }
     }
 

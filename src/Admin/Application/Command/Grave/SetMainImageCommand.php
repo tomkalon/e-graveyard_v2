@@ -2,20 +2,20 @@
 
 namespace App\Admin\Application\Command\Grave;
 
+use App\Admin\Domain\View\Grave\GraveView;
 use App\Core\Application\CQRS\Command\CommandInterface;
-use App\Core\Domain\Entity\Grave;
 
 class SetMainImageCommand implements CommandInterface
 {
     public function __construct(
-        private readonly Grave $grave,
+        private readonly GraveView $graveView,
         private readonly string $imageId
     ) {
     }
 
-    public function getGrave(): Grave
+    public function getGraveView(): GraveView
     {
-        return $this->grave;
+        return $this->graveView;
     }
 
     public function getImageId(): string

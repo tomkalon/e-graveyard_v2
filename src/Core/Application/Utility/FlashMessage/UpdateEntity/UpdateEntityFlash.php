@@ -4,12 +4,9 @@ namespace App\Core\Application\Utility\FlashMessage\UpdateEntity;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
-use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
-use App\Core\Domain\Entity\PaymentGrave;
-use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 

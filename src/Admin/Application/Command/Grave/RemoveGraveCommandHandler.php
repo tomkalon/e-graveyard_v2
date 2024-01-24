@@ -4,23 +4,29 @@ namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
-use App\Core\Application\DTO\FlashMessage\NotificationDto;
-use App\Core\Application\Utility\FlashMessage\NotificationInterface;
-use App\Core\Domain\Enum\NotificationTypeEnum;
+use Doctrine\ORM\EntityNotFoundException;
 use Exception;
-use Symfony\Contracts\Translation\TranslatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class RemoveGraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
+        private readonly GraveRepositoryInterface $graveRepository,
         private readonly EntityManagerInterface $em,
     ) {
     }
 
+    /**
+     * @throws EntityNotFoundException
+     */
     public function __invoke(RemoveGraveCommand $command)
     {
-         $this->em->remove($command->getGrave());
-         $this->em->flush();
+        try {
+            $grave = $this->graveRepository->find($command->getGraveId());
+            $this->em->remove($grave);
+            $this->em->flush();
+        } catch (Exception $e) {
+            throw new EntityNotFoundException($e->getMessage());
+        }
     }
 }
