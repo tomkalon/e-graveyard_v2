@@ -34,6 +34,11 @@ class Grave
         $this->payments = new ArrayCollection();
     }
 
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getSector(): int
     {
         return $this->sector;

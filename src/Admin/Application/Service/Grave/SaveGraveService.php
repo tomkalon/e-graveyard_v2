@@ -24,19 +24,31 @@ class SaveGraveService implements SaveGraveServiceInterface
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function persist(GraveView $graveView): void
     {
-
+        // handling save setting
         if (!$graveView->getId()) {
-            $grave = new Grave();
+            if ($graveView->isNewAllowed()) {
+                $grave = new Grave();
+            } else {
+                throw new Exception('Creating a new entity is prohibited!');
+            }
         } else {
             try {
                 $grave = $this->graveRepository->find($graveView->getId());
                 if (!$grave) {
-                    throw new EntityNotFoundException();
+                    if ($graveView->isNewAllowed()) {
+                        $grave = new Grave();
+                        $grave->setId($graveView->getId());
+                    } else {
+                        throw new EntityNotFoundException('Creating a new entity is prohibited!');
+                    }
                 }
-            } catch (Exception $e) {
-                throw new InvalidArgumentException($e->getMessage());
+            } catch (Exception) {
+                throw new InvalidArgumentException('Invalid ID format');
             }
         }
 

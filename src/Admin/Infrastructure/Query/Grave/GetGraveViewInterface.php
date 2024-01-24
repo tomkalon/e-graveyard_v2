@@ -8,5 +8,5 @@ interface GetGraveViewInterface
 {
     public function execute(
         string $id
-    ): ?GraveView;
+    ): GraveView;
 }

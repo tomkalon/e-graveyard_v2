@@ -36,6 +36,7 @@ class GraveView
     private ?PaymentStatusEnum $paymentStatus;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
+    private bool $isNewAllowed = true;
 
     public function __construct(
         ?string $id = null,
@@ -230,5 +231,15 @@ class GraveView
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function isNewAllowed(): bool
+    {
+        return $this->isNewAllowed;
+    }
+
+    public function setIsNewAllowed(bool $isNewAllowed): void
+    {
+        $this->isNewAllowed = $isNewAllowed;
     }
 }

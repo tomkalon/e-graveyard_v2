@@ -39,6 +39,7 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
             ));
         } else {
             $graveView->setMainImage($image);
+            $graveView->setIsNewAllowed(false);
             $this->saveGraveService->persist($graveView);
         }
     }
