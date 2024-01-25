@@ -33,15 +33,6 @@ services:
     tty: true
     volumes:
       - ${PATH_TO_SYMFONY_PROJECT}:/var/www/html
-    
-  redis:
-    container_name: "redis-${PROJECT_NAME}"
-    image: redis:alpine3.18
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Warsaw
-    ports:
-      - 6379:6379
 
 ###> symfony/mercure-bundle ###
   mercure:

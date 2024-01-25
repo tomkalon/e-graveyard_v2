@@ -27,9 +27,6 @@ class LoginController extends AbstractController
         // logout the user in on the current firewall
         $response = $security->logout();
 
-        // you can also disable the csrf logout
-        $response = $security->logout(false);
-
         // ... return $response (if set) or e.g. redirect to the homepage
         return $this->redirect('main_web_index');
     }
