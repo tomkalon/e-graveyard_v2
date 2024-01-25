@@ -7,7 +7,8 @@ class RemoveEntityLogger extends AbstractEntityLogger
     public function createMessage(object $entity): string
     {
         $username = $this->getLoggedUsername();
+        $itemData = $this->getItemData($entity);
         $entityName = $this->getEntityName($entity);
-        return sprintf('%s has been removed by %s', $entityName, $username);
+        return sprintf('%s removed by %s -> %s', $entityName, $username, $itemData);
     }
 }

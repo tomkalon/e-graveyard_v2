@@ -1,4 +1,5 @@
 monolog:
+  use_microseconds: false
   channels:
     [ deprecation, security, doctrine_lifecycle ] # Deprecations are logged in the dedicated "deprecation" channel when it exists
 

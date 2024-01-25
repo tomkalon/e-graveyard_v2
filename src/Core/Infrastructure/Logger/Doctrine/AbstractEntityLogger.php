@@ -38,6 +38,25 @@ abstract class AbstractEntityLogger
         };
     }
 
+    protected function getItemData(object $entity): string
+    {
+        return match (true) {
+            $entity instanceof Grave => sprintf('%s -> S: %d, R: %d, N: %d :::: %s',
+                $entity->getGraveyard()->getName(), $entity->getSector(), $entity->getRow(), $entity->getNumber(), $entity->getId()),
+            $entity instanceof Graveyard => sprintf('%s :::: %s',
+                $entity->getName(), $entity->getId()),
+            $entity instanceof User => sprintf('%s :::: %s',
+                $entity->getUsername(), $entity->getId()),
+            $entity instanceof File => sprintf('%s.%s :::: %s',
+                $entity->getFilename(), $entity->getExtension()->value, $entity->getId()),
+            $entity instanceof Person => sprintf('%s %s :::: %s',
+                $entity->getFirstname(), $entity->getLastname(), $entity->getId()),
+            $entity instanceof Payment => sprintf('%d %s :::: %s',
+                $entity->getValue(), $entity->getCurrency()->value, $entity->getId()),
+            default => 'UndefinedObject',
+        };
+    }
+
     protected function getLoggedUsername(): string
     {
         $token = $this->tokenStorage->getToken();

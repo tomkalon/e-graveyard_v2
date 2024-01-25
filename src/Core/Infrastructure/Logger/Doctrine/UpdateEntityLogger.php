@@ -7,7 +7,8 @@ class UpdateEntityLogger extends AbstractEntityLogger
     public function createMessage(object $entity): string
     {
         $username = $this->getLoggedUsername();
+        $itemData = $this->getItemData($entity);
         $entityName = $this->getEntityName($entity);
-        return sprintf('%s has been updated by %s', $entityName, $username);
+        return sprintf('%s updated by %s -> %s', $entityName, $username, $itemData);
     }
 }
