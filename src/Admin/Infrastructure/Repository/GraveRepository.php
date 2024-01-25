@@ -21,39 +21,33 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
     public function getGrave(string $id): Grave
     {
         $qb = $this->createQueryBuilder('g');
-        $this->addEntityRelationships($qb);
+        $this->addGraveRelationships($qb);
 
         $qb
             ->setMaxResults(1);
 
-        $this->isEqual($qb, 'g.id', $id, 'id');
+        $this->equal('g.id', $id, 'id', $qb);
         return $qb->getQuery()->getOneOrNullResult();
     }
 
     public function getGravesListQuery(?GraveFilterView $filter): Query
     {
         $qb = $this->createQueryBuilder('g');
-        $this->addEntityRelationships($qb);
+        $this->addGraveRelationships($qb);
 
         $qb
-            ->addSelect('mainImage')
             ->leftJoin('g.main_image', 'mainImage')
-            ->addOrderBy('g.createdAt', 'DESC');
+            ->addSelect('mainImage')
+            ->addOrderBy('g.updatedAt', 'DESC');
 
-        if ($filter) {
-            $this->addFilterIsEqualCondition($qb, 'g.sector', $filter->getSector(), 'sector');
-            $this->addFilterIsEqualCondition($qb, 'g.row', $filter->getRow(), 'row');
-            $this->addFilterIsEqualCondition($qb, 'g.number', $filter->getNumber(), 'number');
-            $this->addFilterIsEqualCondition($qb, 'graveyard', $filter->getGraveyard(), 'graveyardFilter');
-        }
-
+        $this->addGraveFilter($qb, $filter);
         return $qb->getQuery();
     }
 
     /**
      * Add common entity relationships in query builder
      */
-    private function addEntityRelationships(QueryBuilder $qb): void
+    private function addGraveRelationships(QueryBuilder $qb): void
     {
         $qb
             ->addSelect('graveyard')
@@ -64,5 +58,18 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
             ->leftJoin('g.people', 'people')
             ->leftJoin('g.payments', 'payments')
             ->leftJoin('g.images', 'images');
+    }
+
+    /**
+     * Add grave filter in query builder
+     */
+    private function addGraveFilter(QueryBuilder $qb, ?GraveFilterView $filter = null): void
+    {
+        if ($filter) {
+            $this->addFilterIsEqualCondition('g.sector', $filter->getSector(), 'sector', $qb);
+            $this->addFilterIsEqualCondition('g.row', $filter->getRow(), 'row', $qb);
+            $this->addFilterIsEqualCondition('g.number', $filter->getNumber(), 'number', $qb);
+            $this->addFilterIsEqualCondition('graveyard', $filter->getGraveyard(), 'graveyardFilter', $qb);
+        }
     }
 }

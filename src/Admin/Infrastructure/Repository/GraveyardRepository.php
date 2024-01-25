@@ -6,6 +6,7 @@ use App\Admin\Domain\Repository\GraveyardRepositoryInterface as BaseGraveyardRep
 use App\Core\Domain\Trait\QueryTraits;
 use App\Core\Infrastructure\Repository\GraveyardRepository as BaseGraveyardRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveyardRepositoryInterface
 {
@@ -17,10 +18,9 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
 
         $qb
             ->leftJoin('g.graves', 'graves')
-            ->leftJoin('graves.people', 'people')
-            ->addSelect('graves')
-            ->addOrderBy('g.name')
-        ;
+            ->addSelect('graves');
+
+        $this->commonGraveyardsListQueryOrder($qb);
         return $qb->getQuery();
     }
     public function getGraveyardsPeopleNumber(): array
@@ -33,9 +33,17 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
             ->addSelect('graves')
             ->addSelect('people')
             ->groupBy('g.id')
-            ->addSelect('count(people.id) as peopleNumber')
-            ->addOrderBy('g.name')
-        ;
+            ->addSelect('count(people.id) as peopleNumber');
+
+        $this->commonGraveyardsListQueryOrder($qb);
         return $qb->getQuery()->execute();
+    }
+
+    /**
+     * Common order. Intended for linked lists.
+     */
+    private function commonGraveyardsListQueryOrder(QueryBuilder $qb): void
+    {
+        $qb->addOrderBy('g.name');
     }
 }
