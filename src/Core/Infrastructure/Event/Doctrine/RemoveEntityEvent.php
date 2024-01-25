@@ -8,6 +8,7 @@ use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\EventListener\Doctrine\PostRemoveListener;
+use App\Core\Infrastructure\Logger\Doctrine\RemoveEntityLogger;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
@@ -17,20 +18,18 @@ class RemoveEntityEvent extends PostRemoveListener
         private readonly EntityManagerInterface     $em,
         private readonly RemoveEntityFlashInterface $flash,
         private readonly RemoveFileServiceInterface $removeFileService,
+        private readonly RemoveEntityLogger         $entityLogger,
         private readonly string                     $targetDirectory,
         private readonly string                     $targetThumbnailDirectory
-    )
-    {
-    }
+    ) { }
 
     public function postRemove(LifecycleEventArgs $args): void
     {
-        $entity = $args->getObject();
+        $removedEntity = $args->getObject();
 
         // remove orphans images
-        if ($entity instanceof Grave) {
-
-            $images = $entity->getImages();
+        if ($removedEntity instanceof Grave) {
+            $images = $removedEntity->getImages();
 
             /** @var FileGrave $image */
             foreach ($images as $image) {
@@ -40,10 +39,11 @@ class RemoveEntityEvent extends PostRemoveListener
             $this->em->flush();
         }
 
-        if ($entity instanceof File) {
-            $this->removeFileService->remove($entity, $this->targetDirectory, $this->targetThumbnailDirectory);
+        if ($removedEntity instanceof File) {
+            $this->removeFileService->remove($removedEntity, $this->targetDirectory, $this->targetThumbnailDirectory);
         }
 
-        $this->flash->handleNotification($entity);
+        $this->entityLogger->logEvent($removedEntity);
+        $this->flash->handleNotification($removedEntity);
     }
 }
