@@ -14,9 +14,28 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
     public function getGraveyardsListQuery(): Query
     {
         $qb = $this->createQueryBuilder('g');
+
         $qb
+            ->leftJoin('g.graves', 'graves')
+            ->leftJoin('graves.people', 'people')
+            ->addSelect('graves')
             ->addOrderBy('g.name')
         ;
         return $qb->getQuery();
+    }
+    public function getGraveyardsPeopleNumber(): array
+    {
+        $qb = $this->createQueryBuilder('g');
+
+        $qb
+            ->leftJoin('g.graves', 'graves')
+            ->leftJoin('graves.people', 'people')
+            ->addSelect('graves')
+            ->addSelect('people')
+            ->groupBy('g.id')
+            ->addSelect('count(people.id) as peopleNumber')
+            ->addOrderBy('g.name')
+        ;
+        return $qb->getQuery()->execute();
     }
 }

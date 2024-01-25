@@ -20,8 +20,10 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
         ?int $page = null,
         ?string $limit = null
     ): PaginationInterface {
-        $query = $this->repository->getGraveyardsListQuery();
+        $peopleNumberResult = $this->repository->getGraveyardsPeopleNumber();
+        $peopleNumber = array_column($peopleNumberResult, 'peopleNumber');
 
+        $query = $this->repository->getGraveyardsListQuery();
         $graveyardsList = $this->paginator->paginate(
             $query,
             $page,
@@ -35,7 +37,7 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
         /** @var Graveyard $graveyard */
         foreach ($graveyardsList->getItems() as $index => $graveyard) {
             $graveyardViewList[$index] = GraveyardView::fromEntity($graveyard);
-            $graveyardViewList[$index]->countPeopleNumber();
+            $graveyardViewList[$index]->setPeopleNumber($peopleNumber[$index]);
         }
         $graveyardsList->setItems($graveyardViewList);
 

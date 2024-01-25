@@ -11,7 +11,7 @@ class GraveyardView
     private ?string $name;
     private ?string $description;
     private ?array $graves;
-    private ?int $peopleNumber;
+    private ?int $peopleNumber = null;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
 
@@ -80,16 +80,9 @@ class GraveyardView
         return $this->peopleNumber;
     }
 
-    public function countPeopleNumber(): void
+    public function setPeopleNumber(?int $peopleNumber): void
     {
-        $people = null;
-        if ($this->graves) {
-            /** @var Grave $grave */
-            foreach ($this->graves as $grave) {
-                $people += $grave->getPeople()->count();
-            }
-        }
-        $this->peopleNumber = $people;
+        $this->peopleNumber = $peopleNumber;
     }
 
     public function getUpdatedAt(): ?DateTimeImmutable

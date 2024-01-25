@@ -8,4 +8,6 @@ use Doctrine\ORM\Query;
 interface GraveyardRepositoryInterface extends BaseGraveyardRepositoryInterface
 {
     public function getGraveyardsListQuery(): Query;
+    public function getGraveyardsPeopleNumber(): array;
+
 }
