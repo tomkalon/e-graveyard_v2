@@ -137,7 +137,8 @@ ui:
         info: Informacje
     name: Nazwa cmentarza
     desc: Opis cmentarza
-    create: Dodaj
+    graves_number: Ilość grobów
+    people_number: Ilość zmarłych
     
   person:
     title:

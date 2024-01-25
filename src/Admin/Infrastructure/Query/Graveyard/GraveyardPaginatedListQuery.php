@@ -29,10 +29,13 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
             ['limit_form' => $limit]
         );
 
+        /** @var GraveyardView[] $graveyardViewList */
         $graveyardViewList = [];
+
         /** @var Graveyard $graveyard */
-        foreach ($graveyardsList->getItems() as $graveyard) {
-            $graveyardViewList[] = GraveyardView::fromEntity($graveyard);
+        foreach ($graveyardsList->getItems() as $index => $graveyard) {
+            $graveyardViewList[$index] = GraveyardView::fromEntity($graveyard);
+            $graveyardViewList[$index]->countPeopleNumber();
         }
         $graveyardsList->setItems($graveyardViewList);
 
