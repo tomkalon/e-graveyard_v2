@@ -173,6 +173,11 @@ class GraveView
         $this->people = $people;
     }
 
+    public function getPeopleNumber(): ?int
+    {
+        return count($this->people);
+    }
+
     public function getMainImage(): ?FileGrave
     {
         return $this->main_image;

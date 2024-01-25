@@ -137,7 +137,7 @@
                                 class: 'text-center'
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
-                                value: item.people|length,
+                                value: item.getPeopleNumber,
                                 class: 'text-center'
                             } %}
                             {% embed 'core/pagination/_body_action.html.twig' with {
