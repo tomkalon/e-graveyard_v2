@@ -100,18 +100,6 @@
             "ref": "1019e5c08d4821cb9b77f4891f8e9c31ff20ac6f"
         }
     },
-    "symfony-bundles/redis-bundle": {
-        "version": "3.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "main",
-            "version": "2.0",
-            "ref": "2becca99cc83c0e6d2ad68875fa84c516298dec4"
-        },
-        "files": [
-            "config/packages/sb_redis.yaml"
-        ]
-    },
     "symfony/console": {
         "version": "6.3",
         "recipe": {
