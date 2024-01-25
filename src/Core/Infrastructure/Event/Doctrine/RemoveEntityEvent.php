@@ -8,7 +8,7 @@ use App\Core\Domain\Entity\File;
 use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\EventListener\Doctrine\PostRemoveListener;
-use App\Core\Infrastructure\Logger\Doctrine\EntityLoggerInterface;
+use App\Core\Infrastructure\Logger\Doctrine\RemoveEntityLogger;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
@@ -18,10 +18,11 @@ class RemoveEntityEvent extends PostRemoveListener
         private readonly EntityManagerInterface     $em,
         private readonly RemoveEntityFlashInterface $flash,
         private readonly RemoveFileServiceInterface $removeFileService,
-        private readonly EntityLoggerInterface      $entityLogger,
+        private readonly RemoveEntityLogger         $entityLogger,
         private readonly string                     $targetDirectory,
         private readonly string                     $targetThumbnailDirectory
-    ) {
+    )
+    {
     }
 
     public function postRemove(LifecycleEventArgs $args): void

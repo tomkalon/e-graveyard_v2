@@ -2,7 +2,7 @@
 
 namespace App\Core\Infrastructure\Logger\Doctrine;
 
-class PersistEntity extends AbstractEntityLogger
+class PersistEntityLogger extends AbstractEntityLogger
 {
     public function createMessage(object $entity): string
     {

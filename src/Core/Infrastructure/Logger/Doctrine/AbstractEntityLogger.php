@@ -11,7 +11,7 @@ use App\Core\Domain\Entity\User;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-abstract class AbstractEntityLogger implements EntityLoggerInterface
+abstract class AbstractEntityLogger
 {
     public function __construct(
         private readonly LoggerInterface $doctrineLifecycleLogger,

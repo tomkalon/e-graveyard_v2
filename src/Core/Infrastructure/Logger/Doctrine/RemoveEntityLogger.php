@@ -2,12 +2,12 @@
 
 namespace App\Core\Infrastructure\Logger\Doctrine;
 
-class UpdateEntity extends AbstractEntityLogger
+class RemoveEntityLogger extends AbstractEntityLogger
 {
     public function createMessage(object $entity): string
     {
         $username = $this->getLoggedUsername();
         $entityName = $this->getEntityName($entity);
-        return sprintf('%s has been updated by %s', $entityName, $username);
+        return sprintf('%s has been removed by %s', $entityName, $username);
     }
 }

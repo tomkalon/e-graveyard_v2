@@ -4,14 +4,14 @@ namespace App\Core\Infrastructure\Event\Doctrine;
 
 use App\Core\Application\Utility\FlashMessage\PersistEntity\PersistEntityFlashInterface;
 use App\Core\Domain\EventListener\Doctrine\PostPersistListener;
-use App\Core\Infrastructure\Logger\Doctrine\EntityLoggerInterface;
+use App\Core\Infrastructure\Logger\Doctrine\PersistEntityLogger;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 class PersistEntityEvent extends PostPersistListener
 {
     public function __construct(
         private readonly PersistEntityFlashInterface $flash,
-        private readonly EntityLoggerInterface $entityLogger,
+        private readonly PersistEntityLogger         $entityLogger,
     ) {
     }
 
