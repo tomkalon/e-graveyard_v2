@@ -81,6 +81,8 @@ class UserAddCommand extends Command
             return Command::FAILURE;
         }
 
+        $userView->setRoles(['ROLE_ADMIN']);
+
         // persist
         $this->commandBus->dispatch(new CreateUserCommand($userView));
         $io->success(sprintf(self::SUCCESS_USER_CREATED . '%s', $userView->getEmail()));

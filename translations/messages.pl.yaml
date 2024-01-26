@@ -5,19 +5,8 @@ ui:
       search: Szukaj
       info: Informacje
       contact: Kontakt
-      admin: Administrator
       logged: Zalogowany
       logout: Wyloguj się
-      user:
-        grave:
-          label: Groby
-          manage: Zarządzanie bazą grobów
-          add: Dodaj
-        person:
-          label: Zmarli
-          manage: Zarządzanie bazą zmarłych
-          add: Dodaj
-    
     theme_mode: Motyw
     
   pagination:
@@ -77,16 +66,26 @@ ui:
       label: Cmentarze
       add: Dodaj
       
+  admin:
+    label: Administrator
+    cms:
+      manage: Zarządzanie stroną
+    
   user:
+    label: Użytkownik
+    plural: Użytkownicy
     login:
       login: Logowanie
       email: "Adres email:"
       password: "Hasło:"
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
+    description:
+      manage: Zarządzanie kontem
       
   grave:
-    label: Groby
+    label: Grób
+    plural: Groby
     title:
       index: Lista grobów
       show: Szczegóły grobu
@@ -129,6 +128,8 @@ ui:
       remove_image: Czy chcesz usunąć wskazane zdjęcie?
   
   graveyard:
+    label: Cmentarz
+    plural: Cmentarze
     title:
       index: Lista cmentarzy
       create: Dodawanie cmentarza
@@ -141,6 +142,8 @@ ui:
     people_number: Ilość zmarłych
     
   person:
+    label: Zmarły
+    plural: Zmarli
     title:
       index: Lista zmarłych
     description:

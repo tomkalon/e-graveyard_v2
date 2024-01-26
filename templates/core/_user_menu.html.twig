@@ -7,32 +7,10 @@
          class="hidden transition transform origin-top-right absolute right-2 lg:right-4 top-2 lg:top-20 z-50">
         <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
             <div class="relative flex flex-col bg-white px-6 pt-4 pb-2 dark:bg-slate-700">
-                <a href="{{ path('admin_web_grave_index') }}" class="flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200
-                    dark:hover:from-slate-800 dark:hover:to-slate-900">
-                    <i class="fa fa-th-large w-6 text-xl" aria-hidden="true"></i>
-                    <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900 dark:text-gray-200">{{ 'ui.nav.menu.user.grave.label'|trans }}</p>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ 'ui.nav.menu.user.grave.manage'|trans }}</p>
-                    </div>
-                </a>
-                <hr class="my-3 border-slate-200 dark:border-slate-600">
-                <a href="{{ path('main_web_index') }}" class="flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200
-                    dark:hover:from-slate-800 dark:hover:to-slate-900">
-                    <i class="fa fa-user w-6 text-xl" aria-hidden="true"></i>
-                    <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900 dark:text-gray-200">{{ 'ui.nav.menu.user.person.label'|trans }}</p>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ 'ui.nav.menu.user.person.manage'|trans }}</p>
-                    </div>
-                </a>
-                <hr class="mt-2 border-slate-200 dark:border-slate-600">
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('main_web_index') }}" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200">
-                        <i class="fa fa-university w-6 text-xl" aria-hidden="true"></i>
-                        <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">{{ 'admin'|trans }}</p>
-                            <p class="mt-1 text-sm text-gray-500">{{ 'admin.desc'|trans }}</p>
-                        </div>
-                    </a>
+                {% if is_granted('ROLE_ADMIN')  %}
+                    {% include 'core/usermenu/admin.html.twig' %}
+                {% elseif is_granted('ROLE_ADMIN')  %}
+                    {% include 'core/usermenu/user.html.twig' %}
                 {% endif %}
             </div>
             <div class="bg-gray-50 px-8 pt-4 pb-6 dark:bg-slate-700">
