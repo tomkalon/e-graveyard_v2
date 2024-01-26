@@ -7,6 +7,7 @@ import './styles/app.scss';
 // icons
 import 'fontawesome-4.7'
 
+// tooltips -> require tippy.js
 import {gemmaTooltips} from "@Tooltips";
 gemmaTooltips()
 
