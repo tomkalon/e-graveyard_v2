@@ -38,7 +38,10 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
         $qb
             ->leftJoin('g.main_image', 'mainImage')
             ->addSelect('mainImage')
-            ->addOrderBy('g.updatedAt', 'DESC');
+            ->addOrderBy('g.updatedAt', 'DESC')
+            ->addOrderBy('g.sector', 'ASC')
+            ->addOrderBy('g.row', 'ASC')
+            ->addOrderBy('g.number', 'ASC');
 
         $this->addGraveFilter($qb, $filter);
         return $qb->getQuery();

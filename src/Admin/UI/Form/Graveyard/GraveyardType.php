@@ -24,6 +24,7 @@ class GraveyardType extends AbstractType
                 'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]']
             ])
             ->add('create', SubmitType::class, [
+                'label' => 'ui.buttons.create',
                 'attr' => array(
                     'class' => 'btn btn-green'
                 )

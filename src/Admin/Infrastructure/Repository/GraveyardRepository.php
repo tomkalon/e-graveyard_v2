@@ -15,7 +15,6 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
     public function getGraveyardsListQuery(): Query
     {
         $qb = $this->createQueryBuilder('g');
-
         $qb
             ->leftJoin('g.graves', 'graves')
             ->addSelect('graves');
