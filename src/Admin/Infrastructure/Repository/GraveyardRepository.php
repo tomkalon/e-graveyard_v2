@@ -35,7 +35,7 @@ class GraveyardRepository extends BaseGraveyardRepository implements BaseGraveya
             ->addSelect('count(people.id) as peopleNumber');
 
         $this->commonGraveyardsListQueryOrder($qb);
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->getResult();
     }
 
     /**
