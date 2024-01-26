@@ -7,6 +7,10 @@ import './styles/app.scss';
 // icons
 import 'fontawesome-4.7'
 
+// tooltips -> require tippy.js
+import {gemmaTooltips} from "@Tooltips";
+gemmaTooltips()
+
 // prevents the form from being resubmitted
 if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);

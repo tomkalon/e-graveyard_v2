@@ -144,19 +144,27 @@
                             } %}
                                 {% block actions %}
                                     {% if item.paymentStatus.value == 'paid' %}
-                                        <button class="btn btn-xs btn-success">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.grave.paid'|trans }}"
+                                                class="btn btn-xs btn-success">
                                             <i class="fa fa-check" aria-hidden="true"></i>
                                         </button>
                                     {% elseif item.paymentStatus.value == 'unpaid' %}
-                                        <button class="btn btn-xs btn-danger">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.grave.unpaid'|trans }}"
+                                                class="btn btn-xs btn-danger">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     {% elseif item.paymentStatus.value == 'expired' %}
-                                        <button class="btn btn-xs btn-danger">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.grave.expired'|trans }}"
+                                                class="btn btn-xs btn-danger">
                                             <i class="fa fa-hourglass-end" aria-hidden="true"></i>
                                         </button>
                                     {% elseif item.paymentStatus.value == 'soon' %}
-                                        <button class="btn btn-xs btn-warning">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.grave.soon'|trans }}"
+                                                class="btn btn-xs btn-warning">
                                             <i class="fa fa-hourglass-half" aria-hidden="true"></i>
                                         </button>
                                     {% endif %}
@@ -174,16 +182,22 @@
                                 class: 'w-36'
                             } %}
                                 {% block actions %}
-                                    <button class="btn btn-sky"
+                                    <button gemma-tooltip="top"
+                                            gemma-tooltip-label="{{ 'ui.grave.details'|trans }}"
+                                            class="btn btn-sky"
                                             data-modal-target="grave-modal-details">
                                         <i class="fa fa-search" aria-hidden="true"></i>
                                     </button>
-                                    <a href="{{ path('admin_web_grave_show', {id: item.id}) }}">
+                                    <a gemma-tooltip="top"
+                                       gemma-tooltip-label="{{ 'ui.grave.title.show'|trans }}"
+                                       href="{{ path('admin_web_grave_show', {id: item.id}) }}">
                                         <button class="btn btn-info">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-danger"
+                                    <button gemma-tooltip="top"
+                                            gemma-tooltip-label="{{ 'ui.grave.remove'|trans }}"
+                                            class="btn btn-danger"
                                             data-modal-target="grave-modal-remove">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>

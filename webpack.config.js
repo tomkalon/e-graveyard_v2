@@ -47,6 +47,9 @@ Encore
         '@ImageGallery': path.resolve(__dirname, 'assets/js/modules/ImageGallery'),
         '@FilterSwitch': path.resolve(__dirname, 'assets/js/modules/FilterSwitch'),
 
+        // TOOLTIPS
+        '@Tooltips': path.resolve(__dirname, 'assets/js/modules/Tooltips'),
+
         // VIEWS
         '@View': path.resolve(__dirname, 'assets/js/views'),
 

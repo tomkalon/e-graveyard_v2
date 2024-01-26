@@ -16,7 +16,9 @@
                                 <th scope="col" class="px-4 py-3">{{ 'ui.common.createdAt'|trans }}</th>
                                 <th scope="col" class="px-4 py-3">{{ 'ui.payment.validity_time'|trans }}</th>
                                 <th scope="col">
-                                    <button class="btn btn-success"
+                                    <button gemma-tooltip="top"
+                                            gemma-tooltip-label="{{ 'ui.grave.add_payment'|trans }}"
+                                            class="btn btn-success"
                                             data-action="click->admin--grave--grave-show#addPayment">
                                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                                     </button>
@@ -30,7 +32,9 @@
                                     <td class="whitespace-nowrap px-4 py-3">{{ fee.updatedAt|date('Y-m-d') }}</td>
                                     <td class="whitespace-nowrap px-4 py-3">{{ fee.validityTime|date('Y-m-d') }}</td>
                                     <td class="whitespace-nowrap py-3" data-item-id="{{ fee.id }}">
-                                        <button class="btn btn-danger" data-modal-target="payment-modal-remove">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.payment.remove'|trans }}"
+                                                class="btn btn-danger" data-modal-target="payment-modal-remove">
                                             <i class="fa fa-minus-square" aria-hidden="true"></i>
                                         </button>
                                     </td>
