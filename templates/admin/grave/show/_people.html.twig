@@ -14,7 +14,9 @@
                                 <th scope="col" class="px-4 py-3">{{ 'ui.person.bornDate'|trans }}</th>
                                 <th scope="col" class="px-4 py-3">{{ 'ui.person.deathDate'|trans }}</th>
                                 <th scope="col">
-                                    <button class="btn btn-success"
+                                    <button gemma-tooltip="top"
+                                            gemma-tooltip-label="{{ 'ui.grave.add_deceased'|trans }}"
+                                            class="btn btn-success"
                                             data-action="click->admin--grave--grave-show#addDeceased">
                                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                                     </button>
@@ -47,7 +49,9 @@
                                         </div>
                                     </td>
                                     <td class="whitespace-nowrap py-3" data-item-id="{{ person.id }}">
-                                        <button class="btn btn-danger" data-modal-target="person-modal-remove">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.person.remove'|trans }}"
+                                                class="btn btn-danger" data-modal-target="person-modal-remove">
                                             <i class="fa fa-minus-square" aria-hidden="true"></i>
                                         </button>
                                     </td>

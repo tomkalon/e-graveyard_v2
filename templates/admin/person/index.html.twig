@@ -84,11 +84,15 @@
                             {% embed 'core/pagination/_body_action.html.twig' %}
                                 {% block actions %}
                                     <a href="{{ path('admin_web_grave_show', {id: item.grave.id}) }}">
-                                        <button class="btn btn-info">
+                                        <button gemma-tooltip="top"
+                                                gemma-tooltip-label="{{ 'ui.buttons.details'|trans }}"
+                                                class="btn btn-info">
                                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         </button>
                                     </a>
-                                    <button class="btn btn-danger"
+                                    <button gemma-tooltip="top"
+                                            gemma-tooltip-label="{{ 'ui.person.remove'|trans }}"
+                                            class="btn btn-danger"
                                             data-modal-target="person-modal-remove">
                                         <i class="fa fa-minus-square" aria-hidden="true"></i>
                                     </button>
