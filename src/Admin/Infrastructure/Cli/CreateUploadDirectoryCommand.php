@@ -21,26 +21,34 @@ class CreateUploadDirectoryCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $flag = false;
+
         $uploadsDir = 'public/uploads/grave/images';
         $graveDir = 'public/uploads/grave/thumbs';
         $graveThumbnailDir = 'public/uploads/grave/thumbs';
 
         if (!file_exists($uploadsDir)) {
             mkdir($uploadsDir, 0755, true);
+            $flag = true;
         }
         if (!file_exists($graveDir)) {
             mkdir($graveDir, 0755, true);
+            $flag = true;
         }
         if (!file_exists($graveThumbnailDir)) {
             mkdir($graveThumbnailDir, 0755, true);
+            $flag = true;
         }
 
         chown($uploadsDir, 'www-data');
         chown($graveDir, 'www-data');
         chown($graveThumbnailDir, 'www-data');
 
-        $output->writeln('Upload directories created successfully.');
-
+        if ($flag) {
+            $output->writeln('Upload directories created successfully.');
+        } else {
+            $output->writeln('Upload directories -> No changes were made.');
+        }
         return Command::SUCCESS;
     }
 }

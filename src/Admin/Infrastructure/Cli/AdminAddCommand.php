@@ -17,10 +17,10 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[AsCommand(
-    name: 'app:user:add',
+    name: 'app:admin:add',
     description: 'Create New User',
 )]
-class UserAddCommand extends Command
+class AdminAddCommand extends Command
 {
     const ADD_NEW_USER = 'Adding a new user.';
     const SUCCESS_USER_CREATED = 'The account has been created: username ->';
@@ -103,7 +103,8 @@ class UserAddCommand extends Command
             new Email()
         ]);
 
-        if (count($emailValidation)) {
+
+        if (count($emailValidation) or !$email) {
             $io->error(self::FAILURE_EMAIL_ERROR);
             return null;
         }
