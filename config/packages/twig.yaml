@@ -3,6 +3,8 @@ twig:
     form_themes: ['twig/theme/tailwind.html.twig']
     globals:
       app_name: '%env(resolve:APP_NAME)%'
+      app_title: '%env(resolve:APP_TITLE)%'
+      app_subtitle: '%env(resolve:APP_SUBTITLE)%'
       file_grave:
         images_directory: 'uploads/grave/images/'
         images_thumbnail_directory: 'uploads/grave/thumbs/'
