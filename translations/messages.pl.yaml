@@ -50,8 +50,6 @@ ui:
     date_format: Format daty (yyyy-mm-dd)
     
   frontpage:
-    title: Nazwa cmentarza
-    subtitle: Opis
     buttons:
       search: Szukaj grobów
   

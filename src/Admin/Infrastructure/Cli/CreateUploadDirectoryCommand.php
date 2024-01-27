@@ -13,6 +13,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class CreateUploadDirectoryCommand extends Command
 {
+    public function __construct(
+        private readonly string $graveImagePath,
+        private readonly string $graveImageThumbPath,
+    )
+    {
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this
@@ -23,26 +31,24 @@ class CreateUploadDirectoryCommand extends Command
     {
         $flag = false;
 
-        $uploadsDir = 'public/uploads/grave/images';
-        $graveDir = 'public/uploads/grave/thumbs';
-        $graveThumbnailDir = 'public/uploads/grave/thumbs';
+        $uploadsDir = 'public/uploads/';
 
         if (!file_exists($uploadsDir)) {
             mkdir($uploadsDir, 0755, true);
             $flag = true;
         }
-        if (!file_exists($graveDir)) {
-            mkdir($graveDir, 0755, true);
+        if (!file_exists($this->graveImagePath)) {
+            mkdir($this->graveImagePath, 0755, true);
             $flag = true;
         }
-        if (!file_exists($graveThumbnailDir)) {
-            mkdir($graveThumbnailDir, 0755, true);
+        if (!file_exists($this->graveImageThumbPath)) {
+            mkdir($this->graveImageThumbPath, 0755, true);
             $flag = true;
         }
 
         chown($uploadsDir, 'www-data');
-        chown($graveDir, 'www-data');
-        chown($graveThumbnailDir, 'www-data');
+        chown($this->graveImagePath, 'www-data');
+        chown($this->graveImageThumbPath, 'www-data');
 
         if ($flag) {
             $output->writeln('Upload directories created successfully.');

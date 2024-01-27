@@ -33,11 +33,15 @@ cd graveyard
 ```
 
 
-### 3) In the .env.dist file you can adjust the project settings.
+### 3) In the .env.dist file you can adjust the project settings. 
 
 Here you can change the container name suffix.
 ```
 PROJECT_NAME=graveyard
+```
+
+```
+Change file -> .env.example to .env
 ```
 
 ### 4) Prepare your Docker environment.
