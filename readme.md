@@ -59,9 +59,9 @@ yarn install
 yarn run dev
 ```
 
-### 7) To create new administrator account run:
+### 7) To run project initialization and make new administrator account, run:
 ```
-symfony console app:user:add
+symfony console app:project:init
 ```
 
 

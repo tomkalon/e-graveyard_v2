@@ -2,9 +2,6 @@
 
 namespace App\Admin\Infrastructure\Cli;
 
-use App\Core\Domain\Entity\Settings;
-use App\Core\Domain\Repository\SettingsRepositoryInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\ExceptionInterface;

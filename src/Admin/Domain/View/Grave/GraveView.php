@@ -9,6 +9,8 @@ use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Enum\PaymentStatusEnum;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Exception;
 
 class GraveView
@@ -75,6 +77,32 @@ class GraveView
      */
     public static function fromEntity(Grave $grave): self
     {
+
+        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
+
+        $paymentsStatus = PaymentStatusEnum::UNPAID;
+
+        /** @var Collection $payments */
+        $payments = $grave->getPayments()->matching($criteria);
+        if (!$payments->isEmpty()) {
+            $lastFee = $payments->first()->getValidityTime();
+            $now = new DateTimeImmutable();
+
+            try {
+                $threeMonthsEarlier = $lastFee->modify('- 3 months');
+            } catch (Exception $e) {
+                throw new Exception($e->getMessage());
+            }
+
+            if ($threeMonthsEarlier < $now and $now < $lastFee) {
+                $paymentsStatus = PaymentStatusEnum::SOON;
+            } elseif ($now < $lastFee) {
+                $paymentsStatus = PaymentStatusEnum::PAID;
+            } else {
+                $paymentsStatus = PaymentStatusEnum::EXPIRED;
+            }
+        }
+
         return new self(
             $grave->getId(),
             $grave->getGraveyard(),
@@ -87,7 +115,7 @@ class GraveView
             $grave->getMainImage(),
             $grave->getImages()->toArray(),
             $grave->getPayments()->toArray(),
-            $grave->getPaymentStatus(),
+            $paymentsStatus,
             $grave->getUpdatedAt(),
             $grave->getCreatedAt()
         );
