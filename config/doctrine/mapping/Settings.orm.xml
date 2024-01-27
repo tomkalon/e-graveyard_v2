@@ -7,7 +7,7 @@
         <id name="id" column="id" type="string">
             <generator strategy="NONE"/>
         </id>
-        <field name="gravePaymentExpirationNotice">
+        <field name="gravePaymentExpirationTime">
             <options>
                 <option name="description">negative time interval for DateTimeImmutable</option>
             </options>

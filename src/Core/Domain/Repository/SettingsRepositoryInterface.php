@@ -9,4 +9,5 @@ use App\Core\Domain\Entity\Settings;
  */
 interface SettingsRepositoryInterface
 {
+    public function getSettings(): Settings;
 }

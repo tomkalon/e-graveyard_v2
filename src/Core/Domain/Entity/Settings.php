@@ -18,20 +18,20 @@ class Settings
 
     private string $id = 'settings';
 
-    private string $gravePaymentExpirationNotice = '-3 months';
+    private string $gravePaymentExpirationTime = '-3 months';
 
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getGravePaymentExpirationNotice(): string
+    public function getGravePaymentExpirationTime(): string
     {
-        return $this->gravePaymentExpirationNotice;
+        return $this->gravePaymentExpirationTime;
     }
 
-    public function setGravePaymentExpirationNotice(string $gravePaymentExpirationNotice): void
+    public function setGravePaymentExpirationTime(string $gravePaymentExpirationTime): void
     {
-        $this->gravePaymentExpirationNotice = $gravePaymentExpirationNotice;
+        $this->gravePaymentExpirationTime = $gravePaymentExpirationTime;
     }
 }
