@@ -149,7 +149,9 @@ ui:
     firstName: Imię
     lastName: Nazwisko
     bornDate: Data urodzenia
+    bornYear: Rok urodzenia
     deathDate: Data śmierci
+    deathYear: Rok śmierci
     remove: Usuwanie zmarłego
     modal:
       remove: Czy chcesz usunąć zmarłego z grobu oraz z bazy danych?

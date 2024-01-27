@@ -2,5 +2,10 @@
 
 {% block body %}
     {{ include('main/frontpage/_header.html.twig') }}
-    <div class="w-auto dark:bg-slate-900 border-t-2 dark:border-slate-700"></div>
+    <div class="w-auto dark:bg-slate-900 border-y-2 dark:border-slate-700">
+        <div class="container m-auto my-8">
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
