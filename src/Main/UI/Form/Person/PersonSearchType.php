@@ -2,7 +2,7 @@
 
 namespace App\Main\UI\Form\Person;
 
-use App\Admin\Domain\View\Person\PersonView;
+use App\Main\Domain\View\DeceasedSearchView;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -47,7 +47,7 @@ class PersonSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => PersonView::class,
+            'data_class' => DeceasedSearchView::class,
             'allow_extra_fields' => true,
             'method' => 'POST',
             'csrf_protection' => true,

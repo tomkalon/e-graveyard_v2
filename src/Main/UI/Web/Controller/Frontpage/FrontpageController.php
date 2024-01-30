@@ -2,7 +2,6 @@
 
 namespace App\Main\UI\Web\Controller\Frontpage;
 
-use App\Admin\Domain\View\Person\PersonView;
 use App\Main\UI\Form\Person\PersonSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +14,24 @@ class FrontpageController extends AbstractController
     ): Response
     {
         $searchForm = $this->createForm(PersonSearchType::class);
+
+        return $this->render('main/frontpage/index.html.twig', [
+            'form' => $searchForm->createView()
+        ]);
+    }
+
+    public function search(
+        Request $request
+    ): Response
+    {
+        $searchForm = $this->createForm(PersonSearchType::class);
         $searchForm->handleRequest($request);
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-                $personView = $searchForm->getData();
-            }
+            $personView = $searchForm->getData();
+        }
 
-        return $this->render('main/frontpage/index.html.twig', [
+        return $this->render('main/frontpage/search.html.twig', [
             'form' => $searchForm->createView()
         ]);
     }
