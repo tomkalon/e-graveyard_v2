@@ -63,8 +63,8 @@ class GraveController extends AbstractController
         // query
         $paginatedGravesList = $query->execute(
             $page,
-            $filter,
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
+            $filter
         );
 
         return $this->render('admin/grave/index.html.twig', [

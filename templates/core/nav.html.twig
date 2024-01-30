@@ -84,8 +84,8 @@
                     </li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li class="w-36 truncate mb-0 pr-2 hidden lg:block uppercase">
-                            <p class="text-xs dark:text-white leading-none mt-1">{{ 'ui.nav.menu.logged'|trans }}</p>
-                            <span class="text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>
+                            <span class="text-xs dark:text-white leading-none mt-1">{{ 'ui.nav.menu.logged'|trans }}</span>
+                            <span class="block text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>
                         </li>
                         <li class="mb-0 pr-2 hidden lg:block">
                             <div data-action="click->dropdown#toggle click@window->dropdown#hide"

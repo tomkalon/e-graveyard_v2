@@ -10,7 +10,7 @@ interface GravePaginatedListQueryInterface extends QueryInterface
 {
     public function execute(
         ?int $page = null,
-        ?GraveFilterView $filter = null,
         ?string $limit = null,
+        ?GraveFilterView $filter = null,
     ): PaginationInterface;
 }

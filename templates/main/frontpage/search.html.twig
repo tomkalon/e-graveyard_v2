@@ -1,5 +1,57 @@
 {% extends 'core/base.html.twig' %}
 
 {% block body %}
+    {% include 'main/frontpage/_search_form.html.twig' %}
+    <div class="container mx-auto max-w-[1200px]">
+        <h2 class="mt-12 text-center text-2xl font-bold">{{ 'ui.frontpage.search.result'|trans }}</h2>
+        {% if pagination|length %}
+            <p class="pb-8 text-center text-lg">{{ 'ui.frontpage.search.click_details'|trans }}</p>
+        {% endif %}
+        <div class="p-4 rounded-xl {% if pagination|length %}bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600{% endif %}">
+            {% embed 'core/pagination/pagination.html.twig' with {
+                row_class: 'cursor-pointer'
+            } %}
+                {% block head %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.person.firstName'|trans,
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.person.lastName'|trans,
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.person.bornDate'|trans,
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.person.deathDate'|trans,
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.graveyard.label'|trans,
+                    } %}
+                {% endblock %}
+                {% block body %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.firstname,
+                        class: 'pl-4'
+                    } %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.lastname,
+                        class: 'pl-4'
+                    } %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.bornDate|date('Y-m-d'),
+                        class: 'pl-4'
+                    } %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.deathDate|date('Y-m-d'),
+                        class: 'pl-4'
+                    } %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.getGraveyardName,
+                        class: 'pl-4'
+                    } %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+    </div>
 
 {% endblock %}

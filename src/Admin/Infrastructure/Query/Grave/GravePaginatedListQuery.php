@@ -25,8 +25,8 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
      */
     public function execute(
         ?int $page = null,
-        ?GraveFilterView $filter = null,
         ?string $limit = null,
+        ?GraveFilterView $filter = null,
     ): PaginationInterface {
         $query = $this->repository->getGravesListQuery($filter);
         $gravesList = $this->paginator->paginate(
@@ -43,8 +43,8 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
         foreach ($gravesList->getItems() as $grave) {
             $graveViewList[] = GraveView::fromEntity($grave, $settings->getGravePaymentExpirationTime());
         }
-        $gravesList->setItems($graveViewList);
 
+        $gravesList->setItems($graveViewList);
         return $gravesList;
     }
 }

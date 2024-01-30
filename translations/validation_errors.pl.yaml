@@ -1,6 +1,9 @@
 validation:
   not_null: Wartość nie powinna być pusta.
   
+  length:
+    min_message: Minimalna ilość znaków to %count%
+    
   person:
     born_date_is_greater_than_death_date: Data urodzin nie może być mniejsza od daty śmierci.
     
