@@ -50,8 +50,9 @@ ui:
     date_format: Format daty (yyyy-mm-dd)
     
   frontpage:
+    search_deceased: Wyszukiwanie zmarłych
     buttons:
-      search: Szukaj grobów
+      search: Szukaj zmarłych
   
   sidebar:
     grave:

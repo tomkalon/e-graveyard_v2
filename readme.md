@@ -79,3 +79,12 @@ or login at:
 http://localhost/admin/login
 ```
 
+### 9) Basic editable files directories:
+* /config/routes/custom/api/*
+* /config/routes/custom/web/*
+
+* /translations/settings.*
+* /translations/custom.*
+
+* /src/Main/UI/Custom/
+* /templates/main/custom/

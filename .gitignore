@@ -7,10 +7,24 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/*
 /public/uploads/
-/translations/settings.pl.yaml
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+# -> CUSTOM FILES / EDITABLE
+/assets/images/custom/*
+/config/routes/custom/api/*
+!/config/routes/custom/api/routes.yaml
+/config/routes/custom/web/*
+!/config/routes/custom/web/routes.yaml
+
+/translations/settings.*
+/translations/custom.*
+
+/src/Main/UI/Custom/*
+/templates/main/custom/*
+!/templates/main/custom/examples
+# -< CUSTOM FILES / EDITABLE
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/

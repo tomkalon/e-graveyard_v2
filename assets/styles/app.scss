@@ -61,6 +61,14 @@ body {
     background-color: theme('colors.gray.300');
   }
 
+  p {
+    margin: 0.5rem 0;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
   &.dark {
     background-color: theme('colors.slate.800');
     color: theme('colors.slate.50');
