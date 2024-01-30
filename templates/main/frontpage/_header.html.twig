@@ -8,7 +8,7 @@
                         {{ app_title|trans({}, 'settings') }} <br/>
                         <span class="text-slate-400 text-4xl">{{ app_subtitle|trans({}, 'settings') }}</span>
                     </h2>
-                    <button {{ stimulus_target('main--frontpage--frontpage', 'showDeceasedForm') }}
+                    <button data-goto-deceased-search-form
                             type="button"
                             class="inline-block rounded border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-md font-medium
                              uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100

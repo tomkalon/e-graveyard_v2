@@ -21,10 +21,11 @@ class PersonRepository extends BasePersonRepository implements BasePersonReposit
             ->addSelect('grave')
             ->addSelect('graveyard');
 
+        $this->isInThisYear('p.born_date', $searchView->getBornDate(), 'born', $qb);
+        $this->isInThisYear('p.death_date', $searchView->getDeathYear(), 'death', $qb);
+
         $this->addFilterIsEqualCondition('p.firstname', $searchView->getFirstName(), 'firstName', $qb);
         $this->addFilterIsEqualCondition('p.lastname', $searchView->getLastName(), 'lastName', $qb);
-        $this->addFilterIsEqualCondition('p.bornDate', $searchView->getBornYear(), 'deathDate', $qb);
-        $this->addFilterIsEqualCondition('p.deathDate', $searchView->getDeathYear(), 'bornDate', $qb);
 
         return $qb->getQuery();
     }
