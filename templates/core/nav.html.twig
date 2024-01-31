@@ -48,11 +48,11 @@
                                href="{{ path('main_web_index') }}" data-te-nav-link-ref data-te-ripple-init
                                data-te-ripple-color="light">{{ 'ui.nav.menu.start'|trans }}</a>
                         </li>
-                        <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                            <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
+                        <li class="mb-4 lg:mb-0 lg:pr-2" data-goto-deceased-search-form data-te-nav-item-ref>
+                            <span class="cursor-pointer block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
                     dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                               href="#!" data-te-nav-link-ref data-te-ripple-init
-                               data-te-ripple-color="light">{{ 'ui.nav.menu.search'|trans }}</a>
+                                  data-te-nav-link-ref data-te-ripple-init
+                                  data-te-ripple-color="light">{{ 'ui.nav.menu.search'|trans }}</span>
                         </li>
                         <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
                             <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
@@ -83,9 +83,9 @@
                            aria-hidden="true" data-main--common--toggle-mode-target="toggleTheme"></i>
                     </li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <li class="w-36 truncate mb-0 pr-2 hidden lg:block uppercase">
-                            <p class="text-xs dark:text-white leading-none mt-1">{{ 'ui.nav.menu.logged'|trans }}</p>
-                            <span class="text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>
+                        <li class="w-36 leading-none truncate mb-0 pr-2 hidden lg:block uppercase">
+                            <span class="text-xs dark:text-white leading-none mt-1">{{ 'ui.nav.menu.logged'|trans }}</span>
+                            <span class="block text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>
                         </li>
                         <li class="mb-0 pr-2 hidden lg:block">
                             <div data-action="click->dropdown#toggle click@window->dropdown#hide"

@@ -8,7 +8,8 @@ module.exports = {
         "./templates/**/**/**/*.html.twig",
         "./src/Admin/UI/Form/**/*.php",
         "./src/Main/UI/Form/**/*.php",
-        "./node_modules/tw-elements/dist/js/**/*.js"
+        "./node_modules/tw-elements/dist/js/**/*.js",
+        "./translations/custom.*"
     ],
     theme: {
         extend: {

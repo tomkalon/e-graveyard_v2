@@ -1,3 +1,2 @@
 parameters:
-  
   default_currency: '%env(enum:App\Core\Domain\Enum\CurrencyTypeEnum:APP_DEFAULT_CURRENCY)%'

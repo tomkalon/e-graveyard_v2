@@ -123,36 +123,6 @@ class Grave
         return $this;
     }
 
-    /**
-     * @throws Exception
-     */
-    public function getPaymentStatus(): PaymentStatusEnum
-    {
-        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
-
-        /** @var Collection $payments */
-        $payments = $this->payments->matching($criteria);
-        if (!$payments->isEmpty()) {
-            $lastFee = $payments->first()->getValidityTime();
-            $now = new DateTimeImmutable();
-
-            try {
-                $threeMonthsEarlier = $lastFee->modify('- 3 months');
-            } catch (Exception $e) {
-                throw new Exception($e->getMessage());
-            }
-
-            if ($threeMonthsEarlier < $now and $now < $lastFee) {
-                return PaymentStatusEnum::SOON;
-            } elseif ($now < $lastFee) {
-                return PaymentStatusEnum::PAID;
-            } else {
-                return PaymentStatusEnum::EXPIRED;
-            }
-        }
-        return PaymentStatusEnum::UNPAID;
-    }
-
     public function getPositionX(): ?string
     {
         return $this->positionX;

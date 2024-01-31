@@ -5,19 +5,8 @@ ui:
       search: Szukaj
       info: Informacje
       contact: Kontakt
-      admin: Administrator
       logged: Zalogowany
       logout: Wyloguj się
-      user:
-        grave:
-          label: Groby
-          manage: Zarządzanie bazą grobów
-          add: Dodaj
-        person:
-          label: Zmarli
-          manage: Zarządzanie bazą zmarłych
-          add: Dodaj
-    
     theme_mode: Motyw
     
   pagination:
@@ -46,6 +35,8 @@ ui:
     close: Zamknij
     cancel: Anuluj
     return: Wróć
+    return_to_search: Wróć do wyszukiwania
+    main_page: Strona główna
     search: Szukaj
     set_main_image: Ustaw zdjęcie główne
     
@@ -59,12 +50,16 @@ ui:
     updatedAt: Data edycji
     createdAt: Data utworzenia
     date_format: Format daty (yyyy-mm-dd)
+    status: Status
+    payment_status: Status płatności
     
   frontpage:
-    title: Nazwa cmentarza
-    subtitle: Opis
+    search_deceased: Wyszukiwanie zmarłych
     buttons:
-      search: Szukaj grobów
+      search: Szukaj zmarłych
+    search:
+      result: Wynik wyszukiwania
+      click_details: Wybierz, by zobaczyć szczegóły.
   
   sidebar:
     grave:
@@ -77,16 +72,26 @@ ui:
       label: Cmentarze
       add: Dodaj
       
+  admin:
+    label: Administrator
+    cms:
+      manage: Zarządzanie stroną
+    
   user:
+    label: Użytkownik
+    plural: Użytkownicy
     login:
       login: Logowanie
       email: "Adres email:"
       password: "Hasło:"
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
+    description:
+      manage: Zarządzanie kontem
       
   grave:
-    label: Groby
+    label: Grób
+    plural: Groby
     title:
       index: Lista grobów
       show: Szczegóły grobu
@@ -121,7 +126,7 @@ ui:
     paid: Opłacony
     unpaid: Nieopłacony
     expired: Wygasła
-    soon: Niebawem wygaśnie
+    soon: Wkrótce wygaśnie
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.
@@ -129,6 +134,8 @@ ui:
       remove_image: Czy chcesz usunąć wskazane zdjęcie?
   
   graveyard:
+    label: Cmentarz
+    plural: Cmentarze
     title:
       index: Lista cmentarzy
       create: Dodawanie cmentarza
@@ -137,10 +144,13 @@ ui:
         info: Informacje
     name: Nazwa cmentarza
     desc: Opis cmentarza
+    desc_empty: Brak opisu
     graves_number: Ilość grobów
     people_number: Ilość zmarłych
     
   person:
+    label: Zmarły
+    plural: Zmarli
     title:
       index: Lista zmarłych
     description:
@@ -148,7 +158,9 @@ ui:
     firstName: Imię
     lastName: Nazwisko
     bornDate: Data urodzenia
+    bornYear: Rok urodzenia
     deathDate: Data śmierci
+    deathYear: Rok śmierci
     remove: Usuwanie zmarłego
     modal:
       remove: Czy chcesz usunąć zmarłego z grobu oraz z bazy danych?

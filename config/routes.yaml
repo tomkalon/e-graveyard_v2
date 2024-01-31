@@ -10,3 +10,9 @@ admin_web:
 admin_api:
   resource: 'routes/admin/api/routes.yaml'
 
+custom_web:
+  resource: 'routes/admin/web/routes.yaml'
+
+custom_api:
+  resource: 'routes/admin/api/routes.yaml'
+

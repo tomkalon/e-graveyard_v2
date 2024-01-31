@@ -9,12 +9,12 @@ use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Enum\PaymentStatusEnum;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Exception;
 
 class GraveView
 {
-
-
     private ?string $id;
     private ?Graveyard $graveyard;
     private ?int $sector;
@@ -73,8 +73,10 @@ class GraveView
     /**
      * @throws Exception
      */
-    public static function fromEntity(Grave $grave): self
+    public static function fromEntity(Grave $grave, ?string $gravePaymentExpirationTime = null): self
     {
+        $paymentsStatus = self::processingPaymentsStatus($grave, $gravePaymentExpirationTime);
+
         return new self(
             $grave->getId(),
             $grave->getGraveyard(),
@@ -87,7 +89,7 @@ class GraveView
             $grave->getMainImage(),
             $grave->getImages()->toArray(),
             $grave->getPayments()->toArray(),
-            $grave->getPaymentStatus(),
+            $paymentsStatus,
             $grave->getUpdatedAt(),
             $grave->getCreatedAt()
         );
@@ -173,6 +175,35 @@ class GraveView
         $this->people = $people;
     }
 
+    /**
+     * @param Grave $grave
+     * @param string|null $gravePaymentExpirationTime
+     * @return PaymentStatusEnum
+     */
+    public static function processingPaymentsStatus(Grave $grave, ?string $gravePaymentExpirationTime): PaymentStatusEnum
+    {
+        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
+        $paymentsStatus = PaymentStatusEnum::UNPAID;
+
+        /** @var Collection $payments */
+        $payments = $grave->getPayments()->matching($criteria);
+        if (!$payments->isEmpty()) {
+            $lastFee = $payments->first()->getValidityTime();
+            $now = new DateTimeImmutable();
+
+            if ($gravePaymentExpirationTime) {
+                if ($now < $lastFee) {
+                    $paymentsStatus = ($lastFee->modify($gravePaymentExpirationTime) < $now) ? PaymentStatusEnum::SOON : PaymentStatusEnum::PAID;
+                } else {
+                    $paymentsStatus = PaymentStatusEnum::EXPIRED;
+                }
+            } else {
+                $paymentsStatus = ($now < $lastFee) ? PaymentStatusEnum::PAID : PaymentStatusEnum::EXPIRED;
+            }
+        }
+        return $paymentsStatus;
+    }
+
     public function getPeopleNumber(): ?int
     {
         return count($this->people);
@@ -216,6 +247,12 @@ class GraveView
     public function setPaymentStatus(?PaymentStatusEnum $paymentStatus): void
     {
         $this->paymentStatus = $paymentStatus;
+    }
+
+    public function calculatePaymentStatus(Grave $grave, ?string $gravePaymentExpirationTime = null): void
+    {
+        $paymentsStatus = self::processingPaymentsStatus($grave, $gravePaymentExpirationTime);
+        $this->paymentStatus = $paymentsStatus;
     }
 
     public function getUpdatedAt(): ?DateTimeImmutable

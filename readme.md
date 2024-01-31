@@ -33,11 +33,15 @@ cd graveyard
 ```
 
 
-### 3) In the .env.dist file you can adjust the project settings.
+### 3) In the .env.dist file you can adjust the project settings. 
 
 Here you can change the container name suffix.
 ```
 PROJECT_NAME=graveyard
+```
+
+```
+Change file -> .env.example to .env
 ```
 
 ### 4) Prepare your Docker environment.
@@ -59,9 +63,9 @@ yarn install
 yarn run dev
 ```
 
-### 7) To create new administrator account run:
+### 7) To run project initialization and make new administrator account, run:
 ```
-symfony console app:user:add
+symfony console app:project:init
 ```
 
 
@@ -75,3 +79,12 @@ or login at:
 http://localhost/admin/login
 ```
 
+### 9) Basic editable files directories:
+* /config/routes/custom/api/*
+* /config/routes/custom/web/*
+
+* /translations/settings.*
+* /translations/custom.*
+
+* /src/Main/UI/Custom/
+* /templates/main/custom/

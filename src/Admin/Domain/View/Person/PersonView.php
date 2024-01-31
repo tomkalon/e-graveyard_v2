@@ -11,9 +11,9 @@ class PersonView
     private ?string $id;
     private ?string $firstname;
     private ?string $lastname;
-    private DateTimeImmutable $born_date;
-    private DateTimeImmutable $death_date;
-    private Grave $grave;
+    private ?DateTimeImmutable $born_date;
+    private ?DateTimeImmutable $death_date;
+    private ?Grave $grave;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
 

@@ -1,0 +1,28 @@
+<div id="deceased_search_form" class="w-auto border-y-2 bg-slate-200 border-slate-300
+        dark:bg-slate-900 dark:border-slate-700">
+    <div class="container m-auto my-8">
+        {{ form_start(form, {
+            'attr': {
+                'action': path('main_web_frontpage_search')
+            }
+        }) }}
+        <div class="mx-auto max-w-[700px] md:px-3">
+            <h3 class="mb-12 font-bold text-slate-600 dark:text-slate-300
+                 text-center">{{ 'ui.frontpage.search_deceased'|trans }}
+            </h3>
+            <div class="mt-6 grid grid grid-cols-2 gap-4">
+                {{ form_row(form.firstName) }}
+                {{ form_row(form.lastName) }}
+            </div>
+            <div class="mt-6 grid grid grid-cols-2 gap-4">
+                {{ form_row(form.bornYear) }}
+                {{ form_row(form.deathYear) }}
+            </div>
+            <div class="mt-4 flex justify-end">
+                {{ form_row(form.search) }}
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+

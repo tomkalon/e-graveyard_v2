@@ -1,0 +1,81 @@
+{% extends 'core/base.html.twig' %}
+
+{% block body %}
+    <div class="container my-24 mx-auto md:px-6">
+        <div class="flex mb-4 items-center justify-between gap-2">
+            <h1 class="text-2xl uppercase font-bold text-neutral-500 dark:text-neutral-200">
+                {{ 'ui.grave.title.show'|trans }}
+            </h1>
+            <div class="flex gap-2 items-center">
+                <button onclick="goBack()" class="btn btn-stone">{{ 'ui.buttons.return_to_search'|trans }}</button>
+                <a href="{{ path('main_web_index') }}"><button class="btn btn-sky">{{ 'ui.buttons.main_page'|trans }}</button></a>
+            </div>
+        </div>
+        <section class="mb-32 text-center lg:text-left" data-te-lightbox-init>
+            <div class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                <div class="flex flex-wrap">
+                    <div class="flex items-start w-full shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12"
+                         data-te-ripple-init data-te-ripple-color="light">
+                        {% if grave.mainImage %}
+                            <img src="{{ asset(file_grave.images_directory ~ grave.mainImage.filename) }}"
+                                 data-te-img="{{ asset(file_grave.images_directory ~ grave.mainImage.filename) }}"
+                                 alt="Main Image"
+                                 class="ripple cursor-pointer w-full rounded-t-lg lg:rounded-tr-none" />
+                        {% else %}
+                            <img src="{{ asset('build/images/no_image.svg') }}" alt="No Image"
+                                 class="w-full rounded-t-lg lg:rounded-tr-none"/>
+                        {% endif %}
+                    </div>
+                    <div class="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12">
+                        <div class="px-6 pt-12 md:px-12">
+                            <div class="flex mb-1 items-center justify-between flex-wrap gap-2">
+                                <h2 class="display-5 text-4xl font-bold text-neutral-700 dark:text-neutral-300">
+                                    {{ grave.graveyard.name }}
+                                </h2>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-neutral-500 dark:text-neutral-400">{{ 'ui.common.payment_status'|trans }}:</span>
+                                    {% include 'main/frontpage/show/_payment_status.html.twig' %}
+                                </div>
+                            </div>
+                            <div class="flex gap-12 mt-8 mb-4">
+                                <div class="mb-12 md:mb-0 text-center">
+                                    <h2 class="mb-4 text-3xl font-bold text-neutral-600 dark:text-neutral-300">
+                                        {{ grave.sector }}
+                                    </h2>
+                                    <h5 class="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                                        {{ 'ui.grave.sector'|trans }}
+                                    </h5>
+                                </div>
+
+                                <div class="mb-12 md:mb-0 text-center">
+                                    <h2 class="mb-4 text-3xl font-bold text-neutral-600 dark:text-neutral-300">
+                                        {{ grave.row }}
+                                    </h2>
+                                    <h5 class="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                                        {{ 'ui.grave.row'|trans }}
+                                    </h5>
+                                </div>
+                                <div class=" text-center">
+                                    <h2 class="mb-4 text-3xl font-bold text-neutral-600 dark:text-neutral-300">
+                                        {{ grave.number }}
+                                    </h2>
+                                    <h5 class="mb-0 text-lg font-medium text-neutral-500 dark:text-neutral-300">
+                                        {{ 'ui.grave.number'|trans }}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'main/frontpage/show/_people_list.html.twig' %}
+                    {% include 'main/frontpage/show/_images.html.twig' %}
+                    {% include 'main/frontpage/show/_coordinates.html.twig' %}
+            </div>
+        </section>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

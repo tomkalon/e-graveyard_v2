@@ -23,9 +23,6 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
         $qb = $this->createQueryBuilder('g');
         $this->addGraveRelationships($qb);
 
-        $qb
-            ->setMaxResults(1);
-
         $this->equal('g.id', $id, 'id', $qb);
         return $qb->getQuery()->getOneOrNullResult();
     }

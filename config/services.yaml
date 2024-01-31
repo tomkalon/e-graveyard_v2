@@ -4,8 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-  app.path.grave_images: '%kernel.project_dir%/public/uploads/grave/images'
-  app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads/grave/thumbs'
+  app.path.grave_images: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_PATH)%'
+  app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_THUMB_PATH)%'
+  default_timezone: '%env(APP_TIMEZONE)%'
 
 services:
     # default configuration for services in *this* file
@@ -33,8 +34,14 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-
-    ### EVENT LISTENERS ###
+  
+  ### COMMANDS ###
+    App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:
+      arguments:
+        $graveImagePath: '%app.path.grave_images%'
+        $graveImageThumbPath: '%app.path.grave_images.thumbnails%'
+  
+  ### EVENT LISTENERS ###
     App\Core\Domain\EventListener\LoginSuccessListener:
       arguments:
         $tokenStorage: '@security.token_storage'

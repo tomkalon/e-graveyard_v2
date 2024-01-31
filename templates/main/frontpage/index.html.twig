@@ -1,6 +1,11 @@
 {% extends 'core/base.html.twig' %}
 
 {% block body %}
-    {{ include('main/frontpage/_header.html.twig') }}
-    <div class="w-auto dark:bg-slate-900 border-t-2 dark:border-slate-700"></div>
+    <div {{ stimulus_controller('main--frontpage--frontpage') }}>
+        {% include 'main/frontpage/_header.html.twig' %}
+        {% include'main/frontpage/_search_form.html.twig' %}
+        <div>
+            {% include 'main/custom/_frontpage_content.html.twig' ignore missing %}
+        </div>
+    </div>
 {% endblock %}

@@ -1,2 +1,6 @@
 index_route:
   resource: 'index.yaml'
+
+frontpage_web_routes:
+  resource: 'frontpage'
+  type: directory
