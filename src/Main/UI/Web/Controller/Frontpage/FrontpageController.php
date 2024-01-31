@@ -3,6 +3,7 @@
 namespace App\Main\UI\Web\Controller\Frontpage;
 
 use App\Main\Infrastructure\Query\Frontpage\DeceasedSearchPaginatedListQueryInterface;
+use App\Main\Infrastructure\Query\Frontpage\GetGraveViewInterface;
 use App\Main\UI\Form\Person\PersonSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,19 +38,20 @@ class FrontpageController extends AbstractController
             );
         }
 
-        return $this->render('main/frontpage/search_js.html.twig', [
+        return $this->render('main/frontpage/search.html.twig', [
             'form' => $searchForm->createView(),
             'pagination' => $peopleList
         ]);
     }
 
     public function show(
-        Request $request,
+        GetGraveViewInterface $query,
         string $id
     ): Response
     {
+        $graveView = $query->execute($id);
         return $this->render('main/frontpage/show.html.twig', [
-
+            'grave' => $graveView
         ]);
     }
 }

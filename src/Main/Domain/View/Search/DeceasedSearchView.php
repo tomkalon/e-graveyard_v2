@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Domain\View;
+namespace App\Main\Domain\View\Search;
 
 use App\Core\Domain\Entity\Grave;
 use DateTimeImmutable;

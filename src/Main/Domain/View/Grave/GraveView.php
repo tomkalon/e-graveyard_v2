@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Admin\Domain\View\Grave;
+namespace App\Main\Domain\View\Grave;
 
 use App\Core\Domain\Entity\FileGrave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
-use App\Core\Domain\Entity\PaymentGrave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Enum\PaymentStatusEnum;
 use DateTimeImmutable;
@@ -30,13 +29,9 @@ class GraveView
 
     /** @var FileGrave[] $images */
     private ?array $images;
-
-    /** @var PaymentGrave[] $payments */
-    private ?array $payments;
     private ?PaymentStatusEnum $paymentStatus;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
-    private bool $isNewAllowed = true;
 
     public function __construct(
         ?string $id = null,
@@ -49,7 +44,6 @@ class GraveView
         ?array $people = null,
         ?FileGrave $main_image = null,
         ?array $images = null,
-        ?array $payments = null,
         ?PaymentStatusEnum $paymentStatus = null,
         ?DateTimeImmutable $updatedAt = null,
         ?DateTimeImmutable $createdAt = null
@@ -64,7 +58,6 @@ class GraveView
         $this->people = $people;
         $this->main_image = $main_image;
         $this->images = $images;
-        $this->payments = $payments;
         $this->paymentStatus = $paymentStatus;
         $this->updatedAt = $updatedAt;
         $this->createdAt = $createdAt;
@@ -88,7 +81,6 @@ class GraveView
             $grave->getPeople()->toArray(),
             $grave->getMainImage(),
             $grave->getImages()->toArray(),
-            $grave->getPayments()->toArray(),
             $paymentsStatus,
             $grave->getUpdatedAt(),
             $grave->getCreatedAt()
@@ -229,16 +221,6 @@ class GraveView
         $this->images[] = $image;
     }
 
-    public function getPayments(): ?array
-    {
-        return $this->payments;
-    }
-
-    public function setPayments(?array $payments): void
-    {
-        $this->payments = $payments;
-    }
-
     public function getPaymentStatus(): ?PaymentStatusEnum
     {
         return $this->paymentStatus;
@@ -273,15 +255,5 @@ class GraveView
     public function setCreatedAt(?DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
-    }
-
-    public function isNewAllowed(): bool
-    {
-        return $this->isNewAllowed;
-    }
-
-    public function setIsNewAllowed(bool $isNewAllowed): void
-    {
-        $this->isNewAllowed = $isNewAllowed;
     }
 }

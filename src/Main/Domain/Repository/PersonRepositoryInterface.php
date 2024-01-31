@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Main\Infrastructure\Repository;
+namespace App\Main\Domain\Repository;
 
 use App\Core\Domain\Repository\PersonRepositoryInterface as BasePersonRepositoryInterface;
-use App\Main\Domain\View\DeceasedSearchView;
+use App\Main\Domain\View\Search\DeceasedSearchView;
 use Doctrine\ORM\Query;
 
 interface PersonRepositoryInterface extends BasePersonRepositoryInterface

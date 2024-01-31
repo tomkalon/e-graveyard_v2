@@ -35,6 +35,8 @@ ui:
     close: Zamknij
     cancel: Anuluj
     return: Wróć
+    return_to_search: Wróć do wyszukiwania
+    main_page: Strona główna
     search: Szukaj
     set_main_image: Ustaw zdjęcie główne
     
@@ -48,6 +50,8 @@ ui:
     updatedAt: Data edycji
     createdAt: Data utworzenia
     date_format: Format daty (yyyy-mm-dd)
+    status: Status
+    payment_status: Status płatności
     
   frontpage:
     search_deceased: Wyszukiwanie zmarłych
@@ -122,7 +126,7 @@ ui:
     paid: Opłacony
     unpaid: Nieopłacony
     expired: Wygasła
-    soon: Niebawem wygaśnie
+    soon: Wkrótce wygaśnie
     modal:
       add_deceased: Dodawanie zmarłego do wybranego grobu.
       add_payment: Opłacenie grobu.
@@ -140,6 +144,7 @@ ui:
         info: Informacje
     name: Nazwa cmentarza
     desc: Opis cmentarza
+    desc_empty: Brak opisu
     graves_number: Ilość grobów
     people_number: Ilość zmarłych
     

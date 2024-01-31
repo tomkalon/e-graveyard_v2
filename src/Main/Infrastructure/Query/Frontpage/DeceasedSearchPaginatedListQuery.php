@@ -4,8 +4,8 @@ namespace App\Main\Infrastructure\Query\Frontpage;
 
 use App\Core\Domain\Entity\Person;
 use App\Core\Infrastructure\Utility\Pagination\PaginatorInterface;
-use App\Main\Domain\View\DeceasedSearchView;
-use App\Main\Infrastructure\Repository\PersonRepositoryInterface;
+use App\Main\Domain\Repository\PersonRepositoryInterface;
+use App\Main\Domain\View\Search\DeceasedSearchView;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQueryInterface

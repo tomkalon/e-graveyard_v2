@@ -2,7 +2,7 @@
 
 {% block body %}
     {% include 'main/frontpage/_search_form.html.twig' %}
-    <div class="container mx-auto max-w-[1200px]">
+    <div {{ stimulus_controller('main--frontpage--search-list') }} class="container mx-auto max-w-[1200px]">
         <h2 class="mt-12 text-center text-2xl font-bold">{{ 'ui.frontpage.search.result'|trans }}</h2>
         {% if pagination|length %}
             <p class="pb-8 text-center text-lg">{{ 'ui.frontpage.search.click_details'|trans }}</p>

@@ -4,8 +4,8 @@ namespace App\Main\Infrastructure\Repository;
 
 use App\Core\Domain\Trait\QueryTraits;
 use App\Core\Infrastructure\Repository\PersonRepository as BasePersonRepository;
-use App\Main\Domain\View\DeceasedSearchView;
-use App\Main\Infrastructure\Repository\PersonRepositoryInterface as BasePersonRepositoryInterface;
+use App\Main\Domain\Repository\PersonRepositoryInterface as BasePersonRepositoryInterface;
+use App\Main\Domain\View\Search\DeceasedSearchView;
 use Doctrine\ORM\Query;
 
 class PersonRepository extends BasePersonRepository implements BasePersonRepositoryInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Main\Infrastructure\Repository;
+namespace App\Main\Domain\Repository;
 
 use App\Core\Domain\Repository\FileRepositoryInterface as BaseFileRepositoryInterface;
 

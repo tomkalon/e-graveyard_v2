@@ -9,3 +9,5 @@ main_web_frontpage_show:
   path: /frontpage/show/{id}
   methods: [ GET ]
   controller: App\Main\UI\Web\Controller\Frontpage\FrontpageController::show
+  options:
+    expose: true

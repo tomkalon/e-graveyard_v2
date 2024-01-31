@@ -2,7 +2,7 @@
 
 namespace App\Main\UI\Form\Person;
 
-use App\Main\Domain\View\DeceasedSearchView;
+use App\Main\Domain\View\Search\DeceasedSearchView;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
