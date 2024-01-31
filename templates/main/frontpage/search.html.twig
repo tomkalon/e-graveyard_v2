@@ -7,7 +7,7 @@
         {% if pagination|length %}
             <p class="pb-8 text-center text-lg">{{ 'ui.frontpage.search.click_details'|trans }}</p>
         {% endif %}
-        <div class="p-4 rounded-xl {% if pagination|length %}bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600{% endif %}">
+        <div class="p-4 mx-2 mb-8 rounded-xl {% if pagination|length %}bg-neutral-50 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600{% endif %}">
             {% embed 'core/pagination/pagination.html.twig' with {
                 row_class: 'cursor-pointer'
             } %}
