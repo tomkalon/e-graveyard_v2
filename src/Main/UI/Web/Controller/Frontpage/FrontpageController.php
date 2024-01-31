@@ -37,9 +37,19 @@ class FrontpageController extends AbstractController
             );
         }
 
-        return $this->render('main/frontpage/search.html.twig', [
+        return $this->render('main/frontpage/search_js.html.twig', [
             'form' => $searchForm->createView(),
             'pagination' => $peopleList
+        ]);
+    }
+
+    public function show(
+        Request $request,
+        string $id
+    ): Response
+    {
+        return $this->render('main/frontpage/show.html.twig', [
+
         ]);
     }
 }

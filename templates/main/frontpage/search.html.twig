@@ -31,7 +31,8 @@
                 {% block body %}
                     {% include 'core/pagination/_body_value.html.twig' with {
                         value: item.firstname,
-                        class: 'pl-4'
+                        class: 'pl-4',
+                        data_target: item.grave.id
                     } %}
                     {% include 'core/pagination/_body_value.html.twig' with {
                         value: item.lastname,

@@ -1,0 +1,11 @@
+main_web_frontpage_search:
+  path: /frontpage/search/{page<\d+>}
+  methods: [ GET, POST ]
+  controller: App\Main\UI\Web\Controller\Frontpage\FrontpageController::search
+  defaults:
+    page: 1
+
+main_web_frontpage_show:
+  path: /frontpage/show/{id}
+  methods: [ GET ]
+  controller: App\Main\UI\Web\Controller\Frontpage\FrontpageController::show

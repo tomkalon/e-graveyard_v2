@@ -55,7 +55,7 @@ ui:
       search: Szukaj zmarłych
     search:
       result: Wynik wyszukiwania
-      click_details: Kliknij, by zobaczyć szczegóły.
+      click_details: Wybierz, by zobaczyć szczegóły.
   
   sidebar:
     grave:

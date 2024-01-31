@@ -1,4 +1,4 @@
-<td class="body-value px-2 py-3 {{ class|default('') }}" >
+<td class="body-value px-2 py-3 {{ class|default('') }}" {% if data_target is defined %} data-target="{{ data_target }}"{% endif %}>
     {% if path is defined and value is defined %}
         <a href="{{ path }}"><p>{{ value|default('-')|raw }}</p></a>
     {% else %}
