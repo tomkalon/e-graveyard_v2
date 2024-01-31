@@ -26,8 +26,6 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
             ->leftJoin('g.people', 'people')
             ->leftJoin('g.payments', 'payments')
             ->leftJoin('g.images', 'images');
-        $qb
-            ->setMaxResults(1);
 
         $this->equal('g.id', $id, 'id', $qb);
         return $qb->getQuery()->getOneOrNullResult();

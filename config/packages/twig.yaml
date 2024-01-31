@@ -6,8 +6,8 @@ twig:
       app_title: '%env(resolve:APP_TITLE)%'
       app_subtitle: '%env(resolve:APP_SUBTITLE)%'
       file_grave:
-        images_directory: 'uploads/grave/images/'
-        images_thumbnail_directory: 'uploads/grave/thumbs/'
+        images_directory: '/uploads/grave/images/'
+        images_thumbnail_directory: '/uploads/grave/thumbs/'
 when@test:
     twig:
         strict_variables: true
