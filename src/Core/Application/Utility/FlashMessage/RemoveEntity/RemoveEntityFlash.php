@@ -43,7 +43,7 @@ class RemoveEntityFlash implements RemoveEntityFlashInterface
                 [], 'flash'
             ),
             $entity instanceof Person => $this->translator->trans(
-                'notification.person.create.label',
+                'notification.person.remove.label',
                 [], 'flash'
             ),
             default => $this->translator->trans('notification.lifecycle.remove.title', [], 'flash'),
