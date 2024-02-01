@@ -1,33 +1,101 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.user.plural'|trans }}{% endblock %}
+{% block title %}{{ app_name }} - {{ 'ui.user.admin'|trans }}{% endblock %}
 {% block dashboard_content %}
-    <div class="max-w-[1400px]">
+<div class="max-w-[1000px]">
 
-        <!-- Dashboard Card -->
-        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
-            {% block title %}
-                <!-- Dashboard Title -->
-                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.plural'|trans }}</h1>
-                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.user_manage'|trans }}</h2>
-                <!-- /Dashboard Title -->
+    <!-- Dashboard Card -->
+    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+    {% block title %}
+        <!-- Dashboard Title -->
+        <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.admin'|trans }}</h1>
+        <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.user_manage'|trans }}</h2>
+        <!-- /Dashboard Title -->
+    {% endblock %}
+    {% block buttons_before %}
+    <a href="{{ path('admin_web_user_index') }}">
+        <button class="btn btn-success">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            {{ 'ui.user.add_user'|trans }}
+        </button>
+    </a>
+    {% endblock %}
+    {% block dashboard_content %}
+        <!-- Dashboard Content -->
+        <!-- Pagination -->
+        {% embed 'core/pagination/pagination.html.twig' %}
+            {% block head %}
+                {% include 'core/pagination/_head.html.twig' with {
+                    label: 'ui.user.login.username',
+                    name: 'u.username',
+                } %}
+                {% include 'core/pagination/_head.html.twig' with {
+                    label: 'ui.user.login.email',
+                    name: 'u.email',
+                } %}
+                {% include 'core/pagination/_head.html.twig' with {
+                    label: 'ui.user.verification',
+                    class: 'text-center'
+                } %}
+                {% include 'core/pagination/_head.html.twig' %}
             {% endblock %}
-            {% block dashboard_content %}
-                <!-- Dashboard Content -->
-                <!-- Pagination -->
-                {% embed 'core/pagination/pagination.html.twig' %}
-                    {% block head %}
-                    {% endblock %}
-                    {% block body %}
+            {% block body %}
+                {% include 'core/pagination/_body_value.html.twig' with {
+                    value: item.username,
+                } %}
+                {% include 'core/pagination/_body_value.html.twig' with {
+                    value: item.email,
+                } %}
+                {% embed 'core/pagination/_body_action.html.twig' %}
+                    {% block actions %}
+                        {% if item.isVerified %}
+                            <button gemma-tooltip="top"
+                                    gemma-tooltip-label="{{ 'ui.user.is_verified'|trans }} -> {{ 'ui.user.click_to_set_unverified'|trans }}"
+                                    class="btn btn-xs btn-success">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                        {% else %}
+                            <button gemma-tooltip="top"
+                                    gemma-tooltip-label="{{ 'ui.user.is_not_verified'|trans }} -> {{ 'ui.user.click_to_verify'|trans }}"
+                                    class="btn btn-xs btn-danger">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        {% endif %}
                     {% endblock %}
                 {% endembed %}
-                <!-- /Pagination -->
-                <!-- /Dashboard Content -->
-            {% endblock %}
-            {% block buttons_after %}
+                {% embed 'core/pagination/_body_action.html.twig' with {
+                    class: 'w-36'
+                } %}
+                    {% block actions %}
+                        <div class="flex gap-2 grow justify-end">
+                            <button gemma-tooltip="top"
+                                    gemma-tooltip-label="{{ 'ui.user.change_password'|trans }}"
+                                    class="btn btn-warning"
+                                    data-modal-target="user-modal-change-password">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
+                            <button gemma-tooltip="top"
+                                    gemma-tooltip-label="{{ 'ui.user.change_permission'|trans }}"
+                                    class="btn btn-sky"
+                                    data-modal-target="user-modal-permission">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </button>
+                            <button gemma-tooltip="top"
+                                    gemma-tooltip-label="{{ 'ui.user.remove'|trans }}"
+                                    class="btn btn-danger"
+                                    data-modal-target="user-modal-remove">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    {% endblock %}
+                {% endembed %}
             {% endblock %}
         {% endembed %}
-        <!-- /Dashboard Card -->
-    </div>
+        <!-- /Pagination -->
+        <!-- /Dashboard Content -->
+    {% endblock %}
+    {% block buttons_after %}
+    {% endblock %}
+    {% endembed %}
+    <!-- /Dashboard Card -->
+</div>
 {% endblock %}
-
-

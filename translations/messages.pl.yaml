@@ -75,6 +75,9 @@ ui:
     user:
       label: Użytkownik
       settings: Ustawienia
+    admin:
+      label: Administrator
+      manage_users: Użytkownicy
       
   admin:
     label: Administrator
@@ -84,6 +87,7 @@ ui:
   user:
     label: Użytkownik
     plural: Użytkownicy
+    admin: Administrator
     login:
       login: Logowanie
       email: Adres email
@@ -95,8 +99,16 @@ ui:
     description:
       manage: Zarządzanie kontem
       user_manage: Zarządzanie użytkownikami
+    verification: Weryfikacja
+    is_verified: Zweryfikowany
+    is_not_verified: Niezweryfikowany
+    click_to_verify: Kliknij, by zweryfikować
+    click_to_set_unverified: Kliknij, by zweryfikować
+    add_user: Dodaj użytkownika
     change_password: Zmień hasło
     changing_password: Zmiana hasła
+    change_permission: Zmień uprawnienia
+    remove: Usuwanie użytkownika
     
   grave:
     label: Grób

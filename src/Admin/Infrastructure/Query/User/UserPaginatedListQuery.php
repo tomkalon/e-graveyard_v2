@@ -32,8 +32,9 @@ class UserPaginatedListQuery implements UserPaginatedListQueryInterface
 
         $userViewList = [];
         /** @var User $user */
-        foreach ($usersList->getItems() as $user) {
-            $userViewList[] = UserView::fromEntity($user);
+        foreach ($usersList->getItems() as $index => $user) {
+            $userViewList[$index] = UserView::fromEntity($user);
+            $userViewList[$index]->setRoles($user->getRoles());
         }
 
         $usersList->setItems($userViewList);
