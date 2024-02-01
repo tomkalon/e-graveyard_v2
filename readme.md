@@ -59,17 +59,16 @@ symfony console d:m:m
 symfony console fos:js-routing:dump --format=json --target=public/js/routes.json
 ```
 
-### 6) In the "node" container, execute the following commands in the terminal:
-```
-yarn install
-yarn run dev
-```
-
-### 7) To run project initialization and make new administrator account, run:
+### 6) To run project initialization and make new administrator account, run:
 ```
 symfony console app:project:init
 ```
 
+### 7) In the "node" container, execute the following commands in the terminal:
+```
+yarn install
+yarn run dev
+```
 
 ### 8) The PHP server is configured on the default port 80. Launch your browser and enter the address:
 ```
@@ -82,11 +81,24 @@ http://localhost/admin/login
 ```
 
 ### 9) Basic editable files directories:
+
+For ROUTES:
 * /config/routes/custom/api/*
 * /config/routes/custom/web/*
 
+For TRANSLATIONS:
 * /translations/settings.*
 * /translations/custom.*
 
-* /src/Main/UI/Custom/
+For CONTROLLERS:
+* /src/Main/UI/Web/Custom/
+* /src/Main/UI/Api/Custom/
+
+For TWIG TEMPLATES:
 * /templates/main/custom/
+
+For ASSETS:
+* /assets/images/custom/*
+* /assets/styles/custom.scss
+
+#### These places can be filled in, but remember to add the appropriate .gitignore files.

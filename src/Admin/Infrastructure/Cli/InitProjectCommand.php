@@ -30,6 +30,9 @@ class InitProjectCommand extends Command
         $createUploadDirectoriesCommand = $application->find('app:create-upload-directory');
         $createUploadDirectoriesCommand->run($input, $output);
 
+        $createCustomStylesCommand = $application->find('app:create-custom-style-directory');
+        $createCustomStylesCommand->run($input, $output);
+
         $createSettingsCommand = $application->find('app:create:settings');
         $createSettingsCommand->run($input, $output);
 

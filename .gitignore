@@ -13,6 +13,9 @@
 
 # -> CUSTOM FILES / EDITABLE
 /assets/images/custom/*
+/assets/styles/custom.scss
+/assets/js/bundles/custom.js
+
 /config/routes/custom/api/*
 !/config/routes/custom/api/routes.yaml
 /config/routes/custom/web/*
@@ -21,7 +24,9 @@
 /translations/settings.*
 /translations/custom.*
 
-/src/Main/UI/Custom/*
+/src/Main/UI/Web/Custom/*
+/src/Main/UI/Api/Custom/*
+
 /templates/main/custom/*
 !/templates/main/custom/examples
 # -< CUSTOM FILES / EDITABLE
@@ -33,16 +38,7 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
-
-###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
-###< lexik/jwt-authentication-bundle ###
