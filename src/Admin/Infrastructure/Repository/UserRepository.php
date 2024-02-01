@@ -5,6 +5,7 @@ namespace App\Admin\Infrastructure\Repository;
 use App\Admin\Domain\Repository\UserRepositoryInterface as BaseUserRepositoryInterface;
 use App\Core\Domain\Trait\QueryTraits;
 use App\Core\Infrastructure\Repository\UserRepository as BaseUserRepository;
+use Doctrine\ORM\Query;
 
 class UserRepository extends BaseUserRepository implements BaseUserRepositoryInterface
 {
@@ -18,5 +19,13 @@ class UserRepository extends BaseUserRepository implements BaseUserRepositoryInt
         $this->addFilterIsEqualCondition('u.username', $username, 'username', $qb);
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function getUsersListQuery(): Query
+    {
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u');
+
+        return $qb->getQuery();
     }
 }

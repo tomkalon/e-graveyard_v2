@@ -8,11 +8,17 @@ app_logout:
   methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\User\LoginController::logout
 
+admin_web_user_index:
+  path: /admin/user/list/{page<\d+>}
+  methods: [ GET ]
+  controller: App\Admin\UI\Web\Controller\User\AdminController::list
+  defaults:
+    page: 1
+  
 admin_web_user_show:
   path: /admin/user/show
   methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\User\UserController::show
-
 
 admin_web_user_change_password:
   path: /admin/user/change_password

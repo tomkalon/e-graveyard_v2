@@ -94,6 +94,7 @@ ui:
       submit: Zaloguj się
     description:
       manage: Zarządzanie kontem
+      user_manage: Zarządzanie użytkownikami
     change_password: Zmień hasło
     changing_password: Zmiana hasła
     

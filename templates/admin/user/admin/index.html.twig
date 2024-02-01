@@ -1,0 +1,33 @@
+{% extends 'admin/common/dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.plural'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <div class="max-w-[1400px]">
+
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.plural'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.user_manage'|trans }}</h2>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                <!-- Pagination -->
+                {% embed 'core/pagination/pagination.html.twig' %}
+                    {% block head %}
+                    {% endblock %}
+                    {% block body %}
+                    {% endblock %}
+                {% endembed %}
+                <!-- /Pagination -->
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
+{% endblock %}
+
+
