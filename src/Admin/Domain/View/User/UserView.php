@@ -6,40 +6,32 @@ use App\Core\Domain\Entity\User;
 
 class UserView
 {
-    private ?string $id;
+    private ?string $id = null;
     private ?string $email;
     private ?string $username;
     /**
      * @var ?string The hashed password
      */
-    private ?string $password;
-    private ?array $roles;
+    private ?string $password = null;
+    private ?string $repeatPassword = null;
+    private ?array $roles = null;
     private ?bool $isVerified;
 
     public function __construct(
-        ?string $id = null,
         ?string $email = null,
         ?string $username = null,
-        ?string $password = null,
-        ?array $roles = null,
         ?bool $isVerified = null,
     ) {
-        $this->id = $email;
         $this->email = $email;
         $this->username = $username;
-        $this->password = $password;
-        $this->roles = $roles;
         $this->isVerified = $isVerified;
     }
 
     public static function fromEntity(User $user): self
     {
         return new self(
-            $user->getId(),
             $user->getEmail(),
             $user->getUsername(),
-            $user->getPassword(),
-            $user->getRoles(),
             $user->isVerified(),
         );
     }
@@ -82,6 +74,16 @@ class UserView
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getRepeatPassword(): ?string
+    {
+        return $this->repeatPassword;
+    }
+
+    public function setRepeatPassword(?string $repeatPassword): void
+    {
+        $this->repeatPassword = $repeatPassword;
     }
 
     public function getRoles(): ?array
