@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
+use App\Admin\Infrastructure\Validator\User\UserPassword;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,6 +17,9 @@ class ChangePasswordType extends AbstractType
         $builder
             ->add('password', PasswordType::class, [
                 'required' => true,
+                'constraints' => [
+                    new UserPassword()
+                ],
             ])
             ->add('repeatPassword', PasswordType::class, [
                 'label' => 'ui.user.login.repeat_password',
