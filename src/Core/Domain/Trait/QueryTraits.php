@@ -24,10 +24,13 @@ trait QueryTraits
     protected function isInThisYear(?string $column, ?int $value, string $parameterName, QueryBuilder $qb): void
     {
         if ($value) {
-            $deathYear = DateTimeImmutable::createFromFormat('Y', $value);
+            $year = DateTimeImmutable::createFromFormat('Y', $value);
+            $yearBegin = $year->modify('first day of january 00:00:00');
+            $yearEnd = $year->modify('last day of december 23:59:59');
+
             $qb->andWhere($column . ' >= :' . $parameterName . 'YearBegin and ' . $column . ' <= :' . $parameterName . 'YearEnd')
-                ->setParameter($parameterName . 'YearBegin', $deathYear->modify('first day of january 00:00:00'))
-                ->setParameter($parameterName . 'YearEnd', $deathYear->modify('last day of this year 23:59:59'));
+                ->setParameter($parameterName . 'YearBegin', $yearBegin->format('Y-m-d'))
+                ->setParameter($parameterName . 'YearEnd', $yearEnd->format('Y-m-d'));
         }
     }
 }
