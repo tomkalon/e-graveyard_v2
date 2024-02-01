@@ -5,6 +5,7 @@ namespace App\Admin\Application\Service\Person;
 use App\Admin\Domain\View\Person\PersonView;
 use App\Core\Domain\Entity\Person;
 use Doctrine\ORM\EntityManagerInterface;
+use Ramsey\Uuid\Uuid;
 
 class SavePersonService implements SavePersonServiceInterface
 {
@@ -15,7 +16,7 @@ class SavePersonService implements SavePersonServiceInterface
 
     public function persist(PersonView $personView): void
     {
-        $person = new Person();
+        $person = new Person(Uuid::uuid4());
         $person->setFirstname($personView->getFirstname());
         $person->setLastname($personView->getLastname());
         $person->setBornDate($personView->getBornDate());

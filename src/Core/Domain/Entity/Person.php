@@ -17,8 +17,14 @@ class Person
     private DateTimeImmutable $death_date;
     private Grave $grave;
 
-    public function __construct()
+    public function __construct(?string $id = null)
     {
+        $this->setId($id);
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
     }
 
     public function getFirstname(): string

@@ -23,8 +23,12 @@ class RemoveGraveCommandHandler implements CommandHandlerInterface
     {
         try {
             $grave = $this->graveRepository->find($command->getGraveId());
-            $this->em->remove($grave);
-            $this->em->flush();
+            if ($grave) {
+                $this->em->remove($grave);
+                $this->em->flush();
+            } else {
+                throw new EntityNotFoundException();
+            }
         } catch (Exception $e) {
             throw new EntityNotFoundException($e->getMessage());
         }
