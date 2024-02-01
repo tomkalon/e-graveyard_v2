@@ -9,7 +9,7 @@ app_logout:
   controller: App\Admin\UI\Web\Controller\User\LoginController::logout
 
 admin_web_user_index:
-  path: /admin/user/list/{page<\d+>}
+  path: /admin/manage/user/{page<\d+>}
   methods: [ GET ]
   controller: App\Admin\UI\Web\Controller\User\AdminController::list
   defaults:

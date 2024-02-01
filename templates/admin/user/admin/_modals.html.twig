@@ -1,0 +1,32 @@
+<!-- ------------ REMOVE USER ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'user-modal-remove', title: 'ui.user.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.user.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-user-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}
+<!-- ------------ VERIFY / SET TO UNVERIFIED ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'user-modal-verify', title: 'ui.user.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.user.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-user-btn-verify
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

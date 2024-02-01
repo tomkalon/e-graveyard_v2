@@ -99,6 +99,8 @@ ui:
     description:
       manage: Zarządzanie kontem
       user_manage: Zarządzanie użytkownikami
+    modal:
+      remove: Czy chcesz usunąć wskazanego użytkownika?
     verification: Weryfikacja
     is_verified: Zweryfikowany
     is_not_verified: Niezweryfikowany
