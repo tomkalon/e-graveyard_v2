@@ -24,6 +24,7 @@
   input {
     &[type="number"],
     &[type="text"],
+    &[type="password"],
     &[type='date'] {
       color: #000000;
     }

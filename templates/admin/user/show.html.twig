@@ -1,0 +1,40 @@
+{% extends 'admin/common/dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.label'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <div class="max-w-[700px]">
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.label'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.manage'|trans }}</h2>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+            {% block buttons_before %}
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <a href="{{ path('admin_web_user_change_password') }}">
+                        <button class="btn btn-danger">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            {{ 'ui.user.change_password'|trans }}
+                        </button>
+                    </a>
+                </div>
+            {% endblock %}
+            {% block dashboard_content %}
+                <!-- Dashboard Content -->
+                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.user.login.email'|trans }}</h3>
+                <hr>
+                <p class="ml-2 text-neutral-600 dark:text-neutral-100">{{ user.email }}</p>
+                <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.user.login.username'|trans }}</h3>
+                <hr>
+                <p class="ml-2 text-neutral-600 dark:text-neutral-100">{{ user.username }}</p>
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
+{% endblock %}
+
+

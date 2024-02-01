@@ -1,9 +1,0 @@
-app_login:
-  path: /admin/login
-  methods: [ GET, POST ]
-  controller: App\Admin\UI\Web\Controller\User\LoginController::login
-  
-app_logout:
-  path: /admin/logout
-  methods: [ GET ]
-  controller: App\Admin\UI\Web\Controller\User\LoginController::logout

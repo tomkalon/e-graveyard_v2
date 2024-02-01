@@ -22,6 +22,7 @@ ui:
     add: Dodaj
     confirm: Zatwierdź
     change: Zmień
+    save_changes: Zapisz zmiany
     create: Utwórz
     edit: Edytuj
     remove: Usuń
@@ -71,24 +72,31 @@ ui:
     graveyard:
       label: Cmentarze
       add: Dodaj
+    user:
+      label: Użytkownik
+      settings: Ustawienia
       
   admin:
     label: Administrator
     cms:
-      manage: Zarządzanie stroną
+      manage: Zarządzanie projektem
     
   user:
     label: Użytkownik
     plural: Użytkownicy
     login:
       login: Logowanie
-      email: "Adres email:"
-      password: "Hasło:"
+      email: Adres email
+      username: Nazwa użytkownika
+      password: Hasło
+      repeat_password: Powtórz hasło
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
     description:
       manage: Zarządzanie kontem
-      
+    change_password: Zmień hasło
+    changing_password: Zmiana hasła
+    
   grave:
     label: Grób
     plural: Groby
