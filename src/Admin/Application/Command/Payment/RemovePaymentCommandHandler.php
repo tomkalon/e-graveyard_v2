@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Application\Command\Payment\Grave;
+namespace App\Admin\Application\Command\Payment;
 
 use App\Admin\Domain\Repository\PaymentGraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
@@ -25,14 +25,16 @@ class RemovePaymentCommandHandler implements CommandHandlerInterface
     {
         $payment = null;
 
+
         try {
             $payment = $this->paymentGraveRepository->find($command->getId());
         } catch (Exception) {
             $this->notification->addNotification('notification', new NotificationDto(
-                $this->translator->trans('notification.entity.paymentGrave', [], 'flash'),
+                $this->translator->trans('notification.paymentGrave.name', [], 'flash'),
                 NotificationTypeEnum::FAILED,
                 $this->translator->trans('notification.paymentGrave.empty', [], 'flash')
-            ));        }
+            ));
+        }
 
         if ($payment) {
             $this->em->remove($payment);

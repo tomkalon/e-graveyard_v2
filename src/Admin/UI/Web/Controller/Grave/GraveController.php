@@ -8,6 +8,8 @@ use App\Admin\Application\Command\Payment\Grave\PaymentGraveCommand;
 use App\Admin\Application\Command\Person\PersonCommand;
 use App\Admin\Domain\View\Grave\GraveFilterView;
 use App\Admin\Domain\View\Grave\GraveView;
+use App\Admin\Domain\View\Payment\PaymentGraveView;
+use App\Admin\Domain\View\Person\PersonView;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveViewInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
@@ -17,7 +19,6 @@ use App\Admin\UI\Form\Payment\PaymentGraveType;
 use App\Admin\UI\Form\Person\PersonType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\PaymentGrave;
-use App\Core\Domain\Entity\Person;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class GraveController extends AbstractController
     ): Response {
 
         // add decease form
-        $addDeceasedForm = $this->createForm(PersonType::class, new Person());
+        $addDeceasedForm = $this->createForm(PersonType::class, new PersonView());
         $addDeceasedForm->handleRequest($request);
 
         // filter form
@@ -42,7 +43,7 @@ class GraveController extends AbstractController
 
         // ADD DECEASED form handler
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
-            /** @var Person $person */
+            /** @var PersonView $person */
             $person = $addDeceasedForm->getData();
 
             // command bus
@@ -85,17 +86,17 @@ class GraveController extends AbstractController
         $grave = $getGraveView->execute($id);
 
         // add decease form
-        $addDeceasedForm = $this->createForm(PersonType::class, new Person());
+        $addDeceasedForm = $this->createForm(PersonType::class, new PersonView());
         $addDeceasedForm->handleRequest($request);
 
         // add payment form
-        $addPaymentForm = $this->createForm(PaymentGraveType::class, new PaymentGrave());
+        $addPaymentForm = $this->createForm(PaymentGraveType::class, new PaymentGraveView());
         $addPaymentForm->handleRequest($request);
 
         // form handler
         // ADD DECEASED
         if ($addDeceasedForm->isSubmitted() and $addDeceasedForm->isValid()) {
-            /** @var Person $person */
+            /** @var PersonView $person */
             $person = $addDeceasedForm->getData();
             $person->setGrave($getGrave->execute($grave->getId()));
             // command bus
@@ -108,7 +109,7 @@ class GraveController extends AbstractController
 
         // ADD PAYMENT
         if ($addPaymentForm->isSubmitted() and $addPaymentForm->isValid()) {
-            /** @var PaymentGrave $paymentGrave */
+            /** @var PaymentGraveView $paymentGrave */
             $paymentGrave = $addPaymentForm->getData();
             $paymentGrave->setGrave($getGrave->execute($grave->getId()));
 

@@ -2,19 +2,19 @@
 
 namespace App\Admin\Application\Command\Person;
 
+use App\Admin\Domain\View\Person\PersonView;
 use App\Core\Application\CQRS\Command\CommandInterface;
-use App\Core\Domain\Entity\Person;
 
 class PersonCommand implements CommandInterface
 {
     public function __construct(
-        private readonly Person $person,
+        private readonly PersonView $personView,
     ) {
     }
 
-    public function getPerson(): Person
+    public function getPersonView(): PersonView
     {
-        return $this->person;
+        return $this->personView;
     }
 
 }

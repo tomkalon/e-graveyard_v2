@@ -2,9 +2,9 @@
 
 namespace App\Admin\UI\Form\Person;
 
+use App\Admin\Domain\View\Person\PersonView;
 use App\Admin\Infrastructure\Validator\Person\PersonDateComparison;
 use App\Core\Domain\Entity\Grave;
-use App\Core\Domain\Entity\Person;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -52,7 +52,7 @@ class PersonType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Person::class,
+            'data_class' => PersonView::class,
             'method' => 'POST',
             'csrf_protection' => true,
             'label_format' => 'ui.person.%name%',

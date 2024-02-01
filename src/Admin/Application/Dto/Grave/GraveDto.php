@@ -4,6 +4,9 @@ namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Person;
+use App\Core\Domain\Enum\PaymentStatusEnum;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Exception;
 
 class GraveDto
@@ -47,7 +50,7 @@ class GraveDto
     /**
      * @throws Exception
      */
-    public static function fromEntity(Grave $grave): self
+    public static function fromEntity(Grave $grave, ?string $gravePaymentExpirationTime = null): self
     {
         $people = array_map(function ($person) {
         /** @var Person $person */
@@ -59,6 +62,8 @@ class GraveDto
             ];
         }, $grave->getPeople()->toArray());
 
+        $paymentsStatus = self::processingPaymentsStatus($grave, $gravePaymentExpirationTime);
+
         return new self(
             $grave->getSector(),
             $grave->getRow(),
@@ -67,9 +72,33 @@ class GraveDto
             $grave->getPositionY(),
             $grave->getGraveyard()->getName(),
             $people,
-            $grave->getPaymentStatus()->name,
+            $paymentsStatus->value,
             $grave->getUpdatedAt()->format('Y-m-d'),
             $grave->getCreatedAt()->format('Y-m-d')
         );
+    }
+
+    private static function processingPaymentsStatus(Grave $grave, ?string $gravePaymentExpirationTime): PaymentStatusEnum
+    {
+        $criteria = Criteria::create()->orderBy(['validity_time' => 'DESC']);
+        $paymentsStatus = PaymentStatusEnum::UNPAID;
+
+        /** @var Collection $payments */
+        $payments = $grave->getPayments()->matching($criteria);
+        if (!$payments->isEmpty()) {
+            $lastFee = $payments->first()->getValidityTime();
+            $now = new DateTimeImmutable();
+
+            if ($gravePaymentExpirationTime) {
+                if ($now < $lastFee) {
+                    $paymentsStatus = ($lastFee->modify($gravePaymentExpirationTime) < $now) ? PaymentStatusEnum::SOON : PaymentStatusEnum::PAID;
+                } else {
+                    $paymentsStatus = PaymentStatusEnum::EXPIRED;
+                }
+            } else {
+                $paymentsStatus = ($now < $lastFee) ? PaymentStatusEnum::PAID : PaymentStatusEnum::EXPIRED;
+            }
+        }
+        return $paymentsStatus;
     }
 }
