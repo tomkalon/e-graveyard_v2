@@ -40,9 +40,11 @@ Here you can change the container name suffix.
 PROJECT_NAME=graveyard
 ```
 
+In the main directory:
 ```
-Change file -> .env.example to .env
+Change filename -> .env.example to .env
 ```
+...and adjust the settings to your needs.
 
 ### 4) Prepare your Docker environment.
 
