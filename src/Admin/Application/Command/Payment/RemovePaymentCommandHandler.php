@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Admin\Application\Command\Grave;
+namespace App\Admin\Application\Command\Payment;
 
-use App\Admin\Domain\Repository\GraveRepositoryInterface;
+use App\Admin\Domain\Repository\PaymentGraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
-use Doctrine\ORM\EntityManagerInterface;
 
-class RemoveGraveCommandHandler implements CommandHandlerInterface
+class RemovePaymentCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly GraveRepositoryInterface $graveRepository,
+        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
         private readonly EntityManagerInterface $em,
     ) {
     }
@@ -19,12 +19,12 @@ class RemoveGraveCommandHandler implements CommandHandlerInterface
     /**
      * @throws EntityNotFoundException
      */
-    public function __invoke(RemoveGraveCommand $command)
+    public function __invoke(RemovePaymentCommand $command)
     {
         try {
-            $grave = $this->graveRepository->find($command->getGraveId());
-            if ($grave) {
-                $this->em->remove($grave);
+            $payment = $this->paymentGraveRepository->find($command->getId());
+            if ($payment) {
+                $this->em->remove($payment);
                 $this->em->flush();
             } else {
                 throw new EntityNotFoundException();

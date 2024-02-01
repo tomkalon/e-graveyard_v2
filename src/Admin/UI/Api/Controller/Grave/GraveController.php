@@ -8,6 +8,7 @@ use App\Admin\Application\Dto\File\GraveImageDto;
 use App\Admin\Application\Dto\Grave\GraveDto;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveViewInterface;
+use App\Admin\Infrastructure\Query\Settings\GetSettingsInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use Exception;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -23,10 +24,12 @@ class GraveController extends AbstractFOSRestController
     public function get(
         string                  $id,
         GetGraveInterface       $getGrave,
+        GetSettingsInterface    $getSettings,
         SerializerInterface     $serializer
     ): Response {
         $grave = $getGrave->execute($id);
-        $dto = GraveDto::fromEntity($grave);
+        $settings = $getSettings->execute();
+        $dto = GraveDto::fromEntity($grave, $settings->getGravePaymentExpirationTime());
         return new Response($serializer->serialize($dto, 'json'));
     }
 

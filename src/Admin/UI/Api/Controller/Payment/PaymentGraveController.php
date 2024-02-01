@@ -2,7 +2,7 @@
 
 namespace App\Admin\UI\Api\Controller\Payment;
 
-use App\Admin\Application\Command\Payment\Grave\RemovePaymentCommand;
+use App\Admin\Application\Command\Payment\RemovePaymentCommand;
 use App\Admin\Application\Dto\Payment\PaymentGraveDto;
 use App\Admin\Infrastructure\Query\Payment\Grave\GetPaymentGraveInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;

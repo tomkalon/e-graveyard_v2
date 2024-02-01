@@ -76,32 +76,32 @@ class PersonView
         $this->lastname = $lastname;
     }
 
-    public function getBornDate(): DateTimeImmutable
+    public function getBornDate(): ?DateTimeImmutable
     {
         return $this->born_date;
     }
 
-    public function setBornDate(DateTimeImmutable $born_date): void
+    public function setBornDate(?DateTimeImmutable $born_date): void
     {
         $this->born_date = $born_date;
     }
 
-    public function getDeathDate(): DateTimeImmutable
+    public function getDeathDate(): ?DateTimeImmutable
     {
         return $this->death_date;
     }
 
-    public function setDeathDate(DateTimeImmutable $death_date): void
+    public function setDeathDate(?DateTimeImmutable $death_date): void
     {
         $this->death_date = $death_date;
     }
 
-    public function getGrave(): Grave
+    public function getGrave(): ?Grave
     {
         return $this->grave;
     }
 
-    public function setGrave(Grave $grave): void
+    public function setGrave(?Grave $grave): void
     {
         $this->grave = $grave;
     }

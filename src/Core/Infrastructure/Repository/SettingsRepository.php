@@ -24,9 +24,6 @@ class SettingsRepository extends ServiceEntityRepository implements SettingsRepo
     public function getSettings(): Settings
     {
         $qb = $this->createQueryBuilder('s');
-        $qb
-            ->setMaxResults(1);
-
         $this->equal('s.id', 'settings', 'id', $qb);
         return $qb->getQuery()->getOneOrNullResult();
     }

@@ -10,7 +10,7 @@
         </discriminator-map>
 
         <id name="id" column="id" type="uuid">
-            <generator strategy="CUSTOM"/>
+            <generator strategy="NONE"/>
             <custom-id-generator class="Ramsey\Uuid\Doctrine\UuidGenerator"/>
         </id>
 

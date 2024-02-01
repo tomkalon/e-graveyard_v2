@@ -17,6 +17,16 @@ class Payment
     private ?string $description;
     private ?DateTimeImmutable $validity_time;
 
+    public function __construct(?string $id = null)
+    {
+        $this->setId($id);
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getValue(): int
     {
         return $this->value;

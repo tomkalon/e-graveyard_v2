@@ -2,19 +2,18 @@
 
 namespace App\Admin\Application\Command\Payment\Grave;
 
-use App\Admin\Application\Dto\Payment\PaymentGraveDto;
+use App\Admin\Domain\View\Payment\PaymentGraveView;
 use App\Core\Application\CQRS\Command\CommandInterface;
-use App\Core\Domain\Entity\PaymentGrave;
 
 class PaymentGraveCommand implements CommandInterface
 {
     public function __construct(
-        private readonly PaymentGrave $paymentGrave,
+        private readonly PaymentGraveView $paymentGraveView,
     ) {
     }
 
-    public function getPaymentGrave(): PaymentGrave
+    public function getPaymentGraveView(): PaymentGraveView
     {
-        return $this->paymentGrave;
+        return $this->paymentGraveView;
     }
 }
