@@ -24,6 +24,8 @@ export default class extends Controller {
 
     personActions(button, id, action)
     {
+        console.log(id)
+
         let callback, options;
         switch (action) {
             case 'person-modal-remove':

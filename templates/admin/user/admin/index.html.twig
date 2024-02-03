@@ -69,6 +69,7 @@
                     } %}
                         {% block actions %}
                             <div class="flex gap-2 grow justify-end">
+                                {% if not adminID is same as (item.id) %}
                                 <button gemma-tooltip="top"
                                         gemma-tooltip-label="{{ 'ui.user.change_password'|trans }}"
                                         class="btn btn-warning"
@@ -87,6 +88,15 @@
                                         data-modal-target="user-modal-remove">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
+                                {% else %}
+                                    <a href="{{ path('admin_web_user_change_password') }}">
+                                        <button gemma-tooltip="top"
+                                                 gemma-tooltip-label="{{ 'ui.user.change_password'|trans }}"
+                                                 class="btn btn-warning">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
+                                {% endif %}
                             </div>
                         {% endblock %}
                     {% endembed %}
@@ -95,6 +105,11 @@
         </div>
         <!-- /Pagination -->
         <!-- /Dashboard Content -->
+        <!-- Modal -->
+        <div>
+            {% include 'admin/user/admin/index/_modals.html.twig' %}
+        </div>
+        <!-- /Modal -->
     {% endblock %}
     {% block buttons_after %}
     {% endblock %}
