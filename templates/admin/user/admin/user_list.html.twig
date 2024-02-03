@@ -11,9 +11,9 @@
         <!-- /Dashboard Title -->
     {% endblock %}
     {% block buttons_before %}
-    <a href="{{ path('admin_web_user_index') }}">
+    <a href="{{ path('admin_web_user_create') }}">
         <button class="btn btn-success">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
             {{ 'ui.user.add_user'|trans }}
         </button>
     </a>
@@ -71,9 +71,9 @@
                             <div class="flex gap-2 grow justify-end">
                                 {% if not adminID is same as (item.id) %}
                                 <button gemma-tooltip="top"
-                                        gemma-tooltip-label="{{ 'ui.user.change_password'|trans }}"
+                                        gemma-tooltip-label="{{ 'ui.user.reset_password'|trans }}"
                                         class="btn btn-warning"
-                                        data-modal-target="user-modal-change-password">
+                                        data-modal-target="user-modal-reset-password">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </button>
                                 <button gemma-tooltip="top"
@@ -107,7 +107,7 @@
         <!-- /Dashboard Content -->
         <!-- Modal -->
         <div>
-            {% include 'admin/user/admin/index/_modals.html.twig' %}
+            {% include 'admin/user/admin/user_list/_modals.html.twig' %}
         </div>
         <!-- /Modal -->
     {% endblock %}

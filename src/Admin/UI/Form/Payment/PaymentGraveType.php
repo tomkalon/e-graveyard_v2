@@ -30,7 +30,6 @@ class PaymentGraveType extends AbstractType
             ->add('currency', EnumType::class, [
                 'data' => CurrencyTypeEnum::PLN,
                 'class' => CurrencyTypeEnum::class,
-
                 'required' => false,
             ])
             ->add('description', TextareaType::class, [

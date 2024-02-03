@@ -14,6 +14,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
+    public function index(
+        Security $security
+    ): Response
+    {
+        /** @var User $user */
+        $user = $security->getUser();
+        return $this->render('admin/user/index.html.twig', [
+            'user' => $user
+        ]);
+    }
+
     public function show(Security $security): Response
     {
         /** @var User $user */

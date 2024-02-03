@@ -24,6 +24,9 @@ notification:
       time: Czas
       success:
         content: Logowanie zakończone powodzeniem
+      failed:
+        no_permission: Brak uprawnień
+        unverified: Konto niezweryfikowane
   
   grave:
     name: Grób

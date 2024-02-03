@@ -16,6 +16,7 @@ security:
       lazy: true
       provider: app_user_provider
       form_login:
+        default_target_path: admin_web_index
         login_path: app_login
         check_path: app_login
       logout:
@@ -37,14 +38,15 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/admin/login, roles: PUBLIC_ACCESS }
-    - { path: ^/api, roles: ROLE_USER }
-    - { path: ^/admin, roles: ROLE_USER }
+    - { path: ^/api, roles: ROLE_MANAGER }
+    - { path: ^/admin, roles: ROLE_MANAGER }
     - { path: ^/api/admin/graveyard, roles: ROLE_ADMIN }
     - { path: ^/admin/graveyard, roles: ROLE_ADMIN }
     - { path: ^/admin/user/list, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
   role_hierarchy:
-    ROLE_ADMIN: [ ROLE_USER ]
+    ROLE_ADMIN: [ ROLE_MANAGER ]
+    ROLE_MANAGER: [ ROLE_USER ]
 
 when@test:
   security:

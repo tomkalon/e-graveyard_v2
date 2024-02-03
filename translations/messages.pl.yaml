@@ -46,6 +46,11 @@ ui:
       pln: zł
       usd: $
       eur: €
+    UserRoleType:
+      ROLE_ADMIN: Administrator
+      ROLE_MANAGER: Manager
+      ROLE_USER: Niezweryfikowany
+      PUBLIC_ACCESS: Dostęp publiczny
 
   common:
     updatedAt: Data edycji
@@ -88,6 +93,9 @@ ui:
     label: Użytkownik
     plural: Użytkownicy
     admin: Administrator
+    title:
+      project_manager: Zarządzanie projektem
+      create: Dodawanie użytkownika
     login:
       login: Logowanie
       email: Adres email
@@ -97,6 +105,7 @@ ui:
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
     description:
+      index: 'Witaj %username%'
       manage: Zarządzanie kontem
       user_manage: Zarządzanie użytkownikami
     modal:
@@ -108,6 +117,7 @@ ui:
     click_to_set_unverified: Kliknij, by zweryfikować
     add_user: Dodaj użytkownika
     change_password: Zmień hasło
+    reset_password: Resetuj hasło
     changing_password: Zmiana hasła
     change_permission: Zmień uprawnienia
     remove: Usuwanie użytkownika

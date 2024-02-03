@@ -1,0 +1,18 @@
+{% extends 'admin/common/dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.title.project_manager'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <div class="max-w-[700px]">
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.title.project_manager'|trans }}</h1>
+                <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.index'|trans({'%username%': user.username}) }}!</h2>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
+{% endblock %}
+
+

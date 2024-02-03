@@ -6,6 +6,7 @@ use App\Admin\Application\Command\User\CreateUserCommand;
 use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Query\User\UserByFieldsQueryInterface;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -81,7 +82,7 @@ class AdminAddCommand extends Command
             return Command::FAILURE;
         }
 
-        $userView->setRoles(['ROLE_ADMIN']);
+        $userView->setRoles([UserRoleEnum::ADMIN->value]);
 
         // persist
         $this->commandBus->dispatch(new CreateUserCommand($userView));

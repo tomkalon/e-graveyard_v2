@@ -2,15 +2,21 @@
 
 namespace App\Admin\UI\Web\Controller\User;
 
+use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Query\User\UserPaginatedListQueryInterface;
+use App\Admin\UI\Form\User\UserType;
 use App\Core\Domain\Entity\User;
+use App\Core\Domain\Trait\CheckAdminPermissionTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class AdminController extends AbstractController
 {
+    use CheckAdminPermissionTrait;
+
     public function list(
         UserPaginatedListQueryInterface $query,
         Request                         $request,
@@ -26,9 +32,26 @@ class AdminController extends AbstractController
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
         );
 
-        return $this->render('admin/user/admin/index.html.twig', [
+        return $this->render('admin/user/admin/user_list.html.twig', [
             'pagination' => $paginatedUsersList,
             'adminID' => $user->getId()
+        ]);
+    }
+
+    public function create(
+        Request $request,
+    ): Response
+    {
+        $userForm = $this->createForm(UserType::class, new UserView());
+        $userForm->handleRequest($request);
+
+        if ($userForm->isSubmitted() and $userForm->isValid()) {
+            $userView = $userForm->getData();
+
+        }
+
+        return $this->render('admin/user/admin/create.html.twig', [
+            'form' => $userForm->createView()
         ]);
     }
 }
