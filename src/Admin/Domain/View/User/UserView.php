@@ -3,6 +3,7 @@
 namespace App\Admin\Domain\View\User;
 
 use App\Core\Domain\Entity\User;
+use App\Core\Domain\Enum\UserRoleEnum;
 
 class UserView
 {
@@ -14,7 +15,7 @@ class UserView
      */
     private ?string $password = null;
     private ?string $repeatPassword = null;
-    private ?array $roles = null;
+    private array|UserRoleEnum|null $roles = null;
     private ?bool $isVerified;
 
     public function __construct(
@@ -86,12 +87,12 @@ class UserView
         $this->repeatPassword = $repeatPassword;
     }
 
-    public function getRoles(): ?array
+    public function getRoles(): array|UserRoleEnum|null
     {
         return $this->roles;
     }
 
-    public function setRoles(?array $roles): void
+    public function setRoles(array|UserRoleEnum|null $roles): void
     {
         $this->roles = $roles;
     }

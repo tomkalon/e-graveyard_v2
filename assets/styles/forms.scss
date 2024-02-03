@@ -46,3 +46,11 @@
     color: #000000!important;
   }
 }
+
+#create_user_form {
+  #create_user_form_roles {
+    [data-te-select-form-outline-ref] {
+      width: 15rem;
+    }
+  }
+}

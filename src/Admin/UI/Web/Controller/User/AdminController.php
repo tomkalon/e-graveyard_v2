@@ -2,9 +2,11 @@
 
 namespace App\Admin\UI\Web\Controller\User;
 
+use App\Admin\Application\Command\User\SendRegistrationLinkCommand;
 use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Query\User\UserPaginatedListQueryInterface;
 use App\Admin\UI\Form\User\UserType;
+use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Trait\CheckAdminPermissionTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,6 +42,7 @@ class AdminController extends AbstractController
 
     public function create(
         Request $request,
+        CommandBusInterface $commandBus
     ): Response
     {
         $userForm = $this->createForm(UserType::class, new UserView());
@@ -47,7 +50,7 @@ class AdminController extends AbstractController
 
         if ($userForm->isSubmitted() and $userForm->isValid()) {
             $userView = $userForm->getData();
-
+            $commandBus->dispatch(new SendRegistrationLinkCommand($userView));
         }
 
         return $this->render('admin/user/admin/create.html.twig', [

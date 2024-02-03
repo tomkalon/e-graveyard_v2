@@ -16,7 +16,6 @@ security:
       lazy: true
       provider: app_user_provider
       form_login:
-        default_target_path: admin_web_index
         login_path: app_login
         check_path: app_login
       logout:

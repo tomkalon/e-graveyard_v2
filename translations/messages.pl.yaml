@@ -46,7 +46,7 @@ ui:
       pln: zł
       usd: $
       eur: €
-    UserRoleType:
+    userRoleType:
       ROLE_ADMIN: Administrator
       ROLE_MANAGER: Manager
       ROLE_USER: Niezweryfikowany
@@ -110,6 +110,7 @@ ui:
       user_manage: Zarządzanie użytkownikami
     modal:
       remove: Czy chcesz usunąć wskazanego użytkownika?
+    role: Rola
     verification: Weryfikacja
     is_verified: Zweryfikowany
     is_not_verified: Niezweryfikowany

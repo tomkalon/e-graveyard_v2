@@ -12,7 +12,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SaveGraveService implements SaveGraveServiceInterface
 {
@@ -20,7 +19,6 @@ class SaveGraveService implements SaveGraveServiceInterface
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly EntityManagerInterface   $em,
         private readonly NotificationInterface    $notification,
-        private readonly TranslatorInterface      $translator,
     ) {
     }
 
@@ -105,9 +103,9 @@ class SaveGraveService implements SaveGraveServiceInterface
             if (empty($changeSet) and empty($imageChangeSet)) {
                 // no changes notification
                 $this->notification->addNotification('notification', new NotificationDto(
-                    $this->translator->trans('notification.grave.update.label', [], 'flash'),
+                    'notification.grave.update.label',
                     NotificationTypeEnum::INFO,
-                    $this->translator->trans('notification.grave.no_changes', [], 'flash')
+                    'notification.lifecycle.no_changes',
                 ));
             } else {
                 $this->em->persist($grave);

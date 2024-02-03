@@ -24,15 +24,27 @@ class UserType extends AbstractType
                 'required' => true,
             ])
             ->add('roles', EnumType::class, [
+                'label' => 'ui.user.role',
                 'class' => UserRoleEnum::class,
+                'data' => UserRoleEnum::USER,
+                'choice_label' => fn(UserRoleEnum $enum) => $this->translateEnum($enum),
+                'choices' => [
+                    'User' => UserRoleEnum::USER,
+                    'Admin' => UserRoleEnum::MANAGER,
+                ],
+                'required' => true
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => [
                     'class' => 'btn btn-success'
                 ]
-            ])
-        ;
+            ]);
+    }
+
+    private function translateEnum(UserRoleEnum $enum): string
+    {
+        return 'ui.enums.userRoleType.' . $enum->value;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

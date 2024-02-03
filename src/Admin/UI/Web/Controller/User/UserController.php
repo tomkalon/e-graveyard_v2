@@ -2,7 +2,7 @@
 
 namespace App\Admin\UI\Web\Controller\User;
 
-use App\Admin\Application\Command\User\ChangeUserPasswordCommand;
+use App\Admin\Application\Command\User\UpdateUserCommand;
 use App\Admin\Domain\View\User\UserView;
 use App\Admin\UI\Form\User\ChangePasswordType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
@@ -31,13 +31,14 @@ class UserController extends AbstractController
         $user = $security->getUser();
         $userView = UserView::fromEntity($user);
         return $this->render('admin/user/show.html.twig', [
-            'user' => $user
+            'user' => $userView
         ]);
     }
 
     public function changePassword(
         CommandBusInterface $commandBus,
-        Request $request
+        Security            $security,
+        Request             $request
     ): Response
     {
         $changePasswordForm = $this->createForm(ChangePasswordType::class, new UserView());
@@ -45,7 +46,10 @@ class UserController extends AbstractController
 
         if ($changePasswordForm->isSubmitted() and $changePasswordForm->isValid()) {
             $userView = $changePasswordForm->getData();
-            $commandBus->dispatch(new ChangeUserPasswordCommand($userView));
+            /** @var User $loggedUser */
+            $loggedUser = $security->getUser();
+            $userView->setId($loggedUser->getId());
+            $commandBus->dispatch(new UpdateUserCommand($userView));
             return $this->redirectToRoute('admin_web_user_show');
         }
 

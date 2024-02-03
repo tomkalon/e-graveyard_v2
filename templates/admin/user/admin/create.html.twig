@@ -21,7 +21,11 @@
                 {% endif %}
                 <!-- Dashboard Content -->
                 <div class="mt-6">
-                    {{ form_start(form) }}
+                    {{ form_start(form, {
+                        'attr': {
+                            'id': 'create_user_form',
+                        }
+                    }) }}
                     <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             {{ form_row(form.email) }}
@@ -31,7 +35,7 @@
                         </div>
                     </div>
                     <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                        <div>
+                        <div id="create_user_form_roles">
                             {{ form_row(form.roles) }}
                         </div>
                     </div>
@@ -47,7 +51,7 @@
                         </div>
                     </div>
                     {{ form_end(form) }}
-
+                </div>
                 <!-- /Dashboard Content -->
             {% endblock %}
             {% block buttons_after %}
