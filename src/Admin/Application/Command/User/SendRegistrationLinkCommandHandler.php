@@ -81,7 +81,9 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
         $this->notification->addNotification('notification', new NotificationDto(
             'notification.user.invitation.label',
             NotificationTypeEnum::SUCCESS,
-            'notification.user.invitation.success',
+            $this->translator->trans('notification.user.invitation.success', [
+                '%email%' => $userView->getEmail(),
+            ], 'flash'),
         ));
 
     }

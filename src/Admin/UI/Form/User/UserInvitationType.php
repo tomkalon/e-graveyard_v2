@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
+use App\Admin\Infrastructure\Validator\User\isUniqueEmail;
 use App\Admin\Infrastructure\Validator\User\isUniqueUser;
 use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Component\Form\AbstractType;
@@ -24,7 +25,7 @@ class UserInvitationType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true,
                 'constraints' => [
-                    new isUniqueUser()
+                    new isUniqueEmail()
                 ]
             ])
             ->add('create', SubmitType::class, [
