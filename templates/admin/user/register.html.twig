@@ -1,61 +1,18 @@
-{% extends 'admin/common/dashboard/layout.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.user.title.create'|trans }}{% endblock %}
-{% block dashboard_content %}
-    <div class="max-w-[700px]">
-        <!-- Dashboard Card -->
-        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
-            {% block title %}
-                <!-- Dashboard Title -->
-                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.title.create'|trans }}</h1>
-                <!-- /Dashboard Title -->
-            {% endblock %}
-
-            {% block dashboard_content %}
-                <!-- ERRORS -->
-                {% if form_errors(form) %}
-                    {% embed 'core/alerts/error.html.twig' %}
-                        {% block content %}
-                            {{ form_errors(form) }}
-                        {% endblock %}
-                    {% endembed %}
-                {% endif %}
-                <!-- Dashboard Content -->
-                <div class="mt-6">
-                    {{ form_start(form, {
-                        'attr': {
-                            'id': 'create_user_form',
-                        }
-                    }) }}
-                    <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            {{ form_row(form.email) }}
-                        </div>
-                        <div>
-                            {{ form_row(form.firstName, {
-                                'label': 'ui.user.firstname'|trans
-                            }) }}
-                        </div>
-                    </div>
-                    <div class="hidden">
-                        {{ form_row(form.roles, {
-                            'attr': {
-                                'class': 'hidden',
-                                'disabled': 'disabled'
-                            }
-                        }) }}
-                    </div>
-                    <div class="mt-4 flex gap-2">
-                        {{ form_row(form.create, {
-                            'label': 'ui.user.register'|trans,
-                        }) }}
-                    </div>
-                    {{ form_end(form) }}
+{% extends 'core/base.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.register'|trans }}{% endblock %}
+{% block body %}
+    <div class="controller-login w-full grow flex items-center"
+         style="background: url('{{ asset('build/images/user_bg_dark.webp') }}');">
+        <div class="max-w-lg my-8 mx-auto grow rounded-xl shadow-inner border-2 bg-white shadow-neutral-800 border-neutral-800
+                    dark:bg-gray-700 dark:shadow-gray-900 dark:border-gray-500">
+            <div class="flex flex-col justify-center px-6 py-16 lg:px-8 text-neutral-700 dark:text-white">
+                <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">{{ 'ui.user.register'|trans }}</h2>
                 </div>
-                <!-- /Dashboard Content -->
-            {% endblock %}
-            {% block buttons_after %}
-            {% endblock %}
-        {% endembed %}
-        <!-- /Dashboard Card -->
+                <div class="mt-10 pb-20 sm:mx-auto sm:w-full sm:max-w-sm">
+
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

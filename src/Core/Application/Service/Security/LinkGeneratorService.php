@@ -10,11 +10,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
-class LinkGeneratorService implements LinkGeneratorServiceInterface
+readonly class LinkGeneratorService implements LinkGeneratorServiceInterface
 {
     public function __construct(
-        private readonly CacheInterface $cache,
-        private readonly UrlGeneratorInterface $urlGenerator
+        private CacheInterface        $cache,
+        private UrlGeneratorInterface $urlGenerator
     ) {
     }
 
@@ -32,7 +32,7 @@ class LinkGeneratorService implements LinkGeneratorServiceInterface
     {
         $generator = new ComputerPasswordGenerator();
         $generator
-            ->setOptionValue(ComputerPasswordGenerator::OPTION_UPPER_CASE, false)
+            ->setOptionValue(ComputerPasswordGenerator::OPTION_UPPER_CASE, true)
             ->setOptionValue(ComputerPasswordGenerator::OPTION_LOWER_CASE, true)
             ->setOptionValue(ComputerPasswordGenerator::OPTION_NUMBERS, true)
             ->setOptionValue(ComputerPasswordGenerator::OPTION_SYMBOLS, false)

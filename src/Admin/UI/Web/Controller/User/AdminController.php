@@ -5,7 +5,7 @@ namespace App\Admin\UI\Web\Controller\User;
 use App\Admin\Application\Command\User\SendRegistrationLinkCommand;
 use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Query\User\UserPaginatedListQueryInterface;
-use App\Admin\UI\Form\User\UserType;
+use App\Admin\UI\Form\User\UserInvitationType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Trait\CheckAdminPermissionTrait;
@@ -45,7 +45,7 @@ class AdminController extends AbstractController
         CommandBusInterface $commandBus
     ): Response
     {
-        $userForm = $this->createForm(UserType::class, new UserView());
+        $userForm = $this->createForm(UserInvitationType::class, new UserView());
         $userForm->handleRequest($request);
 
         if ($userForm->isSubmitted() and $userForm->isValid()) {

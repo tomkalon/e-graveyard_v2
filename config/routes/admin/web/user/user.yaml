@@ -4,9 +4,10 @@ app_login:
   controller: App\Admin\UI\Web\Controller\User\LoginController::login
   
 app_register:
-  path: /admin/register
+  path: /admin/register/{token}
   methods: [ GET, POST ]
-  
+  controller: App\Admin\UI\Web\Controller\User\LoginController::register
+
 app_logout:
   path: /admin/logout
   methods: [ GET ]

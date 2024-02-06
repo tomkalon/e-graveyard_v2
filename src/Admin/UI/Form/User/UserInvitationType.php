@@ -8,18 +8,17 @@ use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class UserInvitationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, [
+            ->add('firstName', TextType::class, [
                 'required' => true,
             ])
             ->add('email', EmailType::class, [
@@ -28,14 +27,8 @@ class UserType extends AbstractType
                     new isUniqueUser()
                 ]
             ])
-            ->add('password', PasswordType::class, [
-                'required' => true,
-            ])
-            ->add('repeatPassword', PasswordType::class, [
-                'required' => true,
-            ])
-            ->add('register', SubmitType::class, [
-                'label' => 'ui.user.register',
+            ->add('create', SubmitType::class, [
+                'label' => 'ui.buttons.create',
                 'attr' => [
                     'class' => 'btn btn-success'
                 ]

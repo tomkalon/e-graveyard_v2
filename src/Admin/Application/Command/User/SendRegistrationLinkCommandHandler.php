@@ -12,17 +12,17 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class SendRegistrationLinkCommandHandler implements CommandHandlerInterface
+readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly LinkGeneratorServiceInterface $linkGeneratorService,
-        private readonly TranslatorInterface $translator,
-        private readonly MailerInterface $mailer,
-        private readonly TimeConverterUtilityInterface $timeConverterUtility,
-        private readonly string $linkExpiration,
-        private readonly string $senderEmail,
-        private readonly string $senderName,
-        private readonly string $appTitle,
+        private LinkGeneratorServiceInterface $linkGeneratorService,
+        private TranslatorInterface           $translator,
+        private MailerInterface               $mailer,
+        private TimeConverterUtilityInterface $timeConverterUtility,
+        private string                        $linkExpiration,
+        private string                        $senderEmail,
+        private string                        $senderName,
+        private string                        $appTitle,
     ) {
     }
 
@@ -33,7 +33,7 @@ class SendRegistrationLinkCommandHandler implements CommandHandlerInterface
     {
         $userView = $command->getUserView();
 
-        $link = $this->linkGeneratorService->generate('app_register', $userView->getEmail(), $this->linkExpiration, null, 'generated_register_link_');
+        $link = $this->linkGeneratorService->generate('app_register', $userView->getEmail(), $this->linkExpiration, 30, 'generated_register_link_');
 
         $expiration = $this->timeConverterUtility->convertSecondsToTime($this->linkExpiration, TimeUnitsEnum::HOUR);
 
