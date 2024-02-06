@@ -6,22 +6,26 @@ use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\NotificationTypeEnum;
 use App\Core\Domain\Enum\UserRoleEnum;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 trait CheckAdminPermissionTrait
 {
     public function __construct(private readonly UrlGeneratorInterface $urlGenerator,
                                 private readonly NotificationInterface $notification,
-                                private readonly Security $security
-    )
-    {
+                                private readonly TokenStorageInterface $tokenStorage,
+    ) {
     }
 
     public function isAdmin(): ?RedirectResponse
     {
-        $roles = $this->security->getUser()->getRoles();
+        $roles = [];
+        $token = $this->tokenStorage->getToken();
+        if ($token) {
+            $roles = $token->getUser()->getRoles();
+        }
+
         if (!in_array(UserRoleEnum::ADMIN->value, $roles)) {
             $this->notification->addNotification('flash', new NotificationDto(
                     'notification.user.login.title',
@@ -45,7 +49,6 @@ trait CheckAdminPermissionTrait
             );
             $url = $this->urlGenerator->generate('main_web_index');
             return new RedirectResponse($url);
-
         }
 
         if (!in_array(UserRoleEnum::USER->value, $roles)) {

@@ -124,7 +124,7 @@ ui:
       email: Adres email
       username: Nazwa użytkownika
       password: Hasło
-      repeat_password: Powtórz hasło
+      repeatPassword: Powtórz hasło
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
     description:

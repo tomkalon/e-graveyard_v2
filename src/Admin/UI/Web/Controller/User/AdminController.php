@@ -10,7 +10,6 @@ use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Trait\CheckAdminPermissionTrait;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,12 +21,11 @@ class AdminController extends AbstractController
     public function list(
         UserPaginatedListQueryInterface $query,
         Request                         $request,
-        Security                        $security,
         int                             $page
     ): Response
     {
         /** @var User $user */
-        $user = $security->getUser();
+        $user = $this->getUser();
 
         $paginatedUsersList = $query->execute(
             $page,
@@ -51,6 +49,7 @@ class AdminController extends AbstractController
         if ($userForm->isSubmitted() and $userForm->isValid()) {
             $userView = $userForm->getData();
             $commandBus->dispatch(new SendRegistrationLinkCommand($userView));
+            return $this->redirectToRoute('admin_web_user_list');
         }
 
         return $this->render('admin/user/admin/send_invitation.html.twig', [

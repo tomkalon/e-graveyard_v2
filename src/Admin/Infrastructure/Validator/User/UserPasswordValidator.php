@@ -3,8 +3,6 @@
 namespace App\Admin\Infrastructure\Validator\User;
 
 use App\Admin\Domain\View\User\UserView;
-use App\Core\Domain\Entity\User;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
 

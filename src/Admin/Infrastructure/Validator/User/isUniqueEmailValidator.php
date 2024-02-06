@@ -7,7 +7,7 @@ use App\Admin\Domain\View\User\UserView;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class isUniqueUserValidator extends ConstraintValidator
+class isUniqueEmailValidator extends ConstraintValidator
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
@@ -20,8 +20,8 @@ class isUniqueUserValidator extends ConstraintValidator
         /** @var UserView $userView */
         $userView = $this->context->getRoot()->getData();
 
-        if ($this->userRepository->getUsersByOptions(null, $userView->getUsername())) {
-            $this->context->buildViolation($constraint->username)
+        if ($this->userRepository->getUsersByOptions($userView->getEmail())) {
+            $this->context->buildViolation($constraint->email)
                 ->addViolation();
         }
     }

@@ -8,27 +8,24 @@ use App\Admin\UI\Form\User\ChangePasswordType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
 {
-    public function index(
-        Security $security
-    ): Response
+    public function index(): Response
     {
         /** @var User $user */
-        $user = $security->getUser();
+        $user = $this->getUser();
         return $this->render('admin/user/index.html.twig', [
             'user' => $user
         ]);
     }
 
-    public function show(Security $security): Response
+    public function show(): Response
     {
         /** @var User $user */
-        $user = $security->getUser();
+        $user = $this->getUser();
         $userView = UserView::fromEntity($user);
         return $this->render('admin/user/show.html.twig', [
             'user' => $userView
@@ -37,7 +34,6 @@ class UserController extends AbstractController
 
     public function changePassword(
         CommandBusInterface $commandBus,
-        Security            $security,
         Request             $request
     ): Response
     {
@@ -47,7 +43,7 @@ class UserController extends AbstractController
         if ($changePasswordForm->isSubmitted() and $changePasswordForm->isValid()) {
             $userView = $changePasswordForm->getData();
             /** @var User $loggedUser */
-            $loggedUser = $security->getUser();
+            $loggedUser = $this->getUser();
             $userView->setId($loggedUser->getId());
             $commandBus->dispatch(new UpdateUserCommand($userView));
             return $this->redirectToRoute('admin_web_user_show');

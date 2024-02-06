@@ -8,15 +8,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use UnexpectedValueException;
 
-class CreateUserService implements CreateUserServiceInterface
+readonly class CreateUserService implements CreateUserServiceInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface      $em,
-        private readonly UserPasswordHasherInterface $hasher,
+        private EntityManagerInterface      $em,
+        private UserPasswordHasherInterface $hasher,
     ) {
     }
 
-    public function persist(UserView $userView, ?bool $isSendEmail = false): void
+    public function persist(UserView $userView): void
     {
 
         $user = new User();

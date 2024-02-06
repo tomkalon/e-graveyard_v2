@@ -5,11 +5,10 @@ namespace App\Admin\Application\Command\User;
 use App\Admin\Domain\View\User\UserView;
 use App\Core\Application\CQRS\Command\CommandInterface;
 
-class CreateUserCommand implements CommandInterface
+readonly class CreateUserCommand implements CommandInterface
 {
     public function __construct(
-        private readonly UserView $userView,
-        private readonly ?bool    $sendEmail = false,
+        private UserView $userView
     )
     {
     }
@@ -17,10 +16,5 @@ class CreateUserCommand implements CommandInterface
     public function getUserView(): UserView
     {
         return $this->userView;
-    }
-
-    public function isSendEmail(): ?bool
-    {
-        return $this->sendEmail;
     }
 }

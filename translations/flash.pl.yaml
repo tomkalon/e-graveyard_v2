@@ -20,6 +20,9 @@ notification:
     remove:
       label: Usuwanie użytkownika
       success: Usuwanie użytkownika
+    invitation:
+      label: Nowy użytkownik
+      success: 'Pomyślnie wysłano zaproszenie.'
     login:
       title: Logowanie
       time: Czas

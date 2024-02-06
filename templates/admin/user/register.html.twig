@@ -10,7 +10,13 @@
                     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">{{ 'ui.user.register'|trans }}</h2>
                 </div>
                 <div class="mt-10 pb-20 sm:mx-auto sm:w-full sm:max-w-sm">
-
+                    {{ form_start(form) }}
+                    <div class="my-4">{{ form_row(form.email) }}</div>
+                    <div class="my-4">{{ form_row(form.username) }}</div>
+                    <div class="my-4">{{ form_row(form.password) }}</div>
+                    <div class="my-4">{{ form_row(form.repeatPassword) }}</div>
+                    <div class="my-8">{{ form_row(form.register) }}</div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>

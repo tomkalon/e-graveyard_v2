@@ -6,11 +6,11 @@ use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Domain\Utility\FlashMessage\FlashMessageInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-class Notification implements NotificationInterface
+readonly class Notification implements NotificationInterface
 {
     public function __construct(
-        private readonly FlashMessageInterface $flashMessage,
-        private readonly TranslatorInterface $translator
+        private FlashMessageInterface $flashMessage,
+        private TranslatorInterface   $translator
     ) {
     }
 

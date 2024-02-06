@@ -4,9 +4,9 @@ namespace App\Admin\Infrastructure\Validator\User;
 
 use Symfony\Component\Validator\Constraint;
 
-class isUniqueUser extends Constraint
+class isUniqueEmail extends Constraint
 {
-    public string $username = 'validation.user.is_not_unique_username';
+    public string $email = 'validation.user.is_not_unique_user';
 
     public function validatedBy(): string
     {

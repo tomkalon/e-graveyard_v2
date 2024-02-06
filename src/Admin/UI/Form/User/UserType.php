@@ -3,11 +3,11 @@
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
+use App\Admin\Infrastructure\Validator\User\isUniqueEmail;
 use App\Admin\Infrastructure\Validator\User\isUniqueUser;
-use App\Core\Domain\Enum\UserRoleEnum;
+use App\Admin\Infrastructure\Validator\User\UserPassword;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,15 +21,21 @@ class UserType extends AbstractType
         $builder
             ->add('username', TextType::class, [
                 'required' => true,
-            ])
-            ->add('email', EmailType::class, [
-                'required' => true,
                 'constraints' => [
                     new isUniqueUser()
                 ]
             ])
+            ->add('email', EmailType::class, [
+                'required' => true,
+                'constraints' => [
+                    new isUniqueEmail()
+                ]
+            ])
             ->add('password', PasswordType::class, [
                 'required' => true,
+                'constraints' => [
+                    new UserPassword()
+                ]
             ])
             ->add('repeatPassword', PasswordType::class, [
                 'required' => true,

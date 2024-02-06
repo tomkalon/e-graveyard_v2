@@ -7,7 +7,9 @@ app_register:
   path: /admin/register/{token}
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\User\LoginController::register
-
+  defaults:
+    token: null
+    
 app_logout:
   path: /admin/logout
   methods: [ GET ]

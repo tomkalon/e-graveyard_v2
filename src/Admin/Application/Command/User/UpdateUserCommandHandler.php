@@ -5,10 +5,10 @@ namespace App\Admin\Application\Command\User;
 use App\Admin\Application\Service\User\UpdateUserServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 
-class UpdateUserCommandHandler implements CommandHandlerInterface
+readonly class UpdateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly UpdateUserServiceInterface $updateUserService,
+        private UpdateUserServiceInterface $updateUserService,
     ) {
     }
 
