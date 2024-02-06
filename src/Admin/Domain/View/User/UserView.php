@@ -7,6 +7,7 @@ use App\Core\Domain\Enum\UserRoleEnum;
 
 class UserView
 {
+    private ?string $firstName = null;
     private ?string $id = null;
     private ?string $email;
     private ?string $username;
@@ -45,6 +46,16 @@ class UserView
     public function setId(?string $id): void
     {
         $this->id = $id;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
     }
 
     public function getEmail(): ?string

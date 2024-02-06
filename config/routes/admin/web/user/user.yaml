@@ -3,6 +3,10 @@ app_login:
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\User\LoginController::login
   
+app_register:
+  path: /admin/register
+  methods: [ GET, POST ]
+  
 app_logout:
   path: /admin/logout
   methods: [ GET ]
@@ -22,4 +26,3 @@ admin_web_user_change_password:
   path: /admin/user/change_password
   methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\User\UserController::changePassword
-

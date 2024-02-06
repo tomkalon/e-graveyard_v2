@@ -82,7 +82,7 @@
                         <i class="cursor-pointer fa {% if app.request.cookies.get('THEME_MODE_TOGGLE') %}{{ app.request.cookies.get('THEME_MODE_TOGGLE') }}{% else %}fa-toggle-on{% endif %}"
                            aria-hidden="true" data-main--common--toggle-mode-target="toggleTheme"></i>
                     </li>
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% if is_granted('ROLE_USER') %}
                         <li class="w-36 leading-none truncate mb-0 pr-2 hidden lg:block uppercase">
                             <span class="text-xs dark:text-white leading-none mt-1">{{ 'ui.nav.menu.logged'|trans }}</span>
                             <span class="block text-sm text-cyan-950 dark:text-sky-500">{{ app.user.username }}</span>

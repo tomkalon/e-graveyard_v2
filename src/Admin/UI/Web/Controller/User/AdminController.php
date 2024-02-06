@@ -53,7 +53,7 @@ class AdminController extends AbstractController
             $commandBus->dispatch(new SendRegistrationLinkCommand($userView));
         }
 
-        return $this->render('admin/user/admin/create.html.twig', [
+        return $this->render('admin/user/admin/send_invitation.html.twig', [
             'form' => $userForm->createView()
         ]);
     }

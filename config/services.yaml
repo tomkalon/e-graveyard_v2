@@ -40,6 +40,12 @@ services:
     # please note that last definitions always *replace* previous ones
   
   ### SERVICES ###
+    # GRAVE IMAGE UPLOAD #
+    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
+      arguments:
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
+
 
   ### COMMANDS ###
     App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
@@ -75,9 +81,3 @@ services:
         $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
       tags:
         - { name: doctrine.event_listener, event: postRemove }
-  
-    ### DOCTRINE ENTITY PERSIST ###
-    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
-      arguments:
-        $targetDirectory: '%app.path.grave_images%'
-        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'

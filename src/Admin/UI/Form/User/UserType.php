@@ -3,6 +3,7 @@
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
+use App\Admin\Infrastructure\Validator\User\isUniqueUser;
 use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -17,11 +18,14 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, [
+            ->add('firstName', TextType::class, [
                 'required' => true,
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
+                'constraints' => [
+                    new isUniqueUser()
+                ]
             ])
             ->add('roles', EnumType::class, [
                 'label' => 'ui.user.role',
@@ -30,7 +34,8 @@ class UserType extends AbstractType
                 'choice_label' => fn(UserRoleEnum $enum) => $this->translateEnum($enum),
                 'choices' => [
                     'User' => UserRoleEnum::USER,
-                    'Admin' => UserRoleEnum::MANAGER,
+                    'Manager' => UserRoleEnum::MANAGER,
+                    'Admin' => UserRoleEnum::ADMIN,
                 ],
                 'required' => true
             ])

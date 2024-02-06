@@ -22,6 +22,7 @@
   }
 
   input {
+    &[type="email"],
     &[type="number"],
     &[type="text"],
     &[type="password"],
@@ -44,13 +45,5 @@
 .dark {
   [data-te-select-input-ref] {
     color: #000000!important;
-  }
-}
-
-#create_user_form {
-  #create_user_form_roles {
-    [data-te-select-form-outline-ref] {
-      width: 15rem;
-    }
   }
 }

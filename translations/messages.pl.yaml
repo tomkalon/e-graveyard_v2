@@ -46,11 +46,32 @@ ui:
       pln: zł
       usd: $
       eur: €
-    userRoleType:
+    userRole:
       ROLE_ADMIN: Administrator
       ROLE_MANAGER: Manager
       ROLE_USER: Niezweryfikowany
       PUBLIC_ACCESS: Dostęp publiczny
+    timeUnit:
+      minute: Minuta
+      hour: Godzina
+      day: Dzień
+      week: Tydzień
+      month: Miesiąc
+      year: Rok
+      short:
+        minute: min.
+        hour: godz.
+        day: D
+        week: tyg.
+        month: mies.
+        year: Y
+      plural:
+        minute: Minut
+        hour: Godzin
+        day: Dni
+        week: Tygodni
+        month: Miesięcy
+        year: Lat
 
   common:
     updatedAt: Data edycji
@@ -93,6 +114,8 @@ ui:
     label: Użytkownik
     plural: Użytkownicy
     admin: Administrator
+    firstname: Imię
+    register: Zarejestruj się
     title:
       project_manager: Zarządzanie projektem
       create: Dodawanie użytkownika
@@ -122,6 +145,8 @@ ui:
     changing_password: Zmiana hasła
     change_permission: Zmień uprawnienia
     remove: Usuwanie użytkownika
+    content:
+      adding_register_invitation: Użytkownik dostanie zaproszenie do rejestracji na podany adres email.
     
   grave:
     label: Grób

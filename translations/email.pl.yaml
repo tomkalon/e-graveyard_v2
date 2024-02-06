@@ -4,8 +4,8 @@ email:
       subject: Link do rejestracji
       hello: 'Witaj %name%!'
       content: Klikając poniższy link, zostaniesz przeniesiony do formularza rejestracji na portalu do zarządzania cmentarzem.
-      expiration: 'Link ważny jest tylko do %expiration%!'
+      expiration: 'Link ważny jest tylko %expiration%!'
       link_button: 'Zarejestruj się!'
       regards: |
         Pozdrawiamy,
-        Zespół %app_name%
+        Zespół %app_title%
