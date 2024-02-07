@@ -16,6 +16,7 @@ security:
       lazy: true
       provider: app_user_provider
       form_login:
+        default_target_path: admin_web_user_index
         login_path: app_login
         check_path: app_login
       logout:
@@ -38,9 +39,12 @@ security:
   access_control:
     - { path: ^/admin/login, roles: PUBLIC_ACCESS }
     - { path: ^/admin/register, roles: PUBLIC_ACCESS }
+    - { path: ^/admin/logout, roles: ROLE_USER }
+    - { path: ^/admin/user, roles: ROLE_USER }
     - { path: ^/api, roles: ROLE_MANAGER }
     - { path: ^/admin, roles: ROLE_MANAGER }
     - { path: ^/api/admin/graveyard, roles: ROLE_ADMIN }
+    - { path: ^/api/admin/user, roles: ROLE_ADMIN }
     - { path: ^/admin/graveyard, roles: ROLE_ADMIN }
     - { path: ^/admin/user/list, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }

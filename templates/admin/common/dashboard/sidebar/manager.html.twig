@@ -1,0 +1,57 @@
+<ul class="flex flex-col py-4 space-y-1">
+    <!-- GRAVES -->
+    <li class="px-5 hidden md:block">
+        <div class="flex-center-h mt-5 h-8">
+            <div class="text-sm font-bold tracking-wide text-gray-200 dark:text-gray-300 uppercase">{{ 'ui.sidebar.grave.label'|trans }}</div>
+        </div>
+    </li>
+    <li>
+        <a href="{{ path('admin_web_grave_index') }}"
+           class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="ml-4">
+                        <i class="fa fa-square w-5" aria-hidden="true"></i>
+                    </span>
+            <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.sidebar.grave.label'|trans }}</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_web_grave_create') }}"
+           class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="inline-flex justify-center items-center ml-4">
+                        <i class="fa fa-plus-circle w-5" aria-hidden="true"></i>
+                    </span>
+            <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.sidebar.grave.add'|trans }}</span>
+        </a>
+    </li>
+    <li class="md:hidden pt-2"></li>
+    <!-- PEOPLE -->
+    <li class="px-5 hidden md:block">
+        <div class="flex-center-h mt-5 h-8">
+            <div class="header text-sm font-bold tracking-wide text-gray-200 dark:text-gray-300 uppercase">{{ 'ui.sidebar.person.label'|trans }}</div>
+        </div>
+    </li>
+    <li>
+        <a href="{{ path('admin_web_person_index') }}"
+           class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="ml-4">
+                        <i class="fa fa-users w-5" aria-hidden="true"></i>
+                    </span>
+            <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.sidebar.person.label'|trans }}</span>
+        </a>
+    </li>
+    <!-- USER -->
+    <li class="px-5 hidden md:block">
+        <div class="flex-center-h mt-5 h-8">
+            <div class="header text-sm font-bold tracking-wide text-gray-200 dark:text-gray-300 uppercase">{{ 'ui.sidebar.user.label'|trans }}</div>
+        </div>
+    </li>
+    <li>
+        <a href="{{ path('admin_web_user_show') }}"
+           class="relative flex-center-h h-11 focus:outline-none hover:bg-gray-600 text-white hover:text-white border-l-4 border-transparent hover:border-gray-800 py-1 pr-6 rounded-r-lg">
+                    <span class="ml-4">
+                        <i class="fa fa-user-circle-o w-5" aria-hidden="true"></i>
+                    </span>
+            <span class="label ml-2 text-sm tracking-wide truncate">{{ 'ui.sidebar.user.settings'|trans }}</span>
+        </a>
+    </li>
+</ul>

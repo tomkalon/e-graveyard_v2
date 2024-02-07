@@ -3,6 +3,8 @@
     <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
         {% if is_granted('ROLE_ADMIN')  %}
             {% include 'admin/common/dashboard/sidebar/admin.html.twig' %}
+        {% elseif is_granted('ROLE_MANAGER')  %}
+            {% include 'admin/common/dashboard/sidebar/manager.html.twig' %}
         {% elseif is_granted('ROLE_USER')  %}
             {% include 'admin/common/dashboard/sidebar/user.html.twig' %}
         {% endif %}

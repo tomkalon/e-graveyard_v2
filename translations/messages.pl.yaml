@@ -146,6 +146,7 @@ ui:
     change_permission: Zmień uprawnienia
     remove: Usuwanie użytkownika
     content:
+      account_is_not_verified: Konto nie jest zweryfikowane. By przyspieszyć aktywację, skontaktuj się z administratorem.
       adding_register_invitation: Użytkownik dostanie zaproszenie do rejestracji na podany adres email.
     
   grave:

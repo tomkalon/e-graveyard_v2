@@ -18,7 +18,8 @@ use Symfony\Contracts\Cache\CacheInterface;
 
 class LoginController extends AbstractController
 {
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(
+        AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -70,7 +71,7 @@ class LoginController extends AbstractController
             $userView = $form->getData();
             $commandBus->dispatch(new CreateUserCommand($userView));
             $cache->delete($token);
-            return $this->redirectToRoute('admin_web_user_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('admin/user/register.html.twig', [

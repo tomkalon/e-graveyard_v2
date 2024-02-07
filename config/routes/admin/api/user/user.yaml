@@ -1,12 +1,12 @@
 admin_api_user_get:
-  path: /manage/user/{id}
+  path: /user/{id}
   methods: [ GET ]
   controller: App\Admin\UI\Api\Controller\User\UserController::get
   options:
     expose: true
     
 admin_api_user_remove:
-  path: /manage/remove/{id}
+  path: /user/{id}
   methods: [ DELETE ]
   controller: App\Admin\UI\Api\Controller\User\UserController::remove
   options:

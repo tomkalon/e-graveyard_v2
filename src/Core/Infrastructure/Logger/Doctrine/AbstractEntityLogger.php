@@ -41,18 +41,18 @@ abstract class AbstractEntityLogger
     protected function getItemData(object $entity): string
     {
         return match (true) {
-            $entity instanceof Grave => sprintf('%s -> S: %d, R: %d, N: %d :::: %s',
-                $entity->getGraveyard()->getName(), $entity->getSector(), $entity->getRow(), $entity->getNumber(), $entity->getId()),
-            $entity instanceof Graveyard => sprintf('%s :::: %s',
-                $entity->getName(), $entity->getId()),
-            $entity instanceof User => sprintf('%s :::: %s',
-                $entity->getUsername(), $entity->getId()),
-            $entity instanceof File => sprintf('%s.%s :::: %s',
-                $entity->getFilename(), $entity->getExtension()->value, $entity->getId()),
-            $entity instanceof Person => sprintf('%s %s :::: %s',
-                $entity->getFirstname(), $entity->getLastname(), $entity->getId()),
-            $entity instanceof Payment => sprintf('%d %s :::: %s',
-                $entity->getValue(), $entity->getCurrency()->value, $entity->getId()),
+            $entity instanceof Grave => sprintf('%s -> S: %d, R: %d, N: %d',
+                $entity->getGraveyard()->getName(), $entity->getSector(), $entity->getRow(), $entity->getNumber()),
+            $entity instanceof Graveyard => sprintf('%s',
+                $entity->getName()),
+            $entity instanceof User => sprintf('%s',
+                $entity->getUsername()),
+            $entity instanceof File => sprintf('%s.%s',
+                $entity->getFilename(), $entity->getExtension()->value),
+            $entity instanceof Person => sprintf('%s %s',
+                $entity->getFirstname(), $entity->getLastname()),
+            $entity instanceof Payment => sprintf('%d %s',
+                $entity->getValue(), $entity->getCurrency()->value),
             default => 'UndefinedObject',
         };
     }

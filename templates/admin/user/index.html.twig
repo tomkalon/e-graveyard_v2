@@ -10,6 +10,11 @@
                 <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.index'|trans({'%username%': user.username}) }}!</h2>
                 <!-- /Dashboard Title -->
             {% endblock %}
+            {% block dashboard_content %}
+                {% if not is_granted('ROLE_MANAGER') %}
+
+                {% endif %}
+            {% endblock %}
         {% endembed %}
         <!-- /Dashboard Card -->
     </div>

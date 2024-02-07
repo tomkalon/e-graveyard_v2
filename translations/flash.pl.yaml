@@ -15,6 +15,9 @@ notification:
     name: Użytkownik
     create:
       label: Tworzenie nowego użytkownika
+      success: |
+        Utworzono nowego użytkownika. Możesz się zalogować, jednak konto nie jest jeszcze zweryfikowane.
+        gdy administrator potwierdzi Twoje konto, zyskać dostęp do wszystkich dostępnych Ci funkcji.
     update:
       label: Aktualizacja danych użytkownika
     remove:
@@ -22,7 +25,7 @@ notification:
       success: Usuwanie użytkownika
     invitation:
       label: Nowy użytkownik
-      success: 'Pomyślnie wysłano zaproszenie.'
+      success: 'Pomyślnie wysłano zaproszenie do:<br/>%email%.'
     login:
       title: Logowanie
       time: Czas

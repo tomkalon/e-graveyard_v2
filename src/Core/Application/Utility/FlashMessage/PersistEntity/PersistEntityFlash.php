@@ -67,6 +67,11 @@ class PersistEntityFlash implements PersistEntityFlashInterface
                 ],
                 'flash'
             ),
+            $entity instanceof User => $this->translator->trans(
+                'notification.person.create.success',
+                [],
+                'flash'
+            ),
             $entity instanceof Person => $this->translator->trans(
                 'notification.person.create.success',
                 [
