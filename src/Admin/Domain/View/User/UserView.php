@@ -17,7 +17,6 @@ class UserView
     private ?string $password = null;
     private ?string $repeatPassword = null;
     private array|UserRoleEnum|null $roles = null;
-    private ?bool $isVerified;
 
     public function __construct(
         ?string $email = null,
@@ -26,7 +25,6 @@ class UserView
     ) {
         $this->email = $email;
         $this->username = $username;
-        $this->isVerified = $isVerified;
     }
 
     public static function fromEntity(User $user): self
@@ -34,7 +32,6 @@ class UserView
         return new self(
             $user->getEmail(),
             $user->getUsername(),
-            $user->isVerified(),
         );
     }
 
@@ -106,15 +103,5 @@ class UserView
     public function setRoles(array|UserRoleEnum|null $roles): void
     {
         $this->roles = $roles;
-    }
-
-    public function getIsVerified(): ?bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(?bool $isVerified): void
-    {
-        $this->isVerified = $isVerified;
     }
 }

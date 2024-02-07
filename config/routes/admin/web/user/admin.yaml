@@ -1,6 +1,6 @@
 admin_web_user_list:
   path: /admin/manage/user/{page<\d+>}
-  methods: [ GET ]
+  methods: [ GET, POST ]
   controller: App\Admin\UI\Web\Controller\User\AdminController::list
   defaults:
     page: 1

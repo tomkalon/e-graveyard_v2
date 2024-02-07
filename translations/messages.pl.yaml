@@ -48,7 +48,7 @@ ui:
       eur: €
     userRole:
       ROLE_ADMIN: Administrator
-      ROLE_MANAGER: Manager
+      ROLE_MANAGER: Menedżer
       ROLE_USER: Niezweryfikowany
       PUBLIC_ACCESS: Dostęp publiczny
     timeUnit:
@@ -132,21 +132,20 @@ ui:
       manage: Zarządzanie kontem
       user_manage: Zarządzanie użytkownikami
     modal:
+      changing_permission: Zmień uprawnienia użytkownika.
       remove: Czy chcesz usunąć wskazanego użytkownika?
-    role: Rola
-    verification: Weryfikacja
-    is_verified: Zweryfikowany
-    is_not_verified: Niezweryfikowany
-    click_to_verify: Kliknij, by zweryfikować
-    click_to_set_unverified: Kliknij, by zweryfikować
+    role:
+      label: Rola
+    verification: Rola
     add_user: Dodaj użytkownika
     change_password: Zmień hasło
     reset_password: Resetuj hasło
     changing_password: Zmiana hasła
     change_permission: Zmień uprawnienia
+    changing_permission: Zmiana uprawnień
     remove: Usuwanie użytkownika
     content:
-      account_is_not_verified: Konto nie jest zweryfikowane. By przyspieszyć aktywację, skontaktuj się z administratorem.
+      account_is_not_verified: Konto nie posiada jeszcze nadanych uprawnień. Skontaktuj się z administratorem.
       adding_register_invitation: Użytkownik dostanie zaproszenie do rejestracji na podany adres email.
     
   grave:

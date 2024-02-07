@@ -25,6 +25,8 @@ security:
       remember_me:
         secret:   '%kernel.secret%'
         lifetime: 10800
+      entry_point: App\Core\Domain\Security\AuthenticationEntryPoint
+      access_denied_handler: App\Core\Domain\Security\AccessDeniedHandler
     secured_area:
       form_login:
         enable_csrf: true

@@ -1,0 +1,19 @@
+{% if 'ROLE_ADMIN' in item.roles %}
+    <button gemma-tooltip="top"
+            gemma-tooltip-label="{{ 'ui.enums.userRole.ROLE_ADMIN'|trans }}"
+            class="btn btn-xs btn-success">
+        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    </button>
+{% elseif 'ROLE_MANAGER' in item.roles %}
+    <button gemma-tooltip="top"
+            gemma-tooltip-label="{{ 'ui.enums.userRole.ROLE_MANAGER'|trans }}"
+            class="btn btn-xs btn-warning">
+        <i class="fa fa-user-o" aria-hidden="true"></i>
+    </button>
+{% elseif 'ROLE_USER' in item.roles %}
+    <button gemma-tooltip="top"
+            gemma-tooltip-label="{{ 'ui.enums.userRole.ROLE_USER'|trans }}"
+            class="btn btn-xs btn-danger">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+{% endif %}

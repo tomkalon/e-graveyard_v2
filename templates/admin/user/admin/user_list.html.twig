@@ -47,21 +47,7 @@
                     } %}
                     {% embed 'core/pagination/_body_action.html.twig' %}
                         {% block actions %}
-                            {% if item.isVerified %}
-                                <button gemma-tooltip="top"
-                                        gemma-tooltip-label="{{ 'ui.user.is_verified'|trans }} -> {{ 'ui.user.click_to_set_unverified'|trans }}"
-                                        class="btn btn-xs btn-success"
-                                        data-modal-target="user-modal-verify">
-                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                </button>
-                            {% else %}
-                                <button gemma-tooltip="top"
-                                        gemma-tooltip-label="{{ 'ui.user.is_not_verified'|trans }} -> {{ 'ui.user.click_to_verify'|trans }}"
-                                        class="btn btn-xs btn-danger"
-                                        data-modal-target="user-modal-verify">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </button>
-                            {% endif %}
+                            {% include 'admin/user/admin/user_list/_user_role.html.twig' %}
                         {% endblock %}
                     {% endembed %}
                     {% embed 'core/pagination/_body_action.html.twig' with {

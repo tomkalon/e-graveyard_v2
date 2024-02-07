@@ -55,10 +55,6 @@ class UpdateUserService implements UpdateUserServiceInterface
             $user->setRoles($userView->getRoles());
         }
 
-        if ($userView->getIsVerified()) {
-            $user->setIsVerified($userView->getIsVerified());
-        }
-
         // checks whether the entity is different from the one already saved in the database.
         $uow = $this->em->getUnitOfWork();
         $uow->computeChangeSets();

@@ -26,11 +26,24 @@ export default class extends Controller {
     {
         let callback, options;
         switch (action) {
+            case 'user-modal-permission':
+                callback = this.changePermission
+                break;
             case 'user-modal-remove':
                 callback = this.remove
                 break;
         }
         HandleItems.clickAction(button, id, 'admin_api_user_get', callback)
+    }
+
+    changePermission(item, params)
+    {
+        const userFormID = document.querySelector('#change_role_id')
+        userFormID.value = params.id
+        console.log(userFormID)
+        const name = 'user-modal-permission'
+        const content = getUser(item)
+        const modal = Modal.getModal(name, content, null)
     }
 
     remove(item, params)

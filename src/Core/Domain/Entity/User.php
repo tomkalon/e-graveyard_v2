@@ -16,7 +16,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $email;
     private array $roles = [];
     private string $username;
-    private ?bool $isVerified = false;
 
     /**
      * @var string The hashed password
@@ -57,10 +56,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
-        if ($this->isVerified()) {
-            $roles[] = 'ROLE_MANAGER';
-        }
 
         return array_unique($roles);
     }
@@ -105,18 +100,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): static
-    {
-        $this->isVerified = $isVerified;
 
         return $this;
     }

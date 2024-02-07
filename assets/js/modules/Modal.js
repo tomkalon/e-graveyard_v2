@@ -20,8 +20,6 @@ const getModal = (name, contentBefore = null, contentAfter = null,  buttons = nu
 
     // modal pattern
     const modal = document.querySelector('[data-modal-box="' + name + '"]')
-    console.log(name)
-    console.log(modal)
 
     // // modal instance
     modal.setAttribute('data-modal-open', name)

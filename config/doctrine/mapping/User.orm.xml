@@ -12,7 +12,6 @@
         <field name="email" unique="true" length="60"/>
         <field name="roles" type="json" />
         <field name="username" length="50"/>
-        <field name="isVerified" type="boolean" nullable="true" />
         <field name="password" />
 
         <lifecycle-callbacks>

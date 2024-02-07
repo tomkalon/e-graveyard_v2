@@ -12,7 +12,7 @@
             {% endblock %}
             {% block dashboard_content %}
                 {% if not is_granted('ROLE_MANAGER') %}
-
+                    {{ 'ui.user.content.account_is_not_verified'|trans }}
                 {% endif %}
             {% endblock %}
         {% endembed %}
