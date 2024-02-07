@@ -29,6 +29,9 @@ export default class extends Controller {
             case 'user-modal-permission':
                 callback = this.changePermission
                 break;
+            case 'user-modal-reset-password':
+                callback = this.resetPassword
+                break;
             case 'user-modal-remove':
                 callback = this.remove
                 break;
@@ -40,10 +43,23 @@ export default class extends Controller {
     {
         const userFormID = document.querySelector('#change_role_id')
         userFormID.value = params.id
-        console.log(userFormID)
         const name = 'user-modal-permission'
         const content = getUser(item)
         const modal = Modal.getModal(name, content, null)
+    }
+
+    resetPassword(item, params)
+    {
+        const name = 'user-modal-reset-password'
+        const content = getUser(item)
+        const modal = Modal.getModal(name, null, content)
+        modal.querySelector('[data-user-btn-reset-password]').addEventListener('click', () => {
+            Api.put(
+                'admin_api_user_reset_password',
+                {id:  btoa(params.id)},
+                () => location.reload()
+            )
+        })
     }
 
     remove(item, params)

@@ -1,13 +1,21 @@
 admin_api_user_get:
   path: /user/{id}
   methods: [ GET ]
-  controller: App\Admin\UI\Api\Controller\User\UserController::get
+  controller: App\Admin\UI\Api\Controller\User\AdminController::get
   options:
     expose: true
+    
+admin_api_user_reset_password:
+  path: /user/reset_password/{id}
+  methods: [ PUT ]
+  controller: App\Admin\UI\Api\Controller\User\AdminController::resetPassword
+  options:
+    expose: true
+  
     
 admin_api_user_remove:
   path: /user/{id}
   methods: [ DELETE ]
-  controller: App\Admin\UI\Api\Controller\User\UserController::remove
+  controller: App\Admin\UI\Api\Controller\User\AdminController::remove
   options:
     expose: true

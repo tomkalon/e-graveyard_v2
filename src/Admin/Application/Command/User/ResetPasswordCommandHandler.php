@@ -19,26 +19,26 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInterface
+readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private TokenStorageInterface         $tokenStorage,
         private LinkGeneratorServiceInterface $linkGeneratorService,
         private LoggerInterface               $userLogger,
+        private TimeConverterUtilityInterface $timeConverterUtility,
         private TranslatorInterface           $translator,
         private MailerInterface               $mailer,
-        private TimeConverterUtilityInterface $timeConverterUtility,
         private NotificationInterface         $notification,
-        private string                        $registerLinkExpiration,
         private string                        $senderEmail,
         private string                        $senderName,
-    ) {
+    )
+    {
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    public function __invoke(SendRegistrationLinkCommand $command): void
+    public function __invoke(ResetPasswordCommand $command): void
     {
         $userView = $command->getUserView();
         $token = $this->tokenStorage->getToken();
@@ -49,30 +49,32 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
             throw new LogicException('No permission. Admin not logged in.');
         }
 
-        $link = $this->linkGeneratorService->generate('app_register', $userView->getEmail(), $this->registerLinkExpiration, 30, 'generated_register_link_');
-        $expiration = $this->timeConverterUtility->convertSecondsToTime($this->registerLinkExpiration, TimeUnitsEnum::HOUR);
+        $link = $this->linkGeneratorService->generate('app_reset_password', $userView->getEmail(), 600, 30, 'generated_reset_password_link_');
+        $expiration = $this->timeConverterUtility->convertSecondsToTime(600, TimeUnitsEnum::MINUTE);
 
         $email = (new TemplatedEmail())
             ->from(new Address($this->senderEmail, $this->senderName))
             ->to($userView->getEmail())
-            ->subject($this->translator->trans('email.new_account.registration_link.subject', [], 'email'))
-            ->htmlTemplate('core/email/new_account.html.twig')
+            ->subject($this->translator->trans('email.reset_user_password.subject', [], 'email'))
+            ->htmlTemplate('core/email/reset_user_password.html.twig')
             ->context([
                 'link' => $link,
                 'hello' => $this->translator->trans('email.common.hello', [
-                    '%name%' => $userView->getFirstName(),
+                    '%name%' => $userView->getUsername(),
                 ], 'email'),
                 'expiration' => $this->translator->trans('email.common.expiration', [
                     '%expiration%' => $expiration,
                 ], 'email')
             ]);
-
         $this->mailer->send($email);
-        $this->userLogger->notice(sprintf('Registration link sent to %s by %s', $userView->getEmail(), $user->getUsername()));
+        $this->userLogger->info('Reset password command received', [
+            'email' => $command->getUserView()->getEmail(),
+            'admin' => $user->getUsername(),
+        ]);
         $this->notification->addNotification('notification', new NotificationDto(
-            'notification.user.invitation.label',
+            'notification.user.reset_password.label',
             NotificationTypeEnum::SUCCESS,
-            $this->translator->trans('notification.user.invitation.success', [
+            $this->translator->trans('notification.user.reset_password.success', [
                 '%email%' => $userView->getEmail(),
             ], 'flash'),
         ));

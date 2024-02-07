@@ -10,6 +10,13 @@ app_register:
   defaults:
     token: null
     
+app_reset_password:
+  path: /admin/reset_password/{token}
+  methods: [ GET, POST ]
+  controller: App\Admin\UI\Web\Controller\User\LoginController::resetPassword
+  defaults:
+    token: null
+    
 app_logout:
   path: /admin/logout
   methods: [ GET ]

@@ -133,6 +133,7 @@ ui:
       user_manage: Zarządzanie użytkownikami
     modal:
       changing_permission: Zmień uprawnienia użytkownika.
+      reset_password: Czy chcesz zresetować hasło użytkownika? Nowe hasło zostanie wysłane na adres email.
       remove: Czy chcesz usunąć wskazanego użytkownika?
     role:
       label: Rola
@@ -140,6 +141,7 @@ ui:
     add_user: Dodaj użytkownika
     change_password: Zmień hasło
     reset_password: Resetuj hasło
+    resetting_password: Resetowanie hasła
     changing_password: Zmiana hasła
     change_permission: Zmień uprawnienia
     changing_permission: Zmiana uprawnień

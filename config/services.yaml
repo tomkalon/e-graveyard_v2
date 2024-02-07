@@ -7,7 +7,7 @@ parameters:
   app.title: '%env(APP_TITLE)%'
   app.sender.email: '%env(APP_SENDER_EMAIL)%'
   app.sender.name: '%env(APP_SENDER_NAME)%'
-  app.link.expiration: '%env(APP_LINK_EXPIRATION)%'
+  app.register.link.expiration: '%env(APP_REGISTER_LINK_EXPIRATION)%'
   app.path.grave_images: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_PATH)%'
   app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_THUMB_PATH)%'
   default_timezone: '%env(APP_TIMEZONE)%'
@@ -50,10 +50,13 @@ services:
   ### COMMANDS ###
     App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
       arguments:
-        $linkExpiration: '%app.link.expiration%'
+        $registerLinkExpiration: '%app.register.link.expiration%'
         $senderEmail: '%app.sender.email%'
         $senderName: '%app.sender.name%'
-        $appTitle: '%app.title%'
+    App\Admin\Application\Command\User\ResetPasswordCommandHandler:
+      arguments:
+        $senderEmail: '%app.sender.email%'
+        $senderName: '%app.sender.name%'
   
   ### CLI ###
     App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:

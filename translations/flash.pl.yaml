@@ -18,6 +18,9 @@ notification:
       success: |
         Utworzono nowego użytkownika. Możesz się zalogować, jednak konto nie jest jeszcze zweryfikowane.
         gdy administrator potwierdzi Twoje konto, zyskać dostęp do wszystkich dostępnych Ci funkcji.
+    reset_password:
+      label: Resetowanie hasła użytkownika
+      success: 'Pomyślnie wysłano link do zmiany hasła na adres:<br/>%email%'
     update:
       label: Aktualizacja danych użytkownika
     remove:

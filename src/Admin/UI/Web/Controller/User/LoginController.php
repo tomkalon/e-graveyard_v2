@@ -78,4 +78,25 @@ class LoginController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function resetPassword(
+        string $token,
+        CommandBusInterface $commandBus,
+        CacheInterface $cache,
+        Request $request
+    ): Response
+    {
+
+        $email = $cache->getItem($token)->get();
+        if ($email) {
+        } else {
+            throw new NotFoundHttpException('Token not found or expired.');
+        }
+
+        return $this->render('admin/user/reset_password.html.twig', [
+        ]);
+    }
 }
