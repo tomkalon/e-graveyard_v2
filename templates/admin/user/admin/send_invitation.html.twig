@@ -1,0 +1,60 @@
+{% extends 'admin/common/dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.title.create'|trans }}{% endblock %}
+{% block dashboard_content %}
+    <div class="max-w-[700px]">
+        <!-- Dashboard Card -->
+        {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+            {% block title %}
+                <!-- Dashboard Title -->
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.title.create'|trans }}</h1>
+                <!-- /Dashboard Title -->
+            {% endblock %}
+
+            {% block dashboard_content %}
+                <!-- ERRORS -->
+                {% if form_errors(form) %}
+                    {% embed 'core/alerts/error.html.twig' %}
+                        {% block content %}
+                            {{ form_errors(form) }}
+                        {% endblock %}
+                    {% endembed %}
+                {% endif %}
+                <!-- Dashboard Content -->
+                <div class="mt-6">
+                    <p class="pb-4">{{ 'ui.user.content.adding_register_invitation'|trans }}</p>
+                    {{ form_start(form, {
+                        'attr': {
+                            'id': 'create_user_form',
+                        }
+                    }) }}
+                    <div class="mt-4 mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            {{ form_row(form.email) }}
+                        </div>
+                        <div>
+                            {{ form_row(form.firstName, {
+                                'label': 'ui.user.firstname'|trans
+                            }) }}
+                        </div>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        {{ form_row(form.create) }}
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                            <a href="{{ path('admin_web_user_list') }}">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="fa fa-ban" aria-hidden="true"></i>
+                                    {{ 'ui.buttons.cancel'|trans }}
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                <!-- /Dashboard Content -->
+            {% endblock %}
+            {% block buttons_after %}
+            {% endblock %}
+        {% endembed %}
+        <!-- /Dashboard Card -->
+    </div>
+{% endblock %}

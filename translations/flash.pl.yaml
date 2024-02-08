@@ -9,21 +9,39 @@ notification:
     remove:
       title: Usuwanie obiektu
       success: Pomyślnie usunięto
-      
+    no_changes: Nie wprowadzono zmian.
+    
   user:
     name: Użytkownik
     create:
       label: Tworzenie nowego użytkownika
+      success: Twoje konto zostało utworzone.
+      failed:
+        already_logged_in: |
+          Nie można utworzyć nowego użytkownika, ponieważ użytkownik jest już zalogowany.
+          Poproś o wygenerowanie nowego linku.
+    reset_password:
+      label: Resetowanie hasła użytkownika
+      success: 'Pomyślnie wysłano link do zmiany hasła na adres:<br/>%email%'
+      failed:
+        already_logged_in: |
+          Nie można zresetować hasła, ponieważ wskazany użytkownik jest już zalogowany.
     update:
       label: Aktualizacja danych użytkownika
     remove:
       label: Usuwanie użytkownika
       success: Usuwanie użytkownika
+    invitation:
+      label: Nowy użytkownik
+      success: 'Pomyślnie wysłano zaproszenie do:<br/>%email%.'
     login:
       title: Logowanie
       time: Czas
       success:
         content: Logowanie zakończone powodzeniem
+      failed:
+        no_permission: Brak uprawnień
+        unverified: Konto niezweryfikowane
   
   grave:
     name: Grób
@@ -39,7 +57,6 @@ notification:
     set_main_image:
       label: Ustawianie głównego zdjęcia
       empty: Nie można było wykonać polecenia. Albo wskazany grób, albo wskazane zdjęcie już nie istnieje.
-    no_changes: Nie wprowadzono zmian.
     
   graveyard:
     name: Cmentarz
@@ -52,7 +69,6 @@ notification:
       label: Usuwanie cmentarza
       success: 'Pomyślnie usunięto wskazany cmentarz:<br/>%graveyard%'
     empty: Nie znaleziono wskazanego grobu. Prawdopodobnie został już usunięty.
-    no_changes: Nie wprowadzono zmian.
 
   person:
     name: Zmarły

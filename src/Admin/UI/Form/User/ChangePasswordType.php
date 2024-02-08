@@ -22,7 +22,6 @@ class ChangePasswordType extends AbstractType
                 ],
             ])
             ->add('repeatPassword', PasswordType::class, [
-                'label' => 'ui.user.login.repeat_password',
                 'required' => true,
             ])
             ->add('saveChanges', SubmitType::class, [

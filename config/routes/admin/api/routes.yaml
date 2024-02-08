@@ -17,3 +17,8 @@ file_api_routes:
   prefix: '/api/admin'
   resource: 'file'
   type: directory
+  
+user_api_routes:
+  prefix: '/api/admin'
+  resource: 'user'
+  type: directory

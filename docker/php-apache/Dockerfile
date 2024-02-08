@@ -35,6 +35,8 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/
 RUN apt-get install nano -y
 RUN apt-get install mc -y
 
+# CERTS
+
 # History
 RUN echo "symfony console fos:js-routing:dump --format=json --target=public/js/routes.json" >> ~/.bash_history
 RUN echo "composer update" >> ~/.bash_history

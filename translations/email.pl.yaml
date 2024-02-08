@@ -1,0 +1,17 @@
+email:
+  common:
+    hello: 'Witaj %name%!'
+    expiration: 'Link ważny jest tylko %expiration%!'
+    regards: Pozdrawiamy, Zespół %app_title%
+  
+  new_account:
+    registration_link:
+      subject: Link do rejestracji
+      content: Klikając poniższy link, zostaniesz przeniesiony do formularza rejestracji na portalu do zarządzania cmentarzem.
+      link_button: 'Zarejestruj się!'
+
+  reset_user_password:
+    subject: Resetowanie hasła
+    content: Klikając poniższy link, zostaniesz przeniesiony do formularza zmiany hasła.
+    link_button: 'Zmień hasło!'
+

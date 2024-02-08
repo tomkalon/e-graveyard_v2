@@ -4,6 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+  app.title: '%env(APP_TITLE)%'
+  app.sender.email: '%env(APP_SENDER_EMAIL)%'
+  app.sender.name: '%env(APP_SENDER_NAME)%'
+  app.register.link.expiration: '%env(APP_REGISTER_LINK_EXPIRATION)%'
   app.path.grave_images: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_PATH)%'
   app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_THUMB_PATH)%'
   default_timezone: '%env(APP_TIMEZONE)%'
@@ -35,7 +39,26 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
   
+  ### SERVICES ###
+    # GRAVE IMAGE UPLOAD #
+    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
+      arguments:
+        $targetDirectory: '%app.path.grave_images%'
+        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
+
+
   ### COMMANDS ###
+    App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
+      arguments:
+        $registerLinkExpiration: '%app.register.link.expiration%'
+        $senderEmail: '%app.sender.email%'
+        $senderName: '%app.sender.name%'
+    App\Admin\Application\Command\User\ResetPasswordCommandHandler:
+      arguments:
+        $senderEmail: '%app.sender.email%'
+        $senderName: '%app.sender.name%'
+  
+  ### CLI ###
     App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:
       arguments:
         $graveImagePath: '%app.path.grave_images%'
@@ -61,9 +84,3 @@ services:
         $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
       tags:
         - { name: doctrine.event_listener, event: postRemove }
-  
-    ### DOCTRINE ENTITY PERSIST ###
-    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
-      arguments:
-        $targetDirectory: '%app.path.grave_images%'
-        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'

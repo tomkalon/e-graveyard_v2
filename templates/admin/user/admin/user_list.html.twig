@@ -1,0 +1,105 @@
+{% extends 'admin/common/dashboard/layout.html.twig' %}
+{% block title %}{{ app_name }} - {{ 'ui.user.admin'|trans }}{% endblock %}
+{% block dashboard_content %}
+<div {{ stimulus_controller('admin--user--users-list') }} class="max-w-[1000px]">
+    <!-- Dashboard Card -->
+    {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
+    {% block title %}
+        <!-- Dashboard Title -->
+        <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.user.admin'|trans }}</h1>
+        <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.user.description.user_manage'|trans }}</h2>
+        <!-- /Dashboard Title -->
+    {% endblock %}
+    {% block buttons_before %}
+    <a href="{{ path('admin_web_user_create') }}">
+        <button class="btn btn-success">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            {{ 'ui.user.add_user'|trans }}
+        </button>
+    </a>
+    {% endblock %}
+    {% block dashboard_content %}
+        <!-- Dashboard Content -->
+        <!-- Pagination -->
+        <div {{ stimulus_target('admin--user--users-list', 'pagination') }}>
+            {% embed 'core/pagination/pagination.html.twig' %}
+                {% block head %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.user.login.username',
+                        name: 'u.username',
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.user.login.email',
+                        name: 'u.email',
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' with {
+                        label: 'ui.user.verification',
+                        class: 'text-center'
+                    } %}
+                    {% include 'core/pagination/_head.html.twig' %}
+                {% endblock %}
+                {% block body %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.username,
+                    } %}
+                    {% include 'core/pagination/_body_value.html.twig' with {
+                        value: item.email,
+                    } %}
+                    {% embed 'core/pagination/_body_action.html.twig' %}
+                        {% block actions %}
+                            {% include 'admin/user/admin/user_list/_user_role.html.twig' %}
+                        {% endblock %}
+                    {% endembed %}
+                    {% embed 'core/pagination/_body_action.html.twig' with {
+                        class: 'w-36'
+                    } %}
+                        {% block actions %}
+                            <div class="flex gap-2 grow justify-end">
+                                {% if not adminID is same as (item.id) %}
+                                <button gemma-tooltip="top"
+                                        gemma-tooltip-label="{{ 'ui.user.reset_password'|trans }}"
+                                        class="btn btn-warning"
+                                        data-modal-target="user-modal-reset-password">
+                                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                                </button>
+                                <button gemma-tooltip="top"
+                                        gemma-tooltip-label="{{ 'ui.user.change_permission'|trans }}"
+                                        class="btn btn-sky"
+                                        data-modal-target="user-modal-permission">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </button>
+                                <button gemma-tooltip="top"
+                                        gemma-tooltip-label="{{ 'ui.user.remove'|trans }}"
+                                        class="btn btn-danger"
+                                        data-modal-target="user-modal-remove">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                                {% else %}
+                                    <a href="{{ path('admin_web_user_change_password') }}">
+                                        <button gemma-tooltip="top"
+                                                 gemma-tooltip-label="{{ 'ui.user.change_password'|trans }}"
+                                                 class="btn btn-warning">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endblock %}
+                    {% endembed %}
+                {% endblock %}
+            {% endembed %}
+        </div>
+        <!-- /Pagination -->
+        <!-- /Dashboard Content -->
+        <!-- Modal -->
+        <div>
+            {% include 'admin/user/admin/user_list/_modals.html.twig' %}
+        </div>
+        <!-- /Modal -->
+    {% endblock %}
+    {% block buttons_after %}
+    {% endblock %}
+    {% endembed %}
+    <!-- /Dashboard Card -->
+</div>
+{% endblock %}

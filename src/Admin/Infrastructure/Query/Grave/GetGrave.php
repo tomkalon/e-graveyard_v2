@@ -3,7 +3,6 @@
 namespace App\Admin\Infrastructure\Query\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
-use App\Admin\Domain\View\Grave\GraveView;
 use App\Core\Domain\Entity\Grave;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;

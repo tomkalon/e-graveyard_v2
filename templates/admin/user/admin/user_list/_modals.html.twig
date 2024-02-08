@@ -1,0 +1,45 @@
+<!-- ------------ REMOVE USER ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'user-modal-remove', title: 'ui.user.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.user.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-user-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}
+
+<!-- ------------ RESET USER PASSWORD ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'user-modal-reset-password', title: 'ui.user.resetting_password'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.user.modal.reset_password'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-user-btn-reset-password
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            {{ 'ui.buttons.reset'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}
+
+<!-- ------------ VERIFY / SET TO UNVERIFIED ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'user-modal-permission', title: 'ui.user.change_permission'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 rounded">{{ 'ui.user.modal.changing_permission'|trans }}</h4>
+        {{ form_start(change_permission_form) }}
+        {{ form_row(change_permission_form.roles) }}
+        {{ form_row(change_permission_form.change) }}
+        {{ form_end(change_permission_form) }}
+    {% endblock %}
+{% endembed %}

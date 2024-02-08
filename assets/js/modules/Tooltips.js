@@ -9,6 +9,8 @@ const gemmaTooltips = () => {
         let label = element.getAttribute('gemma-tooltip-label')
         let direction = element.getAttribute('gemma-tooltip')
 
+
+
         tippy(element, {
             content: label,
             animation: 'scale',

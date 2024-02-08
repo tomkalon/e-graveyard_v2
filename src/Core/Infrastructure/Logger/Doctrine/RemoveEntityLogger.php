@@ -8,6 +8,7 @@ class RemoveEntityLogger extends AbstractEntityLogger
     {
         $username = $this->getLoggedUsername();
         $itemData = $this->getItemData($entity);
+
         $entityName = $this->getEntityName($entity);
         return sprintf('%s removed by %s -> %s', $entityName, $username, $itemData);
     }

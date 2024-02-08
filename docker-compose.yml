@@ -39,6 +39,8 @@ services:
     container_name: "mercure-${PROJECT_NAME}"
     image: dunglas/mercure
     restart: unless-stopped
+    ports:
+      - "80"
     environment:
       SERVER_NAME: ':80'
       MERCURE_PUBLISHER_JWT_KEY: '!ChangeThisMercureHubJWTSecretKey!'
@@ -52,6 +54,19 @@ services:
       - mercure_data:/data
       - mercure_config:/config
 ###< symfony/mercure-bundle ###
+
+###> symfony/mailer ###
+  mailer:
+    container_name: "mailcatcher-${PROJECT_NAME}"
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+###< symfony/mailer ###
 
 volumes:
 ###> symfony/mercure-bundle ###

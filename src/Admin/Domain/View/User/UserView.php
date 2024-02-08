@@ -3,9 +3,11 @@
 namespace App\Admin\Domain\View\User;
 
 use App\Core\Domain\Entity\User;
+use App\Core\Domain\Enum\UserRoleEnum;
 
 class UserView
 {
+    private ?string $firstName = null;
     private ?string $id = null;
     private ?string $email;
     private ?string $username;
@@ -14,8 +16,7 @@ class UserView
      */
     private ?string $password = null;
     private ?string $repeatPassword = null;
-    private ?array $roles = null;
-    private ?bool $isVerified;
+    private array|UserRoleEnum|null $roles = null;
 
     public function __construct(
         ?string $email = null,
@@ -24,7 +25,6 @@ class UserView
     ) {
         $this->email = $email;
         $this->username = $username;
-        $this->isVerified = $isVerified;
     }
 
     public static function fromEntity(User $user): self
@@ -32,7 +32,6 @@ class UserView
         return new self(
             $user->getEmail(),
             $user->getUsername(),
-            $user->isVerified(),
         );
     }
 
@@ -44,6 +43,16 @@ class UserView
     public function setId(?string $id): void
     {
         $this->id = $id;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
     }
 
     public function getEmail(): ?string
@@ -86,23 +95,13 @@ class UserView
         $this->repeatPassword = $repeatPassword;
     }
 
-    public function getRoles(): ?array
+    public function getRoles(): array|UserRoleEnum|null
     {
         return $this->roles;
     }
 
-    public function setRoles(?array $roles): void
+    public function setRoles(array|UserRoleEnum|null $roles): void
     {
         $this->roles = $roles;
-    }
-
-    public function getIsVerified(): ?bool
-    {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(?bool $isVerified): void
-    {
-        $this->isVerified = $isVerified;
     }
 }
