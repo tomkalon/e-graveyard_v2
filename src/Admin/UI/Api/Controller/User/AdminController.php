@@ -41,6 +41,7 @@ class AdminController extends AbstractFOSRestController
         if ($userId) {
             $user = $query->execute($userId);
             $userView = UserView::fromEntity($user);
+            $userView->setId($userId);
             $commandBus->dispatch(new ResetPasswordCommand($userView));
             return $this->json('true');
         } else {

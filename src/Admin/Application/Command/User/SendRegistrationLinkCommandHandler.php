@@ -49,7 +49,13 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
             throw new LogicException('No permission. Admin not logged in.');
         }
 
-        $link = $this->linkGeneratorService->generate('app_register', $userView->getEmail(), $this->registerLinkExpiration, 30, 'generated_register_link_');
+        $link = $this->linkGeneratorService->generate(
+            'app_register',
+            $userView->getEmail(),
+            $this->registerLinkExpiration,
+            30,
+            'generated_register_link_'
+        );
         $expiration = $this->timeConverterUtility->convertSecondsToTime($this->registerLinkExpiration, TimeUnitsEnum::HOUR);
 
         $email = (new TemplatedEmail())

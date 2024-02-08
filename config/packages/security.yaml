@@ -41,6 +41,7 @@ security:
   access_control:
     - { path: ^/admin/login, roles: PUBLIC_ACCESS }
     - { path: ^/admin/register, roles: PUBLIC_ACCESS }
+    - { path: ^/admin/reset_password, roles: PUBLIC_ACCESS }
     - { path: ^/admin/logout, roles: ROLE_USER }
     - { path: ^/admin/user, roles: ROLE_USER }
     - { path: ^/api, roles: ROLE_MANAGER }

@@ -15,12 +15,17 @@ notification:
     name: Użytkownik
     create:
       label: Tworzenie nowego użytkownika
-      success: |
-        Utworzono nowego użytkownika. Możesz się zalogować, jednak konto nie jest jeszcze zweryfikowane.
-        gdy administrator potwierdzi Twoje konto, zyskać dostęp do wszystkich dostępnych Ci funkcji.
+      success: Twoje konto zostało utworzone.
+      failed:
+        already_logged_in: |
+          Nie można utworzyć nowego użytkownika, ponieważ użytkownik jest już zalogowany.
+          Poproś o wygenerowanie nowego linku.
     reset_password:
       label: Resetowanie hasła użytkownika
       success: 'Pomyślnie wysłano link do zmiany hasła na adres:<br/>%email%'
+      failed:
+        already_logged_in: |
+          Nie można zresetować hasła, ponieważ wskazany użytkownik jest już zalogowany.
     update:
       label: Aktualizacja danych użytkownika
     remove:

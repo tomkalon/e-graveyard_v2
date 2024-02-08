@@ -49,7 +49,13 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
             throw new LogicException('No permission. Admin not logged in.');
         }
 
-        $link = $this->linkGeneratorService->generate('app_reset_password', $userView->getEmail(), 600, 30, 'generated_reset_password_link_');
+        $link = $this->linkGeneratorService->generate(
+            'app_reset_password',
+            $userView->getId(),
+            6000,
+            30,
+            'generated_reset_password_link_'
+        );
         $expiration = $this->timeConverterUtility->convertSecondsToTime(600, TimeUnitsEnum::MINUTE);
 
         $email = (new TemplatedEmail())

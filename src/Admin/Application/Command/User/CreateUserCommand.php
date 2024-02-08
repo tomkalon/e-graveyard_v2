@@ -8,7 +8,7 @@ use App\Core\Application\CQRS\Command\CommandInterface;
 readonly class CreateUserCommand implements CommandInterface
 {
     public function __construct(
-        private UserView $userView
+        private UserView $userView,
     )
     {
     }

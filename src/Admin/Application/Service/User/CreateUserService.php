@@ -41,10 +41,7 @@ readonly class CreateUserService implements CreateUserServiceInterface
             $user->setRoles($userView->getRoles());
         }
 
-        if ($userView->getIsVerified()) {
-            $user->setIsVerified($userView->getIsVerified());
-        }
-
         $this->em->persist($user);
+        $this->em->flush();
     }
 }

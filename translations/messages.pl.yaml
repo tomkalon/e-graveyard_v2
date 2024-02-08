@@ -125,6 +125,7 @@ ui:
       username: Nazwa użytkownika
       password: Hasło
       repeatPassword: Powtórz hasło
+      newPassword: Nowe hasło
       remember_me: Zapamiętaj mnie
       submit: Zaloguj się
     description:

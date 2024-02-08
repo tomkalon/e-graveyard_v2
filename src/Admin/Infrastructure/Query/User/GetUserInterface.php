@@ -7,5 +7,7 @@ use App\Core\Domain\Entity\User;
 
 interface GetUserInterface extends QueryInterface
 {
-    public function execute(string $id): User;
+    public function execute(
+        string $id
+    ): User;
 }
