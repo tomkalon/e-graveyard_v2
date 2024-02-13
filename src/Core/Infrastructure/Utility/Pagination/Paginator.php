@@ -14,8 +14,7 @@ class Paginator implements BasePaginatorInterface
     public function __construct(
         private readonly PaginatorInterface $paginator,
         private readonly FormFactoryInterface $factory,
-    )
-    {
+    ) {
     }
 
     public function paginate($target, int $page = 1, int $limit = null, array $options = []):PaginationInterface
