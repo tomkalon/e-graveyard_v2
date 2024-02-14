@@ -1,0 +1,86 @@
+<!-- ------------ ADD DECEASED ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'grave-modal-add-deceased', title: 'ui.grave.add_deceased'|trans, active: form_errors(addDeceasedForm.bornDate) } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-neutral-200 dark:bg-neutral-500 text-neutral-600 dark:text-neutral-100 rounded">{{ 'ui.grave.modal.add_deceased'|trans }}</h4>
+        {{ form_start(addDeceasedForm, {
+            'attr': {'data-form': 'add-deceased'}
+        }) }}
+        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div>
+                {{ form_row(addDeceasedForm.firstName) }}
+            </div>
+            <div>
+                {{ form_row(addDeceasedForm.lastName) }}
+            </div>
+        </div>
+        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div>
+                {{ form_row(addDeceasedForm.bornDate) }}
+            </div>
+            <div>
+                {{ form_row(addDeceasedForm.deathDate) }}
+            </div>
+        </div>
+        <div class="hidden">
+            {{ form_row(addDeceasedForm.grave, {
+                'attr': {'disabled': 'disabled'}
+            }) }}
+        </div>
+        <div class="flex justify-end">
+            {{ form_row(addDeceasedForm.add) }}
+        </div>
+        {{ form_end(addDeceasedForm) }}
+    {% endblock %}
+{% endembed %}
+
+<!-- ------------ REMOVE PERSON ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'person-modal-remove', title: 'ui.person.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.person.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-person-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-minus-square" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}
+
+<!-- ------------ REMOVE GRAVE ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'grave-modal-remove', title: 'ui.grave.remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 mb-4 bg-red-800 rounded">{{ 'ui.grave.modal.remove'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-grave-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}
+
+<!-- ------------ REMOVE IMAGE ------------ -->
+{% embed 'core/modal_box/modal_box.html.twig' with {
+    name: 'grave-image-modal-remove', title: 'ui.grave.image_remove'|trans } %}
+    {% block content %}
+        <h4 class="p-4 rounded">{{ 'ui.grave.modal.remove_image'|trans }}</h4>
+    {% endblock %}
+    {% block buttons %}
+        <button class="btn btn-danger"
+                data-grave-image-btn-remove
+                data-te-ripple-init
+                data-te-ripple-color="light">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            {{ 'ui.buttons.remove'|trans }}
+        </button>
+    {% endblock %}
+{% endembed %}

@@ -40,10 +40,6 @@ Here you can change the container name suffix.
 PROJECT_NAME=graveyard
 ```
 
-In the main directory:
-```
-Change filename -> .env.example to .env
-```
 ...and adjust the settings to your needs.
 
 ### 4) Prepare your Docker environment.
@@ -56,7 +52,6 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml --env-file .
 ```
 composer install
 symfony console d:m:m
-symfony console fos:js-routing:dump --format=json --target=public/js/routes.json
 ```
 
 ### 6) To run project initialization and make new administrator account, run:
@@ -79,6 +74,12 @@ or login at:
 ```
 http://localhost/admin/login
 ```
+
+MAILCATCHER - for developers applications is available at:
+```
+http://localhost:8025/
+```
+
 
 ### 9) Basic editable files directories:
 

@@ -22,11 +22,13 @@
                             {{ 'ui.buttons.list'|trans }}
                         </button>
                     </a>
-                    <button class="btn btn-sky"
-                            data-action="click->admin--grave--grave-show#addPayment">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        {{ 'ui.grave.add_payment'|trans }}
-                    </button>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="btn btn-sky"
+                                data-action="click->admin--grave--grave-show#addPayment">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                            {{ 'ui.grave.add_payment'|trans }}
+                        </button>
+                    {% endif %}
                     <button class="btn btn-success"
                             data-action="click->admin--grave--grave-show#addDeceased">
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -93,33 +95,13 @@
                     </div>
                 </div>
 
-                <!-- ------------ IMAGES ------------ -->
-                {% include 'admin/grave/show/_images_js.html.twig' %}
-
-                <!-- ------------ PEOPLE ------------ -->
-                {% include 'admin/grave/show/_people.html.twig' %}
-
-                <!-- ------------ PAID INFORMATION ------------ -->
-                {% include 'admin/grave/show/_payments.html.twig' %}
-
-                <!-- ------------ COORDINATES / GOOGLE MAPS ------------ -->
-                {% if grave.positionX != null and grave.positionY != null %}
-                    <h3 class="mt-6 text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.map'|trans }}</h3>
-                    <hr>
-                    <div class="mt-3 text-center text-neutral-900 dark:text-neutral-50">
-                        <iframe width="100%" height="600" frameborder="0" scrolling="no"
-                                marginheight="0" marginwidth="0"
-                                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=pl&amp;q={{ grave.positionY }},%20{{ grave.positionX }}&amp;t=k&amp;z=19&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-                        </iframe>
-                    </div>
+                <!-- MODULES AND MODALS -->
+                {% if is_granted('ROLE_ADMIN') %}{% include 'admin/grave/show/admin/admin.html.twig' %}
+                {% elseif is_granted('ROLE_MANAGER') %}{% include 'admin/grave/show/manager/manager.html.twig' %}
                 {% endif %}
+                <!-- /MODULES AND MODALS -->
 
                 <!-- /Dashboard Content -->
-                <!-- Modals -->
-                <div>
-                    {% include 'admin/grave/show/_modals.html.twig' %}
-                </div>
-                <!-- /Modals -->
             {% endblock %}
             {% block buttons_after %}
             {% endblock %}

@@ -46,6 +46,7 @@ security:
     - { path: ^/admin/user, roles: ROLE_USER }
     - { path: ^/api, roles: ROLE_MANAGER }
     - { path: ^/admin, roles: ROLE_MANAGER }
+    - { path: ^/api/admin/payment/grave, roles: ROLE_ADMIN }
     - { path: ^/api/admin/graveyard, roles: ROLE_ADMIN }
     - { path: ^/api/admin/user, roles: ROLE_ADMIN }
     - { path: ^/admin/graveyard, roles: ROLE_ADMIN }
