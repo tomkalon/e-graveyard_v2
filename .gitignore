@@ -6,6 +6,7 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/*
 /public/uploads/
+/tmp/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -35,6 +36,7 @@
 /public/build/
 npm-debug.log
 yarn-error.log
+package-lock.json
 ###< symfony/webpack-encore-bundle ###
 
 ###> phpunit/phpunit ###
