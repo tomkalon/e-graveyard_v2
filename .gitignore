@@ -27,6 +27,7 @@
 /src/Main/UI/Web/Custom/*
 /src/Main/UI/Api/Custom/*
 
+/templates/core/menu/
 /templates/main/custom/*
 !/templates/main/custom/examples
 # -< CUSTOM FILES / EDITABLE

@@ -54,25 +54,7 @@
                                   data-te-nav-link-ref data-te-ripple-init
                                   data-te-ripple-color="light">{{ 'ui.nav.menu.search'|trans }}</span>
                         </li>
-                        <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                            <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
-                    dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                               href="#!" data-te-nav-link-ref data-te-ripple-init
-                               data-te-ripple-color="light">{{ 'ui.nav.menu.info'|trans }}</a>
-                        </li>
-                        <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                            <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
-                    dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                               href="#!" data-te-nav-link-ref data-te-ripple-init
-                               data-te-ripple-color="light">{{ 'ui.nav.menu.contact'|trans }}</a>
-                        </li>
-                        <li class="mb-0 pr-2 lg:hidden">
-                            <div data-action="click->dropdown#toggle click@window->dropdown#hide"
-                                 class="lg:ml-4 w-24 h-12 flex items-center justify-center
-                             rounded-lg ease-in duration-200 bg-stone-500 dark:bg-sky-800 cursor-pointer hover:bg-opacity-20 dark:hover:bg-opacity-70">
-                                <i class="fa fa-bars text-xl text-stone-100 dark:text-slate-900 mx-2" aria-hidden="true"></i>
-                            </div>
-                        </li>
+                        {% include 'core/menu/topmenu.html.twig' ignore missing %}
                     </ul>
                 </div>
             </div>
