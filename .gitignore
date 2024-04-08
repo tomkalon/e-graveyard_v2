@@ -24,6 +24,7 @@
 /translations/settings.*
 /translations/custom.*
 
+/src/Main/UI/Form/Custom/*
 /src/Main/UI/Web/Controller/Custom/*
 /src/Main/UI/Api/Controller/Custom/*
 
