@@ -17,7 +17,7 @@
 /assets/js/bundles/custom.js
 
 # -> ROUTES
-/config/routes/custom/*
+/config/routes/custom/**
 
 # -> TRANSLATIONS
 /translations/settings.*
