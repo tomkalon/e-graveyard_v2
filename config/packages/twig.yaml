@@ -5,6 +5,7 @@ twig:
       app_name: '%env(resolve:APP_NAME)%'
       app_title: '%env(resolve:APP_TITLE)%'
       app_subtitle: '%env(resolve:APP_SUBTITLE)%'
+      app_copyright: '%env(resolve:APP_ADD_COPYRIGHT)%'
       file_grave:
         images_directory: '/uploads/grave/images/'
         images_thumbnail_directory: '/uploads/grave/thumbs/'

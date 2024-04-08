@@ -65,6 +65,8 @@ yarn install
 yarn run dev
 ```
 
+In case of problems, remove yarn.lock and repeat the procedure.
+
 ### 8) The PHP server is configured on the default port 80. Launch your browser and enter the address:
 ```
 http://localhost/
