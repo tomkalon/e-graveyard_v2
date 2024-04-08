@@ -24,7 +24,7 @@
 /translations/custom.*
 
 # -> SOURCE FILES
-/src/Custom/*
+/src/custom/*
 
 # -> TEMPLATES
 /templates/custom/*
