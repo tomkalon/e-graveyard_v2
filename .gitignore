@@ -16,16 +16,17 @@
 /assets/styles/custom.scss
 /assets/js/bundles/custom.js
 
-/config/routes/custom/api/*
-!/config/routes/custom/api/routes.yaml
-/config/routes/custom/web/*
-!/config/routes/custom/web/routes.yaml
+# -> ROUTES
+/config/routes/custom/*
 
+# -> TRANSLATIONS
 /translations/settings.*
 /translations/custom.*
 
+# -> SOURCE FILES
 /src/Custom/*
 
+# -> TEMPLATES
 /templates/custom/*
 !/templates/custom/examples
 # -< CUSTOM FILES / EDITABLE
