@@ -24,8 +24,8 @@
 /translations/settings.*
 /translations/custom.*
 
-/src/Main/UI/Web/Custom/*
-/src/Main/UI/Api/Custom/*
+/src/Main/UI/Web/Controller/Custom/*
+/src/Main/UI/Api/Controller/Custom/*
 
 /templates/core/menu/
 /templates/main/custom/*
