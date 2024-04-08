@@ -93,15 +93,15 @@ For TRANSLATIONS:
 * /translations/settings.*
 * /translations/custom.*
 
-For CONTROLLERS:
-* /src/Main/UI/Web/Custom/
-* /src/Main/UI/Api/Custom/
+For SOURCE FILES:
+* /src/Custom/
 
 For TWIG TEMPLATES:
-* /templates/main/custom/
+* /templates/custom/
 
 For ASSETS:
 * /assets/images/custom/*
 * /assets/styles/custom.scss
 
-#### These places can be filled in, but remember to add the appropriate .gitignore files.
+#### '/custom/menu/top_menu.html.twig' -> create file to extend top menu.
+#### '/custom/_frontpage_content.html.twig' -> create to extend front page content (example template in example folder).

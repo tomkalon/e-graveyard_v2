@@ -24,13 +24,10 @@
 /translations/settings.*
 /translations/custom.*
 
-/src/Main/UI/Form/Custom/*
-/src/Main/UI/Web/Controller/Custom/*
-/src/Main/UI/Api/Controller/Custom/*
+/src/Custom/*
 
-/templates/core/menu/
-/templates/main/custom/*
-!/templates/main/custom/examples
+/templates/custom/*
+!/templates/custom/examples
 # -< CUSTOM FILES / EDITABLE
 
 ###> symfony/webpack-encore-bundle ###
