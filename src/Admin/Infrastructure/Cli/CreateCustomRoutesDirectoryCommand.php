@@ -31,8 +31,20 @@ class CreateCustomRoutesDirectoryCommand extends Command
     {
         $flag = false;
 
+        $dirWEB = 'config/routes/custom/web';
+        $dirAPI = 'config/routes/custom/api';
         $fileWEB = 'config/routes/custom/web/routes.yaml';
         $fileAPI= 'config/routes/custom/api/routes.yaml';
+
+        if (!file_exists($dirWEB)) {
+            mkdir($dirWEB, 0755, true);
+            $flag = true;
+        }
+
+        if (!file_exists($dirAPI)) {
+            mkdir($dirAPI, 0755, true);
+            $flag = true;
+        }
 
         if (!file_exists($fileWEB)) {
             $this->filesystem->touch($fileWEB);
