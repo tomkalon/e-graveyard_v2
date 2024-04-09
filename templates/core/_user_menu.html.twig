@@ -1,31 +1,31 @@
 <div class="container mx-auto">
-    <div data-dropdown-target="menu"
-         data-transition-enter-from="opacity-0 scale-95"
-         data-transition-enter-to="opacity-100 scale-100"
-         data-transition-leave-from="opacity-100 scale-100"
-         data-transition-leave-to="opacity-0 scale-95"
-         class="hidden transition transform origin-top-right absolute right-2 lg:right-4 top-2 lg:top-20 z-50">
-        <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-            <div class="relative flex flex-col bg-white px-6 pt-4 pb-2 dark:bg-slate-700">
-                {% if is_granted('ROLE_ADMIN')  %}
-                    {% include 'core/usermenu/admin.html.twig' %}
-                {% elseif is_granted('ROLE_MANAGER')  %}
-                    {% include 'core/usermenu/manager.html.twig' %}
-                {% elseif is_granted('ROLE_USER')  %}
-                    {% include 'core/usermenu/user.html.twig' %}
-                {% endif %}
+    {% if is_granted('IS_AUTHENTICATED') %}
+        <div data-dropdown-target="menu"
+             data-transition-enter-from="opacity-0 scale-95"
+             data-transition-enter-to="opacity-100 scale-100"
+             data-transition-leave-from="opacity-100 scale-100"
+             data-transition-leave-to="opacity-0 scale-95"
+             class="hidden transition transform origin-top-right absolute right-2 lg:right-4 top-2 lg:top-20 z-50">
+            <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                <div class="relative flex flex-col bg-white px-6 pt-4 pb-2 dark:bg-slate-700">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {% include 'core/usermenu/admin.html.twig' %}
+                    {% elseif is_granted('ROLE_MANAGER') %}
+                        {% include 'core/usermenu/manager.html.twig' %}
+                    {% elseif is_granted('ROLE_USER') %}
+                        {% include 'core/usermenu/user.html.twig' %}
+                    {% endif %}
+                </div>
+                <div class="bg-gray-50 px-8 pt-4 pb-6 dark:bg-slate-700">
+                    <ul role="list" class="space-y-2">
+                        <li class="text-base">
+                            <a href="{{ path('app_logout') }}">
+                                <button class="btn btn-base btn-slate dark:btn-white rounded">{{ 'ui.nav.menu.logout'|trans }}</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            {% if is_granted('IS_AUTHENTICATED')  %}
-            <div class="bg-gray-50 px-8 pt-4 pb-6 dark:bg-slate-700">
-                <ul role="list" class="space-y-2">
-                    <li class="text-base">
-                        <a href="{{ path('app_logout') }}">
-                            <button class="btn btn-base btn-slate dark:btn-white rounded">{{ 'ui.nav.menu.logout'|trans }}</button>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            {% endif %}
         </div>
-    </div>
+    {% endif %}
 </div>
