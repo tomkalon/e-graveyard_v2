@@ -33,6 +33,9 @@ class InitProjectCommand extends Command
         $createCustomStylesCommand = $application->find('app:create-custom-style-directory');
         $createCustomStylesCommand->run($input, $output);
 
+        $createCustomRoutesCommand = $application->find('app:create-custom-routes-directory');
+        $createCustomRoutesCommand->run($input, $output);
+
         $createSettingsCommand = $application->find('app:create:settings');
         $createSettingsCommand->run($input, $output);
 

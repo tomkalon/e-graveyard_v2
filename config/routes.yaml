@@ -11,8 +11,8 @@ admin_api:
   resource: 'routes/admin/api/routes.yaml'
 
 custom_web:
-  resource: 'routes/admin/web/routes.yaml'
+  resource: 'routes/custom/web/routes.yaml'
 
 custom_api:
-  resource: 'routes/admin/api/routes.yaml'
+  resource: 'routes/custom/api/routes.yaml'
 
