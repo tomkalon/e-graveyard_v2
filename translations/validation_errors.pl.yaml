@@ -12,6 +12,7 @@ validation:
     max_number_of_images_exceeded: Maksymalna ilość zdjęć (4) została przekroczona. Jeśli chcesz dodać nowe zdjęcia, usuń cześć dotychczasowych.
     
   user:
+    email: Email jest niepoprawny.
     password:
       password_is_too_short: Hasło musi zawierać co najmniej 8 znaków.
       passwords_not_match: Hasła nie są identyczne.
