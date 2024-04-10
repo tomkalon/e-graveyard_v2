@@ -48,11 +48,14 @@
                                href="{{ path('main_web_index') }}" data-te-nav-link-ref data-te-ripple-init
                                data-te-ripple-color="light">{{ 'ui.nav.menu.start'|trans }}</a>
                         </li>
-                        <li class="mb-4 lg:mb-0 lg:pr-2" data-goto-deceased-search-form data-te-nav-item-ref>
-                            <span class="cursor-pointer block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
-                    dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
-                                  data-te-nav-link-ref data-te-ripple-init
-                                  data-te-ripple-color="light">{{ 'ui.nav.menu.search'|trans }}</span>
+                        <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+                            <a href="{{ path('main_web_frontpage_search') }}">
+                                <span class="cursor-pointer block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30
+                                        dark:hover:text-mint dark:focus:text-white lg:p-2 [&.active]:text-black/90"
+                                      data-te-nav-link-ref data-te-ripple-init
+                                      data-te-ripple-color="light">{{ 'ui.nav.menu.search'|trans }}
+                                </span>
+                            </a>
                         </li>
                         {% include 'custom/menu/top_menu.html.twig' ignore missing %}
                     </ul>
