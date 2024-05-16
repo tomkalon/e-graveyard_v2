@@ -10,10 +10,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'app:project:init',
+    name: 'app:project:check-files',
     description: 'Configuration, first launch of the project.',
 )]
-class InitProjectCommand extends Command
+class CheckFilesCommand extends Command
 {
     protected function configure(): void
     {
@@ -28,18 +28,18 @@ class InitProjectCommand extends Command
     {
         $application = $this->getApplication();
 
-        $makeMigration = $application->find('doctrine:migrations:migrate');
-        $makeMigration->run($input, $output);
+        $createUploadDirectoriesCommand = $application->find('app:create-upload-directory');
+        $createUploadDirectoriesCommand->run($input, $output);
 
-        $createSettingsCommand = $application->find('app:create:settings');
-        $createSettingsCommand->run($input, $output);
+        $createCustomStylesCommand = $application->find('app:create-custom-style-directory');
+        $createCustomStylesCommand->run($input, $output);
 
-        $addAdminCommand = $application->find('app:admin:add');
-        $addAdminCommand->run($input, $output);
+        $createCustomRoutesCommand = $application->find('app:create-custom-routes-directory');
+        $createCustomRoutesCommand->run($input, $output);
 
         $formatter = new FormatterHelper();
+        $output->writeln('<fg=black;bg=green>Checking files has been completed successfully.</>');
 
-        $output->writeln('<fg=black;bg=green>Initialization has been completed successfully.</>');
         return Command::SUCCESS;
     }
 }

@@ -3,6 +3,7 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/yarn.lock
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/*
 /public/uploads/
