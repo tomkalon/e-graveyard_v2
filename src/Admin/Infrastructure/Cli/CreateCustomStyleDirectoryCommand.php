@@ -45,9 +45,9 @@ class CreateCustomStyleDirectoryCommand extends Command
         }
 
         if ($flag) {
-            $output->writeln('Custom files has been created successfully.');
+            $output->writeln('<fg=black;bg=green>Custom files has been created successfully.</>');
         } else {
-            $output->writeln('Custom files -> No changes were made.');
+            $output->writeln('<fg=black;bg=yellow>Custom files -> No changes were made.</>');
         }
         return Command::SUCCESS;
     }

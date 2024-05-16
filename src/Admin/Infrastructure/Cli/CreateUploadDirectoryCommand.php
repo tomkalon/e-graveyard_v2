@@ -51,9 +51,9 @@ class CreateUploadDirectoryCommand extends Command
         chown($this->graveImageThumbPath, 'www-data');
 
         if ($flag) {
-            $output->writeln('Upload directories created successfully.');
+            $output->writeln('<fg=black;bg=green>Upload directories created successfully.</>');
         } else {
-            $output->writeln('Upload directories -> No changes were made.');
+            $output->writeln('<fg=black;bg=yellow>Upload directories -> No changes were made.</>');
         }
         return Command::SUCCESS;
     }

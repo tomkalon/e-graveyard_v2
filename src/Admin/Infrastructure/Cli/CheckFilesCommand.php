@@ -38,7 +38,7 @@ class CheckFilesCommand extends Command
         $createCustomRoutesCommand->run($input, $output);
 
         $formatter = new FormatterHelper();
-        $output->writeln('<fg=black;bg=green>Checking files has been completed successfully.</>');
+        $output->writeln('<fg=yellow;bg=green>Checking files has been completed successfully.</>');
 
         return Command::SUCCESS;
     }

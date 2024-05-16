@@ -57,9 +57,9 @@ class CreateCustomRoutesDirectoryCommand extends Command
         }
 
         if ($flag) {
-            $output->writeln('Custom routes files has been created successfully.');
+            $output->writeln('<fg=black;bg=green>Custom routes files has been created successfully.</>');
         } else {
-            $output->writeln('Custom routes files -> No changes were made.');
+            $output->writeln('<fg=black;bg=yellow>Custom routes files -> No changes were made.</>');
         }
         return Command::SUCCESS;
     }
