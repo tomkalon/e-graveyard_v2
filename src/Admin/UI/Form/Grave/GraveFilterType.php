@@ -48,10 +48,7 @@ class GraveFilterType extends AbstractType
             'allow_extra_fields' => false,
             'method' => 'POST',
             'csrf_protection' => true,
-            'label_format' => 'ui.grave.%name%',
-            'constraints' => [
-                new IsGraveUnique()
-            ]
+            'label_format' => 'ui.grave.%name%'
         ]);
     }
 }

@@ -46,11 +46,10 @@ class CreateUploadDirectoryCommand extends Command
             $flag = true;
         }
 
-        chown($uploadsDir, 'www-data');
-        chown($this->graveImagePath, 'www-data');
-        chown($this->graveImageThumbPath, 'www-data');
-
         if ($flag) {
+            chown($uploadsDir, 'www-data');
+            chown($this->graveImagePath, 'www-data');
+            chown($this->graveImageThumbPath, 'www-data');
             $output->writeln('<fg=black;bg=green>Upload directories created successfully.</>');
         } else {
             $output->writeln('<fg=black;bg=yellow>Upload directories -> No changes were made.</>');

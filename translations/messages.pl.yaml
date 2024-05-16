@@ -14,7 +14,7 @@ ui:
     edit: Edycja
     range: "Wyświetl: %from%-%to% z %sum%"
     limit:
-    clear_sorting: Wyczyść filtry
+    clear_sorting: Wyczyść sortowanie
     empty: Brak wyników do wyświetlenia
     
   buttons:

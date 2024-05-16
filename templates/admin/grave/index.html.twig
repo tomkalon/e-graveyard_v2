@@ -121,23 +121,28 @@
                                 {% set name = name ~ '<i class="fa fa-map-marker ml-2" aria-hidden="true"></i>' %}
                             {% endif %}
                             {% include 'core/pagination/_body_value.html.twig' with {
-                                value: name
+                                value: name,
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.sector,
-                                class: 'text-center'
+                                class: 'text-center',
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.row,
-                                class: 'text-center'
+                                class: 'text-center',
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.number,
-                                class: 'text-center'
+                                class: 'text-center',
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.getPeopleNumber,
-                                class: 'text-center'
+                                class: 'text-center',
+                                path: path('admin_web_grave_show', {id: item.id})
                             } %}
                             {% embed 'core/pagination/_body_action.html.twig' with {
                                 class: 'w-36'
