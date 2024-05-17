@@ -13,74 +13,83 @@ parameters:
   default_timezone: '%env(APP_TIMEZONE)%'
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        
-        
-    _instanceof:
-      App\Core\Application\CQRS\Command\CommandHandlerInterface:
-        tags:
-          - { name: messenger.message_handler, bus: command.bus }
-      App\Core\Application\CQRS\Query\QueryHandlerInterface:
-        tags:
-          - { name: messenger.message_handler, bus: query.bus }
-
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-  
-  ### SERVICES ###
-    # GRAVE IMAGE UPLOAD #
-    App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
-      arguments:
-        $targetDirectory: '%app.path.grave_images%'
-        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
-
-
-  ### COMMANDS ###
-    App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
-      arguments:
-        $registerLinkExpiration: '%app.register.link.expiration%'
-        $senderEmail: '%app.sender.email%'
-        $senderName: '%app.sender.name%'
-    App\Admin\Application\Command\User\ResetPasswordCommandHandler:
-      arguments:
-        $senderEmail: '%app.sender.email%'
-        $senderName: '%app.sender.name%'
-  
-  ### CLI ###
-    App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:
-      arguments:
-        $graveImagePath: '%app.path.grave_images%'
-        $graveImageThumbPath: '%app.path.grave_images.thumbnails%'
-  
-  ### EVENT LISTENERS ###
-    App\Core\Domain\EventListener\LoginSuccessListener:
-      arguments:
-        $tokenStorage: '@security.token_storage'
+  # default configuration for services in *this* file
+  _defaults:
+      autowire: true      # Automatically injects dependencies in your services.
+      autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+      
+      
+  _instanceof:
+    App\Core\Application\CQRS\Command\CommandHandlerInterface:
       tags:
-        - { name: kernel.event_subscriber }
-        
-    # DOCTRINE ENTITY PERSIST
-    App\Core\Infrastructure\Event\Doctrine\PersistEntityEvent:
+        - { name: messenger.message_handler, bus: command.bus }
+    App\Core\Application\CQRS\Query\QueryHandlerInterface:
       tags:
-        - { name: doctrine.event_listener, event: postPersist }
-    App\Core\Infrastructure\Event\Doctrine\UpdateEntityEvent:
-      tags:
-        - { name: doctrine.event_listener, event: postUpdate }
-    App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
-      arguments:
-        $targetDirectory: '%app.path.grave_images%'
-        $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
-      tags:
-        - { name: doctrine.event_listener, event: postRemove }
+        - { name: messenger.message_handler, bus: query.bus }
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+      resource: '../src/'
+      exclude:
+          - '../src/DependencyInjection/'
+          - '../src/Core/Domain/Entity/'
+          - '../src/Kernel.php'
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+
+### SERVICES ###
+  # GRAVE IMAGE UPLOAD #
+  App\Admin\Application\Service\File\Grave\GraveImageUploaderService:
+    arguments:
+      $targetDirectory: '%app.path.grave_images%'
+      $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
+      
+### UTILITIES ###
+  # TIME CONVERTER #
+  app.time_converter_utility.second_to_minutes:
+    class: App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToMinutesUtility
+  app.time_converter_utility.second_to_hours:
+    class: App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToHoursUtility
+    
+### COMMANDS ###
+  App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
+    arguments:
+      $registerLinkExpiration: '%app.register.link.expiration%'
+      $senderEmail: '%app.sender.email%'
+      $senderName: '%app.sender.name%'
+      $timeConverterUtility: app.time_converter_utility.second_to_hours
+      
+  App\Admin\Application\Command\User\ResetPasswordCommandHandler:
+    arguments:
+      $senderEmail: '%app.sender.email%'
+      $senderName: '%app.sender.name%'
+      $timeConverterUtility: app.time_converter_utility.second_to_minutes
+      
+### CLI ###
+  App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:
+    arguments:
+      $graveImagePath: '%app.path.grave_images%'
+      $graveImageThumbPath: '%app.path.grave_images.thumbnails%'
+
+### EVENT LISTENERS ###
+  App\Core\Domain\EventListener\LoginSuccessListener:
+    arguments:
+      $tokenStorage: '@security.token_storage'
+    tags:
+      - { name: kernel.event_subscriber }
+      
+  # DOCTRINE ENTITY PERSIST
+  App\Core\Infrastructure\Event\Doctrine\PersistEntityEvent:
+    tags:
+      - { name: doctrine.event_listener, event: postPersist }
+  App\Core\Infrastructure\Event\Doctrine\UpdateEntityEvent:
+    tags:
+      - { name: doctrine.event_listener, event: postUpdate }
+  App\Core\Infrastructure\Event\Doctrine\RemoveEntityEvent:
+    arguments:
+      $targetDirectory: '%app.path.grave_images%'
+      $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
+    tags:
+      - { name: doctrine.event_listener, event: postRemove }

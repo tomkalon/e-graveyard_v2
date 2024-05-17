@@ -56,7 +56,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
             30,
             'generated_register_link_'
         );
-        $expiration = $this->timeConverterUtility->convertSecondsToTime($this->registerLinkExpiration, TimeUnitsEnum::HOUR);
+        $expiration = $this->timeConverterUtility->convert($this->registerLinkExpiration);
 
         $email = (new TemplatedEmail())
             ->from(new Address($this->senderEmail, $this->senderName))

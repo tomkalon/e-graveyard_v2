@@ -51,7 +51,7 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml --env-file .
 ### 5) Once completed, navigate to the 'php-apache' container and execute the following commands:
 ```
 composer install
-symfony console d:m:m
+symfony console app:project:check-files
 ```
 
 ### 6) To run project initialization and make new administrator account, run:
