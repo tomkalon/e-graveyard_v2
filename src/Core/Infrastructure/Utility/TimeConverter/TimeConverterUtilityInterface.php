@@ -6,5 +6,5 @@ use App\Core\Domain\Enum\TimeUnitsEnum;
 
 interface TimeConverterUtilityInterface
 {
-    public function convertSecondsToTime(int $seconds, TimeUnitsEnum $outputFormat): string;
+    public function convert(int $input): string;
 }

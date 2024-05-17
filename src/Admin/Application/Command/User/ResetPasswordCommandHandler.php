@@ -56,7 +56,7 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
             30,
             'generated_reset_password_link_'
         );
-        $expiration = $this->timeConverterUtility->convertSecondsToTime(600, TimeUnitsEnum::MINUTE);
+        $expiration = $this->timeConverterUtility->convert(600);
 
         $email = (new TemplatedEmail())
             ->from(new Address($this->senderEmail, $this->senderName))
