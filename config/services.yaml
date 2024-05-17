@@ -18,7 +18,6 @@ services:
       autowire: true      # Automatically injects dependencies in your services.
       autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
       
-      
   _instanceof:
     App\Core\Application\CQRS\Command\CommandHandlerInterface:
       tags:
