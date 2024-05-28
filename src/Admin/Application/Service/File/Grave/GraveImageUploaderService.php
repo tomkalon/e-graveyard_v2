@@ -59,7 +59,7 @@ readonly class GraveImageUploaderService implements ImageUploaderServiceInterfac
             $manager = new ImageManager(new Driver());
             $originalImage = $manager->read($readFile);
 
-            $image = $originalImage->cover($this->maxImageWidth, $this->maxImageHeight)->toWebp();
+            $image = $originalImage->scale($this->maxImageWidth, $this->maxImageHeight)->toWebp();
             $image->save($imageDirectory . $name . '.' . $ext);
 
             $thumb = $originalImage->cover(190, 150);
