@@ -10,6 +10,8 @@ parameters:
   app.register.link.expiration: '%env(APP_REGISTER_LINK_EXPIRATION)%'
   app.path.grave_images: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_PATH)%'
   app.path.grave_images.thumbnails: '%kernel.project_dir%/public/uploads%env(APP_GRAVE_IMAGE_THUMB_PATH)%'
+  app.grave.image.max.width: '%env(APP_GRAVE_IMAGE_MAX_WIDTH)%'
+  app.grave.image.max.height: '%env(APP_GRAVE_IMAGE_MAX_HEIGHT)%'
   default_timezone: '%env(APP_TIMEZONE)%'
 
 services:
@@ -44,6 +46,8 @@ services:
     arguments:
       $targetDirectory: '%app.path.grave_images%'
       $targetThumbnailDirectory: '%app.path.grave_images.thumbnails%'
+      $maxImageWidth: '%app.grave.image.max.width%'
+      $maxImageHeight: '%app.grave.image.max.height%'
       
 ### UTILITIES ###
   # TIME CONVERTER #

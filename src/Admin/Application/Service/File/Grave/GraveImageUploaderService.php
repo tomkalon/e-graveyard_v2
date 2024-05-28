@@ -16,14 +16,17 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class GraveImageUploaderService implements ImageUploaderServiceInterface
+readonly class GraveImageUploaderService implements ImageUploaderServiceInterface
 {
     public function __construct(
-        private readonly string           $targetDirectory,
-        private readonly string           $targetThumbnailDirectory,
-        private readonly SluggerInterface $slugger,
-        private readonly NotificationInterface $notification,
-    ) {
+        private string                $targetDirectory,
+        private string                $targetThumbnailDirectory,
+        private string                $maxImageWidth,
+        private string                $maxImageHeight,
+        private SluggerInterface      $slugger,
+        private NotificationInterface $notification,
+    )
+    {
     }
 
     /**
@@ -34,9 +37,9 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
         // set fileName
         $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $this->slugger->slug($originalFilename);
-        $name = $safeFilename.'-'.uniqid();
+        $name = $safeFilename . '-' . uniqid();
 
-        $fileName = $name . '.' .$file->guessExtension();
+        $fileName = $name . '.' . $file->guessExtension();
         $ext = FileExtensionTypeEnum::WEBP->value;
 
         $imageDirectory = $this->getTargetDirectory() . '/';
@@ -56,7 +59,7 @@ class GraveImageUploaderService implements ImageUploaderServiceInterface
             $manager = new ImageManager(new Driver());
             $originalImage = $manager->read($readFile);
 
-            $image = $originalImage->toWebp();
+            $image = $originalImage->cover($this->maxImageWidth, $this->maxImageHeight)->toWebp();
             $image->save($imageDirectory . $name . '.' . $ext);
 
             $thumb = $originalImage->cover(190, 150);
