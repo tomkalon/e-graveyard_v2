@@ -49,26 +49,19 @@ services:
       $maxImageWidth: '%app.grave.image.max.width%'
       $maxImageHeight: '%app.grave.image.max.height%'
       
-### UTILITIES ###
-  # TIME CONVERTER #
-  app.time_converter_utility.second_to_minutes:
-    class: App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToMinutesUtility
-  app.time_converter_utility.second_to_hours:
-    class: App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToHoursUtility
-    
 ### COMMANDS ###
   App\Admin\Application\Command\User\SendRegistrationLinkCommandHandler:
     arguments:
       $registerLinkExpiration: '%app.register.link.expiration%'
       $senderEmail: '%app.sender.email%'
       $senderName: '%app.sender.name%'
-      $timeConverterUtility: app.time_converter_utility.second_to_hours
+      $timeConverterUtility: '@App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToHoursUtility'
       
   App\Admin\Application\Command\User\ResetPasswordCommandHandler:
     arguments:
       $senderEmail: '%app.sender.email%'
       $senderName: '%app.sender.name%'
-      $timeConverterUtility: app.time_converter_utility.second_to_minutes
+      $timeConverterUtility: '@App\Core\Infrastructure\Utility\TimeConverter\ConvertSecondsToMinutesUtility'
       
 ### CLI ###
   App\Admin\Infrastructure\Cli\CreateUploadDirectoryCommand:
