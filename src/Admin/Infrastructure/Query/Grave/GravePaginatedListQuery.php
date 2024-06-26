@@ -28,9 +28,6 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
         ?string $limit = null,
         ?GraveFilterView $filter = null,
     ): PaginationInterface {
-
-//        dd($filter);
-
         $query = $this->repository->getGravesListQuery($filter);
         $gravesList = $this->paginator->paginate(
             $query,
