@@ -9,7 +9,7 @@ RUN apt-get -y update && apt-get install -y libicu-dev libzip-dev zip libjpeg-de
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install intl opcache pdo_mysql zip gd
-RUN pecl install xdebug
+RUN pecl install xdebug phpunit
 
 #INI-Files
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
@@ -34,8 +34,6 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/
 # Install Utility
 RUN apt-get install nano -y
 RUN apt-get install mc -y
-
-# CERTS
 
 # History
 RUN echo "symfony console fos:js-routing:dump --format=json --target=public/js/routes.json" >> ~/.bash_history
