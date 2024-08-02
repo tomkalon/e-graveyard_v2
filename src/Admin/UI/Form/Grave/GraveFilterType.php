@@ -46,7 +46,7 @@ class GraveFilterType extends AbstractType
         $resolver->setDefaults([
             'data_class' => GraveFilterView::class,
             'allow_extra_fields' => false,
-            'method' => 'POST',
+            'method' => 'GET',
             'csrf_protection' => true,
             'label_format' => 'ui.grave.%name%'
         ]);
