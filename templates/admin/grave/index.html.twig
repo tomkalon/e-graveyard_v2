@@ -56,7 +56,9 @@
 
                             <div class="flex justify-end gap-2 mt-4">
                                 {{ form_row(filterForm.search) }}
-                                <button type="button" onClick="location.reload()" class="btn btn-warning">{{ 'ui.buttons.reset'|trans }}</button>
+                                <a href="{{ path('admin_web_grave_index') }}">
+                                    <button type="button" class="btn btn-warning">{{ 'ui.buttons.reset'|trans }}</button>
+                                </a>
                             </div>
                         </div>
                     </div>
