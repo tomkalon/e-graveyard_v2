@@ -19,7 +19,7 @@
                         {% if grave.mainImage %}
                             <img src="{{ asset(file_grave.images_directory ~ grave.mainImage.filename) }}"
                                  data-te-img="{{ asset(file_grave.images_directory ~ grave.mainImage.filename) }}"
-                                 alt="Main Image"
+                                 alt=""
                                  class="ripple cursor-pointer w-full rounded-t-lg lg:rounded-tr-none" />
                         {% else %}
                             <img src="{{ asset('build/images/no_image.svg') }}" alt="No Image"

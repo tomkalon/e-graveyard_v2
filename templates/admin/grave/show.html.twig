@@ -66,11 +66,11 @@
                             <div data-te-lightbox-init>
                                 <img src="{{ asset(file_grave.images_thumbnail_directory ~ grave.mainImage.getFilename) }}"
                                      data-te-img="{{ asset(file_grave.images_directory ~ grave.mainImage.getFilename) }}"
-                                     alt="Main image" data-lightbox-thumb class="cursor-pointer rounded opacity-100">
+                                     alt="" data-lightbox-thumb class="cursor-pointer rounded opacity-100">
                             </div>
                         {% else %}
                             <img src="{{ asset('build/images/no_image.svg') }}" class="rounded opacity-90" width="190"
-                                 alt="Main image">
+                                 alt="">
                         {% endif %}
                     </div>
                     <div class="flex-grow">
