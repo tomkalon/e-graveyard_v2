@@ -39,7 +39,7 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('admin_web_user_index');
         }
 
-            // get the login error if there is one
+        // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
