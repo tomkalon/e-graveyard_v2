@@ -29,9 +29,17 @@ use Symfony\Contracts\Cache\CacheInterface;
 class LoginController extends AbstractController
 {
     public function login(
-        AuthenticationUtils $authenticationUtils): Response
-    {
-        // get the login error if there is one
+        AuthenticationUtils $authenticationUtils,
+        Security $security,
+    ): Response {
+        if ($security->isGranted('ROLE_MANAGER')) {
+            return $this->redirectToRoute('admin_web_user_index');
+        }
+        if ($security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_web_user_index');
+        }
+
+            // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
 
         // last username entered by the user
