@@ -56,7 +56,7 @@ class PersonSearchType extends AbstractType
         $resolver->setDefaults([
             'data_class' => DeceasedSearchView::class,
             'allow_extra_fields' => true,
-            'method' => 'POST',
+            'method' => 'GET',
             'csrf_protection' => true,
             'label_format' => 'ui.person.%name%',
         ]);
