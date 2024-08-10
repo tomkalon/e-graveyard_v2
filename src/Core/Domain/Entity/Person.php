@@ -8,7 +8,7 @@ namespace App\Core\Domain\Entity;
 
 use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
-use DateTimeImmutable;
+use DateTime;
 
 class Person
 {
@@ -17,8 +17,8 @@ class Person
 
     private string $firstname;
     private string $lastname;
-    private ?DateTimeImmutable $born_date;
-    private ?DateTimeImmutable $death_date;
+    private ?DateTime $born_date;
+    private ?DateTime $death_date;
     private ?bool $born_date_only_year = null;
     private ?bool $death_date_only_year = null;
     private Grave $grave;
@@ -53,22 +53,22 @@ class Person
         $this->lastname = $lastname;
     }
 
-    public function getBornDate(): ?DateTimeImmutable
+    public function getBornDate(): ?DateTime
     {
         return $this->born_date;
     }
 
-    public function setBornDate(?DateTimeImmutable $born_date): void
+    public function setBornDate(?DateTime $born_date): void
     {
         $this->born_date = $born_date;
     }
 
-    public function getDeathDate(): ?DateTimeImmutable
+    public function getDeathDate(): ?DateTime
     {
         return $this->death_date;
     }
 
-    public function setDeathDate(?DateTimeImmutable $death_date): void
+    public function setDeathDate(?DateTime $death_date): void
     {
         $this->death_date = $death_date;
     }
