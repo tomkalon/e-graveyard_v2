@@ -9,6 +9,7 @@ namespace App\Admin\Application\Dto\Grave;
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Person;
 use App\Core\Domain\Enum\PaymentStatusEnum;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Exception;
@@ -61,8 +62,8 @@ class GraveDto
             return [
                 'firstName' => $person->getFirstname(),
                 'lastName' => $person->getLastName(),
-                'bornDate' => $person->getBornDate()->format('Y-m-d'),
-                'deathDate' => $person->getDeathDate()->format('Y-m-d'),
+                'bornDate' => $person->getBornDate()?->format('Y-m-d'),
+                'deathDate' => $person->getDeathDate()?->format('Y-m-d'),
             ];
         }, $grave->getPeople()->toArray());
 
@@ -77,8 +78,8 @@ class GraveDto
             $grave->getGraveyard()->getName(),
             $people,
             $paymentsStatus->value,
-            $grave->getUpdatedAt()->format('Y-m-d'),
-            $grave->getCreatedAt()->format('Y-m-d'),
+            $grave->getUpdatedAt()?->format('Y-m-d'),
+            $grave->getCreatedAt()?->format('Y-m-d'),
         );
     }
 
