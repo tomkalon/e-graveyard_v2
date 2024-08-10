@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
@@ -22,20 +26,20 @@ class UserType extends AbstractType
             ->add('username', TextType::class, [
                 'required' => true,
                 'constraints' => [
-                    new isUniqueUser()
-                ]
+                    new isUniqueUser(),
+                ],
             ])
             ->add('email', EmailType::class, [
                 'required' => true,
                 'constraints' => [
-                    new isUniqueEmail()
-                ]
+                    new isUniqueEmail(),
+                ],
             ])
             ->add('password', PasswordType::class, [
                 'required' => true,
                 'constraints' => [
-                    new UserPassword()
-                ]
+                    new UserPassword(),
+                ],
             ])
             ->add('repeatPassword', PasswordType::class, [
                 'required' => true,
@@ -43,8 +47,8 @@ class UserType extends AbstractType
             ->add('register', SubmitType::class, [
                 'label' => 'ui.user.register',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ]);
     }
 

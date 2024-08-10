@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Main\Infrastructure\Query\Frontpage;
 
 use App\Core\Domain\Repository\SettingsRepositoryInterface;
@@ -12,10 +16,8 @@ class GetGraveView implements GetGraveViewInterface
 {
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
-        private readonly SettingsRepositoryInterface $settingsRepository
-    )
-    {
-    }
+        private readonly SettingsRepositoryInterface $settingsRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

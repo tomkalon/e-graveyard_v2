@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Utility\FlashMessage;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
@@ -10,9 +14,8 @@ readonly class Notification implements NotificationInterface
 {
     public function __construct(
         private FlashMessageInterface $flashMessage,
-        private TranslatorInterface   $translator
-    ) {
-    }
+        private TranslatorInterface   $translator,
+    ) {}
 
     public function addNotification(string $name, NotificationDto $dto): void
     {
@@ -20,7 +23,7 @@ readonly class Notification implements NotificationInterface
             'title' => $this->translator->trans($dto->title, [], 'flash'),
             'type' => $dto->type->value,
             'content' => $this->translator->trans($dto->content, [], 'flash'),
-            'time' => $dto->time
+            'time' => $dto->time,
         ));
     }
 }

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Main\Domain\View\Search;
 
 use App\Core\Domain\Entity\Grave;
@@ -22,7 +26,7 @@ class DeceasedSearchView
         ?string $deathYear = null,
         ?DateTimeImmutable $bornDate = null,
         ?DateTimeImmutable $deathDate = null,
-        ?Grave $grave = null
+        ?Grave $grave = null,
     ) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Service\User;
 
 use App\Admin\Domain\Repository\UserRepositoryInterface;
@@ -19,8 +23,7 @@ class UpdateUserService implements UpdateUserServiceInterface
         private readonly UserPasswordHasherInterface $hasher,
         private readonly EntityManagerInterface      $em,
         private readonly NotificationInterface       $notification,
-    ) {
-    }
+    ) {}
 
     public function update(UserView $userView): void
     {

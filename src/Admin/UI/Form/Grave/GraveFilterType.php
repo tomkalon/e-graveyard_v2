@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\Grave;
 
 use App\Admin\Domain\View\Grave\GraveFilterView;
-use App\Admin\Infrastructure\Validator\Grave\IsGraveUnique;
 use App\Core\Domain\Entity\Graveyard;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -11,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 class GraveFilterType extends AbstractType
 {
@@ -35,8 +37,8 @@ class GraveFilterType extends AbstractType
             ->add('search', SubmitType::class, [
                 'label' => 'ui.buttons.search',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }
@@ -48,7 +50,7 @@ class GraveFilterType extends AbstractType
             'allow_extra_fields' => false,
             'method' => 'GET',
             'csrf_protection' => true,
-            'label_format' => 'ui.grave.%name%'
+            'label_format' => 'ui.grave.%name%',
         ]);
     }
 }

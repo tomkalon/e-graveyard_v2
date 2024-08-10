@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Repository;
 
 use App\Core\Domain\Entity\Person;
@@ -10,7 +14,4 @@ use App\Core\Domain\Entity\Person;
  * @method Person[]    findAll()
  * @method Person[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface PersonRepositoryInterface
-{
-
-}
+interface PersonRepositoryInterface {}

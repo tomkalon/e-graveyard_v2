@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\User;
 
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
@@ -8,7 +12,6 @@ use App\Core\Application\Service\Security\LinkGeneratorServiceInterface;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Enum\TimeUnitsEnum;
 use App\Core\Infrastructure\Utility\TimeConverter\TimeConverterUtilityInterface;
 use LogicException;
 use Psr\Log\LoggerInterface;
@@ -31,9 +34,7 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
         private NotificationInterface         $notification,
         private string                        $senderEmail,
         private string                        $senderName,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @throws TransportExceptionInterface
@@ -54,7 +55,7 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
             $userView->getId(),
             6000,
             30,
-            'generated_reset_password_link_'
+            'generated_reset_password_link_',
         );
         $expiration = $this->timeConverterUtility->convert(600);
 
@@ -70,7 +71,7 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
                 ], 'email'),
                 'expiration' => $this->translator->trans('email.common.expiration', [
                     '%expiration%' => $expiration,
-                ], 'email')
+                ], 'email'),
             ]);
         $this->mailer->send($email);
         $this->userLogger->info('Reset password command received', [

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Cli;
 
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -15,9 +19,8 @@ use Symfony\Component\Filesystem\Filesystem;
 class CreateCustomStyleDirectoryCommand extends Command
 {
     public function __construct(
-        private readonly Filesystem $filesystem
-    )
-    {
+        private readonly Filesystem $filesystem,
+    ) {
         parent::__construct();
     }
 

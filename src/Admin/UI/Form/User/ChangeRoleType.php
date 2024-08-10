@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
@@ -17,7 +21,7 @@ class ChangeRoleType extends AbstractType
     {
         $builder
             ->add('id', HiddenType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('roles', EnumType::class, [
                 'label' => 'ui.user.role.label',
@@ -29,13 +33,13 @@ class ChangeRoleType extends AbstractType
                     'Manager' => UserRoleEnum::MANAGER,
                     'Admin' => UserRoleEnum::ADMIN,
                 ],
-                'required' => true
+                'required' => true,
             ])
             ->add('change', SubmitType::class, [
                 'label' => 'ui.buttons.change',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ]);
     }
 

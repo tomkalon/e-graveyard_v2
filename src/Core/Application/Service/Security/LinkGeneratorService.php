@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Service\Security;
 
 use Exception;
@@ -14,22 +18,21 @@ readonly class LinkGeneratorService implements LinkGeneratorServiceInterface
 {
     public function __construct(
         private CacheInterface        $cache,
-        private UrlGeneratorInterface $urlGenerator
-    ) {
-    }
+        private UrlGeneratorInterface $urlGenerator,
+    ) {}
 
     /**
      * @throws InvalidArgumentException
      * @throws Exception
      */
-    public function generate(string $route,
-                             mixed $data,
-                             int $expiration,
-                             ?int $length = null,
-                             ?string $prefix = null,
-                             ?string $suffix = null
-    ): string
-    {
+    public function generate(
+        string $route,
+        mixed $data,
+        int $expiration,
+        ?int $length = null,
+        ?string $prefix = null,
+        ?string $suffix = null,
+    ): string {
         $generator = new ComputerPasswordGenerator();
         $generator
             ->setOptionValue(ComputerPasswordGenerator::OPTION_UPPER_CASE, true)

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Main\Infrastructure\Query\Frontpage;
 
 use App\Core\Domain\Entity\Person;
@@ -12,23 +16,20 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
 {
     public function __construct(
         private readonly PersonRepositoryInterface $personRepository,
-        private readonly PaginatorInterface $paginator
-    )
-    {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
         ?string $limit = null,
         ?DeceasedSearchView $filter = null,
-    ): PaginationInterface
-    {
+    ): PaginationInterface {
         $query = $this->personRepository->getPersonListQuery($filter);
         $deceasedList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $deceasedViewList = [];
@@ -41,7 +42,7 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
                 null,
                 $person->getBornDate(),
                 $person->getDeathDate(),
-                $person->getGrave()
+                $person->getGrave(),
             );
         }
 

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\Logger\Doctrine;
 
 class RemoveEntityLogger extends AbstractEntityLogger

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Person;
 
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
@@ -13,8 +17,7 @@ class RemovePersonCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly PersonRepositoryInterface $personRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

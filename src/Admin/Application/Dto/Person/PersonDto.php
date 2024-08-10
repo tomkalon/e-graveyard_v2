@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Dto\Person;
 
 use App\Core\Domain\Entity\Person;
-use DateTimeImmutable;
 
 class PersonDto
 {
@@ -20,7 +23,7 @@ class PersonDto
         ?string $lastName = null,
         ?string $bornDate = null,
         ?string $deathDate = null,
-        ?string $grave = null
+        ?string $grave = null,
     ) {
         $this->id = $id;
         $this->firstName = $firstName;

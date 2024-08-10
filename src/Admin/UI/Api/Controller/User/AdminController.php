@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Api\Controller\User;
 
 use App\Admin\Application\Command\User\RemoveUserCommand;
@@ -19,9 +23,8 @@ class AdminController extends AbstractFOSRestController
     public function get(
         string $id,
         GetUserInterface $query,
-        SerializerInterface $serializer
-    ): Response
-    {
+        SerializerInterface $serializer,
+    ): Response {
         $user = $query->execute($id);
         $userDto = UserDto::fromEntity($user);
         return new Response($serializer->serialize($userDto, 'json'));
@@ -33,9 +36,8 @@ class AdminController extends AbstractFOSRestController
     public function resetPassword(
         string $id,
         GetUserInterface $query,
-        CommandBusInterface $commandBus
-    ): Response
-    {
+        CommandBusInterface $commandBus,
+    ): Response {
         $userId = base64_decode($id);
 
         if ($userId) {
@@ -51,7 +53,7 @@ class AdminController extends AbstractFOSRestController
 
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemoveUserCommand($id));
         return $this->json('true');

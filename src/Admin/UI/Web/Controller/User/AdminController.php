@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Web\Controller\User;
 
 use App\Admin\Application\Command\User\SendRegistrationLinkCommand;
@@ -16,16 +20,14 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class AdminController extends AbstractController
 {
     public function list(
         UserPaginatedListQueryInterface $query,
         Request                         $request,
         CommandBusInterface             $commandBus,
-        int                             $page
-    ): Response
-    {
+        int                             $page,
+    ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }
@@ -50,15 +52,14 @@ class AdminController extends AbstractController
         return $this->render('admin/user/admin/user_list.html.twig', [
             'pagination' => $paginatedUsersList,
             'change_permission_form' => $changePermissionForm->createView(),
-            'adminID' => $user->getId()
+            'adminID' => $user->getId(),
         ]);
     }
 
     public function create(
         Request $request,
-        CommandBusInterface $commandBus
-    ): Response
-    {
+        CommandBusInterface $commandBus,
+    ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }
@@ -72,7 +73,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/user/admin/send_invitation.html.twig', [
-            'form' => $userForm->createView()
+            'form' => $userForm->createView(),
         ]);
     }
 }

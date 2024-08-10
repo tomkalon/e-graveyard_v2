@@ -1,20 +1,21 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Payment\Grave;
 
 use App\Admin\Domain\Repository\PaymentGraveRepositoryInterface;
 use App\Admin\Domain\View\Payment\PaymentGraveView;
-use App\Core\Domain\Entity\PaymentGrave;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 
 class GetPaymentGraveView implements GetPaymentGraveViewInterface
 {
-
     public function __construct(
-        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository
-    ) {
-    }
+        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

@@ -1,8 +1,11 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Domain\View\Graveyard;
 
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use DateTimeImmutable;
 
@@ -20,7 +23,7 @@ class GraveyardView
         ?string $description = null,
         ?array $graves = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->name = $name;
         $this->description = $description;
@@ -36,7 +39,7 @@ class GraveyardView
             $graveyard->getDescription(),
             $graveyard->getGraves()->toArray(),
             $graveyard->getUpdatedAt(),
-            $graveyard->getCreatedAt()
+            $graveyard->getCreatedAt(),
         );
     }
 

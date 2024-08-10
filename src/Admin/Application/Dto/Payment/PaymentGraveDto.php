@@ -1,10 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Dto\Payment;
 
 use App\Core\Domain\Entity\PaymentGrave;
-use App\Core\Domain\Enum\CurrencyTypeEnum;
-use DateTimeImmutable;
 
 class PaymentGraveDto
 {

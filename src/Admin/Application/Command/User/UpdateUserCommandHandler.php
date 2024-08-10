@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\User;
 
 use App\Admin\Application\Service\User\UpdateUserServiceInterface;
@@ -9,8 +13,7 @@ readonly class UpdateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private UpdateUserServiceInterface $updateUserService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(UpdateUserCommand $command): void
     {

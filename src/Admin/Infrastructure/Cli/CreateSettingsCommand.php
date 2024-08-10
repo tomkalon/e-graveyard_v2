@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Cli;
 
 use App\Core\Domain\Entity\Settings;
@@ -19,8 +23,7 @@ class CreateSettingsCommand extends Command
     public function __construct(
         private readonly SettingsRepositoryInterface $settingsRepository,
         private readonly EntityManagerInterface $em,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

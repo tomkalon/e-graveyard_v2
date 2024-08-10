@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\User;
 
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
@@ -8,7 +12,6 @@ use App\Core\Application\Service\Security\LinkGeneratorServiceInterface;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Enum\TimeUnitsEnum;
 use App\Core\Infrastructure\Utility\TimeConverter\TimeConverterUtilityInterface;
 use LogicException;
 use Psr\Log\LoggerInterface;
@@ -32,8 +35,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
         private string                        $registerLinkExpiration,
         private string                        $senderEmail,
         private string                        $senderName,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws TransportExceptionInterface
@@ -54,7 +56,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
             $userView->getEmail(),
             $this->registerLinkExpiration,
             30,
-            'generated_register_link_'
+            'generated_register_link_',
         );
         $expiration = $this->timeConverterUtility->convert($this->registerLinkExpiration);
 
@@ -70,7 +72,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
                 ], 'email'),
                 'expiration' => $this->translator->trans('email.common.expiration', [
                     '%expiration%' => $expiration,
-                ], 'email')
+                ], 'email'),
             ]);
 
         $this->mailer->send($email);

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Service\Graveyard;
 
 use App\Admin\Domain\View\Graveyard\GraveyardView;
@@ -9,9 +13,8 @@ use Doctrine\ORM\EntityManagerInterface;
 class SaveGraveyardService implements SaveGraveyardServiceInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em
-    ) {
-    }
+        private readonly EntityManagerInterface $em,
+    ) {}
 
     public function persist(GraveyardView $graveyardView): void
     {

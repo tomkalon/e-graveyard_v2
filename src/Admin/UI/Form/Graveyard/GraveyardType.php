@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\Graveyard;
 
 use App\Admin\Domain\View\Graveyard\GraveyardView;
@@ -21,13 +25,13 @@ class GraveyardType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'ui.graveyard.desc',
                 'required' => false,
-                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]']
+                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]'],
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ]);
     }
 

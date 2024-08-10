@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\DTO\FlashMessage;
 
 use App\Core\Domain\Enum\NotificationTypeEnum;
@@ -15,9 +19,8 @@ class NotificationDto
         string $title,
         NotificationTypeEnum $type,
         string $content,
-        ?string $time = null
-    )
-    {
+        ?string $time = null,
+    ) {
         $this->title = $title;
         $this->type = $type;
         $this->content = $content;

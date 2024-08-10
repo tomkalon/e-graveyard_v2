@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Utility\FlashMessage\RemoveEntity;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
@@ -16,35 +20,38 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RemoveEntityFlash implements RemoveEntityFlashInterface
 {
-
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly NotificationInterface $flashMessage,
-    ) {
-    }
+    ) {}
 
     public function handleNotification(object $entity): void
     {
         $title = match (true) {
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.remove.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.remove.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof User => $this->translator->trans(
                 'notification.user.remove.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
                 'notification.file.remove.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof Person => $this->translator->trans(
                 'notification.person.remove.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             default => $this->translator->trans('notification.lifecycle.remove.title', [], 'flash'),
         };
@@ -53,45 +60,46 @@ class RemoveEntityFlash implements RemoveEntityFlashInterface
         $content = match (true) {
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.remove.success',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.remove.success',
                 [
-                    '%graveyard%' =>$entity->getName()
+                    '%graveyard%' => $entity->getName(),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof Person => $this->translator->trans(
                 'notification.person.remove.success',
                 [
-                    '%firstname%' =>$entity->getFirstname(),
-                    '%lastname%' =>$entity->getLastname(),
+                    '%firstname%' => $entity->getFirstname(),
+                    '%lastname%' => $entity->getLastname(),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof PaymentGrave => $this->translator->trans(
                 'notification.paymentGrave.remove.success',
                 [
-                    '%payment%' =>$entity->getMoney(),
-                    '%currency%' =>$entity->getCurrency()->trans($this->translator),
+                    '%payment%' => $entity->getMoney(),
+                    '%currency%' => $entity->getCurrency()->trans($this->translator),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
                 'notification.file.remove.success',
                 [
-                    '%name%' =>$entity->getFilename(),
+                    '%name%' => $entity->getFilename(),
                 ],
-                'flash'
+                'flash',
             ),
-            default => $this->translator->trans('notification.lifecycle.remove.success', [], 'flash')
+            default => $this->translator->trans('notification.lifecycle.remove.success', [], 'flash'),
         };
 
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,
             NotificationTypeEnum::SUCCESS,
-            $content
+            $content,
         ));
     }
 }

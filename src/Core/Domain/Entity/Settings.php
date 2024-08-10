@@ -1,15 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Entity;
 
-use App\Core\Domain\Enum\PaymentStatusEnum;
-use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
-use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
-use Exception;
 
 class Settings
 {

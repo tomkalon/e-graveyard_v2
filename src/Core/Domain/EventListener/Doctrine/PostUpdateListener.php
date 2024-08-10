@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\EventListener\Doctrine;
 
 use Doctrine\ORM\Events;
@@ -11,11 +15,9 @@ class PostUpdateListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postUpdate => 'postUpdate'
+            Events::postUpdate => 'postUpdate',
         ];
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
-    {
-    }
+    public function postUpdate(LifecycleEventArgs $args) {}
 }

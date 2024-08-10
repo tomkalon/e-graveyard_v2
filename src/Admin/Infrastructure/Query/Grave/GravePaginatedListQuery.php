@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
@@ -16,9 +20,8 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
     public function __construct(
         private readonly GraveRepositoryInterface $repository,
         private readonly PaginatorInterface $paginator,
-        private readonly SettingsRepositoryInterface $settingsRepository
-    ) {
-    }
+        private readonly SettingsRepositoryInterface $settingsRepository,
+    ) {}
 
     /**
      * @throws Exception
@@ -33,7 +36,7 @@ class GravePaginatedListQuery implements GravePaginatedListQueryInterface
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $settings = $this->settingsRepository->getSettings();

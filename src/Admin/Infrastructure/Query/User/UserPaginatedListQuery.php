@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\User;
 
 use App\Admin\Domain\Repository\UserRepositoryInterface;
@@ -13,21 +17,18 @@ class UserPaginatedListQuery implements UserPaginatedListQueryInterface
     public function __construct(
         private readonly UserRepositoryInterface $repository,
         private readonly PaginatorInterface $paginator,
-    )
-    {
-    }
+    ) {}
 
     public function execute(
         ?int $page = null,
-        ?string $limit = null
-    ): PaginationInterface
-    {
+        ?string $limit = null,
+    ): PaginationInterface {
         $query = $this->repository->getUsersListQuery();
         $usersList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $userViewList = [];

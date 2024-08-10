@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Service\Person;
 
 use App\Admin\Domain\View\Person\PersonView;
@@ -10,9 +14,8 @@ use Ramsey\Uuid\Uuid;
 readonly class SavePersonService implements SavePersonServiceInterface
 {
     public function __construct(
-        private EntityManagerInterface $em
-    ) {
-    }
+        private EntityManagerInterface $em,
+    ) {}
 
     public function persist(PersonView $personView): void
     {

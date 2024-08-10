@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Enum;
 
 enum PaginationLimitEnum: int
@@ -17,6 +21,5 @@ enum PaginationLimitEnum: int
             50 => self::LIMIT_50->value,
             100 => self::LIMIT_100->value,
         ];
-
     }
 }

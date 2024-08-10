@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Payment\Grave;
 
 use App\Admin\Domain\Repository\PaymentGraveRepositoryInterface;
@@ -9,11 +13,9 @@ use Exception;
 
 class GetPaymentGrave implements GetPaymentGraveInterface
 {
-
     public function __construct(
-        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository
-    ) {
-    }
+        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

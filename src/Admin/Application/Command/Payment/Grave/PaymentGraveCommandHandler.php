@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Payment\Grave;
 
 use App\Admin\Application\Service\Payment\SavePaymentGraveServiceInterface;
@@ -8,9 +12,8 @@ use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 class PaymentGraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly SavePaymentGraveServiceInterface $savePaymentGraveService
-    ) {
-    }
+        private readonly SavePaymentGraveServiceInterface $savePaymentGraveService,
+    ) {}
 
     public function __invoke(PaymentGraveCommand $command)
     {

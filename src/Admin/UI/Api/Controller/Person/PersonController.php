@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Api\Controller\Person;
 
 use App\Admin\Application\Command\Person\RemovePersonCommand;
@@ -15,7 +19,7 @@ class PersonController extends AbstractFOSRestController
     public function get(
         string $id,
         GetPersonInterface $query,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
     ): Response {
         $dto = PersonDto::fromEntity($query->execute($id));
         return new Response($serializer->serialize($dto, 'json'));
@@ -23,7 +27,7 @@ class PersonController extends AbstractFOSRestController
 
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemovePersonCommand($id));
         return $this->json('true');

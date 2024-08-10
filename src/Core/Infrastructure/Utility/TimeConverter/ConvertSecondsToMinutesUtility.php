@@ -1,17 +1,18 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\Utility\TimeConverter;
 
-use App\Core\Domain\Enum\TimeUnitsEnum;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 readonly class ConvertSecondsToMinutesUtility implements TimeConverterUtilityInterface
 {
     public function __construct(
-        private TranslatorInterface $translator
-    )
-    {
-    }
+        private TranslatorInterface $translator,
+    ) {}
 
     public function convert(int $input): string
     {

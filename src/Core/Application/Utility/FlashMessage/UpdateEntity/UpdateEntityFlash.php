@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Utility\FlashMessage\UpdateEntity;
 
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
@@ -17,24 +21,25 @@ class UpdateEntityFlash implements UpdateEntityFlashInterface
     public function __construct(
         private readonly TranslatorInterface   $translator,
         private readonly NotificationInterface $flashMessage,
-    ) {
-    }
+    ) {}
 
     public function handleNotification(object $entity): void
     {
-
         $title = match (true) {
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.update.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.update.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             $entity instanceof User => $this->translator->trans(
                 'notification.user.update.label',
-                [], 'flash'
+                [],
+                'flash',
             ),
             default => $this->translator->trans('notification.lifecycle.update.title', [], 'flash'),
         };
@@ -46,7 +51,7 @@ class UpdateEntityFlash implements UpdateEntityFlashInterface
             $this->flashMessage->addNotification('notification', new NotificationDto(
                 $title,
                 NotificationTypeEnum::SUCCESS,
-                $content
+                $content,
             ));
         }
     }

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Web\Controller\Person;
 
 use App\Admin\Infrastructure\Query\Person\PersonPaginatedListQueryInterface;
@@ -12,11 +16,11 @@ class PersonController extends AbstractController
     public function index(
         Request $request,
         PersonPaginatedListQueryInterface $query,
-        int $page
+        int $page,
     ): Response {
         $paginatedPeopleList = $query->execute(
             $page,
-            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
         );
 
         return $this->render('admin/person/index.html.twig', [

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Cli;
 
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -15,9 +19,8 @@ use Symfony\Component\Filesystem\Filesystem;
 class CreateCustomRoutesDirectoryCommand extends Command
 {
     public function __construct(
-        private readonly Filesystem $filesystem
-    )
-    {
+        private readonly Filesystem $filesystem,
+    ) {
         parent::__construct();
     }
 
@@ -34,7 +37,7 @@ class CreateCustomRoutesDirectoryCommand extends Command
         $dirWEB = 'config/routes/custom/web';
         $dirAPI = 'config/routes/custom/api';
         $fileWEB = 'config/routes/custom/web/routes.yaml';
-        $fileAPI= 'config/routes/custom/api/routes.yaml';
+        $fileAPI = 'config/routes/custom/api/routes.yaml';
 
         if (!file_exists($dirWEB)) {
             mkdir($dirWEB, 0755, true);

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Person;
 
 use App\Admin\Domain\View\Person\PersonView;
@@ -9,12 +13,10 @@ class PersonCommand implements CommandInterface
 {
     public function __construct(
         private readonly PersonView $personView,
-    ) {
-    }
+    ) {}
 
     public function getPersonView(): PersonView
     {
         return $this->personView;
     }
-
 }

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\Event\Doctrine;
 
 use App\Core\Application\Utility\FlashMessage\PersistEntity\PersistEntityFlashInterface;
@@ -12,8 +16,7 @@ class PersistEntityEvent extends PostPersistListener
     public function __construct(
         private readonly PersistEntityFlashInterface $flash,
         private readonly PersistEntityLogger         $entityLogger,
-    ) {
-    }
+    ) {}
 
     public function postPersist(LifecycleEventArgs $args)
     {

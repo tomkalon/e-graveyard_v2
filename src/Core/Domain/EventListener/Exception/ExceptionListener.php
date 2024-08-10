@@ -1,10 +1,13 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\EventListener\Exception;
 
-use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 class ExceptionListener implements EventSubscriberInterface
 {
@@ -14,7 +17,5 @@ class ExceptionListener implements EventSubscriberInterface
             'kernel.exception' => 'onKernelException',
         ];
     }
-    public function onKernelException(ExceptionEvent $event)
-    {
-    }
+    public function onKernelException(ExceptionEvent $event) {}
 }

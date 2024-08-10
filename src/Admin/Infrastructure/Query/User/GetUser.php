@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\User;
 
 use App\Admin\Domain\Repository\UserRepositoryInterface;
@@ -11,9 +15,7 @@ class GetUser implements GetUserInterface
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

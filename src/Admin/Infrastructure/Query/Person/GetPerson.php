@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Person;
 
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
@@ -10,9 +14,8 @@ use Exception;
 class GetPerson implements GetPersonInterface
 {
     public function __construct(
-        private readonly PersonRepositoryInterface $personRepository
-    ) {
-    }
+        private readonly PersonRepositoryInterface $personRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

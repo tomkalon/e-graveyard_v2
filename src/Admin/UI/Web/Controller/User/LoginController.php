@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Web\Controller\User;
 
 use App\Admin\Application\Command\User\CreateUserCommand;
@@ -71,9 +75,8 @@ class LoginController extends AbstractController
         SessionInterface $session,
         NotificationInterface $notification,
         CacheInterface $cache,
-        Request $request
-    ): Response
-    {
+        Request $request,
+    ): Response {
         /** @var User $user */
         $user = $this->getUser();
         if ($user) {
@@ -81,7 +84,7 @@ class LoginController extends AbstractController
             $notification->addNotification('notification', new NotificationDto(
                 'notification.user.create.label',
                 NotificationTypeEnum::SUCCESS,
-                'notification.user.create.failed.already_logged_in'
+                'notification.user.create.failed.already_logged_in',
             ));
             return $this->redirectToRoute('admin_web_user_index');
         }
@@ -111,7 +114,7 @@ class LoginController extends AbstractController
         }
 
         return $this->render('admin/user/register.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -127,9 +130,8 @@ class LoginController extends AbstractController
         NotificationInterface $notification,
         CacheInterface $cache,
         GetUserInterface $query,
-        Request $request
-    ): Response
-    {
+        Request $request,
+    ): Response {
         /** @var User $user */
         $user = $this->getUser();
 
@@ -138,7 +140,7 @@ class LoginController extends AbstractController
             $notification->addNotification('notification', new NotificationDto(
                 'notification.user.reset_password.label',
                 NotificationTypeEnum::SUCCESS,
-                'notification.user.reset_password.failed.already_logged_in'
+                'notification.user.reset_password.failed.already_logged_in',
             ));
             return $this->redirectToRoute('admin_web_user_index');
         }
@@ -169,7 +171,7 @@ class LoginController extends AbstractController
         }
 
         return $this->render('admin/user/reset_password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

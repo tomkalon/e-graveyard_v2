@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\EventListener\Doctrine;
 
 use Doctrine\ORM\Events;
@@ -11,11 +15,9 @@ class PostRemoveListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postRemove => 'postRemove'
+            Events::postRemove => 'postRemove',
         ];
     }
 
-    public function postRemove(LifecycleEventArgs $args)
-    {
-    }
+    public function postRemove(LifecycleEventArgs $args) {}
 }

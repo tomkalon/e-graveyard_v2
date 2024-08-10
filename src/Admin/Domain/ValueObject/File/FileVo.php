@@ -1,14 +1,17 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Domain\ValueObject\File;
 
 class FileVo
 {
     public function __construct(
         private readonly string $name,
-        private readonly string $extension
-    ) {
-    }
+        private readonly string $extension,
+    ) {}
 
     public function equals(FileVo $fileVo): bool
     {
@@ -17,7 +20,7 @@ class FileVo
 
     public function getFile(): string
     {
-        return $this->name. '.' .$this->extension;
+        return $this->name . '.' . $this->extension;
     }
 
     public function getName(): string

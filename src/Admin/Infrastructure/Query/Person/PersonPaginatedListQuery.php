@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Person;
 
 use App\Admin\Domain\Repository\PersonRepositoryInterface;
@@ -12,13 +16,12 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
 {
     public function __construct(
         private readonly PersonRepositoryInterface $repository,
-        private readonly PaginatorInterface $paginator
-    ) {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
-        ?string $limit = null
+        ?string $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getPeopleListQuery();
 
@@ -26,7 +29,7 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $peopleViewList = [];

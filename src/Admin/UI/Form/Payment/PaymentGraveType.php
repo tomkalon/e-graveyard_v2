@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\Payment;
 
 use App\Admin\Domain\View\Payment\PaymentGraveView;
@@ -35,13 +39,13 @@ class PaymentGraveType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'ui.payment.desc',
                 'required' => false,
-                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]']
+                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]'],
             ])
             ->add('confirm', SubmitType::class, [
                 'label' => 'ui.buttons.confirm',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }

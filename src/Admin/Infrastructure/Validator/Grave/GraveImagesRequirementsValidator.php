@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Validator\Grave;
 
 use App\Admin\Domain\View\Grave\GraveView;
@@ -8,9 +12,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class GraveImagesRequirementsValidator extends ConstraintValidator
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function validate(mixed $value, Constraint $constraint)
     {

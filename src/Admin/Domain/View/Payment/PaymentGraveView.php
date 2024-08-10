@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Domain\View\Payment;
 
 use App\Core\Domain\Entity\Grave;
@@ -25,7 +29,7 @@ class PaymentGraveView
         ?Grave $grave = null,
         ?DateTimeImmutable $validity_time = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->value = $value;
         $this->currency = $currency;
@@ -48,7 +52,7 @@ class PaymentGraveView
             $paymentGrave->getGrave(),
             $paymentGrave->getValidityTime(),
             $paymentGrave->getUpdatedAt(),
-            $paymentGrave->getCreatedAt()
+            $paymentGrave->getCreatedAt(),
         );
     }
 

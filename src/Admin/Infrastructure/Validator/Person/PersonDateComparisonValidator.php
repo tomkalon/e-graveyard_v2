@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Validator\Person;
 
 use App\Core\Domain\Entity\Person;
@@ -8,7 +12,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PersonDateComparisonValidator extends ConstraintValidator
 {
-
     public function validate(mixed $value, Constraint $constraint)
     {
         /** @var Person $person */

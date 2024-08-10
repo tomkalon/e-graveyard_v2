@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Payment;
 
 use App\Admin\Domain\Repository\PaymentGraveRepositoryInterface;
@@ -13,8 +17,7 @@ class RemovePaymentCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
         private readonly EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

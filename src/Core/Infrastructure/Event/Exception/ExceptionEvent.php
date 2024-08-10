@@ -1,10 +1,13 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\Event\Exception;
 
 use App\Core\Domain\EventListener\Exception\ExceptionListener;
 use Doctrine\ORM\EntityNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ExceptionEvent extends ExceptionListener
 {

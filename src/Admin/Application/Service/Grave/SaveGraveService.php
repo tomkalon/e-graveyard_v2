@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Service\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
@@ -19,8 +23,7 @@ class SaveGraveService implements SaveGraveServiceInterface
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly EntityManagerInterface   $em,
         private readonly NotificationInterface    $notification,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Exception

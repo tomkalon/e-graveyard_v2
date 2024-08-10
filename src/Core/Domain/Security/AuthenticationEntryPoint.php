@@ -1,6 +1,11 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Security;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -11,8 +16,7 @@ readonly class AuthenticationEntryPoint implements AuthenticationEntryPointInter
 {
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {

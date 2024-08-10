@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -15,7 +19,5 @@ class ResponseListener implements EventSubscriberInterface
         ];
     }
 
-    public function onKernelResponse(ResponseEvent $event)
-    {
-    }
+    public function onKernelResponse(ResponseEvent $event) {}
 }

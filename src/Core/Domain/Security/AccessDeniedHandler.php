@@ -1,9 +1,11 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Security;
 
-
-use App\Core\Domain\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,9 +18,8 @@ readonly class AccessDeniedHandler implements AccessDeniedHandlerInterface
 {
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-        private TokenStorageInterface $tokenStorage
-    ) {
-    }
+        private TokenStorageInterface $tokenStorage,
+    ) {}
     public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
     {
         $token = $this->tokenStorage->getToken();

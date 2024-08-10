@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Person;
 
 use App\Core\Application\CQRS\Query\QueryInterface;
@@ -9,6 +13,6 @@ interface PersonPaginatedListQueryInterface extends QueryInterface
 {
     public function execute(
         ?int $page = null,
-        ?string $limit = null
+        ?string $limit = null,
     ): PaginationInterface;
 }

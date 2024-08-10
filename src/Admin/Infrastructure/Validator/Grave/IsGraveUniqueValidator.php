@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Validator\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
@@ -13,9 +17,8 @@ class IsGraveUniqueValidator extends ConstraintValidator
 {
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
-        private readonly RequestStack $requestStack
-    ) {
-    }
+        private readonly RequestStack $requestStack,
+    ) {}
 
     public function validate(mixed $value, Constraint $constraint)
     {
@@ -29,7 +32,7 @@ class IsGraveUniqueValidator extends ConstraintValidator
         $grave = $this->graveRepository->findBy([
             'sector' => $graveData->getSector(),
             'row' => $graveData->getRow(),
-            'number' => $graveData->getNumber()
+            'number' => $graveData->getNumber(),
         ], null, 1);
 
         if ($grave) {

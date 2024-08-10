@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\Person;
 
 use App\Admin\Domain\View\Person\PersonView;
@@ -29,8 +33,8 @@ class PersonType extends AbstractType
                 'required' => false,
                 'widget' => 'single_text',
                 'constraints' => [
-                    new PersonDateComparison()
-                ]
+                    new PersonDateComparison(),
+                ],
             ])
             ->add('bornDateOnlyYear', CheckboxType::class, [
                 'required' => false,
@@ -50,8 +54,8 @@ class PersonType extends AbstractType
             ->add('add', SubmitType::class, [
                 'label' => 'ui.buttons.add',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }

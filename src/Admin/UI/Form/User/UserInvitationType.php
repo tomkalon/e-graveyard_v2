@@ -1,14 +1,15 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\User;
 
 use App\Admin\Domain\View\User\UserView;
 use App\Admin\Infrastructure\Validator\User\isUniqueEmail;
-use App\Admin\Infrastructure\Validator\User\isUniqueUser;
-use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,14 +26,14 @@ class UserInvitationType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true,
                 'constraints' => [
-                    new isUniqueEmail()
-                ]
+                    new isUniqueEmail(),
+                ],
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ]);
     }
 

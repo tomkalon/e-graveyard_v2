@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Service\Security;
 
 interface LinkGeneratorServiceInterface
@@ -10,6 +14,6 @@ interface LinkGeneratorServiceInterface
         int $expiration,
         ?int $length = null,
         ?string $prefix = null,
-        ?string $suffix = null
+        ?string $suffix = null,
     ): string;
 }

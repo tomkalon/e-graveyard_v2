@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\EventListener\Doctrine;
 
 use Doctrine\ORM\Events;
@@ -11,11 +15,9 @@ class PostPersistListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postPersist => 'postPersist'
+            Events::postPersist => 'postPersist',
         ];
     }
 
-    public function postPersist(LifecycleEventArgs $args)
-    {
-    }
+    public function postPersist(LifecycleEventArgs $args) {}
 }

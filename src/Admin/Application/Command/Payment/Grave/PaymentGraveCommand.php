@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Payment\Grave;
 
 use App\Admin\Domain\View\Payment\PaymentGraveView;
@@ -9,8 +13,7 @@ class PaymentGraveCommand implements CommandInterface
 {
     public function __construct(
         private readonly PaymentGraveView $paymentGraveView,
-    ) {
-    }
+    ) {}
 
     public function getPaymentGraveView(): PaymentGraveView
     {

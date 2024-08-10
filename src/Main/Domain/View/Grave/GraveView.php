@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Main\Domain\View\Grave;
 
 use App\Core\Domain\Entity\FileGrave;
@@ -46,7 +50,7 @@ class GraveView
         ?array $images = null,
         ?PaymentStatusEnum $paymentStatus = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->id = $id;
         $this->graveyard = $graveyard;
@@ -83,7 +87,7 @@ class GraveView
             $grave->getImages()->toArray(),
             $paymentsStatus,
             $grave->getUpdatedAt(),
-            $grave->getCreatedAt()
+            $grave->getCreatedAt(),
         );
     }
 

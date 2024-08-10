@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\Event\Doctrine;
 
 use App\Core\Application\Service\File\RemoveFileServiceInterface;
@@ -20,8 +24,8 @@ class RemoveEntityEvent extends PostRemoveListener
         private readonly RemoveFileServiceInterface $removeFileService,
         private readonly RemoveEntityLogger         $entityLogger,
         private readonly string                     $targetDirectory,
-        private readonly string                     $targetThumbnailDirectory
-    ) { }
+        private readonly string                     $targetThumbnailDirectory,
+    ) {}
 
     public function postRemove(LifecycleEventArgs $args): void
     {

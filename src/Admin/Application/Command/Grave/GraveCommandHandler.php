@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Application\Service\File\Grave\SaveFileGraveServiceInterface;
@@ -14,8 +18,7 @@ class GraveCommandHandler implements CommandHandlerInterface
         private readonly ImageUploaderServiceInterface $uploaderService,
         private readonly SaveFileGraveServiceInterface $saveFileGrave,
         private readonly SaveGraveServiceInterface $graveService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(GraveCommand $command)
     {

@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Core\Infrastructure\Utility\TimeConverter;
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
 
-use App\Core\Domain\Enum\TimeUnitsEnum;
+namespace App\Core\Infrastructure\Utility\TimeConverter;
 
 interface TimeConverterUtilityInterface
 {

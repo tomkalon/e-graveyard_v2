@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Form\Grave;
 
 use App\Admin\Domain\View\Grave\GraveView;
@@ -27,9 +31,9 @@ class GraveType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotNull([
-                        'message' => 'validation.not_null'
-                    ])
-                ]
+                        'message' => 'validation.not_null',
+                    ]),
+                ],
             ])
             ->add('sector', IntegerType::class, [
                 'required' => true,
@@ -63,18 +67,18 @@ class GraveType extends AbstractType
                            hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700
                             focus:shadow-te-primary focus:outline-none dark:border-neutral-600
                              dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100
-                              dark:focus:border-primary'
+                              dark:focus:border-primary',
                 ],
 
                 'constraints' => [
-                    new GraveImagesRequirements()
-                ]
+                    new GraveImagesRequirements(),
+                ],
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }
@@ -88,8 +92,8 @@ class GraveType extends AbstractType
             'csrf_protection' => true,
             'label_format' => 'ui.grave.%name%',
             'constraints' => [
-                new IsGraveUnique()
-            ]
+                new IsGraveUnique(),
+            ],
         ]);
     }
 }

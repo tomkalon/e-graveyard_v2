@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Application\Service\File;
 
 use App\Core\Domain\Entity\File;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
@@ -11,8 +14,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class RemoveFileService implements RemoveFileServiceInterface
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     public function remove(File $file, string $directory, ?string $thumbnailDirectory = null): bool
     {
@@ -33,7 +35,6 @@ class RemoveFileService implements RemoveFileServiceInterface
                     $filesystem->remove($thumbnailPath);
                 }
             }
-
         } catch (Exception $e) {
             throw new FileNotFoundException($e->getMessage());
         }

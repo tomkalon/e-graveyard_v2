@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Domain\Entity;
 
 use App\Core\Domain\Trait\IdTrait;
@@ -9,7 +13,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-
     use IdTrait;
     use LifecycleTrait;
 
@@ -22,9 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private string $password;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function getEmail(): ?string
     {

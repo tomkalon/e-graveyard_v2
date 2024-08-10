@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Core\Domain\Entity;
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
 
-use App\Core\Domain\Enum\FileExtensionTypeEnum;
+namespace App\Core\Domain\Entity;
 
 class FileGrave extends File
 {

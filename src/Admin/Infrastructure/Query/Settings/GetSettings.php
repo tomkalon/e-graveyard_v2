@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Settings;
 
 use App\Core\Domain\Entity\Settings;
@@ -8,10 +12,8 @@ use App\Core\Domain\Repository\SettingsRepositoryInterface;
 class GetSettings implements GetSettingsInterface
 {
     public function __construct(
-        private readonly SettingsRepositoryInterface $settingsRepository
-    )
-    {
-    }
+        private readonly SettingsRepositoryInterface $settingsRepository,
+    ) {}
 
     public function execute(): Settings
     {

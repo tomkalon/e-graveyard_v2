@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Validator\User;
 
 use App\Admin\Domain\Repository\UserRepositoryInterface;
@@ -10,10 +14,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 class isUniqueEmailValidator extends ConstraintValidator
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository
-    )
-    {
-    }
+        private readonly UserRepositoryInterface $userRepository,
+    ) {}
 
     public function validate(mixed $value, Constraint $constraint)
     {

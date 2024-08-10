@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\User;
 
 use App\Admin\Domain\Repository\UserRepositoryInterface;
@@ -13,9 +17,7 @@ readonly class RemoveUserCommandHandler implements CommandHandlerInterface
     public function __construct(
         private EntityManagerInterface  $em,
         private UserRepositoryInterface $userRepository,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

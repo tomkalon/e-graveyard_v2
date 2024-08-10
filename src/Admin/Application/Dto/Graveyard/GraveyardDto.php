@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Dto\Graveyard;
 
 use App\Core\Domain\Entity\Graveyard;
-use DateTimeImmutable;
 
 class GraveyardDto
 {
@@ -16,7 +19,7 @@ class GraveyardDto
         ?string $name = null,
         ?string $description = null,
         ?string $updatedAt = null,
-        ?string $createdAt = null
+        ?string $createdAt = null,
     ) {
         $this->name = $name;
         $this->description = $description;
@@ -30,7 +33,7 @@ class GraveyardDto
             $graveyard->getName(),
             $graveyard->getDescription(),
             $graveyard->getUpdatedAt(),
-            $graveyard->getCreatedAt()
+            $graveyard->getCreatedAt(),
         );
     }
 }

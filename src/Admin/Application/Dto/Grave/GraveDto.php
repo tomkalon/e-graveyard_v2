@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Dto\Grave;
 
 use App\Core\Domain\Entity\Grave;
@@ -33,7 +37,7 @@ class GraveDto
         ?array $people = null,
         ?string $paymentStatus = null,
         ?string $updatedAt = null,
-        ?string $createdAt = null
+        ?string $createdAt = null,
     ) {
         $this->sector = $sector;
         $this->row = $row;
@@ -53,12 +57,12 @@ class GraveDto
     public static function fromEntity(Grave $grave, ?string $gravePaymentExpirationTime = null): self
     {
         $people = array_map(function ($person) {
-        /** @var Person $person */
+            /** @var Person $person */
             return [
-            'firstName' => $person->getFirstname(),
-            'lastName' => $person->getLastName(),
-            'bornDate' => $person->getBornDate()->format('Y-m-d'),
-            'deathDate' => $person->getDeathDate()->format('Y-m-d')
+                'firstName' => $person->getFirstname(),
+                'lastName' => $person->getLastName(),
+                'bornDate' => $person->getBornDate()->format('Y-m-d'),
+                'deathDate' => $person->getDeathDate()->format('Y-m-d'),
             ];
         }, $grave->getPeople()->toArray());
 
@@ -74,7 +78,7 @@ class GraveDto
             $people,
             $paymentsStatus->value,
             $grave->getUpdatedAt()->format('Y-m-d'),
-            $grave->getCreatedAt()->format('Y-m-d')
+            $grave->getCreatedAt()->format('Y-m-d'),
         );
     }
 

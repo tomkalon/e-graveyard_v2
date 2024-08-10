@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Infrastructure\Query\Graveyard;
 
 use App\Admin\Domain\Repository\GraveyardRepositoryInterface;
@@ -12,20 +16,19 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
 {
     public function __construct(
         private readonly GraveyardRepositoryInterface $repository,
-        private readonly PaginatorInterface $paginator
-    ) {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
-        ?string $limit = null
+        ?string $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getGraveyardsListQuery();
         $graveyardsList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $peopleNumberResult = $this->repository->getGraveyardsPeopleNumber();
