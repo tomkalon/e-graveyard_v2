@@ -158,7 +158,6 @@ class GraveController extends AbstractController
         GetGraveViewInterface   $getGraveView,
         string                  $id
     ): Response {
-
         // query
         $grave = $getGraveView->execute($id);
 

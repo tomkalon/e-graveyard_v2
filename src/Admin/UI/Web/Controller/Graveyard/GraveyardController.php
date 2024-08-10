@@ -7,7 +7,9 @@ use App\Admin\Domain\View\Graveyard\GraveyardView;
 use App\Admin\Infrastructure\Query\Graveyard\GraveyardPaginatedListQueryInterface;
 use App\Admin\UI\Form\Graveyard\GraveyardType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,6 +20,9 @@ class GraveyardController extends AbstractController
         GraveyardPaginatedListQueryInterface $query,
         int $page
     ): Response {
+        if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
+            throw new AccessDeniedException('Access denied.');
+        }
         $paginatedGraveyardsList = $query->execute(
             $page,
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
@@ -33,7 +38,9 @@ class GraveyardController extends AbstractController
         CommandBusInterface $commandBus,
         Request             $request
     ): Response {
-
+        if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
+            throw new AccessDeniedException('Access denied.');
+        }
         $form = $this->createForm(
             GraveyardType::class,
             new GraveyardView()

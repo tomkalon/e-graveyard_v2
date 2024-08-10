@@ -10,7 +10,9 @@ use App\Admin\UI\Form\User\ChangeRoleType;
 use App\Admin\UI\Form\User\UserInvitationType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Entity\User;
+use App\Core\Domain\Enum\UserRoleEnum;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,6 +26,9 @@ class AdminController extends AbstractController
         int                             $page
     ): Response
     {
+        if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
+            throw new AccessDeniedException('Access denied.');
+        }
         /** @var User $user */
         $user = $this->getUser();
         $paginatedUsersList = $query->execute(
@@ -54,6 +59,9 @@ class AdminController extends AbstractController
         CommandBusInterface $commandBus
     ): Response
     {
+        if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
+            throw new AccessDeniedException('Access denied.');
+        }
         $userForm = $this->createForm(UserInvitationType::class, new UserView());
         $userForm->handleRequest($request);
 
