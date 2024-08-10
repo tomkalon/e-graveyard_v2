@@ -8,6 +8,7 @@ namespace App\Admin\Domain\View\Person;
 
 use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Person;
+use DateTime;
 use DateTimeImmutable;
 
 class PersonView
@@ -15,8 +16,8 @@ class PersonView
     private ?string $id;
     private ?string $firstname;
     private ?string $lastname;
-    private ?DateTimeImmutable $born_date;
-    private ?DateTimeImmutable $death_date;
+    private ?DateTime $born_date;
+    private ?DateTime $death_date;
     private ?bool $bornDateOnlyYear;
     private ?bool $deathDateOnlyYear;
     private ?Grave $grave;
@@ -27,8 +28,8 @@ class PersonView
         ?string $id = null,
         ?string $firstname = null,
         ?string $lastname = null,
-        ?DateTimeImmutable $born_date = null,
-        ?DateTimeImmutable $death_date = null,
+        ?DateTime $born_date = null,
+        ?DateTime $death_date = null,
         ?bool $bornDateOnlyYear = null,
         ?bool $deathDateOnlyYear = null,
         ?Grave $grave = null,
@@ -88,22 +89,22 @@ class PersonView
         $this->lastname = $lastname;
     }
 
-    public function getBornDate(): ?DateTimeImmutable
+    public function getBornDate(): ?DateTime
     {
         return $this->born_date;
     }
 
-    public function setBornDate(?DateTimeImmutable $born_date): void
+    public function setBornDate(?DateTime $born_date): void
     {
         $this->born_date = $born_date;
     }
 
-    public function getDeathDate(): ?DateTimeImmutable
+    public function getDeathDate(): ?DateTime
     {
         return $this->death_date;
     }
 
-    public function setDeathDate(?DateTimeImmutable $death_date): void
+    public function setDeathDate(?DateTime $death_date): void
     {
         $this->death_date = $death_date;
     }

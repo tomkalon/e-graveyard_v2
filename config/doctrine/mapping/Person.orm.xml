@@ -11,8 +11,8 @@
 
         <field name="firstname" length="60"/>
         <field name="lastname" length="60"/>
-        <field name="born_date" type="datetime_immutable" nullable="true"/>
-        <field name="death_date" type="datetime_immutable" nullable="true"/>
+        <field name="born_date" type="date" nullable="true"/>
+        <field name="death_date" type="date" nullable="true"/>
         <field name="born_date_only_year" type="boolean" nullable="true"/>
         <field name="death_date_only_year" type="boolean" nullable="true"/>
 
