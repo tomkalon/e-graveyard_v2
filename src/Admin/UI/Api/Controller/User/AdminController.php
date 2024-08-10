@@ -20,8 +20,7 @@ class AdminController extends AbstractFOSRestController
         string $id,
         GetUserInterface $query,
         SerializerInterface $serializer
-    ): Response
-    {
+    ): Response {
         $user = $query->execute($id);
         $userDto = UserDto::fromEntity($user);
         return new Response($serializer->serialize($userDto, 'json'));
@@ -34,8 +33,7 @@ class AdminController extends AbstractFOSRestController
         string $id,
         GetUserInterface $query,
         CommandBusInterface $commandBus
-    ): Response
-    {
+    ): Response {
         $userId = base64_decode($id);
 
         if ($userId) {

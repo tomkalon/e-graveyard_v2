@@ -2,14 +2,10 @@
 
 namespace App\Core\Domain\Entity;
 
-use App\Core\Domain\Enum\PaymentStatusEnum;
 use App\Core\Domain\Trait\IdTrait;
 use App\Core\Domain\Trait\LifecycleTrait;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
-use Exception;
 
 class Grave
 {
@@ -127,7 +123,7 @@ class Grave
     {
         return $this->positionX;
     }
-    public function setPositionX(?string $positionX):void
+    public function setPositionX(?string $positionX): void
     {
         $this->positionX = $positionX;
     }
@@ -135,7 +131,7 @@ class Grave
     {
         return $this->positionY;
     }
-    public function setPositionY(?string $positionY):void
+    public function setPositionY(?string $positionY): void
     {
         $this->positionY = $positionY;
     }

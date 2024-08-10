@@ -13,16 +13,14 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
     public function __construct(
         private readonly PersonRepositoryInterface $personRepository,
         private readonly PaginatorInterface $paginator
-    )
-    {
+    ) {
     }
 
     public function execute(
         ?int $page = null,
         ?string $limit = null,
         ?DeceasedSearchView $filter = null,
-    ): PaginationInterface
-    {
+    ): PaginationInterface {
         $query = $this->personRepository->getPersonListQuery($filter);
         $deceasedList = $this->paginator->paginate(
             $query,

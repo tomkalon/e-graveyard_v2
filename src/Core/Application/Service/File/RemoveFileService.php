@@ -3,7 +3,6 @@
 namespace App\Core\Application\Service\File;
 
 use App\Core\Domain\Entity\File;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
@@ -33,7 +32,6 @@ class RemoveFileService implements RemoveFileServiceInterface
                     $filesystem->remove($thumbnailPath);
                 }
             }
-
         } catch (Exception $e) {
             throw new FileNotFoundException($e->getMessage());
         }

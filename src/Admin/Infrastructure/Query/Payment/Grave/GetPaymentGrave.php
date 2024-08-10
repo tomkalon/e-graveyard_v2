@@ -9,7 +9,6 @@ use Exception;
 
 class GetPaymentGrave implements GetPaymentGraveInterface
 {
-
     public function __construct(
         private readonly PaymentGraveRepositoryInterface $paymentGraveRepository
     ) {

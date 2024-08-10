@@ -35,8 +35,7 @@ class UserController extends AbstractController
     public function changePassword(
         CommandBusInterface $commandBus,
         Request             $request
-    ): Response
-    {
+    ): Response {
         $changePasswordForm = $this->createForm(ChangePasswordType::class, new UserView());
         $changePasswordForm->handleRequest($request);
 

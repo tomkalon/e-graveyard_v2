@@ -16,8 +16,7 @@ class CreateCustomRoutesDirectoryCommand extends Command
 {
     public function __construct(
         private readonly Filesystem $filesystem
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -34,7 +33,7 @@ class CreateCustomRoutesDirectoryCommand extends Command
         $dirWEB = 'config/routes/custom/web';
         $dirAPI = 'config/routes/custom/api';
         $fileWEB = 'config/routes/custom/web/routes.yaml';
-        $fileAPI= 'config/routes/custom/api/routes.yaml';
+        $fileAPI = 'config/routes/custom/api/routes.yaml';
 
         if (!file_exists($dirWEB)) {
             mkdir($dirWEB, 0755, true);

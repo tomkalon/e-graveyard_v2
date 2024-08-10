@@ -16,8 +16,7 @@ class CreateCustomStyleDirectoryCommand extends Command
 {
     public function __construct(
         private readonly Filesystem $filesystem
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -3,8 +3,8 @@
 namespace App\Admin\Infrastructure\Validator\User;
 
 use App\Admin\Domain\View\User\UserView;
-use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
 class UserPasswordValidator extends ConstraintValidator
 {

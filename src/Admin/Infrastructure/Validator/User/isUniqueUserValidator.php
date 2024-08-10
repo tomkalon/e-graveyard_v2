@@ -11,8 +11,7 @@ class isUniqueUserValidator extends ConstraintValidator
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
     }
 
     public function validate(mixed $value, Constraint $constraint)

@@ -16,7 +16,6 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class AdminController extends AbstractController
 {
     public function list(
@@ -24,8 +23,7 @@ class AdminController extends AbstractController
         Request                         $request,
         CommandBusInterface             $commandBus,
         int                             $page
-    ): Response
-    {
+    ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }
@@ -57,8 +55,7 @@ class AdminController extends AbstractController
     public function create(
         Request $request,
         CommandBusInterface $commandBus
-    ): Response
-    {
+    ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }

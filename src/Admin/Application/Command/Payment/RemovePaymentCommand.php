@@ -8,8 +8,7 @@ class RemovePaymentCommand implements CommandInterface
 {
     public function __construct(
         private readonly ?string $id
-    )
-    {
+    ) {
     }
 
     public function getId(): ?string

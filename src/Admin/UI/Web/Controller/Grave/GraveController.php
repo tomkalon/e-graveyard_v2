@@ -18,7 +18,6 @@ use App\Admin\UI\Form\Grave\GraveType;
 use App\Admin\UI\Form\Payment\PaymentGraveType;
 use App\Admin\UI\Form\Person\PersonType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
-use App\Core\Domain\Entity\PaymentGrave;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +31,6 @@ class GraveController extends AbstractController
         CommandBusInterface              $commandBus,
         int                              $page
     ): Response {
-
         // add decease form
         $addDeceasedForm = $this->createForm(PersonType::class, new PersonView());
         $addDeceasedForm->handleRequest($request);

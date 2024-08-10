@@ -11,8 +11,7 @@ class SavePaymentGraveService implements SavePaymentGraveServiceInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $em
-    )
-    {
+    ) {
     }
 
     public function persist(PaymentGraveView $personView): void

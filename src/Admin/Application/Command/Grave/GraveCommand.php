@@ -4,7 +4,6 @@ namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Domain\View\Grave\GraveView;
 use App\Core\Application\CQRS\Command\CommandInterface;
-use App\Core\Domain\Entity\Grave;
 
 class GraveCommand implements CommandInterface
 {

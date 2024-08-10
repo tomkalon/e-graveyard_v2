@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Admin\Infrastructure\Validator\Grave;
+
 use Symfony\Component\Validator\Constraint;
 
 class GraveImagesRequirements extends Constraint
@@ -9,6 +10,6 @@ class GraveImagesRequirements extends Constraint
 
     public function validatedBy(): string
     {
-        return static::class.'Validator';
+        return static::class . 'Validator';
     }
 }

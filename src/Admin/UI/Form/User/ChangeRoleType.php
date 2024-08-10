@@ -23,7 +23,7 @@ class ChangeRoleType extends AbstractType
                 'label' => 'ui.user.role.label',
                 'class' => UserRoleEnum::class,
                 'data' => UserRoleEnum::MANAGER,
-                'choice_label' => fn(UserRoleEnum $enum) => $this->translateEnum($enum),
+                'choice_label' => fn (UserRoleEnum $enum) => $this->translateEnum($enum),
                 'choices' => [
                     'User' => UserRoleEnum::USER,
                     'Manager' => UserRoleEnum::MANAGER,

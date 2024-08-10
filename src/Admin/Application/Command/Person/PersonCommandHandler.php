@@ -4,7 +4,6 @@ namespace App\Admin\Application\Command\Person;
 
 use App\Admin\Application\Service\Person\SavePersonServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
-use Doctrine\ORM\EntityManagerInterface;
 
 class PersonCommandHandler implements CommandHandlerInterface
 {

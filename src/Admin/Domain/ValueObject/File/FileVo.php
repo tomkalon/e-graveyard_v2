@@ -17,7 +17,7 @@ class FileVo
 
     public function getFile(): string
     {
-        return $this->name. '.' .$this->extension;
+        return $this->name . '.' . $this->extension;
     }
 
     public function getName(): string

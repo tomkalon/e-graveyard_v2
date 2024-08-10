@@ -16,5 +16,4 @@ class PersonCommand implements CommandInterface
     {
         return $this->personView;
     }
-
 }

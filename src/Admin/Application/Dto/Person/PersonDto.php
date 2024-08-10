@@ -3,7 +3,6 @@
 namespace App\Admin\Application\Dto\Person;
 
 use App\Core\Domain\Entity\Person;
-use DateTimeImmutable;
 
 class PersonDto
 {

@@ -9,8 +9,7 @@ class GraveyardCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly SaveGraveyardServiceInterface $graveyardService
-    )
-    {
+    ) {
     }
 
     public function __invoke(GraveyardCommand $command)

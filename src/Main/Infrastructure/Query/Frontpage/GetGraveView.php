@@ -13,8 +13,7 @@ class GetGraveView implements GetGraveViewInterface
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly SettingsRepositoryInterface $settingsRepository
-    )
-    {
+    ) {
     }
 
     /**

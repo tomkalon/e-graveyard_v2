@@ -16,8 +16,7 @@ class CreateUploadDirectoryCommand extends Command
     public function __construct(
         private readonly string $graveImagePath,
         private readonly string $graveImageThumbPath,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

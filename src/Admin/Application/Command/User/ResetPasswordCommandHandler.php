@@ -8,7 +8,6 @@ use App\Core\Application\Service\Security\LinkGeneratorServiceInterface;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Entity\User;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Core\Domain\Enum\TimeUnitsEnum;
 use App\Core\Infrastructure\Utility\TimeConverter\TimeConverterUtilityInterface;
 use LogicException;
 use Psr\Log\LoggerInterface;
@@ -31,8 +30,7 @@ readonly class ResetPasswordCommandHandler implements CommandHandlerInterface
         private NotificationInterface         $notification,
         private string                        $senderEmail,
         private string                        $senderName,
-    )
-    {
+    ) {
     }
 
     /**

@@ -17,6 +17,5 @@ enum PaginationLimitEnum: int
             50 => self::LIMIT_50->value,
             100 => self::LIMIT_100->value,
         ];
-
     }
 }

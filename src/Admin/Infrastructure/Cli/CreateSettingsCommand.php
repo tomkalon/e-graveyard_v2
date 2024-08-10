@@ -19,8 +19,7 @@ class CreateSettingsCommand extends Command
     public function __construct(
         private readonly SettingsRepositoryInterface $settingsRepository,
         private readonly EntityManagerInterface $em,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -53,7 +53,7 @@ class GraveDto
     public static function fromEntity(Grave $grave, ?string $gravePaymentExpirationTime = null): self
     {
         $people = array_map(function ($person) {
-        /** @var Person $person */
+            /** @var Person $person */
             return [
             'firstName' => $person->getFirstname(),
             'lastName' => $person->getLastName(),

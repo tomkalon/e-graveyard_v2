@@ -23,8 +23,7 @@ class FrontpageController extends AbstractController
     public function search(
         Request $request,
         DeceasedSearchPaginatedListQueryInterface $query
-    ): Response
-    {
+    ): Response {
         $searchForm = $this->createForm(PersonSearchType::class);
         $searchForm->handleRequest($request);
 
@@ -47,8 +46,7 @@ class FrontpageController extends AbstractController
     public function show(
         GetGraveViewInterface $query,
         string $id
-    ): Response
-    {
+    ): Response {
         $graveView = $query->execute($id);
         return $this->render('main/frontpage/show.html.twig', [
             'grave' => $graveView

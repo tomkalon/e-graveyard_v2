@@ -8,7 +8,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class PersonDateComparisonValidator extends ConstraintValidator
 {
-
     public function validate(mixed $value, Constraint $constraint)
     {
         /** @var Person $person */

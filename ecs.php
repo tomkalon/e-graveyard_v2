@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
+use PhpCsFixer\Fixer\ListNotation\ListSyntaxFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
@@ -12,19 +14,8 @@ return ECSConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-
-    // add a single rule
     ->withRules([
         NoUnusedImportsFixer::class,
+        ListSyntaxFixer::class,
     ])
-
-    // add sets - group of rules
-   // ->withPreparedSets(
-        // arrays: true,
-        // namespaces: true,
-        // spaces: true,
-        // docblocks: true,
-        // comments: true,
-    // )
-     
-     ;
+    ->withPreparedSets(psr12: true);

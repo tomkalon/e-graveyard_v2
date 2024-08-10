@@ -9,8 +9,7 @@ readonly class CreateUserCommand implements CommandInterface
 {
     public function __construct(
         private UserView $userView,
-    )
-    {
+    ) {
     }
 
     public function getUserView(): UserView

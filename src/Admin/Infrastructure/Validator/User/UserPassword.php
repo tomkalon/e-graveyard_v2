@@ -13,6 +13,6 @@ class UserPassword extends Constraint
 
     public function validatedBy(): string
     {
-        return static::class.'Validator';
+        return static::class . 'Validator';
     }
 }

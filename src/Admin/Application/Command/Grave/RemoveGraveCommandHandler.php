@@ -4,9 +4,9 @@ namespace App\Admin\Application\Command\Grave;
 
 use App\Admin\Domain\Repository\GraveRepositoryInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
-use Doctrine\ORM\EntityManagerInterface;
 
 class RemoveGraveCommandHandler implements CommandHandlerInterface
 {

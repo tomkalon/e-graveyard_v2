@@ -18,7 +18,6 @@ readonly class CreateUserService implements CreateUserServiceInterface
 
     public function persist(UserView $userView): void
     {
-
         $user = new User();
         if ($userView->getEmail()) {
             $user->setEmail($userView->getEmail());

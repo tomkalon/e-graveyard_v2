@@ -23,19 +23,19 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 )]
 class AdminAddCommand extends Command
 {
-    const ADD_NEW_USER = 'Adding a new user.';
-    const SUCCESS_USER_CREATED = 'The account has been created: username ->';
-    const FAILURE_EMAIL_ALREADY_EXIST = 'The new user creation was canceled!
+    public const ADD_NEW_USER = 'Adding a new user.';
+    public const SUCCESS_USER_CREATED = 'The account has been created: username ->';
+    public const FAILURE_EMAIL_ALREADY_EXIST = 'The new user creation was canceled!
      Email is already taken.';
-    const FAILURE_EMAIL_ERROR = 'The new user creation was canceled!
+    public const FAILURE_EMAIL_ERROR = 'The new user creation was canceled!
      The email address entered is incorrect.';
-    const FAILURE_USERNAME_ALREADY_EXIST = 'The new user creation was canceled!
+    public const FAILURE_USERNAME_ALREADY_EXIST = 'The new user creation was canceled!
      The username you entered is already taken.';
-    const FAILURE_USERNAME_ERROR = 'The new user creation was canceled!
+    public const FAILURE_USERNAME_ERROR = 'The new user creation was canceled!
      Invalid username.';
-    const FAILURE_PASSWORD_TOO_SHORT = 'The new user creation was canceled!
+    public const FAILURE_PASSWORD_TOO_SHORT = 'The new user creation was canceled!
      The password is too short.';
-    const FAILURE_PASSWORD_DONT_MATCH = 'The new user creation was canceled!
+    public const FAILURE_PASSWORD_DONT_MATCH = 'The new user creation was canceled!
      The passwords you entered differ.';
 
     public function __construct(

@@ -2,7 +2,6 @@
 
 namespace App\Admin\Domain\View\Graveyard;
 
-use App\Core\Domain\Entity\Grave;
 use App\Core\Domain\Entity\Graveyard;
 use DateTimeImmutable;
 

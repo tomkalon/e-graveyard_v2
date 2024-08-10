@@ -2,8 +2,6 @@
 
 namespace App\Core\Domain\Entity;
 
-use App\Core\Domain\Enum\FileExtensionTypeEnum;
-
 class FileGrave extends File
 {
     private ?Grave $grave_gallery = null;

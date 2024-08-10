@@ -16,8 +16,7 @@ class LoginSuccessEventHandler extends LoginSuccessListener
         TokenStorageInterface $tokenStorage,
         private readonly TranslatorInterface $translator,
         private readonly NotificationInterface $flashMessage
-    )
-    {
+    ) {
         parent::__construct($tokenStorage);
     }
 

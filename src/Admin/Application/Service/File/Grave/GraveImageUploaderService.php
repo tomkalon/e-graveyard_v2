@@ -3,14 +3,14 @@
 namespace App\Admin\Application\Service\File\Grave;
 
 use App\Admin\Application\Service\Upload\ImageUploaderServiceInterface;
+use App\Admin\Domain\ValueObject\File\FileVo;
 use App\Core\Application\DTO\FlashMessage\NotificationDto;
 use App\Core\Application\Utility\FlashMessage\NotificationInterface;
 use App\Core\Domain\Enum\FileExtensionTypeEnum;
 use App\Core\Domain\Enum\NotificationTypeEnum;
-use App\Admin\Domain\ValueObject\File\FileVo;
 use Exception;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -25,8 +25,7 @@ readonly class GraveImageUploaderService implements ImageUploaderServiceInterfac
         private string                $maxImageHeight,
         private SluggerInterface      $slugger,
         private NotificationInterface $notification,
-    )
-    {
+    ) {
     }
 
     /**

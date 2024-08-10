@@ -12,5 +12,4 @@ use App\Core\Domain\Entity\PaymentGrave;
  */
 interface PaymentGraveRepositoryInterface
 {
-
 }

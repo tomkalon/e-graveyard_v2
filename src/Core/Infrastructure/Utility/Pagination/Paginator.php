@@ -17,7 +17,7 @@ class Paginator implements BasePaginatorInterface
     ) {
     }
 
-    public function paginate($target, int $page = 1, int $limit = null, array $options = []):PaginationInterface
+    public function paginate($target, int $page = 1, int $limit = null, array $options = []): PaginationInterface
     {
         $pagination = $this->paginator->paginate($target, $page, $limit, $options);
 

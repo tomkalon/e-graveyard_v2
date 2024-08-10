@@ -13,15 +13,13 @@ class UserPaginatedListQuery implements UserPaginatedListQueryInterface
     public function __construct(
         private readonly UserRepositoryInterface $repository,
         private readonly PaginatorInterface $paginator,
-    )
-    {
+    ) {
     }
 
     public function execute(
         ?int $page = null,
         ?string $limit = null
-    ): PaginationInterface
-    {
+    ): PaginationInterface {
         $query = $this->repository->getUsersListQuery();
         $usersList = $this->paginator->paginate(
             $query,

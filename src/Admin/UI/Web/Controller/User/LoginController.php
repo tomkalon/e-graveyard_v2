@@ -72,8 +72,7 @@ class LoginController extends AbstractController
         NotificationInterface $notification,
         CacheInterface $cache,
         Request $request
-    ): Response
-    {
+    ): Response {
         /** @var User $user */
         $user = $this->getUser();
         if ($user) {
@@ -128,8 +127,7 @@ class LoginController extends AbstractController
         CacheInterface $cache,
         GetUserInterface $query,
         Request $request
-    ): Response
-    {
+    ): Response {
         /** @var User $user */
         $user = $this->getUser();
 

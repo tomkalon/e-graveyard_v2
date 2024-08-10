@@ -22,19 +22,21 @@ class UpdateEntityFlash implements UpdateEntityFlashInterface
 
     public function handleNotification(object $entity): void
     {
-
         $title = match (true) {
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.update.label',
-                [], 'flash'
+                [],
+                'flash'
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.update.label',
-                [], 'flash'
+                [],
+                'flash'
             ),
             $entity instanceof User => $this->translator->trans(
                 'notification.user.update.label',
-                [], 'flash'
+                [],
+                'flash'
             ),
             default => $this->translator->trans('notification.lifecycle.update.title', [], 'flash'),
         };

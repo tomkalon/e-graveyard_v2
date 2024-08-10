@@ -9,8 +9,7 @@ class GetSettings implements GetSettingsInterface
 {
     public function __construct(
         private readonly SettingsRepositoryInterface $settingsRepository
-    )
-    {
+    ) {
     }
 
     public function execute(): Settings

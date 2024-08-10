@@ -9,13 +9,11 @@ readonly class UpdateUserCommand implements CommandInterface
 {
     public function __construct(
         private UserView $userView
-    )
-    {
+    ) {
     }
 
     public function getUserView(): UserView
     {
         return $this->userView;
     }
-
 }

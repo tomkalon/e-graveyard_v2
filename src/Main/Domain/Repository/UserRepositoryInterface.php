@@ -6,5 +6,4 @@ use App\Core\Domain\Repository\UserRepositoryInterface as BaseUserRepositoryInte
 
 interface UserRepositoryInterface extends BaseUserRepositoryInterface
 {
-
 }

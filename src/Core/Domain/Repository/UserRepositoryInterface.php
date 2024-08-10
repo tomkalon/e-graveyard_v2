@@ -12,5 +12,4 @@ use App\Core\Domain\Entity\User;
  */
 interface UserRepositoryInterface
 {
-
 }
