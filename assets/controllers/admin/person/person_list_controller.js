@@ -10,8 +10,6 @@ export default class extends Controller {
     static targets = ['pagination']
 
     connect() {
-        const container = this.element;
-
         if (this.hasPaginationTarget) {
             const pagination = this.paginationTarget;
             const items = pagination.querySelectorAll('[data-item-id]')
@@ -20,7 +18,7 @@ export default class extends Controller {
     }
 
     personActions(button, id, action) {
-        let callback, options;
+        let callback;
         switch (action) {
             case 'person-modal-remove':
                 callback = this.remove

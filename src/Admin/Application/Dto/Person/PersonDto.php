@@ -36,8 +36,8 @@ class PersonDto
             $person->getId(),
             $person->getFirstname(),
             $person->getLastname(),
-            $person->getBornDate()->format('Y-m-d'),
-            $person->getDeathDate()->format('Y-m-d'),
+            $person->getBornDate()?->format('Y-m-d'),
+            $person->getDeathDate()?->format('Y-m-d'),
             $person->getGrave()->getId(),
         );
     }

@@ -18,8 +18,6 @@ export default class extends Controller {
     }
     connect()
     {
-        const container = this.element;
-
         Modal.preLoadModal('grave-modal-add-deceased')
 
         if (this.hasGalleryTarget) {

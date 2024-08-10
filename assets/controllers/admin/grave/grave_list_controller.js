@@ -13,8 +13,6 @@ export default class extends Controller {
 
     connect()
     {
-        const container = this.element;
-
         Modal.preLoadModal('grave-modal-add-deceased')
 
         if (this.hasPaginationTarget) {
@@ -30,7 +28,7 @@ export default class extends Controller {
 
     paginationActions(button, id, action)
     {
-        let callback, options;
+        let callback;
         switch (action) {
             case 'grave-modal-details':
                 callback = this.show.bind(this)
