@@ -7,10 +7,10 @@ use App\Core\Domain\Entity\Person;
 use Doctrine\ORM\EntityManagerInterface;
 use Ramsey\Uuid\Uuid;
 
-class SavePersonService implements SavePersonServiceInterface
+readonly class SavePersonService implements SavePersonServiceInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em
+        private EntityManagerInterface $em
     ) {
     }
 
@@ -21,6 +21,8 @@ class SavePersonService implements SavePersonServiceInterface
         $person->setLastname($personView->getLastname());
         $person->setBornDate($personView->getBornDate());
         $person->setDeathDate($personView->getDeathDate());
+        $person->setBornDateOnlyYear($personView->getBornDateOnlyYear());
+        $person->setDeathDateOnlyYear($personView->getDeathDateOnlyYear());
         $person->setGrave($personView->getGrave());
         $this->em->persist($person);
         $this->em->flush();

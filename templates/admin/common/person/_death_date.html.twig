@@ -1,0 +1,9 @@
+{% if person.deathDate %}
+    {% if not person.deathDateOnlyYear %}
+        {{ person.deathDate|date('Y-m-d') }}
+    {% else %}
+        {{ person.deathDate|date('Y') }}
+    {% endif %}
+{% else %}
+    {{ 'ui.person.date_shortage'|trans }}
+{% endif %}

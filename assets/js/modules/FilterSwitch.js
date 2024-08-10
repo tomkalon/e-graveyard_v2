@@ -21,7 +21,6 @@ const FilterSwitch = (toggleButton, filterContainer) => {
             $(toggleButton).html(icon + trans(UI_BUTTONS_SHOW_FILTER))
             $.cookie('ADMIN_GRAVE_LIST_TOGGLE_FILTER_STATUS', false, { path: '/' })
         } else {
-            console.log('tete')
             $(filterContainer).fadeIn(200)
             $(toggleButton).html(icon + trans(UI_BUTTONS_HIDE_FILTER))
             $.cookie('ADMIN_GRAVE_LIST_TOGGLE_FILTER_STATUS', true, { path: '/' })

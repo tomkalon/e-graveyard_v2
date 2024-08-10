@@ -10,8 +10,6 @@ import {getPerson} from "@View/person/person_view";
 import {getPayment} from "@View/payment/payment_view";
 
 export default class extends Controller {
-
-    // TARGETS
     static targets = ['people', 'payments', 'gallery']
     static values = {
         id: String,
@@ -20,8 +18,6 @@ export default class extends Controller {
     }
     connect()
     {
-        const container = this.element;
-
         Modal.preLoadModal('grave-modal-add-deceased')
 
         if (this.hasGalleryTarget) {

@@ -7,6 +7,7 @@ use App\Admin\Infrastructure\Validator\Person\PersonDateComparison;
 use App\Core\Domain\Entity\Grave;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,15 +26,21 @@ class PersonType extends AbstractType
                 'required' => true,
             ])
             ->add('bornDate', DateType::class, [
+                'required' => false,
                 'widget' => 'single_text',
-                'required' => true,
                 'constraints' => [
                     new PersonDateComparison()
                 ]
             ])
+            ->add('bornDateOnlyYear', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('deathDate', DateType::class, [
+                'required' => false,
                 'widget' => 'single_text',
-                'required' => true,
+            ])
+            ->add('deathDateOnlyYear', CheckboxType::class, [
+                'required' => false,
             ])
             ->add('grave', EntityType::class, [
                 'class' => Grave::class,

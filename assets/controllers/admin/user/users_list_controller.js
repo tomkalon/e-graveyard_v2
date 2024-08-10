@@ -7,14 +7,10 @@ import { getUser} from "@View/user/user_view";
 import $ from "jquery";
 
 export default class extends Controller {
-
-    // TARGETS
     static targets = ['pagination']
 
     connect()
     {
-        const container = this.element;
-
         if (this.hasPaginationTarget) {
             const pagination = this.paginationTarget;
             const items = pagination.querySelectorAll('[data-item-id]')
@@ -24,7 +20,7 @@ export default class extends Controller {
 
     userActions(button, id, action)
     {
-        let callback, options;
+        let callback
         switch (action) {
             case 'user-modal-permission':
                 callback = this.changePermission

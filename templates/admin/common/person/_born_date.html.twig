@@ -1,0 +1,9 @@
+{% if person.bornDate %}
+    {% if not person.bornDateOnlyYear %}
+        {{ person.bornDate|date('Y-m-d') }}
+    {% else %}
+        {{ person.bornDate|date('Y') }}
+    {% endif %}
+{% else %}
+    {{ 'ui.person.date_shortage'|trans }}
+{% endif %}

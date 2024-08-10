@@ -13,8 +13,10 @@ class Person
 
     private string $firstname;
     private string $lastname;
-    private DateTimeImmutable $born_date;
-    private DateTimeImmutable $death_date;
+    private ?DateTimeImmutable $born_date;
+    private ?DateTimeImmutable $death_date;
+    private ?bool $born_date_only_year = null;
+    private ?bool $death_date_only_year = null;
     private Grave $grave;
 
     public function __construct(?string $id = null)
@@ -47,24 +49,44 @@ class Person
         $this->lastname = $lastname;
     }
 
-    public function getBornDate(): DateTimeImmutable
+    public function getBornDate(): ?DateTimeImmutable
     {
         return $this->born_date;
     }
 
-    public function setBornDate(DateTimeImmutable $born_date): void
+    public function setBornDate(?DateTimeImmutable $born_date): void
     {
         $this->born_date = $born_date;
     }
 
-    public function getDeathDate(): DateTimeImmutable
+    public function getDeathDate(): ?DateTimeImmutable
     {
         return $this->death_date;
     }
 
-    public function setDeathDate(DateTimeImmutable $death_date): void
+    public function setDeathDate(?DateTimeImmutable $death_date): void
     {
         $this->death_date = $death_date;
+    }
+
+    public function getBornDateOnlyYear(): ?bool
+    {
+        return $this->born_date_only_year;
+    }
+
+    public function setBornDateOnlyYear(?bool $born_date_only_year): void
+    {
+        $this->born_date_only_year = $born_date_only_year;
+    }
+
+    public function getDeathDateOnlyYear(): ?bool
+    {
+        return $this->death_date_only_year;
+    }
+
+    public function setDeathDateOnlyYear(?bool $death_date_only_year): void
+    {
+        $this->death_date_only_year = $death_date_only_year;
     }
 
     public function getGrave(): Grave
