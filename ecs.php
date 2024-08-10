@@ -5,7 +5,6 @@ declare(strict_types=1);
 use PhpCsFixer\Fixer\Comment\HeaderCommentFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
 use PhpCsFixer\Fixer\ListNotation\ListSyntaxFixer;
-use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
 use Symplify\CodingStandard\Fixer\Annotation\RemovePHPStormAnnotationFixer;
 use Symplify\CodingStandard\Fixer\Commenting\ParamReturnAndVarTagMalformsFixer;
 use Symplify\CodingStandard\Fixer\Commenting\RemoveUselessDefaultCommentFixer;
@@ -21,7 +20,7 @@ return ECSConfig::configure()
         __DIR__ . '/tests',
     ])
     ->withSkip([
-        __DIR__ . '/src/Core/Infrastructure/Migrations',
+        __DIR__ . '/src/Core/Infrastructure/Migrations'
     ])
     ->withPhpCsFixerSets(
         doctrineAnnotation: true,
