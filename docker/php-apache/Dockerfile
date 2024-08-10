@@ -14,6 +14,7 @@ RUN pecl install xdebug
 #INI-Files
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 COPY opcache.ini $PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini
+RUN mv $PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini $PHP_INI_DIR/conf.d/98-opcache.ini
 COPY xdebug.ini $PHP_INI_DIR/conf.d/99-xdebug.ini
 COPY apache.conf /etc/apache2/sites-enabled/000-default.conf
 RUN a2enmod rewrite
