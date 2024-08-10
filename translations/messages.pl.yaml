@@ -220,9 +220,12 @@ ui:
     firstName: Imię
     lastName: Nazwisko
     bornDate: Data urodzenia
+    bornDateOnlyYear: Tylko rok urodzenia
     bornYear: Rok urodzenia
     deathDate: Data śmierci
+    deathDateOnlyYear: Tylko rok śmierci
     deathYear: Rok śmierci
+    date_shortage: Brak daty
     remove: Usuwanie zmarłego
     modal:
       remove: Czy chcesz usunąć zmarłego z grobu oraz z bazy danych?

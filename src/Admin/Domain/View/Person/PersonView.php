@@ -13,6 +13,8 @@ class PersonView
     private ?string $lastname;
     private ?DateTimeImmutable $born_date;
     private ?DateTimeImmutable $death_date;
+    private ?bool $bornDateOnlyYear;
+    private ?bool $deathDateOnlyYear;
     private ?Grave $grave;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
@@ -23,6 +25,8 @@ class PersonView
         ?string $lastname = null,
         ?DateTimeImmutable $born_date = null,
         ?DateTimeImmutable $death_date = null,
+        ?bool $bornDateOnlyYear = null,
+        ?bool $deathDateOnlyYear = null,
         ?Grave $grave = null,
         ?DateTimeImmutable $updatedAt = null,
         ?DateTimeImmutable $createdAt = null
@@ -32,6 +36,8 @@ class PersonView
         $this->lastname = $lastname;
         $this->born_date = $born_date;
         $this->death_date = $death_date;
+        $this->bornDateOnlyYear = $bornDateOnlyYear;
+        $this->deathDateOnlyYear = $deathDateOnlyYear;
         $this->grave = $grave;
         $this->updatedAt = $updatedAt;
         $this->createdAt = $createdAt;
@@ -45,6 +51,8 @@ class PersonView
             $person->getLastname(),
             $person->getBornDate(),
             $person->getDeathDate(),
+            $person->getBornDateOnlyYear(),
+            $person->getDeathDateOnlyYear(),
             $person->getGrave(),
             $person->getUpdatedAt(),
             $person->getCreatedAt()
@@ -94,6 +102,26 @@ class PersonView
     public function setDeathDate(?DateTimeImmutable $death_date): void
     {
         $this->death_date = $death_date;
+    }
+
+    public function getBornDateOnlyYear(): ?bool
+    {
+        return $this->bornDateOnlyYear;
+    }
+
+    public function setBornDateOnlyYear(?bool $bornDateOnlyYear): void
+    {
+        $this->bornDateOnlyYear = $bornDateOnlyYear;
+    }
+
+    public function getDeathDateOnlyYear(): ?bool
+    {
+        return $this->deathDateOnlyYear;
+    }
+
+    public function setDeathDateOnlyYear(?bool $deathDateOnlyYear): void
+    {
+        $this->deathDateOnlyYear = $deathDateOnlyYear;
     }
 
     public function getGrave(): ?Grave

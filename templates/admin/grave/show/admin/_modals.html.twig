@@ -14,12 +14,20 @@
                 {{ form_row(addDeceasedForm.lastName) }}
             </div>
         </div>
-        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div class="mb-2 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
                 {{ form_row(addDeceasedForm.bornDate) }}
             </div>
             <div>
                 {{ form_row(addDeceasedForm.deathDate) }}
+            </div>
+        </div>
+        <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div>
+                {{ form_row(addDeceasedForm.bornDateOnlyYear) }}
+            </div>
+            <div>
+                {{ form_row(addDeceasedForm.deathDateOnlyYear) }}
             </div>
         </div>
         <div class="hidden">
