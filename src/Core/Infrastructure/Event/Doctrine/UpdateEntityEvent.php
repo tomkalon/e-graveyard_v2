@@ -12,8 +12,7 @@ class UpdateEntityEvent extends PostUpdateListener
     public function __construct(
         private readonly UpdateEntityFlashInterface $flash,
         private readonly UpdateEntityLogger         $entityLogger,
-    ) {
-    }
+    ) {}
 
     public function postUpdate(LifecycleEventArgs $args): void
     {

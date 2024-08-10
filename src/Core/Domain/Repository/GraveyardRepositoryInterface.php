@@ -10,6 +10,4 @@ use App\Core\Domain\Entity\Graveyard;
  * @method Graveyard[]    findAll()
  * @method Graveyard[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface GraveyardRepositoryInterface
-{
-}
+interface GraveyardRepositoryInterface {}

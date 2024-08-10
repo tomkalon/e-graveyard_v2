@@ -13,7 +13,5 @@ class ExceptionListener implements EventSubscriberInterface
             'kernel.exception' => 'onKernelException',
         ];
     }
-    public function onKernelException(ExceptionEvent $event)
-    {
-    }
+    public function onKernelException(ExceptionEvent $event) {}
 }

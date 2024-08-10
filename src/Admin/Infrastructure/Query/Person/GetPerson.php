@@ -10,9 +10,8 @@ use Exception;
 class GetPerson implements GetPersonInterface
 {
     public function __construct(
-        private readonly PersonRepositoryInterface $personRepository
-    ) {
-    }
+        private readonly PersonRepositoryInterface $personRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

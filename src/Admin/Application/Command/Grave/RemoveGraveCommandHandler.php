@@ -13,8 +13,7 @@ class RemoveGraveCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

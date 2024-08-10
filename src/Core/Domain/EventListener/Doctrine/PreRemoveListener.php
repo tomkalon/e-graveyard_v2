@@ -11,11 +11,9 @@ class PreRemoveListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::preRemove => 'preRemove'
+            Events::preRemove => 'preRemove',
         ];
     }
 
-    public function preRemove(LifecycleEventArgs $args)
-    {
-    }
+    public function preRemove(LifecycleEventArgs $args) {}
 }

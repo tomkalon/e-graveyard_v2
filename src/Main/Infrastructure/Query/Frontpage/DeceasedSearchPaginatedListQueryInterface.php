@@ -10,6 +10,6 @@ interface DeceasedSearchPaginatedListQueryInterface
     public function execute(
         ?int $page = null,
         ?string $limit = null,
-        ?DeceasedSearchView $filter = null
+        ?DeceasedSearchView $filter = null,
     ): PaginationInterface;
 }

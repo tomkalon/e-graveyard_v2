@@ -8,9 +8,8 @@ use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 class PaymentGraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly SavePaymentGraveServiceInterface $savePaymentGraveService
-    ) {
-    }
+        private readonly SavePaymentGraveServiceInterface $savePaymentGraveService,
+    ) {}
 
     public function __invoke(PaymentGraveCommand $command)
     {

@@ -2,6 +2,4 @@
 
 namespace App\Core\Application\CQRS\Query;
 
-interface QueryInterface
-{
-}
+interface QueryInterface {}

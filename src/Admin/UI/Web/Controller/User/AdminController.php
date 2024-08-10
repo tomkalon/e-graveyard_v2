@@ -22,7 +22,7 @@ class AdminController extends AbstractController
         UserPaginatedListQueryInterface $query,
         Request                         $request,
         CommandBusInterface             $commandBus,
-        int                             $page
+        int                             $page,
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
@@ -48,13 +48,13 @@ class AdminController extends AbstractController
         return $this->render('admin/user/admin/user_list.html.twig', [
             'pagination' => $paginatedUsersList,
             'change_permission_form' => $changePermissionForm->createView(),
-            'adminID' => $user->getId()
+            'adminID' => $user->getId(),
         ]);
     }
 
     public function create(
         Request $request,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
@@ -69,7 +69,7 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/user/admin/send_invitation.html.twig', [
-            'form' => $userForm->createView()
+            'form' => $userForm->createView(),
         ]);
     }
 }

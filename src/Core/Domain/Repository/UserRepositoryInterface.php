@@ -10,6 +10,4 @@ use App\Core\Domain\Entity\User;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface UserRepositoryInterface
-{
-}
+interface UserRepositoryInterface {}

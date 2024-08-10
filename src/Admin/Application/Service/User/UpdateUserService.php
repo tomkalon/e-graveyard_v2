@@ -19,8 +19,7 @@ class UpdateUserService implements UpdateUserServiceInterface
         private readonly UserPasswordHasherInterface $hasher,
         private readonly EntityManagerInterface      $em,
         private readonly NotificationInterface       $notification,
-    ) {
-    }
+    ) {}
 
     public function update(UserView $userView): void
     {

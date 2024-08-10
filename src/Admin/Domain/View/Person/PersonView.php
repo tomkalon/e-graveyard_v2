@@ -29,7 +29,7 @@ class PersonView
         ?bool $deathDateOnlyYear = null,
         ?Grave $grave = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->id = $id;
         $this->firstname = $firstname;
@@ -55,7 +55,7 @@ class PersonView
             $person->getDeathDateOnlyYear(),
             $person->getGrave(),
             $person->getUpdatedAt(),
-            $person->getCreatedAt()
+            $person->getCreatedAt(),
         );
     }
 

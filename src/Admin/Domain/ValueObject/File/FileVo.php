@@ -6,9 +6,8 @@ class FileVo
 {
     public function __construct(
         private readonly string $name,
-        private readonly string $extension
-    ) {
-    }
+        private readonly string $extension,
+    ) {}
 
     public function equals(FileVo $fileVo): bool
     {

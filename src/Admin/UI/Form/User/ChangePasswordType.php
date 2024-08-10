@@ -18,7 +18,7 @@ class ChangePasswordType extends AbstractType
             ->add('password', PasswordType::class, [
                 'required' => true,
                 'constraints' => [
-                    new UserPassword()
+                    new UserPassword(),
                 ],
             ])
             ->add('repeatPassword', PasswordType::class, [
@@ -27,8 +27,8 @@ class ChangePasswordType extends AbstractType
             ->add('saveChanges', SubmitType::class, [
                 'label' => 'ui.buttons.save_changes',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ])
         ;
     }

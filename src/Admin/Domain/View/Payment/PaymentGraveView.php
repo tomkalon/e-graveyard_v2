@@ -25,7 +25,7 @@ class PaymentGraveView
         ?Grave $grave = null,
         ?DateTimeImmutable $validity_time = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->value = $value;
         $this->currency = $currency;
@@ -48,7 +48,7 @@ class PaymentGraveView
             $paymentGrave->getGrave(),
             $paymentGrave->getValidityTime(),
             $paymentGrave->getUpdatedAt(),
-            $paymentGrave->getCreatedAt()
+            $paymentGrave->getCreatedAt(),
         );
     }
 

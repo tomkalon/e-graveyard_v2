@@ -14,8 +14,7 @@ class Paginator implements BasePaginatorInterface
     public function __construct(
         private readonly PaginatorInterface $paginator,
         private readonly FormFactoryInterface $factory,
-    ) {
-    }
+    ) {}
 
     public function paginate($target, int $page = 1, int $limit = null, array $options = []): PaginationInterface
     {
@@ -63,7 +62,7 @@ class Paginator implements BasePaginatorInterface
             'distinct' => $distinct,
             'pageOutOfRange' => $pageOutOfRange,
             'defaultLimit' => $defaultLimit,
-            'limitForm' => $limitForm
+            'limitForm' => $limitForm,
         ));
 
         return $pagination;

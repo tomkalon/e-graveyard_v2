@@ -11,8 +11,7 @@ class GetUser implements GetUserInterface
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

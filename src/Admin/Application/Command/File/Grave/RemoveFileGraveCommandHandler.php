@@ -17,9 +17,8 @@ class RemoveFileGraveCommandHandler implements CommandHandlerInterface
         private readonly FileGraveRepositoryInterface $fileGraveRepository,
         private readonly EntityManagerInterface       $em,
         private readonly NotificationInterface        $notification,
-        private readonly TranslatorInterface          $translator
-    ) {
-    }
+        private readonly TranslatorInterface          $translator,
+    ) {}
 
     public function __invoke(RemoveFileGraveCommand $command)
     {
@@ -31,7 +30,7 @@ class RemoveFileGraveCommandHandler implements CommandHandlerInterface
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.file.remove.label', [], 'flash'),
                 NotificationTypeEnum::FAILED,
-                $this->translator->trans('notification.paymentGrave.empty', [], 'flash')
+                $this->translator->trans('notification.paymentGrave.empty', [], 'flash'),
             ));
         }
 

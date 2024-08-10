@@ -19,7 +19,7 @@ class GraveyardView
         ?string $description = null,
         ?array $graves = null,
         ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null
+        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->name = $name;
         $this->description = $description;
@@ -35,7 +35,7 @@ class GraveyardView
             $graveyard->getDescription(),
             $graveyard->getGraves()->toArray(),
             $graveyard->getUpdatedAt(),
-            $graveyard->getCreatedAt()
+            $graveyard->getCreatedAt(),
         );
     }
 

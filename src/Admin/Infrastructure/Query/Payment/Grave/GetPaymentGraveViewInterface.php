@@ -8,6 +8,6 @@ use App\Core\Application\CQRS\Query\QueryInterface;
 interface GetPaymentGraveViewInterface extends QueryInterface
 {
     public function execute(
-        ?string $id
+        ?string $id,
     ): ?PaymentGraveView;
 }

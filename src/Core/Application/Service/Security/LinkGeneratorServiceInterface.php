@@ -10,6 +10,6 @@ interface LinkGeneratorServiceInterface
         int $expiration,
         ?int $length = null,
         ?string $prefix = null,
-        ?string $suffix = null
+        ?string $suffix = null,
     ): string;
 }

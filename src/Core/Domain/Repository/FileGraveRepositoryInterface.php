@@ -10,6 +10,4 @@ use App\Core\Domain\Entity\FileGrave;
  * @method FileGrave[]    findAll()
  * @method FileGrave[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface FileGraveRepositoryInterface
-{
-}
+interface FileGraveRepositoryInterface {}

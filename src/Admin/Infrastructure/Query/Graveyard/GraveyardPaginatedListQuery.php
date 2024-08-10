@@ -12,20 +12,19 @@ class GraveyardPaginatedListQuery implements GraveyardPaginatedListQueryInterfac
 {
     public function __construct(
         private readonly GraveyardRepositoryInterface $repository,
-        private readonly PaginatorInterface $paginator
-    ) {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
-        ?string $limit = null
+        ?string $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getGraveyardsListQuery();
         $graveyardsList = $this->paginator->paginate(
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $peopleNumberResult = $this->repository->getGraveyardsPeopleNumber();

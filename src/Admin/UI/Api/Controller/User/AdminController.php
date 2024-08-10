@@ -19,7 +19,7 @@ class AdminController extends AbstractFOSRestController
     public function get(
         string $id,
         GetUserInterface $query,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
     ): Response {
         $user = $query->execute($id);
         $userDto = UserDto::fromEntity($user);
@@ -32,7 +32,7 @@ class AdminController extends AbstractFOSRestController
     public function resetPassword(
         string $id,
         GetUserInterface $query,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $userId = base64_decode($id);
 
@@ -49,7 +49,7 @@ class AdminController extends AbstractFOSRestController
 
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemoveUserCommand($id));
         return $this->json('true');

@@ -10,6 +10,6 @@ interface PaginatorInterface
         $target,
         int $page = 1,
         int $limit = null,
-        array $options = []
+        array $options = [],
     ): PaginationInterface;
 }

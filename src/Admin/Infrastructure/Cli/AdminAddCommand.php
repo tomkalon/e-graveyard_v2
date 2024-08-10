@@ -101,7 +101,7 @@ class AdminAddCommand extends Command
         );
         $email = $helper->ask($input, $output, $addEmail);
         $emailValidation = $this->validator->validate($email, [
-            new Email()
+            new Email(),
         ]);
 
 
@@ -135,7 +135,7 @@ class AdminAddCommand extends Command
         $pattern = '/^[a-zA-Z0-9_-]+$/';
         $usernameValidation = $this->validator->validate($username, [
             new Regex([
-                'pattern' => $pattern
+                'pattern' => $pattern,
             ]),
         ]);
 

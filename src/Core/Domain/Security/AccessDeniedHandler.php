@@ -14,9 +14,8 @@ readonly class AccessDeniedHandler implements AccessDeniedHandlerInterface
 {
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-        private TokenStorageInterface $tokenStorage
-    ) {
-    }
+        private TokenStorageInterface $tokenStorage,
+    ) {}
     public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
     {
         $token = $this->tokenStorage->getToken();

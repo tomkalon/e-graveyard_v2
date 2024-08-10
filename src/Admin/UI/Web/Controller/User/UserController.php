@@ -18,7 +18,7 @@ class UserController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         return $this->render('admin/user/index.html.twig', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -28,13 +28,13 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $userView = UserView::fromEntity($user);
         return $this->render('admin/user/show.html.twig', [
-            'user' => $userView
+            'user' => $userView,
         ]);
     }
 
     public function changePassword(
         CommandBusInterface $commandBus,
-        Request             $request
+        Request             $request,
     ): Response {
         $changePasswordForm = $this->createForm(ChangePasswordType::class, new UserView());
         $changePasswordForm->handleRequest($request);
@@ -49,7 +49,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('admin/user/change_password.html.twig', [
-            'form' => $changePasswordForm->createView()
+            'form' => $changePasswordForm->createView(),
         ]);
     }
 }

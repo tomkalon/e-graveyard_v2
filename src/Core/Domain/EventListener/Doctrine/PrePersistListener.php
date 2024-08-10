@@ -11,11 +11,9 @@ class PrePersistListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::prePersist => 'prePersist'
+            Events::prePersist => 'prePersist',
         ];
     }
 
-    public function prePersist(LifecycleEventArgs $args)
-    {
-    }
+    public function prePersist(LifecycleEventArgs $args) {}
 }

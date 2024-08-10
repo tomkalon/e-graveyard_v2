@@ -9,9 +9,8 @@ class SetMainImageCommand implements CommandInterface
 {
     public function __construct(
         private readonly GraveView $graveView,
-        private readonly string $imageId
-    ) {
-    }
+        private readonly string $imageId,
+    ) {}
 
     public function getGraveView(): GraveView
     {

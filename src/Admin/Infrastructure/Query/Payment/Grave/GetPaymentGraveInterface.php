@@ -8,6 +8,6 @@ use App\Core\Domain\Entity\PaymentGrave;
 interface GetPaymentGraveInterface extends QueryInterface
 {
     public function execute(
-        ?string $id
+        ?string $id,
     ): ?PaymentGrave;
 }

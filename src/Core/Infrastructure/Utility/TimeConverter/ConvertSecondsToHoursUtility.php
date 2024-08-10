@@ -7,9 +7,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 readonly class ConvertSecondsToHoursUtility implements TimeConverterUtilityInterface
 {
     public function __construct(
-        private TranslatorInterface $translator
-    ) {
-    }
+        private TranslatorInterface $translator,
+    ) {}
 
     public function convert(int $input): string
     {

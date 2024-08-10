@@ -10,9 +10,8 @@ use Exception;
 class GetPaymentGraveView implements GetPaymentGraveViewInterface
 {
     public function __construct(
-        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository
-    ) {
-    }
+        private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
+    ) {}
 
     /**
      * @throws EntityNotFoundException

@@ -12,8 +12,7 @@ class PersistEntityEvent extends PostPersistListener
     public function __construct(
         private readonly PersistEntityFlashInterface $flash,
         private readonly PersistEntityLogger         $entityLogger,
-    ) {
-    }
+    ) {}
 
     public function postPersist(LifecycleEventArgs $args)
     {

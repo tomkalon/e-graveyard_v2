@@ -21,9 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private string $password;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function getEmail(): ?string
     {

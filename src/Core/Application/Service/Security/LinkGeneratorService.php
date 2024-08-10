@@ -14,9 +14,8 @@ readonly class LinkGeneratorService implements LinkGeneratorServiceInterface
 {
     public function __construct(
         private CacheInterface        $cache,
-        private UrlGeneratorInterface $urlGenerator
-    ) {
-    }
+        private UrlGeneratorInterface $urlGenerator,
+    ) {}
 
     /**
      * @throws InvalidArgumentException
@@ -28,7 +27,7 @@ readonly class LinkGeneratorService implements LinkGeneratorServiceInterface
         int $expiration,
         ?int $length = null,
         ?string $prefix = null,
-        ?string $suffix = null
+        ?string $suffix = null,
     ): string {
         $generator = new ComputerPasswordGenerator();
         $generator

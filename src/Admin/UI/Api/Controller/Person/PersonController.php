@@ -15,7 +15,7 @@ class PersonController extends AbstractFOSRestController
     public function get(
         string $id,
         GetPersonInterface $query,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
     ): Response {
         $dto = PersonDto::fromEntity($query->execute($id));
         return new Response($serializer->serialize($dto, 'json'));
@@ -23,7 +23,7 @@ class PersonController extends AbstractFOSRestController
 
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemovePersonCommand($id));
         return $this->json('true');

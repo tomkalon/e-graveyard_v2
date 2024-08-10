@@ -10,9 +10,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 class isUniqueUserValidator extends ConstraintValidator
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository
-    ) {
-    }
+        private readonly UserRepositoryInterface $userRepository,
+    ) {}
 
     public function validate(mixed $value, Constraint $constraint)
     {

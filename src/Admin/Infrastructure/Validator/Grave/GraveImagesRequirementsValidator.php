@@ -8,9 +8,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class GraveImagesRequirementsValidator extends ConstraintValidator
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function validate(mixed $value, Constraint $constraint)
     {

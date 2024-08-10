@@ -17,9 +17,8 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
         private readonly FileGraveRepositoryInterface $fileGraveRepository,
         private readonly NotificationInterface        $notification,
         private readonly TranslatorInterface          $translator,
-        private readonly SaveGraveServiceInterface    $saveGraveService
-    ) {
-    }
+        private readonly SaveGraveServiceInterface    $saveGraveService,
+    ) {}
 
     public function __invoke(SetMainImageCommand $command)
     {
@@ -35,7 +34,7 @@ class SetMainImageCommandHandler implements CommandHandlerInterface
             $this->notification->addNotification('notification', new NotificationDto(
                 $this->translator->trans('notification.grave.set_main_image.label', [], 'flash'),
                 NotificationTypeEnum::FAILED,
-                $this->translator->trans('notification.grave.set_main_image.empty', [], 'flash')
+                $this->translator->trans('notification.grave.set_main_image.empty', [], 'flash'),
             ));
         } else {
             $graveView->setMainImage($image);

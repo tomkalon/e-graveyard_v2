@@ -9,8 +9,7 @@ readonly class UpdateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private UpdateUserServiceInterface $updateUserService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(UpdateUserCommand $command): void
     {

@@ -12,8 +12,7 @@ readonly class AuthenticationEntryPoint implements AuthenticationEntryPointInter
 {
     public function __construct(
         private UrlGeneratorInterface $urlGenerator,
-    ) {
-    }
+    ) {}
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {

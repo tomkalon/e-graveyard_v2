@@ -7,9 +7,7 @@ use App\Core\Application\CQRS\Command\CommandInterface;
 
 readonly class ResetPasswordCommand implements CommandInterface
 {
-    public function __construct(private UserView $userView)
-    {
-    }
+    public function __construct(private UserView $userView) {}
 
     public function getUserView(): UserView
     {

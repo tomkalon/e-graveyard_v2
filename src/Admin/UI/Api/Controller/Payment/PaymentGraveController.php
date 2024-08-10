@@ -17,7 +17,7 @@ class PaymentGraveController extends AbstractFOSRestController
     public function get(
         string $id,
         GetPaymentGraveInterface $query,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
     ): Response {
         $dto = PaymentGraveDto::fromEntity($query->execute($id));
         return new Response($serializer->serialize($dto, 'json'));
@@ -25,7 +25,7 @@ class PaymentGraveController extends AbstractFOSRestController
 
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');

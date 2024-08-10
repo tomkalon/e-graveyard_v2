@@ -22,7 +22,7 @@ class DeceasedSearchView
         ?string $deathYear = null,
         ?DateTimeImmutable $bornDate = null,
         ?DateTimeImmutable $deathDate = null,
-        ?Grave $grave = null
+        ?Grave $grave = null,
     ) {
         $this->firstName = $firstName;
         $this->lastName = $lastName;

@@ -16,13 +16,13 @@ class FrontpageController extends AbstractController
         $searchForm = $this->createForm(PersonSearchType::class);
 
         return $this->render('main/frontpage/index.html.twig', [
-            'form' => $searchForm->createView()
+            'form' => $searchForm->createView(),
         ]);
     }
 
     public function search(
         Request $request,
-        DeceasedSearchPaginatedListQueryInterface $query
+        DeceasedSearchPaginatedListQueryInterface $query,
     ): Response {
         $searchForm = $this->createForm(PersonSearchType::class);
         $searchForm->handleRequest($request);
@@ -33,23 +33,23 @@ class FrontpageController extends AbstractController
             $peopleList = $query->execute(
                 1,
                 10,
-                $personView
+                $personView,
             );
         }
 
         return $this->render('main/frontpage/search.html.twig', [
             'form' => $searchForm->createView(),
-            'pagination' => $peopleList
+            'pagination' => $peopleList,
         ]);
     }
 
     public function show(
         GetGraveViewInterface $query,
-        string $id
+        string $id,
     ): Response {
         $graveView = $query->execute($id);
         return $this->render('main/frontpage/show.html.twig', [
-            'grave' => $graveView
+            'grave' => $graveView,
         ]);
     }
 }

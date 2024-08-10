@@ -10,6 +10,4 @@ use App\Core\Domain\Entity\Grave;
  * @method Grave[]    findAll()
  * @method Grave[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface GraveRepositoryInterface
-{
-}
+interface GraveRepositoryInterface {}

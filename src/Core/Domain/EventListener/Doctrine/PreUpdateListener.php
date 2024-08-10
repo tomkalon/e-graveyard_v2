@@ -11,11 +11,9 @@ class PreUpdateListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::preUpdate => 'preUpdate'
+            Events::preUpdate => 'preUpdate',
         ];
     }
 
-    public function preUpdate(LifecycleEventArgs $args)
-    {
-    }
+    public function preUpdate(LifecycleEventArgs $args) {}
 }

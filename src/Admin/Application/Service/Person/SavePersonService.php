@@ -10,9 +10,8 @@ use Ramsey\Uuid\Uuid;
 readonly class SavePersonService implements SavePersonServiceInterface
 {
     public function __construct(
-        private EntityManagerInterface $em
-    ) {
-    }
+        private EntityManagerInterface $em,
+    ) {}
 
     public function persist(PersonView $personView): void
     {

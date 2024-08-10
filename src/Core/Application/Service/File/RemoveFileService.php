@@ -10,8 +10,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class RemoveFileService implements RemoveFileServiceInterface
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     public function remove(File $file, string $directory, ?string $thumbnailDirectory = null): bool
     {

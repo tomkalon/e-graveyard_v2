@@ -13,8 +13,7 @@ readonly class RemoveUserCommandHandler implements CommandHandlerInterface
     public function __construct(
         private EntityManagerInterface  $em,
         private UserRepositoryInterface $userRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

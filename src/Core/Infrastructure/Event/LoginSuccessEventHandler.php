@@ -15,7 +15,7 @@ class LoginSuccessEventHandler extends LoginSuccessListener
     public function __construct(
         TokenStorageInterface $tokenStorage,
         private readonly TranslatorInterface $translator,
-        private readonly NotificationInterface $flashMessage
+        private readonly NotificationInterface $flashMessage,
     ) {
         parent::__construct($tokenStorage);
     }
@@ -25,7 +25,7 @@ class LoginSuccessEventHandler extends LoginSuccessListener
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $this->translator->trans('notification.user.login.title', [], 'flash'),
             NotificationTypeEnum::SUCCESS,
-            $this->translator->trans('notification.user.login.success.content', [], 'flash')
+            $this->translator->trans('notification.user.login.success.content', [], 'flash'),
         ));
     }
 }

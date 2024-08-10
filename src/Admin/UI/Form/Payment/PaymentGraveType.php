@@ -35,13 +35,13 @@ class PaymentGraveType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'ui.payment.desc',
                 'required' => false,
-                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]']
+                'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]'],
             ])
             ->add('confirm', SubmitType::class, [
                 'label' => 'ui.buttons.confirm',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }

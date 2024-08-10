@@ -7,6 +7,6 @@ use App\Admin\Domain\View\Grave\GraveView;
 interface GetGraveViewInterface
 {
     public function execute(
-        string $id
+        string $id,
     ): GraveView;
 }

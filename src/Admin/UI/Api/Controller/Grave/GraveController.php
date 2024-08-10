@@ -25,7 +25,7 @@ class GraveController extends AbstractFOSRestController
         string                  $id,
         GetGraveInterface       $getGrave,
         GetSettingsInterface    $getSettings,
-        SerializerInterface     $serializer
+        SerializerInterface     $serializer,
     ): Response {
         $grave = $getGrave->execute($id);
         $settings = $getSettings->execute();
@@ -35,7 +35,7 @@ class GraveController extends AbstractFOSRestController
 
     public function remove(
         string              $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemoveGraveCommand($id));
         return $this->json('true');
@@ -44,7 +44,7 @@ class GraveController extends AbstractFOSRestController
     public function getImages(
         string              $id,
         GetGraveInterface   $getGrave,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
     ): Response {
         $grave = $getGrave->execute($id);
         $images = $grave->getImages();
@@ -60,7 +60,7 @@ class GraveController extends AbstractFOSRestController
         string                  $id,
         Request                 $request,
         GetGraveViewInterface   $getGraveView,
-        CommandBusInterface     $commandBus
+        CommandBusInterface     $commandBus,
     ): Response {
         $graveView = $getGraveView->execute($id);
         $imageId = base64_decode($request->request->all('params')['image']);

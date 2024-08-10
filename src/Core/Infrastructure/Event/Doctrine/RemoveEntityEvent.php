@@ -20,9 +20,8 @@ class RemoveEntityEvent extends PostRemoveListener
         private readonly RemoveFileServiceInterface $removeFileService,
         private readonly RemoveEntityLogger         $entityLogger,
         private readonly string                     $targetDirectory,
-        private readonly string                     $targetThumbnailDirectory
-    ) {
-    }
+        private readonly string                     $targetThumbnailDirectory,
+    ) {}
 
     public function postRemove(LifecycleEventArgs $args): void
     {

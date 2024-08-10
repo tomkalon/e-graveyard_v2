@@ -29,8 +29,8 @@ class PersonType extends AbstractType
                 'required' => false,
                 'widget' => 'single_text',
                 'constraints' => [
-                    new PersonDateComparison()
-                ]
+                    new PersonDateComparison(),
+                ],
             ])
             ->add('bornDateOnlyYear', CheckboxType::class, [
                 'required' => false,
@@ -50,8 +50,8 @@ class PersonType extends AbstractType
             ->add('add', SubmitType::class, [
                 'label' => 'ui.buttons.add',
                 'attr' => array(
-                    'class' => 'btn btn-green'
-                )
+                    'class' => 'btn btn-green',
+                ),
             ])
         ;
     }

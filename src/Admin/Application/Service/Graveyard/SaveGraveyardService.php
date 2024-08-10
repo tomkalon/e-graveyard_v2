@@ -9,9 +9,8 @@ use Doctrine\ORM\EntityManagerInterface;
 class SaveGraveyardService implements SaveGraveyardServiceInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em
-    ) {
-    }
+        private readonly EntityManagerInterface $em,
+    ) {}
 
     public function persist(GraveyardView $graveyardView): void
     {

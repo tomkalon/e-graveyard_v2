@@ -19,7 +19,7 @@ class PersonDto
         ?string $lastName = null,
         ?string $bornDate = null,
         ?string $deathDate = null,
-        ?string $grave = null
+        ?string $grave = null,
     ) {
         $this->id = $id;
         $this->firstName = $firstName;

@@ -22,14 +22,14 @@ class UserInvitationType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true,
                 'constraints' => [
-                    new isUniqueEmail()
-                ]
+                    new isUniqueEmail(),
+                ],
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ]);
     }
 

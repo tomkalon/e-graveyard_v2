@@ -9,8 +9,7 @@ readonly class CreateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private CreateUserServiceInterface $saveUserService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(CreateUserCommand $command): void
     {

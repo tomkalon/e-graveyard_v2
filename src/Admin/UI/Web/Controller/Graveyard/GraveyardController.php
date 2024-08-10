@@ -18,14 +18,14 @@ class GraveyardController extends AbstractController
     public function index(
         Request $request,
         GraveyardPaginatedListQueryInterface $query,
-        int $page
+        int $page,
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }
         $paginatedGraveyardsList = $query->execute(
             $page,
-            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit')
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
         );
 
         return $this->render('admin/graveyard/index.html.twig', [
@@ -36,14 +36,14 @@ class GraveyardController extends AbstractController
 
     public function create(
         CommandBusInterface $commandBus,
-        Request             $request
+        Request             $request,
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
         }
         $form = $this->createForm(
             GraveyardType::class,
-            new GraveyardView()
+            new GraveyardView(),
         );
         $form->handleRequest($request);
 
@@ -51,12 +51,12 @@ class GraveyardController extends AbstractController
             $graveyard = $form->getData();
             $commandBus->dispatch(new GraveyardCommand($graveyard));
             return $this->redirectToRoute(
-                'admin_web_graveyard_index'
+                'admin_web_graveyard_index',
             );
         }
 
         return $this->render('admin/graveyard/create.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 }

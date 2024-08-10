@@ -9,8 +9,7 @@ class PaymentGraveCommand implements CommandInterface
 {
     public function __construct(
         private readonly PaymentGraveView $paymentGraveView,
-    ) {
-    }
+    ) {}
 
     public function getPaymentGraveView(): PaymentGraveView
     {

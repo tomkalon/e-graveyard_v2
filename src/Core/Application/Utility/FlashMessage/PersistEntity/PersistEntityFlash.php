@@ -19,8 +19,7 @@ class PersistEntityFlash implements PersistEntityFlashInterface
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly NotificationInterface $flashMessage,
-    ) {
-    }
+    ) {}
 
     public function handleNotification(object $entity): void
     {
@@ -28,32 +27,32 @@ class PersistEntityFlash implements PersistEntityFlashInterface
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof User => $this->translator->trans(
                 'notification.user.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
                 'notification.file.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof Person => $this->translator->trans(
                 'notification.person.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof PaymentGrave => $this->translator->trans(
                 'notification.paymentGrave.create.label',
                 [],
-                'flash'
+                'flash',
             ),
             default => $this->translator->trans('notification.lifecycle.create.label', [], 'flash'),
         };
@@ -62,21 +61,21 @@ class PersistEntityFlash implements PersistEntityFlashInterface
             $entity instanceof Grave => $this->translator->trans(
                 'notification.grave.create.success',
                 [
-                    '%graveyard%' => $entity->getGraveyard()->getName()
+                    '%graveyard%' => $entity->getGraveyard()->getName(),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof Graveyard => $this->translator->trans(
                 'notification.graveyard.create.success',
                 [
-                    '%graveyard%' => $entity->getName()
+                    '%graveyard%' => $entity->getName(),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof User => $this->translator->trans(
                 'notification.user.create.success',
                 [],
-                'flash'
+                'flash',
             ),
             $entity instanceof Person => $this->translator->trans(
                 'notification.person.create.success',
@@ -84,7 +83,7 @@ class PersistEntityFlash implements PersistEntityFlashInterface
                     '%firstname%' => $entity->getFirstname(),
                     '%lastname%' => $entity->getLastname(),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof PaymentGrave => $this->translator->trans(
                 'notification.paymentGrave.create.success',
@@ -92,23 +91,23 @@ class PersistEntityFlash implements PersistEntityFlashInterface
                     '%payment%' => $entity->getMoney(),
                     '%currency%' => $entity->getCurrency()->trans($this->translator),
                 ],
-                'flash'
+                'flash',
             ),
             $entity instanceof FileGrave, $entity instanceof File => $this->translator->trans(
                 'notification.file.create.success',
                 [
                     '%name%' => $entity->getFilename(),
                 ],
-                'flash'
+                'flash',
             ),
-            default => $this->translator->trans('notification.lifecycle.create.success', [], 'flash')
+            default => $this->translator->trans('notification.lifecycle.create.success', [], 'flash'),
         };
 
 
         $this->flashMessage->addNotification('notification', new NotificationDto(
             $title,
             NotificationTypeEnum::SUCCESS,
-            $content
+            $content,
         ));
     }
 }

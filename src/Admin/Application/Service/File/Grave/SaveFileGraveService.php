@@ -10,9 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 class SaveFileGraveService implements SaveFileGraveServiceInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em
-    ) {
-    }
+        private readonly EntityManagerInterface $em,
+    ) {}
 
     public function persist(FileVo $fileVo): FileGrave
     {

@@ -12,13 +12,12 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
 {
     public function __construct(
         private readonly PersonRepositoryInterface $repository,
-        private readonly PaginatorInterface $paginator
-    ) {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
-        ?string $limit = null
+        ?string $limit = null,
     ): PaginationInterface {
         $query = $this->repository->getPeopleListQuery();
 
@@ -26,7 +25,7 @@ class PersonPaginatedListQuery implements PersonPaginatedListQueryInterface
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $peopleViewList = [];

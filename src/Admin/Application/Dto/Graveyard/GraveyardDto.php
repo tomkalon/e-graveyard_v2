@@ -15,7 +15,7 @@ class GraveyardDto
         ?string $name = null,
         ?string $description = null,
         ?string $updatedAt = null,
-        ?string $createdAt = null
+        ?string $createdAt = null,
     ) {
         $this->name = $name;
         $this->description = $description;
@@ -29,7 +29,7 @@ class GraveyardDto
             $graveyard->getName(),
             $graveyard->getDescription(),
             $graveyard->getUpdatedAt(),
-            $graveyard->getCreatedAt()
+            $graveyard->getCreatedAt(),
         );
     }
 }

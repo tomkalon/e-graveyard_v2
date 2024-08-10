@@ -15,7 +15,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class CreateCustomRoutesDirectoryCommand extends Command
 {
     public function __construct(
-        private readonly Filesystem $filesystem
+        private readonly Filesystem $filesystem,
     ) {
         parent::__construct();
     }

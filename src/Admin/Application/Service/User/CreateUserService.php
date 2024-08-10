@@ -13,8 +13,7 @@ readonly class CreateUserService implements CreateUserServiceInterface
     public function __construct(
         private EntityManagerInterface      $em,
         private UserPasswordHasherInterface $hasher,
-    ) {
-    }
+    ) {}
 
     public function persist(UserView $userView): void
     {

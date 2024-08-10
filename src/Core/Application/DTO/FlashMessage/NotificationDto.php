@@ -15,7 +15,7 @@ class NotificationDto
         string $title,
         NotificationTypeEnum $type,
         string $content,
-        ?string $time = null
+        ?string $time = null,
     ) {
         $this->title = $title;
         $this->type = $type;

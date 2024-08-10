@@ -14,8 +14,7 @@ class GraveCommandHandler implements CommandHandlerInterface
         private readonly ImageUploaderServiceInterface $uploaderService,
         private readonly SaveFileGraveServiceInterface $saveFileGrave,
         private readonly SaveGraveServiceInterface $graveService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(GraveCommand $command)
     {

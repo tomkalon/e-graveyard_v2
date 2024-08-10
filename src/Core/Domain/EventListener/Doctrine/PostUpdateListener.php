@@ -11,11 +11,9 @@ class PostUpdateListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postUpdate => 'postUpdate'
+            Events::postUpdate => 'postUpdate',
         ];
     }
 
-    public function postUpdate(LifecycleEventArgs $args)
-    {
-    }
+    public function postUpdate(LifecycleEventArgs $args) {}
 }

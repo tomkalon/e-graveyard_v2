@@ -9,8 +9,7 @@ class PersonCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly SavePersonServiceInterface $savePersonService,
-    ) {
-    }
+    ) {}
 
     public function __invoke(PersonCommand $command)
     {

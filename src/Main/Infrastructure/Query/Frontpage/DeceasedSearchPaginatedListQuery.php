@@ -12,9 +12,8 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
 {
     public function __construct(
         private readonly PersonRepositoryInterface $personRepository,
-        private readonly PaginatorInterface $paginator
-    ) {
-    }
+        private readonly PaginatorInterface $paginator,
+    ) {}
 
     public function execute(
         ?int $page = null,
@@ -26,7 +25,7 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
             $query,
             $page,
             $limit,
-            ['limit_form' => $limit]
+            ['limit_form' => $limit],
         );
 
         $deceasedViewList = [];
@@ -39,7 +38,7 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
                 null,
                 $person->getBornDate(),
                 $person->getDeathDate(),
-                $person->getGrave()
+                $person->getGrave(),
             );
         }
 

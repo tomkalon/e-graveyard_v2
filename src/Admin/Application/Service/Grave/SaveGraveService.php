@@ -19,8 +19,7 @@ class SaveGraveService implements SaveGraveServiceInterface
         private readonly GraveRepositoryInterface $graveRepository,
         private readonly EntityManagerInterface   $em,
         private readonly NotificationInterface    $notification,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Exception

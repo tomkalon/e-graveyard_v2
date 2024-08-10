@@ -10,6 +10,4 @@ use App\Core\Domain\Entity\PaymentGrave;
  * @method PaymentGrave[]    findAll()
  * @method PaymentGrave[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-interface PaymentGraveRepositoryInterface
-{
-}
+interface PaymentGraveRepositoryInterface {}

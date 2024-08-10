@@ -13,8 +13,7 @@ class RemovePaymentCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly PaymentGraveRepositoryInterface $paymentGraveRepository,
         private readonly EntityManagerInterface $em,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

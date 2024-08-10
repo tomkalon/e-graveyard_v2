@@ -21,7 +21,7 @@ class PaginationLimitType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'onchange' => "console.log(this.form.submit());",
-                ]
+                ],
             ])
         ;
     }

@@ -25,8 +25,7 @@ readonly class GraveImageUploaderService implements ImageUploaderServiceInterfac
         private string                $maxImageHeight,
         private SluggerInterface      $slugger,
         private NotificationInterface $notification,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Exception

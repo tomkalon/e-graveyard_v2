@@ -11,7 +11,7 @@ class FileGraveController extends AbstractFOSRestController
 {
     public function remove(
         string $id,
-        CommandBusInterface $commandBus
+        CommandBusInterface $commandBus,
     ): Response {
         $commandBus->dispatch(new RemoveFileGraveCommand($id));
         return $this->json('true');

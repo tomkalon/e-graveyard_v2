@@ -11,11 +11,9 @@ class PostPersistListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            Events::postPersist => 'postPersist'
+            Events::postPersist => 'postPersist',
         ];
     }
 
-    public function postPersist(LifecycleEventArgs $args)
-    {
-    }
+    public function postPersist(LifecycleEventArgs $args) {}
 }

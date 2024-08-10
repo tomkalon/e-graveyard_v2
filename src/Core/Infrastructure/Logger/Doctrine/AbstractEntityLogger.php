@@ -15,9 +15,8 @@ abstract class AbstractEntityLogger
 {
     public function __construct(
         private readonly LoggerInterface $doctrineLifecycleLogger,
-        private readonly TokenStorageInterface $tokenStorage
-    ) {
-    }
+        private readonly TokenStorageInterface $tokenStorage,
+    ) {}
 
     public function logEvent(object $entity): void
     {
@@ -46,29 +45,29 @@ abstract class AbstractEntityLogger
                 $entity->getGraveyard()->getName(),
                 $entity->getSector(),
                 $entity->getRow(),
-                $entity->getNumber()
+                $entity->getNumber(),
             ),
             $entity instanceof Graveyard => sprintf(
                 '%s',
-                $entity->getName()
+                $entity->getName(),
             ),
             $entity instanceof User => sprintf(
                 '%s',
-                $entity->getUsername()
+                $entity->getUsername(),
             ),
             $entity instanceof File => sprintf(
                 '%s',
-                $entity->getFilename()
+                $entity->getFilename(),
             ),
             $entity instanceof Person => sprintf(
                 '%s %s',
                 $entity->getFirstname(),
-                $entity->getLastname()
+                $entity->getLastname(),
             ),
             $entity instanceof Payment => sprintf(
                 '%d %s',
                 $entity->getValue(),
-                $entity->getCurrency()->value
+                $entity->getCurrency()->value,
             ),
             default => 'UndefinedObject',
         };

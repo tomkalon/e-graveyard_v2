@@ -11,8 +11,7 @@ class GetGrave implements GetGraveInterface
 {
     public function __construct(
         private readonly GraveRepositoryInterface $graveRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws EntityNotFoundException

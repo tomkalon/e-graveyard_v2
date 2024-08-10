@@ -31,8 +31,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
         private string                        $registerLinkExpiration,
         private string                        $senderEmail,
         private string                        $senderName,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws TransportExceptionInterface
@@ -53,7 +52,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
             $userView->getEmail(),
             $this->registerLinkExpiration,
             30,
-            'generated_register_link_'
+            'generated_register_link_',
         );
         $expiration = $this->timeConverterUtility->convert($this->registerLinkExpiration);
 
@@ -69,7 +68,7 @@ readonly class SendRegistrationLinkCommandHandler implements CommandHandlerInter
                 ], 'email'),
                 'expiration' => $this->translator->trans('email.common.expiration', [
                     '%expiration%' => $expiration,
-                ], 'email')
+                ], 'email'),
             ]);
 
         $this->mailer->send($email);

@@ -9,9 +9,8 @@ class GraveCommand implements CommandInterface
 {
     public function __construct(
         private readonly GraveView $graveView,
-        private readonly ?array $images = null
-    ) {
-    }
+        private readonly ?array $images = null,
+    ) {}
 
     public function getGrave(): GraveView
     {

@@ -8,14 +8,13 @@ use App\Admin\Domain\View\User\UserView;
 class UserByFieldsQuery implements UserByFieldsQueryInterface
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository
-    ) {
-    }
+        private readonly UserRepositoryInterface $userRepository,
+    ) {}
     public function execute(UserView $userView): ?array
     {
         return $this->userRepository->getUsersByOptions(
             $userView->getEmail(),
-            $userView->getUsername()
+            $userView->getUsername(),
         );
     }
 }

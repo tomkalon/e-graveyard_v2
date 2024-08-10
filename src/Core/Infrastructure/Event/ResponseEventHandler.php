@@ -8,8 +8,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class ResponseEventHandler extends ResponseListener
 {
     public function __construct(
-    ) {
-    }
+    ) {}
 
     public function onKernelResponse(ResponseEvent $event): void
     {

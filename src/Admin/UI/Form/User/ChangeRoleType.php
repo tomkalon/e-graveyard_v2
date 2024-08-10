@@ -17,25 +17,25 @@ class ChangeRoleType extends AbstractType
     {
         $builder
             ->add('id', HiddenType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('roles', EnumType::class, [
                 'label' => 'ui.user.role.label',
                 'class' => UserRoleEnum::class,
                 'data' => UserRoleEnum::MANAGER,
-                'choice_label' => fn (UserRoleEnum $enum) => $this->translateEnum($enum),
+                'choice_label' => fn(UserRoleEnum $enum) => $this->translateEnum($enum),
                 'choices' => [
                     'User' => UserRoleEnum::USER,
                     'Manager' => UserRoleEnum::MANAGER,
                     'Admin' => UserRoleEnum::ADMIN,
                 ],
-                'required' => true
+                'required' => true,
             ])
             ->add('change', SubmitType::class, [
                 'label' => 'ui.buttons.change',
                 'attr' => [
-                    'class' => 'btn btn-success'
-                ]
+                    'class' => 'btn btn-success',
+                ],
             ]);
     }
 
