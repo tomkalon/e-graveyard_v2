@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\UI\Api\Controller\Person;
 
 use App\Admin\Application\Command\Person\RemovePersonCommand;

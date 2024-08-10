@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Admin\Application\Command\Payment\Grave;
 
 use App\Admin\Domain\View\Payment\PaymentGraveView;

@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * This file has been created by Tomasz Kaliński (https://github.com/tomkalon)
+ */
+
 namespace App\Core\Infrastructure\CQRS\Command;
 
 use App\Core\Application\CQRS\Command\CommandBusInterface;
