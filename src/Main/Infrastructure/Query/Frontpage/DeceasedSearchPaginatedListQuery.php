@@ -42,6 +42,8 @@ class DeceasedSearchPaginatedListQuery implements DeceasedSearchPaginatedListQue
                 null,
                 $person->getBornDate(),
                 $person->getDeathDate(),
+                $person->getBornDateOnlyYear(),
+                $person->getDeathDateOnlyYear(),
                 $person->getGrave(),
             );
         }
