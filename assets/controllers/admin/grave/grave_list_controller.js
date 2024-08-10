@@ -9,8 +9,6 @@ import {FilterSwitch} from "@FilterSwitch";
 import {getGraveDetails} from "@View/grave/grave_view";
 
 export default class extends Controller {
-
-    // TARGETS
     static targets = ['pagination', 'filterContainer', 'toggleFilter']
 
     connect()

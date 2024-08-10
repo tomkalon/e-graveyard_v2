@@ -7,8 +7,6 @@ import { getUser} from "@View/user/user_view";
 import $ from "jquery";
 
 export default class extends Controller {
-
-    // TARGETS
     static targets = ['pagination']
 
     connect()
