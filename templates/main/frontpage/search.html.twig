@@ -29,6 +29,23 @@
                     } %}
                 {% endblock %}
                 {% block body %}
+                    {% set bornDate = 'ui.person.date_shortage'|trans %}
+                    {% set deathDate = 'ui.person.date_shortage'|trans %}
+                    {% if item.bornDate %}
+                        {% if not item.bornDateOnlyYear %}
+                            {% set bornDate = item.bornDate|date('Y-m-d') %}
+                        {% else %}
+                            {% set bornDate = item.bornDate|date('Y') %}
+                        {% endif %}
+                    {% endif %}
+                    {% if item.deathDate %}
+                        {% if not item.deathDateOnlyYear %}
+                            {% set deathDate = item.deathDate|date('Y-m-d') %}
+                        {% else %}
+                            {% set deathDate = item.deathDate|date('Y') %}
+                        {% endif %}
+                    {% endif %}
+
                     {% include 'core/pagination/_body_value.html.twig' with {
                         value: item.firstname,
                         class: 'pl-4',
@@ -39,11 +56,11 @@
                         class: 'pl-4'
                     } %}
                     {% include 'core/pagination/_body_value.html.twig' with {
-                        value: item.bornDate|date('Y-m-d'),
+                        value: bornDate,
                         class: 'pl-4'
                     } %}
                     {% include 'core/pagination/_body_value.html.twig' with {
-                        value: item.deathDate|date('Y-m-d'),
+                        value: deathDate,
                         class: 'pl-4'
                     } %}
                     {% include 'core/pagination/_body_value.html.twig' with {

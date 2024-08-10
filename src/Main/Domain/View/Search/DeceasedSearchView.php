@@ -7,6 +7,7 @@
 namespace App\Main\Domain\View\Search;
 
 use App\Core\Domain\Entity\Grave;
+use DateTime;
 use DateTimeImmutable;
 
 class DeceasedSearchView
@@ -15,8 +16,10 @@ class DeceasedSearchView
     private ?string $lastName;
     private ?int $bornYear;
     private ?int $deathYear;
-    private ?DateTimeImmutable $bornDate;
-    private ?DateTimeImmutable $deathDate;
+    private ?DateTime $bornDate;
+    private ?DateTime $deathDate;
+    private ?bool $bornDateOnlyYear;
+    private ?bool $deathDateOnlyYear;
     private ?Grave $grave;
 
     public function __construct(
@@ -24,8 +27,10 @@ class DeceasedSearchView
         ?string $lastName = null,
         ?string $bornYear = null,
         ?string $deathYear = null,
-        ?DateTimeImmutable $bornDate = null,
-        ?DateTimeImmutable $deathDate = null,
+        ?DateTime $bornDate = null,
+        ?DateTime $deathDate = null,
+        ?bool $bornDateOnlyYear = null,
+        ?bool $deathDateOnlyYear = null,
         ?Grave $grave = null,
     ) {
         $this->firstName = $firstName;
@@ -34,6 +39,8 @@ class DeceasedSearchView
         $this->deathYear = $deathYear;
         $this->bornDate = $bornDate;
         $this->deathDate = $deathDate;
+        $this->bornDateOnlyYear = $bornDateOnlyYear;
+        $this->deathDateOnlyYear = $deathDateOnlyYear;
         $this->grave = $grave;
     }
 
@@ -77,24 +84,44 @@ class DeceasedSearchView
         $this->deathYear = $deathYear;
     }
 
-    public function getBornDate(): ?DateTimeImmutable
+    public function getBornDate(): ?DateTime
     {
         return $this->bornDate;
     }
 
-    public function setBornDate(?DateTimeImmutable $bornDate): void
+    public function setBornDate(?DateTime $bornDate): void
     {
         $this->bornDate = $bornDate;
     }
 
-    public function getDeathDate(): ?DateTimeImmutable
+    public function getDeathDate(): ?DateTime
     {
         return $this->deathDate;
     }
 
-    public function setDeathDate(?DateTimeImmutable $deathDate): void
+    public function setDeathDate(?DateTime $deathDate): void
     {
         $this->deathDate = $deathDate;
+    }
+
+    public function getBornDateOnlyYear(): ?bool
+    {
+        return $this->bornDateOnlyYear;
+    }
+
+    public function setBornDateOnlyYear(?bool $bornDateOnlyYear): void
+    {
+        $this->bornDateOnlyYear = $bornDateOnlyYear;
+    }
+
+    public function getDeathDateOnlyYear(): ?bool
+    {
+        return $this->deathDateOnlyYear;
+    }
+
+    public function setDeathDateOnlyYear(?bool $deathDateOnlyYear): void
+    {
+        $this->deathDateOnlyYear = $deathDateOnlyYear;
     }
 
     public function getGrave(): ?Grave
