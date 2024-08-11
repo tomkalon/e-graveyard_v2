@@ -26,11 +26,15 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class GraveController extends AbstractController
 {
+    public const GRAVE_INDEX_SESSION_KEY = 'admin_web_grave_index_get_data';
+
     public function index(
         Request                          $request,
+        Session                          $session,
         GravePaginatedListQueryInterface $query,
         CommandBusInterface              $commandBus,
         int                              $page,
@@ -58,10 +62,13 @@ class GraveController extends AbstractController
         }
 
         // FILTER form handler
+        /** @var GraveFilterView $filter */
         $filter = null;
         if ($filterForm->isSubmitted() and $filterForm->isValid()) {
             $filter = $filterForm->getData();
         }
+
+        $session->set(self::GRAVE_INDEX_SESSION_KEY, $request->query->all());
 
         // query
         $paginatedGravesList = $query->execute(
@@ -80,12 +87,14 @@ class GraveController extends AbstractController
     public function show(
         CommandBusInterface     $commandBus,
         Request                 $request,
+        Session                 $session,
         GetGraveViewInterface   $getGraveView,
         GetGraveInterface       $getGrave,
         string                  $id,
     ): Response {
         // query
         $grave = $getGraveView->execute($id);
+        $graveIndexFilter = $session->get(self::GRAVE_INDEX_SESSION_KEY);
 
         // add decease form
         $addDeceasedForm = $this->createForm(PersonType::class, new PersonView());
@@ -127,6 +136,7 @@ class GraveController extends AbstractController
             'grave' => $grave,
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
+            'graveIndexParams' => $graveIndexFilter,
             'id' => $id,
         ]);
     }

@@ -52,6 +52,12 @@
                         <i class="fa fa-trash" aria-hidden="true"></i>
                         {{ 'ui.buttons.remove'|trans }}
                     </button>
+                    <a href="{{ path('admin_web_grave_index', graveIndexParams) }}">
+                        <button class="btn btn-gray">
+                            <i class="fa fa-address-book" aria-hidden="true"></i>
+                            {{ 'ui.buttons.return_to_search'|trans }}
+                        </button>
+                    </a>
                 </div>
             {% endblock %}
             {% block dashboard_content %}

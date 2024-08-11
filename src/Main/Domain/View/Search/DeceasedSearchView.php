@@ -8,7 +8,6 @@ namespace App\Main\Domain\View\Search;
 
 use App\Core\Domain\Entity\Grave;
 use DateTime;
-use DateTimeImmutable;
 
 class DeceasedSearchView
 {
