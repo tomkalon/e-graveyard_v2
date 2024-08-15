@@ -20,6 +20,8 @@ class PersonView
     private ?DateTime $death_date;
     private ?bool $bornDateOnlyYear;
     private ?bool $deathDateOnlyYear;
+    private ?int $bornYear = null;
+    private ?int $deathYear = null;
     private ?Grave $grave;
     private ?DateTimeImmutable $updatedAt;
     private ?DateTimeImmutable $createdAt;
@@ -127,6 +129,26 @@ class PersonView
     public function setDeathDateOnlyYear(?bool $deathDateOnlyYear): void
     {
         $this->deathDateOnlyYear = $deathDateOnlyYear;
+    }
+
+    public function getDeathYear(): ?int
+    {
+        return $this->deathYear;
+    }
+
+    public function setDeathYear(?int $deathYear): void
+    {
+        $this->deathYear = $deathYear;
+    }
+
+    public function getBornYear(): ?int
+    {
+        return $this->bornYear;
+    }
+
+    public function setBornYear(?int $bornYear): void
+    {
+        $this->bornYear = $bornYear;
     }
 
     public function getGrave(): ?Grave

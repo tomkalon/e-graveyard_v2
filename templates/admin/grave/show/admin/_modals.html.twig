@@ -16,10 +16,12 @@
         </div>
         <div class="mb-2 grid grid-cols-1 md:grid-cols-2 gap-2">
             <div>
-                {{ form_row(addDeceasedForm.bornDate) }}
+                <div id="js-person-born-date">{{ form_row(addDeceasedForm.bornDate) }}</div>
+                <div id="js-person-born-year">{{ form_row(addDeceasedForm.bornYear) }}</div>
             </div>
             <div>
-                {{ form_row(addDeceasedForm.deathDate) }}
+                <div id="js-person-death-date">{{ form_row(addDeceasedForm.deathDate) }}</div>
+                <div id="js-person-death-year">{{ form_row(addDeceasedForm.deathYear) }}</div>
             </div>
         </div>
         <div class="mb-10 grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -140,3 +142,35 @@
         </button>
     {% endblock %}
 {% endembed %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const elementsMap = [
+            {
+                checkbox: document.getElementById('person_bornDateOnlyYear'),
+                dateElement: document.getElementById('js-person-born-date'),
+                yearElement: document.getElementById('js-person-born-year')
+            },
+            {
+                checkbox: document.getElementById('person_deathDateOnlyYear'),
+                dateElement: document.getElementById('js-person-death-date'),
+                yearElement: document.getElementById('js-person-death-year')
+            }
+        ];
+
+        function toggleElements({checkbox, dateElement, yearElement}) {
+            if (checkbox.checked) {
+                yearElement.style.display = 'block';
+                dateElement.style.display = 'none';
+            } else {
+                yearElement.style.display = 'none';
+                dateElement.style.display = 'block';
+            }
+        }
+
+        elementsMap.forEach(item => {
+            toggleElements(item);
+            item.checkbox.addEventListener('change', () => toggleElements(item));
+        });
+    });
+</script>
