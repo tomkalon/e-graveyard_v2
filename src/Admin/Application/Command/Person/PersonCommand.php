@@ -9,10 +9,10 @@ namespace App\Admin\Application\Command\Person;
 use App\Admin\Domain\View\Person\PersonView;
 use App\Core\Application\CQRS\Command\CommandInterface;
 
-class PersonCommand implements CommandInterface
+readonly class PersonCommand implements CommandInterface
 {
     public function __construct(
-        private readonly PersonView $personView,
+        private PersonView $personView,
     ) {}
 
     public function getPersonView(): PersonView
