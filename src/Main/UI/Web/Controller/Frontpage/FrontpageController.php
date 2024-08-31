@@ -6,12 +6,15 @@
 
 namespace App\Main\UI\Web\Controller\Frontpage;
 
+use App\Main\Domain\View\Search\DeceasedSearchView;
 use App\Main\Infrastructure\Query\Frontpage\DeceasedSearchPaginatedListQueryInterface;
 use App\Main\Infrastructure\Query\Frontpage\GetGraveViewInterface;
 use App\Main\UI\Form\Person\PersonSearchType;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class FrontpageController extends AbstractController
 {
@@ -24,6 +27,9 @@ class FrontpageController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws Exception
+     */
     public function search(
         Request $request,
         DeceasedSearchPaginatedListQueryInterface $query,
@@ -31,15 +37,32 @@ class FrontpageController extends AbstractController
         $searchForm = $this->createForm(PersonSearchType::class);
         $searchForm->handleRequest($request);
 
-        $peopleList = [];
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $personView = $searchForm->getData();
-            $peopleList = $query->execute(
-                1,
-                10,
-                $personView,
-            );
+        } else {
+            try {
+                $searchData = $request->query->all('person_search');
+                $firstName = empty($searchData['firstName']) ? null : (string)$searchData['firstName'];
+                $bornYear = empty($searchData['bornYear']) ? null : (int)$searchData['bornYear'];
+                $deathYear = empty($searchData['deathYear']) ? null : (int)$searchData['deathYear'];
+
+                $personView = new DeceasedSearchView(
+                    $firstName,
+                    $searchData['lastName'] ?? null,
+                    $bornYear,
+                    $deathYear,
+                );
+                $searchForm->setData($personView);
+            } catch (Exception $e) {
+                throw new Exception('Invalid born year or death year input!');
+            }
+
         }
+        $peopleList = $query->execute(
+            1,
+            $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
+            $personView
+        );
 
         return $this->render('main/frontpage/search.html.twig', [
             'form' => $searchForm->createView(),

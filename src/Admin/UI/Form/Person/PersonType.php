@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -34,17 +35,29 @@ class PersonType extends AbstractType
                 'widget' => 'single_text',
                 'constraints' => [
                     new PersonDateComparison(),
-                ],
+                ]
+            ])
+            ->add('bornYear', IntegerType::class, [
+                'required' => false
             ])
             ->add('bornDateOnlyYear', CheckboxType::class, [
                 'required' => false,
+                'attr' => [
+                    'id' => 'js-born-only-year',
+                ]
             ])
             ->add('deathDate', DateType::class, [
                 'required' => false,
-                'widget' => 'single_text',
+                'widget' => 'single_text'
+            ])
+            ->add('deathYear', IntegerType::class, [
+                'required' => false
             ])
             ->add('deathDateOnlyYear', CheckboxType::class, [
                 'required' => false,
+                'attr' => [
+                    'id' => 'js-death-only-year',
+                ]
             ])
             ->add('grave', EntityType::class, [
                 'class' => Grave::class,
@@ -53,9 +66,9 @@ class PersonType extends AbstractType
             ])
             ->add('add', SubmitType::class, [
                 'label' => 'ui.buttons.add',
-                'attr' => array(
+                'attr' => [
                     'class' => 'btn btn-green',
-                ),
+                ],
             ])
         ;
     }

@@ -12,11 +12,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 
-class RemovePersonCommandHandler implements CommandHandlerInterface
+readonly class RemovePersonCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $em,
-        private readonly PersonRepositoryInterface $personRepository,
+        private EntityManagerInterface    $em,
+        private PersonRepositoryInterface $personRepository,
     ) {}
 
     /**

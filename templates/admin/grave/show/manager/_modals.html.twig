@@ -92,3 +92,24 @@
         </button>
     {% endblock %}
 {% endembed %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('bornDateOnlyYear');
+        const yearElement = document.getElementById('js-born-year');
+        const dateElement = document.getElementById('js-born-date');
+
+        function toggleElements() {
+            if (checkbox.checked) {
+                yearElement.style.display = 'block';
+                dateElement.style.display = 'none';
+            } else {
+                yearElement.style.display = 'none';
+                dateElement.style.display = 'block';
+            }
+        }
+
+        toggleElements();
+        checkbox.addEventListener('change', toggleElements);
+    });
+</script>
