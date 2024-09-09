@@ -19,6 +19,7 @@ class Graveyard
 
     private string $name;
     private ?string $description;
+    private ?bool $isPaymentVisible;
     private ?Collection $graves;
     private ?Collection $images;
 
@@ -47,6 +48,16 @@ class Graveyard
     public function setDescription(?string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getIsPaymentVisible(): ?bool
+    {
+        return $this->isPaymentVisible;
+    }
+
+    public function setIsPaymentVisible(?bool $isPaymentVisible): void
+    {
+        $this->isPaymentVisible = $isPaymentVisible;
     }
 
     public function getGraves(): ?Collection

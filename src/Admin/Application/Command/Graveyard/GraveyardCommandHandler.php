@@ -9,15 +9,20 @@ namespace App\Admin\Application\Command\Graveyard;
 use App\Admin\Application\Service\Graveyard\SaveGraveyardServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 
-class GraveyardCommandHandler implements CommandHandlerInterface
+readonly class GraveyardCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly SaveGraveyardServiceInterface $graveyardService,
+        private SaveGraveyardServiceInterface $graveyardService,
     ) {}
 
     public function __invoke(GraveyardCommand $command)
     {
         $graveyardView = $command->getGraveyard();
-        $this->graveyardService->persist($graveyardView);
+
+        if ($graveyardView->getId()) {
+            $this->graveyardService->update($graveyardView);
+            return;
+        }
+        $this->graveyardService->create($graveyardView);
     }
 }

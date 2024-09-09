@@ -11,6 +11,7 @@
 
         <field name="name" />
         <field name="description" nullable="true" />
+        <field name="isPaymentVisible" type="boolean" nullable="true" />
 
         <one-to-many field="graves" target-entity="Grave" mapped-by="graveyard" orphan-removal="true">
         </one-to-many>
