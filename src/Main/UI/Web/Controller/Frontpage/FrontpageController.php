@@ -14,7 +14,6 @@ use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class FrontpageController extends AbstractController
 {
@@ -43,12 +42,13 @@ class FrontpageController extends AbstractController
             try {
                 $searchData = $request->query->all('person_search');
                 $firstName = empty($searchData['firstName']) ? null : (string)$searchData['firstName'];
+                $lastName = empty($searchData['lastName']) ? '' : (string)$searchData['lastName'];
                 $bornYear = empty($searchData['bornYear']) ? null : (int)$searchData['bornYear'];
                 $deathYear = empty($searchData['deathYear']) ? null : (int)$searchData['deathYear'];
 
                 $personView = new DeceasedSearchView(
                     $firstName,
-                    $searchData['lastName'] ?? null,
+                    $lastName,
                     $bornYear,
                     $deathYear,
                 );
@@ -56,7 +56,6 @@ class FrontpageController extends AbstractController
             } catch (Exception $e) {
                 throw new Exception('Invalid born year or death year input!');
             }
-
         }
         $peopleList = $query->execute(
             1,
