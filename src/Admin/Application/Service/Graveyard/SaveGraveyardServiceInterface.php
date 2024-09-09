@@ -10,5 +10,6 @@ use App\Admin\Domain\View\Graveyard\GraveyardView;
 
 interface SaveGraveyardServiceInterface
 {
-    public function persist(GraveyardView $graveyardView): void;
+    public function create(GraveyardView $graveyardView): void;
+    public function update(GraveyardView $graveyardView): void;
 }

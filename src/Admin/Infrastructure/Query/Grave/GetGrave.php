@@ -11,10 +11,10 @@ use App\Core\Domain\Entity\Grave;
 use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 
-class GetGrave implements GetGraveInterface
+readonly class GetGrave implements GetGraveInterface
 {
     public function __construct(
-        private readonly GraveRepositoryInterface $graveRepository,
+        private GraveRepositoryInterface $graveRepository,
     ) {}
 
     /**

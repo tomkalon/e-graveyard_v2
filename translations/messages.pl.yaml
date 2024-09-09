@@ -201,9 +201,13 @@ ui:
     title:
       index: Lista cmentarzy
       create: Dodawanie cmentarza
+      edit: Edytowanie danych cmentarza
     description:
         manage: Zarządzanie listą cmentarzy
         info: Informacje
+    is_payment_visible: Wyświetlaj status opłat
+    payment_visible: Status opłat widoczny
+    payment_not_visible: Status opłat niewidoczny
     name: Nazwa cmentarza
     desc: Opis cmentarza
     desc_empty: Brak opisu

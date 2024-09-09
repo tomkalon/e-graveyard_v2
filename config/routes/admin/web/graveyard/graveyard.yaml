@@ -11,3 +11,10 @@ admin_web_graveyard_create:
   controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::create
   options:
     priority: 2
+
+admin_web_graveyard_edit:
+    path: /admin/graveyard/edit/{id}
+    methods: [ GET, POST ]
+    controller: App\Admin\UI\Web\Controller\Graveyard\GraveyardController::edit
+    options:
+        priority: 2

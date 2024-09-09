@@ -1,12 +1,12 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
-{% block title %}{{ app_name }} - {{ 'ui.graveyard.title.create'|trans }}{% endblock %}
+{% block title %}{{ app_name }} - {{ 'ui.graveyard.title.edit'|trans }}{% endblock %}
 {% block dashboard_content %}
     <div class="max-w-[800px]">
         <!-- Dashboard Card -->
         {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
-                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.create'|trans }}</h1>
+                <h1 class="text-slate-900 dark:text-slate-100">{{ 'ui.graveyard.title.edit'|trans }}</h1>
                 <!-- /Dashboard Title -->
             {% endblock %}
             {% block dashboard_content %}
@@ -40,7 +40,12 @@
                     </div>
                 </div>
                 <div class="mt-4 flex">
-                    {{ form_row(form.create) }}
+                    {{ form_row(form.create, {
+                        'label': 'ui.buttons.confirm'|trans,
+                        'attr': {
+                            'class': 'btn btn-left btn-success'
+                        }
+                    }) }}
                 </div>
                 {{ form_end(form) }}
                 <!-- /Dashboard Content -->

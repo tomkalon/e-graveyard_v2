@@ -8,6 +8,7 @@ namespace App\Admin\UI\Form\Graveyard;
 
 use App\Admin\Domain\View\Graveyard\GraveyardView;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +27,10 @@ class GraveyardType extends AbstractType
                 'label' => 'ui.graveyard.desc',
                 'required' => false,
                 'attr' => ['class' => 'text-black rounded-md w-full min-h-[120px]'],
+            ])
+            ->add('isPaymentVisible', CheckboxType::class, [
+                'label' => 'ui.graveyard.is_payment_visible',
+                'required' => false,
             ])
             ->add('create', SubmitType::class, [
                 'label' => 'ui.buttons.create',
