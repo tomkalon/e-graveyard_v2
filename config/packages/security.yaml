@@ -27,6 +27,9 @@ security:
         lifetime: 10800
       entry_point: App\Core\Domain\Security\AuthenticationEntryPoint
       access_denied_handler: App\Core\Domain\Security\AccessDeniedHandler
+      login_throttling:
+          max_attempts: 5
+          interval: 1 hour
     secured_area:
       form_login:
         enable_csrf: true
