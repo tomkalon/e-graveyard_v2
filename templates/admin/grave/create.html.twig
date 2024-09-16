@@ -41,11 +41,20 @@
                 <h3 class="text-gray-500 dark:text-gray-300">{{ 'ui.grave.description.coordinates'|trans }}</h3>
                 <hr>
                 <div class="mt-4 grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-                    <div>
-                        {{ form_row(form.positionY) }}
+                    <div class="hidden">
+                        {{ form_row(form.positionY, {
+                            'attr': {'disabled':'disabled'},
+                            'label_attr': {'class': 'hidden'},
+                        }) }}
+                    </div>
+                    <div class="hidden">
+                        {{ form_row(form.positionX, {
+                            'attr': {'disabled':'disabled'},
+                            'label_attr': {'class': 'hidden'},
+                        }) }}
                     </div>
                     <div>
-                        {{ form_row(form.positionX) }}
+                        {{ form_row(form.coordinates) }}
                     </div>
                 </div>
                 <div class="mt-4 flex">

@@ -12,12 +12,12 @@ use App\Admin\Application\Service\Upload\ImageUploaderServiceInterface;
 use App\Core\Application\CQRS\Command\CommandHandlerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class GraveCommandHandler implements CommandHandlerInterface
+readonly class GraveCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly ImageUploaderServiceInterface $uploaderService,
-        private readonly SaveFileGraveServiceInterface $saveFileGrave,
-        private readonly SaveGraveServiceInterface $graveService,
+        private ImageUploaderServiceInterface $uploaderService,
+        private SaveFileGraveServiceInterface $saveFileGrave,
+        private SaveGraveServiceInterface     $graveService,
     ) {}
 
     public function __invoke(GraveCommand $command)

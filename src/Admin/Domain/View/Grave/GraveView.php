@@ -24,9 +24,9 @@ class GraveView
     private ?int $sector;
     private ?int $row;
     private ?int $number;
-
     private ?string $positionX;
     private ?string $positionY;
+    private ?string $coordinates;
 
     /** @var Person[] $people */
     private ?array $people;
@@ -50,6 +50,7 @@ class GraveView
         ?int $number = null,
         ?string $positionX = null,
         ?string $positionY = null,
+        ?string $coordinates = null,
         ?array $people = null,
         ?FileGrave $main_image = null,
         ?array $images = null,
@@ -65,6 +66,7 @@ class GraveView
         $this->number = $number;
         $this->positionX = $positionX;
         $this->positionY = $positionY;
+        $this->coordinates = $coordinates;
         $this->people = $people;
         $this->main_image = $main_image;
         $this->images = $images;
@@ -89,6 +91,7 @@ class GraveView
             $grave->getNumber(),
             $grave->getPositionX(),
             $grave->getPositionY(),
+            $grave->getPositionX() . ', ' . $grave->getPositionY(),
             $grave->getPeople()->toArray(),
             $grave->getMainImage(),
             $grave->getImages()->toArray(),
@@ -167,6 +170,16 @@ class GraveView
     public function setPositionY(?string $positionY): void
     {
         $this->positionY = $positionY;
+    }
+
+    public function getCoordinates(): ?string
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(?string $coordinates): void
+    {
+        $this->coordinates = $coordinates;
     }
 
     public function getPeople(): ?array
