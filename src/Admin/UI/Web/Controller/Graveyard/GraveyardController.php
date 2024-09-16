@@ -13,7 +13,6 @@ use App\Admin\Infrastructure\Query\Graveyard\GraveyardPaginatedListQueryInterfac
 use App\Admin\UI\Form\Graveyard\GraveyardType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
 use App\Core\Domain\Enum\UserRoleEnum;
-use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,7 +71,6 @@ class GraveyardController extends AbstractController
         Request                     $request,
         GetGraveyardViewInterface   $query,
         string                      $id,
-
     ): Response {
         if (!$this->isGranted(UserRoleEnum::ADMIN->value)) {
             throw new AccessDeniedException('Access denied.');
@@ -89,7 +87,7 @@ class GraveyardController extends AbstractController
             $graveyard = $form->getData();
             $commandBus->dispatch(new GraveyardCommand($graveyard));
             return $this->redirectToRoute(
-                'admin_web_graveyard_index'
+                'admin_web_graveyard_index',
             );
         }
 
