@@ -47,6 +47,12 @@
                     <div>
                         {{ form_row(form.positionX) }}
                     </div>
+                    <div class="hidden">
+                        {{ form_row(form.coordinates, {
+                            'attr': {'disabled':'disabled', 'class': 'hidden'},
+                            'label_attr': {'class': 'hidden'},
+                        }) }}
+                    </div>
                 </div>
                 <div class="mt-4">
                     {{ form_row(form.images) }}

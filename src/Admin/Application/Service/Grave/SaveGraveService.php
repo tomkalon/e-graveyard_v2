@@ -17,12 +17,12 @@ use Doctrine\ORM\EntityNotFoundException;
 use Exception;
 use Ramsey\Uuid\Exception\InvalidArgumentException;
 
-class SaveGraveService implements SaveGraveServiceInterface
+readonly class SaveGraveService implements SaveGraveServiceInterface
 {
     public function __construct(
-        private readonly GraveRepositoryInterface $graveRepository,
-        private readonly EntityManagerInterface   $em,
-        private readonly NotificationInterface    $notification,
+        private GraveRepositoryInterface $graveRepository,
+        private EntityManagerInterface   $em,
+        private NotificationInterface    $notification,
     ) {}
 
     /**
@@ -59,18 +59,23 @@ class SaveGraveService implements SaveGraveServiceInterface
             $grave->setRow($graveView->getRow());
         }
         $grave->setNumber($graveView->getNumber());
-        if ($graveView->getPositionX()) {
-            $grave->setPositionX($graveView->getPositionX());
-        }
-        if ($graveView->getPositionY()) {
-            $grave->setPositionY($graveView->getPositionY());
-        }
-        if ($graveView->getPositionY()) {
-            $grave->setPositionY($graveView->getPositionY());
+
+        if ($graveView->getCoordinates()) {
+            $coordinates = explode(', ', $graveView->getCoordinates());
+            $grave->setPositionX($coordinates[1]);
+            $grave->setPositionY($coordinates[0]);
+        } else {
+            if ($graveView->getPositionX()) {
+                $grave->setPositionX($graveView->getPositionX());
+            }
+            if ($graveView->getPositionY()) {
+                $grave->setPositionY($graveView->getPositionY());
+            }
         }
         if ($graveView->getMainImage()) {
             $grave->setMainImage($graveView->getMainImage());
         }
+
 
         if ($graveView->getImages()) {
             foreach ($graveView->getImages() as $image) {

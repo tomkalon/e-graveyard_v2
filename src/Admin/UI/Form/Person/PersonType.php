@@ -35,29 +35,29 @@ class PersonType extends AbstractType
                 'widget' => 'single_text',
                 'constraints' => [
                     new PersonDateComparison(),
-                ]
+                ],
             ])
             ->add('bornYear', IntegerType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('bornDateOnlyYear', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
                     'id' => 'js-born-only-year',
-                ]
+                ],
             ])
             ->add('deathDate', DateType::class, [
                 'required' => false,
-                'widget' => 'single_text'
+                'widget' => 'single_text',
             ])
             ->add('deathYear', IntegerType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('deathDateOnlyYear', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
                     'id' => 'js-death-only-year',
-                ]
+                ],
             ])
             ->add('grave', EntityType::class, [
                 'class' => Grave::class,

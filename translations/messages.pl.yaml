@@ -175,6 +175,7 @@ ui:
     number: Numer
     positionX: Dł. geograficzna
     positionY: Szer. geograficzna
+    coordinates: Współrzędne GoogleMaps
     add_images: Dodaj zdjęcia
     images: Zdjęcia
     image_remove: Usuwanie zdjęcia

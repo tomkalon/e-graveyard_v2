@@ -41,10 +41,10 @@ class FrontpageController extends AbstractController
         } else {
             try {
                 $searchData = $request->query->all('person_search');
-                $firstName = empty($searchData['firstName']) ? null : (string)$searchData['firstName'];
-                $lastName = empty($searchData['lastName']) ? '' : (string)$searchData['lastName'];
-                $bornYear = empty($searchData['bornYear']) ? null : (int)$searchData['bornYear'];
-                $deathYear = empty($searchData['deathYear']) ? null : (int)$searchData['deathYear'];
+                $firstName = empty($searchData['firstName']) ? null : (string) $searchData['firstName'];
+                $lastName = empty($searchData['lastName']) ? '' : (string) $searchData['lastName'];
+                $bornYear = empty($searchData['bornYear']) ? null : (int) $searchData['bornYear'];
+                $deathYear = empty($searchData['deathYear']) ? null : (int) $searchData['deathYear'];
 
                 $personView = new DeceasedSearchView(
                     $firstName,
@@ -60,7 +60,7 @@ class FrontpageController extends AbstractController
         $peopleList = $query->execute(
             1,
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
-            $personView
+            $personView,
         );
 
         return $this->render('main/frontpage/search.html.twig', [

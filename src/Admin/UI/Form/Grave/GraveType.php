@@ -50,6 +50,11 @@ class GraveType extends AbstractType
             ->add('positionY', TextType::class, [
                 'required' => false,
             ])
+            ->add('coordinates', TextType::class, [
+                'required' => false,
+                'label_attr' => ['style' => 'width: 16rem;'],
+                'attr' => ['style' => 'width: 16rem;'],
+            ])
             ->add('images', FileType::class, [
                 'mapped' => false,
                 'required' => false,
