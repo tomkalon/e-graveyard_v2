@@ -18,6 +18,18 @@ class GraveFilterView
     private ?int $deceased_number = null;
     private ?PaymentStatusEnum $payment_status = null;
 
+    public function __construct(
+        ?Graveyard $graveyard = null,
+        ?int $sector = null,
+        ?int $row = null,
+        ?int $number = null,
+    ) {
+        $this->graveyard = $graveyard;
+        $this->sector = $sector;
+        $this->row = $row;
+        $this->number = $number;
+    }
+
     public function getGraveyard(): ?Graveyard
     {
         return $this->graveyard;
