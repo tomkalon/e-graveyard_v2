@@ -38,7 +38,11 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
 
         $qb
             ->leftJoin('g.main_image', 'mainImage')
+            ->leftJoin('g.images', 'images')
+
             ->addSelect('mainImage')
+            ->addSelect('images')
+
             ->orderBy('g.sector', 'ASC')
             ->addOrderBy('g.row', 'ASC')
             ->addOrderBy('g.number', 'ASC');
@@ -52,14 +56,12 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
     private function addGraveRelationships(QueryBuilder $qb): void
     {
         $qb
-            ->addSelect('graveyard')
-            ->addSelect('people')
-            ->addSelect('payments')
-            ->addSelect('images')
             ->leftJoin('g.graveyard', 'graveyard')
             ->leftJoin('g.people', 'people')
             ->leftJoin('g.payments', 'payments')
-            ->leftJoin('g.images', 'images');
+            ->addSelect('graveyard')
+            ->addSelect('people')
+            ->addSelect('payments');
     }
 
     /**
