@@ -17,26 +17,17 @@ class PersonFilterView
     private ?string $lastname;
     private ?int $bornYear;
     private ?int $deathYear;
-    private ?Grave $grave;
-    private ?DateTimeImmutable $updatedAt;
-    private ?DateTimeImmutable $createdAt;
 
     public function __construct(
         ?string $firstname = null,
         ?string $lastname = null,
         ?int $bornYear = null,
         ?int $deathYear = null,
-        ?Grave $grave = null,
-        ?DateTimeImmutable $updatedAt = null,
-        ?DateTimeImmutable $createdAt = null,
     ) {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->bornYear = $bornYear;
         $this->deathYear = $deathYear;
-        $this->grave = $grave;
-        $this->updatedAt = $updatedAt;
-        $this->createdAt = $createdAt;
     }
 
     public static function fromEntity(Person $person): self
@@ -46,9 +37,6 @@ class PersonFilterView
             $person->getLastname(),
             $person->getBornDate(),
             $person->getDeathDate(),
-            $person->getGrave(),
-            $person->getUpdatedAt(),
-            $person->getCreatedAt(),
         );
     }
 
@@ -90,35 +78,5 @@ class PersonFilterView
     public function setBornYear(?int $bornYear): void
     {
         $this->bornYear = $bornYear;
-    }
-
-    public function getGrave(): ?Grave
-    {
-        return $this->grave;
-    }
-
-    public function setGrave(?Grave $grave): void
-    {
-        $this->grave = $grave;
-    }
-
-    public function getUpdatedAt(): ?DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    public function getCreatedAt(): ?DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
-    {
-        $this->createdAt = $createdAt;
     }
 }
