@@ -22,7 +22,7 @@ export default class extends Controller {
         }
 
         if (this.hasToggleFilterTarget && this.hasFilterContainerTarget) {
-            FilterSwitch(this.toggleFilterTarget, this.filterContainerTarget)
+            FilterSwitch(this.toggleFilterTarget, this.filterContainerTarget, 'ADMIN_GRAVE_LIST_TOGGLE_FILTER_STATUS')
         }
     }
 
