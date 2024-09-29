@@ -1,8 +1,9 @@
 {% extends 'admin/common/dashboard/layout.html.twig' %}
 {% block title %}{{ app_name }} - {{ 'ui.person.title.index'|trans }}{% endblock %}
+
 {% block dashboard_content %}
-    <!-- Dashboard Card -->
     <div {{ stimulus_controller('admin--person--person-list') }}>
+        <!-- Dashboard Card -->
         {% embed 'admin/common/dashboard/_dashboard_card.html.twig' %}
             {% block title %}
                 <!-- Dashboard Title -->
@@ -10,12 +11,61 @@
                 <h2 class="text-gray-500 dark:text-gray-300">{{ 'ui.person.description.manage'|trans }}</h2>
                 <!-- /Dashboard Title -->
             {% endblock %}
+            {% block buttons_before %}
+                <div class=" mb-2 flex gap-2 justify-end grow">
+                    <!-- Toggle Filter Button -->
+                    {% if app.request.cookies.get('ADMIN_PEOPLE_LIST_TOGGLE_FILTER_STATUS') == 'true' %}
+                        <button {{ stimulus_target('admin--person--person-list', 'toggleFilter') }}
+                                type="button"
+                                class="btn btn-danger">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                            {{ 'ui.buttons.hide_filter'|trans }}
+                        </button>
+                    {% else %}
+                        <button {{ stimulus_target('admin--person--person-list', 'toggleFilter') }}
+                                type="button"
+                                class="btn btn-warning">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                            {{ 'ui.buttons.show_filter'|trans }}
+                        </button>
+                    {% endif %}
+                    <!-- /Toggle Filter Button -->
+                </div>
+            {% endblock %}
+            {% block filters %}
+                <div {{ stimulus_target('admin--person--person-list', 'filterContainer') }}
+                        class="{% if app.request.cookies.get('ADMIN_PEOPLE_LIST_TOGGLE_FILTER_STATUS') == 'true' %}block
+                           {% else %}hidden{% endif %}">
+                    {{ form_start(filterForm, {
+                        'attr': {'class': 'flex justify-end mb-8'}
+                    }) }}
+                    <div class="flex-grow">
+                        <div class="row">
+                            <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                                {{ form_row(filterForm.firstName) }}
+                                {{ form_row(filterForm.lastName) }}
+                                {{ form_row(filterForm.bornYear) }}
+                                {{ form_row(filterForm.deathYear) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="flex justify-end gap-2 mt-4">
+                                {{ form_row(filterForm.search) }}
+                                <a href="{{ path('admin_web_person_index') }}">
+                                    <button type="button" class="btn btn-warning">{{ 'ui.buttons.reset'|trans }}</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(filterForm) }}
+                </div>
+            {% endblock %}
             {% block dashboard_content %}
                 <!-- Dashboard Content -->
                 <!-- Pagination -->
                 <div {{ stimulus_target('admin--person--person-list', 'pagination') }}>
                     {% embed 'core/pagination/pagination.html.twig' with {
-                        width: "max-w-[1400px]"
                     } %}
                         {% block head %}
                             {% include 'core/pagination/_head.html.twig' with {
@@ -35,6 +85,11 @@
                             {% include 'core/pagination/_head.html.twig' with {
                                 label: 'ui.person.deathDate',
                                 name: 'p.death_date',
+                                class: 'w-36 text-center'
+                            } %}
+                            {% include 'core/pagination/_head.html.twig' with {
+                                label: 'ui.grave.graveyard',
+                                name: 'grave.sector',
                                 class: 'w-36 text-center'
                             } %}
                             {% include 'core/pagination/_head.html.twig' with {
@@ -70,6 +125,10 @@
                                 class: 'text-center'
                             } %}
                             {% include 'core/pagination/_body_value.html.twig' with {
+                                value: item.grave.graveyard.name,
+                                class: 'text-center'
+                            } %}
+                            {% include 'core/pagination/_body_value.html.twig' with {
                                 value: item.grave.sector,
                                 class: 'text-center'
                             } %}
@@ -81,7 +140,9 @@
                                 value: item.grave.number,
                                 class: 'text-center'
                             } %}
-                            {% embed 'core/pagination/_body_action.html.twig' %}
+                            {% embed 'core/pagination/_body_action.html.twig' with {
+                                class: 'w-36'
+                            } %}
                                 {% block actions %}
                                     <a href="{{ path('admin_web_grave_show', {id: item.grave.id}) }}">
                                         <button gemma-tooltip="top"

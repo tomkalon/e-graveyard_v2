@@ -2,18 +2,23 @@ import {Controller} from '@hotwired/stimulus';
 import Api from '@Api';
 import Modal from '@Modal';
 import HandleItems from "@HandleItems";
+import {FilterSwitch} from "@FilterSwitch";
 
 import {getPerson} from "@View/person/person_view";
 import $ from "jquery";
 
 export default class extends Controller {
-    static targets = ['pagination']
+    static targets = ['pagination', 'filterContainer', 'toggleFilter']
 
     connect() {
         if (this.hasPaginationTarget) {
             const pagination = this.paginationTarget;
             const items = pagination.querySelectorAll('[data-item-id]')
             HandleItems.handleItems(items, this.personActions.bind(this))
+        }
+
+        if (this.hasToggleFilterTarget && this.hasFilterContainerTarget) {
+            FilterSwitch(this.toggleFilterTarget, this.filterContainerTarget, 'ADMIN_PEOPLE_LIST_TOGGLE_FILTER_STATUS')
         }
     }
 
