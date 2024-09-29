@@ -24,7 +24,10 @@ class PersonRepository extends BasePersonRepository implements BasePersonReposit
             ->leftJoin('p.grave', 'grave')
             ->leftJoin('grave.graveyard', 'graveyard')
             ->addSelect('grave')
-            ->addSelect('graveyard');
+            ->addSelect('graveyard')
+            ->orderBy('p.lastname', 'ASC')
+            ->addOrderBy('p.firstname', 'ASC')
+        ;
 
         $this->addPersonFilter($qb, $filter);
         return $qb->getQuery();
