@@ -17,11 +17,13 @@ use App\Admin\Domain\View\Person\PersonView;
 use App\Admin\Infrastructure\Query\Grave\GetGraveInterface;
 use App\Admin\Infrastructure\Query\Grave\GetGraveViewInterface;
 use App\Admin\Infrastructure\Query\Grave\GravePaginatedListQueryInterface;
+use App\Admin\Infrastructure\Query\Graveyard\GetGraveyard;
 use App\Admin\UI\Form\Grave\GraveFilterType;
 use App\Admin\UI\Form\Grave\GraveType;
 use App\Admin\UI\Form\Payment\PaymentGraveType;
 use App\Admin\UI\Form\Person\PersonType;
 use App\Core\Application\CQRS\Command\CommandBusInterface;
+use Exception;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,10 +34,14 @@ class GraveController extends AbstractController
 {
     public const GRAVE_INDEX_SESSION_KEY = 'admin_web_grave_index_get_data';
 
+    /**
+     * @throws Exception
+     */
     public function index(
         Request                          $request,
         Session                          $session,
         GravePaginatedListQueryInterface $query,
+        GetGraveyard                     $graveyardQuery,
         CommandBusInterface              $commandBus,
         int                              $page,
     ): Response {
@@ -44,7 +50,7 @@ class GraveController extends AbstractController
         $addDeceasedForm->handleRequest($request);
 
         // filter form
-        $filterForm = $this->createForm(GraveFilterType::class, new GraveFilterView());
+        $filterForm = $this->createForm(GraveFilterType::class);
         $filterForm->handleRequest($request);
 
         // ADD DECEASED form handler
@@ -62,10 +68,27 @@ class GraveController extends AbstractController
         }
 
         // FILTER form handler
-        /** @var GraveFilterView $filter */
-        $filter = null;
         if ($filterForm->isSubmitted() and $filterForm->isValid()) {
-            $filter = $filterForm->getData();
+            $graveView = $filterForm->getData();
+        } else {
+            try {
+                $filterData = $request->query->all('grave_filter');
+                $graveyard = empty($filterData['graveyard']) ? null : $graveyardQuery->execute($filterData['graveyard']); ;
+                $sector = empty($filterData['sector']) ? null : (int) $filterData['sector'];
+                $row = empty($filterData['row']) ? null : (int) $filterData['row'];
+                $number = empty($filterData['number']) ? null : (int) $filterData['number'];
+
+                $graveView = new GraveFilterView(
+                    $graveyard,
+                    $sector,
+                    $row,
+                    $number
+                );
+
+                $filterForm->setData($graveView);
+            } catch (Exception $e) {
+                throw new Exception('Invalid grave filter data!');
+            }
         }
 
         $session->set(self::GRAVE_INDEX_SESSION_KEY, $request->query->all());
@@ -74,7 +97,7 @@ class GraveController extends AbstractController
         $paginatedGravesList = $query->execute(
             $page,
             $request->request->all('pagination_limit')['limit'] ?? $request->getSession()->get('pagination_limit'),
-            $filter,
+            $graveView,
         );
 
         return $this->render('admin/grave/index.html.twig', [
