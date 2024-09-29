@@ -56,12 +56,12 @@ class GraveRepository extends BaseGraveRepository implements BaseGraveRepository
     private function addGraveRelationships(QueryBuilder $qb): void
     {
         $qb
-            ->leftJoin('g.graveyard', 'graveyard')
-            ->leftJoin('g.people', 'people')
-            ->leftJoin('g.payments', 'payments')
             ->addSelect('graveyard')
             ->addSelect('people')
-            ->addSelect('payments');
+            ->addSelect('payments')
+            ->leftJoin('g.graveyard', 'graveyard')
+            ->leftJoin('g.people', 'people')
+            ->leftJoin('g.payments', 'payments');
     }
 
     /**
