@@ -159,7 +159,7 @@ class GraveController extends AbstractController
             'grave' => $grave,
             'addDeceasedForm' => $addDeceasedForm->createView(),
             'addPaymentForm' => $addPaymentForm->createView(),
-            'graveIndexParams' => $graveIndexFilter,
+            'graveIndexParams' => $graveIndexFilter ?? [],
             'id' => $id,
         ]);
     }
